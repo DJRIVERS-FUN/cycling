@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Research Engine: Behaviour and Systems</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html, body {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    background: #ffffff;
+    color: #1a1a1a;
+    font-family: 'DM Sans', sans-serif;
+  }
+
+  body { padding: 0 10px 10px 10px; }
+
+  .engine-root {
+    background: transparent;
+    border: none;
+    padding: 4px 0 0 0;
+    width: 100%;
+    max-width: 100%;
+    overflow: visible;
+  }
+
+  .engine-header { margin-bottom: 16px; }
+
+  .engine-eyebrow {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.16em;
+    color: #e05c2a;
+    text-transform: uppercase;
+    margin-bottom: 4px;
+  }
+
+  .engine-title {
+    font-size: 20px;
+    font-weight: 500;
+    color: #111111;
+    line-height: 1.25;
+  }
+
+  .engine-subtitle {
+    font-size: 12px;
+    color: #9a9890;
+    margin-top: 3px;
+    font-family: 'DM Mono', monospace;
+    letter-spacing: 0.04em;
+  }
+
+  .dual-grid {
+    display: grid;
+    grid-template-columns: 1fr 42px 1fr;
+    gap: 8px;
+    align-items: stretch;
+    margin-top: 4px;
+  }
+
+  .track-title {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #c0beb8;
+    margin-bottom: 7px;
+  }
+
+  .track-title.right { text-align: right; }
+
+  .track {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .node {
+    min-height: 62px;
+    cursor: pointer;
+    padding: 8px 0;
+    border: none;
+    background: transparent;
+    transition: all 0.35s cubic-bezier(.4,0,.2,1);
+  }
+
+  .node.right { text-align: right; }
+
+  .node-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #c0beb8;
+    margin-bottom: 3px;
+    transition: color 0.3s;
+  }
+
+  .node-name {
+    font-size: 14px;
+    font-weight: 500;
+    color: #888680;
+    line-height: 1.3;
+    transition: color 0.35s;
+  }
+
+  .node-detail {
+    font-size: 12px;
+    color: #a0a09a;
+    line-height: 1.5;
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    margin-top: 0;
+    transition: max-height 0.4s cubic-bezier(.4,0,.2,1), opacity 0.3s, margin-top 0.3s;
+  }
+
+  .node.active .node-label { color: #c4541e; }
+  .node.done .node-label { color: #4a8f5c; }
+  .node.active .node-name { color: #1a1a1a; }
+  .node.done .node-name { color: #4a7a58; }
+  .node.active .node-detail {
+    max-height: 110px;
+    opacity: 1;
+    margin-top: 5px;
+    color: #6e6c66;
+  }
+
+  .spine {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 25px;
+  }
+
+  .spine-dot {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    border: 1.5px solid #d8d6d0;
+    background: #f0efeb;
+    color: #b0aea8;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    transition: all 0.35s cubic-bezier(.4,0,.2,1);
+    z-index: 2;
+  }
+
+  .spine-dot.active {
+    background: #e05c2a;
+    border-color: #e05c2a;
+    color: #fff;
+    box-shadow: 0 0 0 6px rgba(224,92,42,0.12);
+  }
+
+  .spine-dot.done {
+    background: #edf5ef;
+    border-color: #b8d8bf;
+    color: #4a8f5c;
+    font-size: 13px;
+  }
+
+  .spine-line {
+    width: 1.5px;
+    height: 54px;
+    background: #e4e2dc;
+    transition: background 0.5s;
+  }
+
+  .spine-line.lit {
+    background: linear-gradient(to bottom, rgba(224,92,42,0.45), rgba(224,92,42,0.06));
+  }
+
+  .converge {
+    margin-top: 12px;
+    padding-top: 12px;
+    border-top: 1px solid #ece9e3;
+  }
+
+  .model-card {
+    display: grid;
+    grid-template-columns: 46px 1fr;
+    align-items: start;
+    cursor: pointer;
+  }
+
+  .model-dot {
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    border: 1.5px solid #d8d6d0;
+    background: #f0efeb;
+    color: #b0aea8;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    margin-left: 6px;
+    transition: all 0.35s cubic-bezier(.4,0,.2,1);
+  }
+
+  .model-card.active .model-dot {
+    background: #e05c2a;
+    border-color: #e05c2a;
+    color: #fff;
+    box-shadow: 0 0 0 6px rgba(224,92,42,0.12);
+  }
+
+  .model-card.done .model-dot {
+    background: #edf5ef;
+    border-color: #b8d8bf;
+    color: #4a8f5c;
+  }
+
+  .model-content { padding: 4px 0 0 6px; }
+
+  .model-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #c0beb8;
+    margin-bottom: 3px;
+  }
+
+  .model-name {
+    font-size: 14px;
+    font-weight: 500;
+    color: #888680;
+    line-height: 1.3;
+  }
+
+  .model-detail {
+    font-size: 12px;
+    color: #a0a09a;
+    line-height: 1.5;
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    transition: max-height 0.4s cubic-bezier(.4,0,.2,1), opacity 0.3s, margin-top 0.3s;
+  }
+
+  .model-card.active .model-label { color: #c4541e; }
+  .model-card.done .model-label { color: #4a8f5c; }
+  .model-card.active .model-name { color: #1a1a1a; }
+  .model-card.done .model-name { color: #4a7a58; }
+  .model-card.active .model-detail {
+    max-height: 110px;
+    opacity: 1;
+    margin-top: 5px;
+    color: #6e6c66;
+  }
+
+  .engine-controls {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 18px;
+  }
+
+  button {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    background: transparent;
+    border: 1px solid #d8d6d0;
+    color: #888680;
+    padding: 7px 14px;
+    border-radius: 7px;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+
+  button:hover:not(:disabled) { border-color: #e05c2a; color: #e05c2a; }
+  button.primary { background: #e05c2a; border-color: #e05c2a; color: #fff; padding: 7px 20px; }
+  button.primary:hover:not(:disabled) { background: #c94f20; border-color: #c94f20; }
+  button:disabled { opacity: 0.28; cursor: default; }
+
+  .engine-progress {
+    flex: 1;
+    height: 2px;
+    background: #e4e2dc;
+    border-radius: 2px;
+    overflow: hidden;
+  }
+
+  .engine-progress-fill {
+    height: 100%;
+    background: #e05c2a;
+    border-radius: 2px;
+    transition: width 0.4s cubic-bezier(.4,0,.2,1);
+  }
+
+  .engine-counter {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    color: #c0beb8;
+    white-space: nowrap;
+  }
+
+  .engine-auto {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    background: rgba(224,92,42,0.08);
+    color: #e05c2a;
+    border: 1px solid rgba(224,92,42,0.25);
+    padding: 6px 11px;
+    border-radius: 6px;
+    cursor: pointer;
+    white-space: nowrap;
+  }
+
+  .engine-auto.on { background: rgba(224,92,42,0.16); border-color: rgba(224,92,42,0.5); }
+
+  .engine-footer {
+    margin-top: 16px;
+    padding-top: 12px;
+    border-top: 1px solid #ece9e3;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .engine-footer-left {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    color: #c8c6c0;
+    letter-spacing: 0.06em;
+  }
+
+  .engine-pips { display: flex; gap: 5px; }
+  .engine-pip {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #dedad4;
+    transition: all 0.3s;
+    cursor: pointer;
+  }
+  .engine-pip.active { background: #e05c2a; }
+  .engine-pip.done { background: #7ab888; }
+  .engine-pip:hover { transform: scale(1.3); }
+
+  @media (max-width: 520px) {
+    body { padding: 0 6px 8px 6px; }
+    .engine-title { font-size: 17px; }
+    .dual-grid { grid-template-columns: 1fr 34px 1fr; gap: 4px; }
+    .spine-dot { width: 26px; height: 26px; }
+    .node-name, .model-name { font-size: 13px; }
+    .node-detail, .model-detail { font-size: 11.5px; }
+    .engine-controls { flex-wrap: wrap; }
+  }
+</style>
+</head>
+<body>
+
+<div class="engine-root">
+  <div class="engine-header">
+    <div class="engine-eyebrow">Rivers Lab Research Engine</div>
+    <h1 class="engine-title">Behaviour and Systems Converge Through Data</h1>
+    <div class="engine-subtitle">Human Activity + Technical Systems → Modelling → Insight → Adaptation</div>
+  </div>
+
+  <div class="dual-grid">
+    <div>
+      <div class="track-title">Behaviour</div>
+      <div class="track" id="left-track"></div>
+    </div>
+
+    <div class="spine" id="spine"></div>
+
+    <div>
+      <div class="track-title right">System</div>
+      <div class="track" id="right-track"></div>
+    </div>
+  </div>
+
+  <div class="converge">
+    <div id="model-zone"></div>
+  </div>
+
+  <div class="engine-controls">
+    <button id="btn-prev" onclick="prev()">← Back</button>
+    <button class="primary" id="btn-next" onclick="next()">Next →</button>
+    <div class="engine-progress"><div class="engine-progress-fill" id="prog"></div></div>
+    <span class="engine-counter" id="counter">1 / 5</span>
+    <button class="engine-auto on" id="auto-btn" onclick="toggleAuto()">Stop</button>
+  </div>
+
+  <div class="engine-footer">
+    <span class="engine-footer-left">Dual evidence streams converge into modelling and applied research design</span>
+    <div class="engine-pips" id="pips"></div>
+  </div>
+</div>
+
+<script>
+const pairs = [
+  {
+    left: {label: "Activity", name: "Learning and Performance", detail: "Students, teachers, cyclists, and users produce meaningful behaviour through study, action, choice, pacing, and adaptation."},
+    right: {label: "Environment", name: "Technical and Social Systems", detail: "Courses, LMS platforms, sensors, devices, interfaces, and institutional structures shape what can be observed."}
+  },
+  {
+    left: {label: "Regulation", name: "Cognition and Behaviour", detail: "Executive function, metacognition, motivation, attention, and decision-making influence performance over time."},
+    right: {label: "Capture", name: "Data Capture Systems", detail: "Surveys, learning records, wearable sensors, power meters, APIs, and digital platforms record behavioural evidence."}
+  },
+  {
+    left: {label: "Evidence", name: "Human Data", detail: "Self-report, behavioural logs, assignment timing, interaction patterns, physiological signals, and outcome indicators are integrated."},
+    right: {label: "Structure", name: "System Data", detail: "Time-series records, LMS exports, sensor streams, platform metadata, and interaction traces provide technical structure."}
+  },
+  {
+    left: {label: "Interpretation", name: "Behavioural Meaning", detail: "The analytical focus remains on what patterns reveal about learning, adaptation, regulation, and performance."},
+    right: {label: "Computation", name: "Analytical Pipeline", detail: "Cleaning, feature engineering, visualization, statistical modelling, and computational analysis make the evidence usable."}
+  }
+];
+
+const model = {
+  label: "Convergence",
+  name: "Data-Driven Modelling and Research Design",
+  detail: "Behavioural and system evidence converge through modelling to generate insight, support intervention, and inform the next cycle of learning, design, and adaptation."
+};
+
+let current = 0;
+let autoPlaying = true;
+let autoTimer = null;
+const totalSteps = pairs.length + 1;
+
+function render() {
+  const left = document.getElementById('left-track');
+  const right = document.getElementById('right-track');
+  const spine = document.getElementById('spine');
+  const modelZone = document.getElementById('model-zone');
+  left.innerHTML = '';
+  right.innerHTML = '';
+  spine.innerHTML = '';
+
+  pairs.forEach((p, i) => {
+    const active = current === i;
+    const done = current > i;
+    const cls = active ? 'active' : done ? 'done' : '';
+    const dotContent = done ? '✓' : i + 1;
+    const lineClass = done ? 'lit' : '';
+
+    left.innerHTML += `
+      <div class="node left ${cls}" onclick="jump(${i})">
+        <div class="node-label">${p.left.label}</div>
+        <div class="node-name">${p.left.name}</div>
+        <div class="node-detail">${p.left.detail}</div>
+      </div>`;
+
+    spine.innerHTML += `
+      <div class="spine-dot ${cls}" onclick="jump(${i})">${dotContent}</div>
+      ${i < pairs.length - 1 ? `<div class="spine-line ${lineClass}"></div>` : ''}`;
+
+    right.innerHTML += `
+      <div class="node right ${cls}" onclick="jump(${i})">
+        <div class="node-label">${p.right.label}</div>
+        <div class="node-name">${p.right.name}</div>
+        <div class="node-detail">${p.right.detail}</div>
+      </div>`;
+  });
+
+  const modelActive = current === totalSteps - 1;
+  const modelDone = current > totalSteps - 1;
+  const modelCls = modelActive ? 'active' : modelDone ? 'done' : '';
+
+  modelZone.innerHTML = `
+    <div class="model-card ${modelCls}" onclick="jump(${totalSteps - 1})">
+      <div class="model-dot">${modelActive ? totalSteps : '→'}</div>
+      <div class="model-content">
+        <div class="model-label">${model.label}</div>
+        <div class="model-name">${model.name}</div>
+        <div class="model-detail">${model.detail}</div>
+      </div>
+    </div>`;
+
+  const pct = (current / (totalSteps - 1)) * 100;
+  document.getElementById('prog').style.width = pct + '%';
+  document.getElementById('counter').textContent = `${current + 1} / ${totalSteps}`;
+  document.getElementById('btn-prev').disabled = current === 0;
+
+  const nextBtn = document.getElementById('btn-next');
+  nextBtn.disabled = current === totalSteps - 1;
+  nextBtn.textContent = current === totalSteps - 1 ? 'Done ✓' : 'Next →';
+
+  const pipsEl = document.getElementById('pips');
+  pipsEl.innerHTML = '';
+  for (let i = 0; i < totalSteps; i++) {
+    const cls = i === current ? 'active' : i < current ? 'done' : '';
+    pipsEl.innerHTML += `<div class="engine-pip ${cls}" onclick="event.stopPropagation(); jump(${i})"></div>`;
+  }
+}
+
+function next() {
+  if (current < totalSteps - 1) {
+    current++;
+    render();
+  } else {
+    stopAuto();
+  }
+}
+
+function prev() {
+  if (current > 0) {
+    current--;
+    render();
+  }
+}
+
+function jump(i) {
+  current = i;
+  render();
+}
+
+function toggleAuto() {
+  autoPlaying ? stopAuto() : startAuto();
+}
+
+function startAuto() {
+  autoPlaying = true;
+  const btn = document.getElementById('auto-btn');
+  btn.classList.add('on');
+  btn.textContent = 'Stop';
+  if (current === totalSteps - 1) current = -1;
+  autoTimer = setInterval(() => {
+    if (current < totalSteps - 1) {
+      current++;
+      render();
+    } else {
+      stopAuto();
+    }
+  }, 1350);
+}
+
+function stopAuto() {
+  autoPlaying = false;
+  clearInterval(autoTimer);
+  const btn = document.getElementById('auto-btn');
+  btn.classList.remove('on');
+  btn.textContent = 'Auto';
+}
+
+render();
+setTimeout(startAuto, 700);
+</script>
+</body>
+</html>
