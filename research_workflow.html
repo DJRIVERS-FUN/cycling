@@ -4,67 +4,75 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Research Workflow: Human–Machine Performance Regulation</title>
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
-<style>
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-  body {
-    font-family: 'DM Sans', sans-serif;
+<style>
+  *, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  html, body {
+    width: 100%;
+    margin: 0;
+    padding: 0;
     background: #ffffff;
     color: #1a1a1a;
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 32px 16px;
+    font-family: 'DM Sans', sans-serif;
+  }
+
+  body {
+    padding: 0 10px 10px 10px;
   }
 
   .wf-root {
-  background: transparent;
-  border: none;
-  border-radius: 0;
-  padding: 0;
-  width: 100%;
-  max-width: 100%;
+    background: transparent;
+    border: none;
+    border-radius: 0;
+    padding: 4px 0 0 0;
+    width: 100%;
+    max-width: 100%;
+    position: relative;
+    overflow: visible;
   }
 
-  .wf-root::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background:
-      repeating-linear-gradient(0deg, transparent, transparent 39px, rgba(0,0,0,0.025) 40px),
-      repeating-linear-gradient(90deg, transparent, transparent 39px, rgba(0,0,0,0.025) 40px);
-    pointer-events: none;
+  .wf-header {
+    margin-bottom: 14px;
+    position: relative;
   }
 
-  /* Header */
-  .wf-header { margin-bottom: 16px; position: relative; }
   .wf-eyebrow {
     font-family: 'DM Mono', monospace;
     font-size: 11px;
     letter-spacing: 0.16em;
     color: #e05c2a;
     text-transform: uppercase;
-    margin-bottom: 8px;
+    margin-bottom: 4px;
   }
+
   .wf-title {
     font-size: 20px;
     font-weight: 500;
     color: #111111;
-    line-height: 1.3;
+    line-height: 1.25;
   }
+
   .wf-subtitle {
     font-size: 12px;
     color: #9a9890;
-    margin-top: 5px;
+    margin-top: 3px;
     font-family: 'DM Mono', monospace;
     letter-spacing: 0.04em;
   }
 
-  /* Track */
-  .wf-track { display: flex; flex-direction: column; position: relative; }
+  .wf-track {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+  }
 
   .wf-step {
     display: flex;
@@ -72,18 +80,17 @@
     cursor: pointer;
   }
 
-  /* Spine */
   .wf-spine {
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 48px;
+    width: 46px;
     flex-shrink: 0;
   }
 
   .wf-dot {
-    width: 32px;
-    height: 32px;
+    width: 30px;
+    height: 30px;
     border-radius: 50%;
     border: 1.5px solid #d8d6d0;
     background: #f0efeb;
@@ -97,14 +104,16 @@
     transition: all 0.35s cubic-bezier(.4,0,.2,1);
     position: relative;
     z-index: 1;
-    margin-top: 12px;
+    margin-top: 9px;
   }
+
   .wf-dot.active {
     background: #e05c2a;
     border-color: #e05c2a;
     color: #fff;
-    box-shadow: 0 0 0 7px rgba(224,92,42,0.12), 0 0 20px rgba(224,92,42,0.18);
+    box-shadow: 0 0 0 6px rgba(224,92,42,0.12);
   }
+
   .wf-dot.done {
     background: #edf5ef;
     border-color: #b8d8bf;
@@ -120,41 +129,26 @@
     background: #e4e2dc;
     transition: background 0.5s;
   }
+
   .wf-connector.lit {
     background: linear-gradient(to bottom, rgba(224,92,42,0.45), rgba(224,92,42,0.06));
   }
 
-  /* Card */
   .wf-card {
-      flex: 1;
-  border: none;
-  border-radius: 0;
-  padding: 10px 0;
-  margin: 6px 0 6px 6px;
-  background: transparent;
-  }
-  .wf-card::after {
-    content: '';
-    position: absolute;
-    left: 0; top: 0; bottom: 0;
-    width: 3px;
+    flex: 1;
+    border: none;
+    border-radius: 0;
+    padding: 8px 0;
+    margin: 5px 0 5px 6px;
     background: transparent;
-    border-radius: 10px 0 0 10px;
-    transition: background 0.35s;
+    transition: all 0.35s cubic-bezier(.4,0,.2,1);
+    position: relative;
+    overflow: hidden;
   }
-  .wf-card.active {
-    border-color: #f0d4c6;
-    background: #fff8f5;
-  }
-  .wf-card.active::after { background: #e05c2a; }
+
+  .wf-card.active,
   .wf-card.done {
-    border-color: #cce0d1;
-    background: #f4faf6;
-  }
-  .wf-card.done::after { background: #4a8f5c; }
-  .wf-card:hover:not(.active):not(.done) {
-    border-color: #d4d2cc;
-    background: #f7f6f2;
+    background: transparent;
   }
 
   .wf-card-label {
@@ -166,8 +160,14 @@
     margin-bottom: 3px;
     transition: color 0.3s;
   }
-  .wf-card.active .wf-card-label { color: #c4541e; }
-  .wf-card.done   .wf-card-label { color: #4a8f5c; }
+
+  .wf-card.active .wf-card-label {
+    color: #c4541e;
+  }
+
+  .wf-card.done .wf-card-label {
+    color: #4a8f5c;
+  }
 
   .wf-card-name {
     font-size: 14px;
@@ -176,8 +176,14 @@
     line-height: 1.3;
     transition: color 0.35s;
   }
-  .wf-card.active .wf-card-name { color: #1a1a1a; }
-  .wf-card.done   .wf-card-name { color: #4a7a58; }
+
+  .wf-card.active .wf-card-name {
+    color: #1a1a1a;
+  }
+
+  .wf-card.done .wf-card-name {
+    color: #4a7a58;
+  }
 
   .wf-card-detail {
     font-size: 12px;
@@ -189,19 +195,19 @@
     opacity: 0;
     margin-top: 0;
   }
+
   .wf-card.active .wf-card-detail {
-    max-height: 100px;
+    max-height: 110px;
     opacity: 1;
-    margin-top: 6px;
+    margin-top: 5px;
     color: #6e6c66;
   }
 
-  /* Controls */
   .wf-controls {
     display: flex;
     align-items: center;
     gap: 10px;
-    margin-top: 28px;
+    margin-top: 18px;
     position: relative;
   }
 
@@ -213,20 +219,33 @@
     background: transparent;
     border: 1px solid #d8d6d0;
     color: #888680;
-    padding: 8px 16px;
+    padding: 7px 14px;
     border-radius: 7px;
     cursor: pointer;
     transition: all 0.2s;
   }
-  button:hover:not(:disabled) { border-color: #e05c2a; color: #e05c2a; }
+
+  button:hover:not(:disabled) {
+    border-color: #e05c2a;
+    color: #e05c2a;
+  }
+
   button.primary {
     background: #e05c2a;
     border-color: #e05c2a;
     color: #fff;
-    padding: 8px 22px;
+    padding: 7px 20px;
   }
-  button.primary:hover:not(:disabled) { background: #c94f20; border-color: #c94f20; }
-  button:disabled { opacity: 0.28; cursor: default; }
+
+  button.primary:hover:not(:disabled) {
+    background: #c94f20;
+    border-color: #c94f20;
+  }
+
+  button:disabled {
+    opacity: 0.28;
+    cursor: default;
+  }
 
   .wf-progress {
     flex: 1;
@@ -235,6 +254,7 @@
     border-radius: 2px;
     overflow: hidden;
   }
+
   .wf-progress-fill {
     height: 100%;
     background: #e05c2a;
@@ -257,33 +277,40 @@
     background: rgba(224,92,42,0.08);
     color: #e05c2a;
     border: 1px solid rgba(224,92,42,0.25);
-    padding: 7px 12px;
+    padding: 6px 11px;
     border-radius: 6px;
     cursor: pointer;
     transition: all 0.2s;
     white-space: nowrap;
   }
-  .wf-auto:hover, .wf-auto.on {
+
+  .wf-auto:hover,
+  .wf-auto.on {
     background: rgba(224,92,42,0.16);
     border-color: rgba(224,92,42,0.5);
   }
 
-  /* Footer */
   .wf-footer {
-    margin-top: 24px;
-    padding-top: 18px;
+    margin-top: 16px;
+    padding-top: 12px;
     border-top: 1px solid #ece9e3;
     display: flex;
     justify-content: space-between;
     align-items: center;
   }
+
   .wf-footer-left {
     font-family: 'DM Mono', monospace;
     font-size: 10px;
     color: #c8c6c0;
     letter-spacing: 0.06em;
   }
-  .wf-dots { display: flex; gap: 5px; }
+
+  .wf-dots {
+    display: flex;
+    gap: 5px;
+  }
+
   .wf-pip {
     width: 6px;
     height: 6px;
@@ -292,23 +319,42 @@
     transition: all 0.3s;
     cursor: pointer;
   }
-  .wf-pip.active { background: #e05c2a; }
-  .wf-pip.done   { background: #7ab888; }
-  .wf-pip:hover  { transform: scale(1.3); }
+
+  .wf-pip.active {
+    background: #e05c2a;
+  }
+
+  .wf-pip.done {
+    background: #7ab888;
+  }
+
+  .wf-pip:hover {
+    transform: scale(1.3);
+  }
 
   @media (max-width: 480px) {
-    .wf-root { padding: 24px 18px 24px; }
-    .wf-title { font-size: 17px; }
+    body {
+      padding: 0 6px 8px 6px;
+    }
+
+    .wf-title {
+      font-size: 17px;
+    }
+
+    .wf-controls {
+      flex-wrap: wrap;
+    }
   }
 </style>
 </head>
+
 <body>
 
 <div class="wf-root">
   <div class="wf-header">
     <div class="wf-eyebrow">Rivers Lab Research Workflow</div>
     <h1 class="wf-title">Human–Machine Performance Regulation</h1>
-    <div class="wf-subtitle">Action → Data → Modelling → Feedback → Adaptation</div>
+    <div class="wf-subtitle">Action → Data → Modelling → Feedback → Adaptation → Repeat</div>
   </div>
 
   <div class="wf-track" id="track"></div>
@@ -322,7 +368,7 @@
   </div>
 
   <div class="wf-footer">
-    <span class="wf-footer-left">Click any step to navigate</span>
+    <span class="wf-footer-left">Continuous feedback loop — each cycle informs the next</span>
     <div class="wf-dots" id="pips"></div>
   </div>
 </div>
@@ -331,7 +377,7 @@
 const stages = [
   {
     label: "Input",
-    name: "Human Action (Interaction with Machine)",
+    name: "Human Action",
     detail: "Pedalling, gear shifting, pacing — the physical inputs that initiate the data loop."
   },
   {
@@ -340,29 +386,29 @@ const stages = [
     detail: "Power meter, cadence sensor, heart rate monitor — continuous physiological measurement."
   },
   {
-    label: "Storage",
+    label: "Logging",
     name: "Data Logging",
-    detail: "Garmin Edge FIT files, Strava API — structured time-series storage of all ride variables."
+    detail: "Garmin Edge FIT files, Strava API — structured time-series recording of all ride variables."
   },
   {
     label: "Processing",
     name: "Data Processing",
-    detail: "Python pipeline: cleaning, resampling, feature engineering, anomaly detection across sessions."
+    detail: "Python pipeline: cleaning, resampling, feature engineering, and anomaly detection."
   },
   {
-    label: "Modelling",
+    label: "Analysis",
     name: "Modelling",
-    detail: "Regression, clustering, ML models — identifying patterns, thresholds, and performance relationships."
+    detail: "Regression, clustering, and machine learning models identify patterns and performance relationships."
   },
   {
     label: "Output",
     name: "Feedback",
-    detail: "Interactive visualisations, dashboards, interval recommendations surfaced back to the rider."
+    detail: "Interactive visualisations, cadence–power maps, dashboards, and training recommendations."
   },
   {
     label: "Adaptation",
     name: "Behavioural Adaptation",
-    detail: "Rider adjusts training load, pacing strategy, and recovery — closing the feedback loop."
+    detail: "The rider adjusts training load, pacing strategy, and recovery — closing the feedback loop."
   }
 ];
 
@@ -376,13 +422,14 @@ function render() {
 
   stages.forEach((s, i) => {
     const isActive = i === current;
-    const isDone   = i < current;
-    const dotClass  = isActive ? 'active' : isDone ? 'done' : '';
+    const isDone = i < current;
+    const dotClass = isActive ? 'active' : isDone ? 'done' : '';
     const cardClass = isActive ? 'active' : isDone ? 'done' : '';
     const connClass = isDone ? 'lit' : '';
 
     const connector = i < stages.length - 1
-      ? `<div class="wf-connector ${connClass}"></div>` : '';
+      ? `<div class="wf-connector ${connClass}"></div>`
+      : '';
 
     const dotContent = isDone ? '✓' : i + 1;
 
@@ -403,13 +450,16 @@ function render() {
   const pct = (current / (stages.length - 1)) * 100;
   document.getElementById('prog').style.width = pct + '%';
   document.getElementById('counter').textContent = `${current + 1} / ${stages.length}`;
+
   document.getElementById('btn-prev').disabled = current === 0;
+
   const nextBtn = document.getElementById('btn-next');
   nextBtn.disabled = current === stages.length - 1;
   nextBtn.textContent = current === stages.length - 1 ? 'Done ✓' : 'Next →';
 
   const pipsEl = document.getElementById('pips');
   pipsEl.innerHTML = '';
+
   stages.forEach((_, i) => {
     const cls = i === current ? 'active' : i < current ? 'done' : '';
     pipsEl.innerHTML += `<div class="wf-pip ${cls}" onclick="event.stopPropagation(); jump(${i})"></div>`;
@@ -417,12 +467,19 @@ function render() {
 }
 
 function next() {
-  if (current < stages.length - 1) { current++; render(); }
-  else stopAuto();
+  if (current < stages.length - 1) {
+    current++;
+    render();
+  } else {
+    stopAuto();
+  }
 }
 
 function prev() {
-  if (current > 0) { current--; render(); }
+  if (current > 0) {
+    current--;
+    render();
+  }
 }
 
 function jump(i) {
@@ -431,8 +488,11 @@ function jump(i) {
 }
 
 function toggleAuto() {
-  if (autoPlaying) stopAuto();
-  else startAuto();
+  if (autoPlaying) {
+    stopAuto();
+  } else {
+    startAuto();
+  }
 }
 
 function startAuto() {
@@ -440,16 +500,25 @@ function startAuto() {
   const btn = document.getElementById('auto-btn');
   btn.classList.add('on');
   btn.textContent = 'Stop';
-  if (current === stages.length - 1) current = -1;
+
+  if (current === stages.length - 1) {
+    current = -1;
+  }
+
   autoTimer = setInterval(() => {
-    if (current < stages.length - 1) { current++; render(); }
-    else stopAuto();
+    if (current < stages.length - 1) {
+      current++;
+      render();
+    } else {
+      stopAuto();
+    }
   }, 900);
 }
 
 function stopAuto() {
   autoPlaying = false;
   clearInterval(autoTimer);
+
   const btn = document.getElementById('auto-btn');
   btn.classList.remove('on');
   btn.textContent = 'Auto';
@@ -457,5 +526,6 @@ function stopAuto() {
 
 render();
 </script>
+
 </body>
 </html>
