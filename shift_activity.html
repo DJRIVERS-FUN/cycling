@@ -67,7 +67,7 @@
 </style>
 </head>
 <body>
-<div class="sa-root" id="root">
+<div class="sa-root">
   <header class="sa-header">
     <div class="sa-eyebrow">Rivers Lab Shift Activity</div>
     <h1 class="sa-title">Shift Events as Adaptive Micro-Decisions</h1>
@@ -112,18 +112,5 @@
     <div class="sa-pill">Animated activity trace</div>
   </footer>
 </div>
-<script>
-function sendHeight(){
-  const root=document.getElementById('root');
-  const rect=root.getBoundingClientRect();
-  const height=Math.ceil(rect.height + 24);
-  window.parent.postMessage({type:'resize',source:'shift-activity',height:height},'*');
-}
-window.addEventListener('load',()=>requestAnimationFrame(sendHeight));
-window.addEventListener('resize',()=>requestAnimationFrame(sendHeight));
-new ResizeObserver(()=>requestAnimationFrame(sendHeight)).observe(document.getElementById('root'));
-setTimeout(sendHeight,100);
-setTimeout(sendHeight,500);
-</script>
 </body>
 </html>
