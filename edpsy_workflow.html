@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Educational Psychology Research Model</title>
+<title>Educational Psychology Research Workflow</title>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -28,9 +28,9 @@
     padding: 0 14px 14px;
   }
 
-  .model {
+  .workflow {
     width: 100%;
-    max-width: 980px;
+    max-width: 1060px;
     margin: 0 auto;
     padding-top: 2px;
   }
@@ -42,8 +42,8 @@
 
   .eyebrow,
   .subtitle,
-  .tag,
-  .row-label,
+  .step-no,
+  .step-label,
   .footer {
     font-family: 'DM Mono', monospace;
   }
@@ -74,102 +74,88 @@
     margin-top: 8px;
   }
 
-  .framework {
+  .process {
     display: grid;
-    grid-template-rows: auto auto auto;
-    gap: 16px;
-  }
-
-  .row {
-    display: grid;
-    grid-template-columns: 132px 1fr;
-    gap: 16px;
+    grid-template-columns: repeat(7, minmax(0, 1fr));
+    gap: 0;
     align-items: stretch;
-  }
-
-  .row-label {
-    display: grid;
-    place-items: center;
-    min-height: 112px;
-    border-top: 1px solid #ece9e3;
-    border-bottom: 1px solid #ece9e3;
-    color: #c4541e;
-    font-size: 11px;
-    font-weight: 500;
-    letter-spacing: .14em;
-    line-height: 1.35;
-    text-align: center;
-    text-transform: uppercase;
-  }
-
-  .cards {
-    display: grid;
-    gap: 12px;
-  }
-
-  .cards.two {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  .cards.three {
-    grid-template-columns: repeat(3, 1fr);
-  }
-
-  .card {
-    min-height: 112px;
-    padding: 20px 18px;
     border: 1px solid #ece9e3;
     background: #ffffff;
+  }
+
+  .step {
+    position: relative;
+    min-height: 300px;
+    padding: 20px 14px 22px;
+    border-right: 1px solid #ece9e3;
+    display: grid;
+    grid-template-rows: 38px 26px 72px 1fr;
+    justify-items: center;
+    align-items: start;
     text-align: center;
-    display: grid;
-    align-content: center;
-    gap: 9px;
   }
 
-  .tag {
-    color: #b8b3aa;
-    font-size: 10px;
-    font-weight: 500;
-    letter-spacing: .12em;
-    line-height: 1;
-    text-transform: uppercase;
+  .step:last-child {
+    border-right: none;
   }
 
-  .title {
-    color: #1a1a1a;
-    font-size: 20px;
-    font-weight: 500;
-    letter-spacing: -0.01em;
-    line-height: 1.22;
-  }
-
-  .detail {
-    max-width: 230px;
-    margin: 0 auto;
-    color: #6e6c66;
-    font-size: 13.5px;
-    line-height: 1.45;
-  }
-
-  .arrow-row {
-    display: grid;
-    grid-template-columns: 132px 1fr;
-    gap: 16px;
-    align-items: center;
-    margin: -4px 0;
-  }
-
-  .arrow-space {
-    height: 1px;
-  }
-
-  .arrow {
+  .step:not(:last-child)::after {
+    content: '→';
+    position: absolute;
+    top: 22px;
+    right: -10px;
+    width: 20px;
+    height: 20px;
     display: grid;
     place-items: center;
+    background: #ffffff;
     color: #d2cec6;
     font-family: 'DM Mono', monospace;
-    font-size: 16px;
-    letter-spacing: .18em;
+    font-size: 13px;
+    z-index: 3;
+  }
+
+  .step-no {
+    width: 32px;
+    height: 32px;
+    display: grid;
+    place-items: center;
+    border: 1.5px solid #d8d6d0;
+    border-radius: 50%;
+    background: #f4f2ed;
+    color: #aaa69e;
+    font-size: 11px;
+    line-height: 1;
+  }
+
+  .step-label {
+    color: #c4541e;
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: .13em;
+    line-height: 1.2;
+    text-transform: uppercase;
+    align-self: center;
+  }
+
+  .step-title {
+    display: grid;
+    place-items: center;
+    color: #1a1a1a;
+    font-size: 17px;
+    font-weight: 500;
+    letter-spacing: -0.01em;
+    line-height: 1.24;
+    text-align: center;
+  }
+
+  .step-detail {
+    max-width: 140px;
+    margin: 0 auto;
+    color: #6e6c66;
+    font-size: 13px;
+    line-height: 1.45;
+    text-align: center;
   }
 
   .footer {
@@ -183,29 +169,49 @@
     text-align: center;
   }
 
-  @media (max-width: 760px) {
-    .row,
-    .arrow-row {
+  @media (max-width: 900px) {
+    .process {
       grid-template-columns: 1fr;
-      gap: 8px;
+      border-bottom: none;
     }
 
-    .row-label {
+    .step {
       min-height: auto;
-      padding: 10px 0;
+      grid-template-columns: 48px 132px 1fr;
+      grid-template-rows: auto;
+      column-gap: 14px;
+      align-items: center;
+      justify-items: start;
+      padding: 12px 14px;
+      border-right: none;
+      border-bottom: 1px solid #ece9e3;
+      text-align: left;
     }
 
-    .cards.two,
-    .cards.three {
-      grid-template-columns: 1fr;
+    .step:last-child {
+      border-bottom: 1px solid #ece9e3;
     }
 
-    .card {
-      min-height: 96px;
+    .step:not(:last-child)::after {
+      content: '↓';
+      top: auto;
+      right: auto;
+      left: 21px;
+      bottom: -11px;
+      background: #ffffff;
     }
 
-    .arrow-space {
-      display: none;
+    .step-title {
+      display: block;
+      font-size: 16px;
+      text-align: left;
+    }
+
+    .step-detail {
+      max-width: none;
+      margin: 0;
+      font-size: 13.5px;
+      text-align: left;
     }
   }
 
@@ -230,16 +236,34 @@
       font-size: 11px;
     }
 
-    .framework {
-      gap: 12px;
+    .step {
+      grid-template-columns: 38px 1fr;
+      gap: 7px 10px;
+      padding: 10px 8px;
     }
 
-    .title {
-      font-size: 16px;
+    .step-no {
+      width: 30px;
+      height: 30px;
+      font-size: 10px;
+      grid-row: span 2;
     }
 
-    .detail {
+    .step-label {
+      font-size: 9px;
+    }
+
+    .step-title {
+      font-size: 15px;
+    }
+
+    .step-detail {
+      grid-column: 2;
       font-size: 12px;
+    }
+
+    .step:not(:last-child)::after {
+      left: 14px;
     }
 
     .footer {
@@ -249,79 +273,65 @@
 </style>
 </head>
 <body>
-<main class="model">
+<main class="workflow">
   <header class="header">
-    <div class="eyebrow">Rivers Lab Research Model</div>
+    <div class="eyebrow">Rivers Lab Research Workflow</div>
     <h1>Educational Psychology and Learning Support</h1>
-    <div class="subtitle">Learning behaviour → evidence → modelling → support design</div>
+    <div class="subtitle">Self-regulation → evidence → modelling → support → improvement</div>
   </header>
 
-  <section class="framework" aria-label="Educational psychology research model">
-    <div class="row">
-      <div class="row-label">Learning<br>Context</div>
-      <div class="cards two">
-        <article class="card">
-          <div class="tag">Activity</div>
-          <h2 class="title">Student Learning Behaviour</h2>
-          <p class="detail">Coursework, attendance, assignment timing, and study routines.</p>
-        </article>
-        <article class="card">
-          <div class="tag">Constructs</div>
-          <h2 class="title">Self-Regulation</h2>
-          <p class="detail">Planning, monitoring, metacognition, and executive-function behaviour.</p>
-        </article>
-      </div>
-    </div>
+  <section class="process" aria-label="Educational psychology research workflow">
+    <article class="step">
+      <div class="step-no">01</div>
+      <div class="step-label">Context</div>
+      <h2 class="step-title">Student Learning Activity</h2>
+      <p class="step-detail">Coursework, attendance, assignments, and study routines.</p>
+    </article>
 
-    <div class="arrow-row" aria-hidden="true">
-      <div class="arrow-space"></div>
-      <div class="arrow">↓</div>
-    </div>
+    <article class="step">
+      <div class="step-no">02</div>
+      <div class="step-label">Construct</div>
+      <h2 class="step-title">Self-Regulation</h2>
+      <p class="step-detail">Planning, monitoring, metacognition, and executive control.</p>
+    </article>
 
-    <div class="row">
-      <div class="row-label">Evidence<br>System</div>
-      <div class="cards three">
-        <article class="card">
-          <div class="tag">Data</div>
-          <h2 class="title">Learning Records</h2>
-          <p class="detail">Survey responses, LMS activity, and academic outcomes.</p>
-        </article>
-        <article class="card">
-          <div class="tag">Processing</div>
-          <h2 class="title">Data Preparation</h2>
-          <p class="detail">Cleaning, coding, linking, and structuring of records.</p>
-        </article>
-        <article class="card">
-          <div class="tag">Analysis</div>
-          <h2 class="title">Statistical Modelling</h2>
-          <p class="detail">Regression, factor analysis, path analysis, and SEM.</p>
-        </article>
-      </div>
-    </div>
+    <article class="step">
+      <div class="step-no">03</div>
+      <div class="step-label">Evidence</div>
+      <h2 class="step-title">Learning Records</h2>
+      <p class="step-detail">Survey responses, LMS activity, and academic outcomes.</p>
+    </article>
 
-    <div class="arrow-row" aria-hidden="true">
-      <div class="arrow-space"></div>
-      <div class="arrow">↓</div>
-    </div>
+    <article class="step">
+      <div class="step-no">04</div>
+      <div class="step-label">Process</div>
+      <h2 class="step-title">Data Preparation</h2>
+      <p class="step-detail">Cleaning, coding, linking, and structuring records.</p>
+    </article>
 
-    <div class="row">
-      <div class="row-label">Support<br>Response</div>
-      <div class="cards two">
-        <article class="card">
-          <div class="tag">Insight</div>
-          <h2 class="title">Learning Support Design</h2>
-          <p class="detail">Evidence for feedback, advising, course design, and intervention.</p>
-        </article>
-        <article class="card">
-          <div class="tag">Improvement</div>
-          <h2 class="title">Teaching Adaptation</h2>
-          <p class="detail">Refined instruction, targeted support, and institutional improvement.</p>
-        </article>
-      </div>
-    </div>
+    <article class="step">
+      <div class="step-no">05</div>
+      <div class="step-label">Analysis</div>
+      <h2 class="step-title">Statistical Modelling</h2>
+      <p class="step-detail">Regression, factor analysis, path analysis, and SEM.</p>
+    </article>
+
+    <article class="step">
+      <div class="step-no">06</div>
+      <div class="step-label">Output</div>
+      <h2 class="step-title">Support Insight</h2>
+      <p class="step-detail">Evidence for feedback, advising, and course design.</p>
+    </article>
+
+    <article class="step">
+      <div class="step-no">07</div>
+      <div class="step-label">Improve</div>
+      <h2 class="step-title">Teaching Adaptation</h2>
+      <p class="step-detail">Refined instruction, targeted support, and improvement.</p>
+    </article>
   </section>
 
-  <footer class="footer">Evidence-informed learning support: observe → measure → model → support → improve</footer>
+  <footer class="footer">Observe → Measure → Model → Support → Improve</footer>
 </main>
 </body>
 </html>
