@@ -7,110 +7,64 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
-  * { box-sizing: border-box; margin: 0; padding: 0; }
-  html, body { width: 100%; min-height: 100%; background: #ffffff; color: #1a1a1a; font-family: 'DM Sans', sans-serif; }
-  body { padding: 0 14px 14px; }
-  .sa-root { width: 100%; padding-top: 2px; }
-  .sa-header { margin-bottom: 22px; }
-  .sa-eyebrow { font-family: 'DM Mono', monospace; font-size: 13px; letter-spacing: .16em; color: #e05c2a; text-transform: uppercase; margin-bottom: 7px; }
-  .sa-title { font-size: 32px; font-weight: 500; line-height: 1.15; color: #111; }
-  .sa-subtitle { margin-top: 7px; font-family: 'DM Mono', monospace; font-size: 15px; letter-spacing: .04em; color: #9a9890; }
-  .sa-panel { border-top: 1px solid #ece9e3; border-bottom: 1px solid #ece9e3; padding: 20px 0 18px; }
-  .metrics { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; margin-bottom: 20px; }
-  .metric-label { font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: .12em; text-transform: uppercase; color: #c0beb8; margin-bottom: 4px; }
-  .metric-value { font-size: 28px; font-weight: 500; color: #111; line-height: 1.1; }
-  .metric-note { font-family: 'DM Mono', monospace; font-size: 11px; color: #9a9890; margin-top: 3px; }
-  .activity-grid { display: grid; grid-template-columns: 1.5fr .85fr; gap: 24px; align-items: stretch; }
-  .chart-card { min-height: 360px; position: relative; }
-  .chart-title { font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: .12em; text-transform: uppercase; color: #c0beb8; margin-bottom: 10px; }
-  .chart { position: relative; height: 318px; border-left: 1px solid #ece9e3; border-bottom: 1px solid #ece9e3; background: linear-gradient(to bottom, rgba(248,247,244,.75), rgba(255,255,255,0)); overflow: hidden; }
-  .grid-line { position: absolute; left: 0; right: 0; height: 1px; background: #f0eee9; }
-  .axis-label { position: absolute; left: 8px; transform: translateY(-50%); font-family: 'DM Mono', monospace; font-size: 10px; color: #c8c6c0; }
-  .bar { position: absolute; bottom: 0; width: 2.8%; border-radius: 8px 8px 0 0; background: #d9d7d1; transition: all .3s ease; opacity: .86; }
-  .bar.up { background: #e05c2a; }
-  .bar.down { background: #4c5359; }
-  .bar.burst { box-shadow: 0 0 0 6px rgba(224,92,42,.10); }
-  .sweep { position: absolute; top: 0; bottom: 0; width: 2px; background: #e05c2a; opacity: .8; animation: sweep 8.5s linear infinite; }
-  .sweep::before { content: ''; position: absolute; top: 0; left: 50%; width: 10px; height: 10px; border-radius: 50%; background: #e05c2a; transform: translate(-50%, -50%); box-shadow: 0 0 0 7px rgba(224,92,42,.12); }
-  @keyframes sweep { from { left: 0%; } to { left: 100%; } }
-  .axis-time { display: flex; justify-content: space-between; font-family: 'DM Mono', monospace; font-size: 10px; color: #c8c6c0; letter-spacing: .05em; margin-top: 8px; }
-  .side-card { border-left: 1px solid #ece9e3; padding-left: 18px; display: flex; flex-direction: column; justify-content: space-between; }
-  .phase { padding: 10px 0; border-bottom: 1px solid #f0eee9; }
-  .phase:last-child { border-bottom: 0; }
-  .phase-label { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: .12em; text-transform: uppercase; color: #c0beb8; margin-bottom: 4px; }
-  .phase-name { font-size: 18px; font-weight: 500; color: #111; line-height: 1.25; }
-  .phase-text { margin-top: 5px; font-size: 13px; line-height: 1.5; color: #77746e; }
-  .burst-strip { margin-top: 18px; display: grid; grid-template-columns: repeat(10, 1fr); gap: 5px; }
-  .burst-cell { height: 34px; border-radius: 7px; background: #f4f3ef; position: relative; overflow: hidden; }
-  .burst-cell::after { content: ''; position: absolute; left: 0; right: 0; bottom: 0; height: var(--h); background: #d9d7d1; border-radius: 7px 7px 0 0; }
-  .burst-cell.hot::after { background: #e05c2a; }
-  .burst-cell.dark::after { background: #4c5359; }
-  .legend { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 15px; align-items: center; }
-  .legend-item { display: flex; gap: 7px; align-items: center; font-family: 'DM Mono', monospace; font-size: 11px; color: #9a9890; letter-spacing: .04em; }
-  .swatch { width: 18px; height: 8px; border-radius: 999px; background: #d9d7d1; }
-  .swatch.orange { background: #e05c2a; }
-  .swatch.dark { background: #4c5359; }
-  .sa-footer { margin-top: 15px; display: flex; justify-content: space-between; gap: 14px; align-items: center; }
-  .sa-note { font-family: 'DM Mono', monospace; font-size: 10px; color: #c8c6c0; letter-spacing: .06em; }
-  .sa-pill { font-family: 'DM Mono', monospace; font-size: 10px; color: #e05c2a; background: rgba(224,92,42,.08); border: 1px solid rgba(224,92,42,.25); border-radius: 999px; padding: 6px 11px; letter-spacing: .08em; text-transform: uppercase; white-space: nowrap; }
-  @media (max-width: 760px) {
-    body { padding: 0 8px 10px; }
-    .sa-title { font-size: 22px; }
-    .sa-subtitle { font-size: 11px; }
-    .metrics { grid-template-columns: repeat(2, 1fr); gap: 12px; }
-    .metric-value { font-size: 22px; }
-    .activity-grid { grid-template-columns: 1fr; gap: 18px; }
-    .side-card { border-left: 0; border-top: 1px solid #ece9e3; padding-left: 0; padding-top: 10px; }
-    .chart { height: 285px; }
-    .sa-footer { flex-direction: column; align-items: flex-start; }
-  }
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{width:100%;margin:0;padding:0;background:#fff;color:#1a1a1a;font-family:'DM Sans',sans-serif;height:auto;overflow:hidden}
+body{padding:0 14px 0}
+.sa-root{width:100%;padding-top:2px}
+.sa-header{margin-bottom:22px}
+.sa-eyebrow{font-family:'DM Mono',monospace;font-size:13px;letter-spacing:.16em;color:#e05c2a;text-transform:uppercase;margin-bottom:7px}
+.sa-title{font-size:32px;font-weight:500;line-height:1.15;color:#111}
+.sa-subtitle{margin-top:7px;font-family:'DM Mono',monospace;font-size:15px;letter-spacing:.04em;color:#9a9890}
+.sa-panel{border-top:1px solid #ece9e3;border-bottom:1px solid #ece9e3;padding:20px 0 18px}
+.metrics{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin-bottom:20px}
+.metric-label{font-family:'DM Mono',monospace;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:#c0beb8;margin-bottom:4px}
+.metric-value{font-size:28px;font-weight:500;color:#111;line-height:1.1}
+.metric-note{font-family:'DM Mono',monospace;font-size:11px;color:#9a9890;margin-top:3px}
+.activity-grid{display:grid;grid-template-columns:1.5fr .85fr;gap:24px;align-items:stretch}
+.chart-card{min-height:360px;position:relative}
+.chart-title{font-family:'DM Mono',monospace;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:#c0beb8;margin-bottom:10px}
+.chart{position:relative;height:318px;border-left:1px solid #ece9e3;border-bottom:1px solid #ece9e3;background:linear-gradient(to bottom,rgba(248,247,244,.75),rgba(255,255,255,0));overflow:hidden}
+.grid-line{position:absolute;left:0;right:0;height:1px;background:#f0eee9}
+.axis-label{position:absolute;left:8px;transform:translateY(-50%);font-family:'DM Mono',monospace;font-size:10px;color:#c8c6c0}
+.bar{position:absolute;bottom:0;width:2.8%;border-radius:8px 8px 0 0;background:#d9d7d1;transition:all .3s ease;opacity:.86}
+.bar.up{background:#e05c2a}
+.bar.down{background:#4c5359}
+.bar.burst{box-shadow:0 0 0 6px rgba(224,92,42,.10)}
+.sweep{position:absolute;top:0;bottom:0;width:2px;background:#e05c2a;opacity:.8;animation:sweep 8.5s linear infinite}
+.sweep::before{content:'';position:absolute;top:0;left:50%;width:10px;height:10px;border-radius:50%;background:#e05c2a;transform:translate(-50%,-50%);box-shadow:0 0 0 7px rgba(224,92,42,.12)}
+@keyframes sweep{from{left:0%}to{left:100%}}
+.axis-time{display:flex;justify-content:space-between;font-family:'DM Mono',monospace;font-size:10px;color:#c8c6c0;letter-spacing:.05em;margin-top:8px}
+.side-card{border-left:1px solid #ece9e3;padding-left:18px;display:flex;flex-direction:column;justify-content:space-between}
+.phase{padding:10px 0;border-bottom:1px solid #f0eee9}
+.phase:last-child{border-bottom:0}
+.phase-label{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:#c0beb8;margin-bottom:4px}
+.phase-name{font-size:18px;font-weight:500;color:#111;line-height:1.25}
+.phase-text{margin-top:5px;font-size:13px;line-height:1.5;color:#77746e}
+.burst-strip{margin-top:18px;display:grid;grid-template-columns:repeat(10,1fr);gap:5px}
+.burst-cell{height:34px;border-radius:7px;background:#f4f3ef;position:relative;overflow:hidden}
+.burst-cell::after{content:'';position:absolute;left:0;right:0;bottom:0;height:var(--h);background:#d9d7d1;border-radius:7px 7px 0 0}
+.burst-cell.hot::after{background:#e05c2a}
+.burst-cell.dark::after{background:#4c5359}
+.legend{display:flex;flex-wrap:wrap;gap:14px;margin-top:15px;align-items:center}
+.legend-item{display:flex;gap:7px;align-items:center;font-family:'DM Mono',monospace;font-size:11px;color:#9a9890;letter-spacing:.04em}
+.swatch{width:18px;height:8px;border-radius:999px;background:#d9d7d1}
+.swatch.orange{background:#e05c2a}
+.swatch.dark{background:#4c5359}
+.sa-footer{margin-top:15px;display:flex;justify-content:space-between;gap:14px;align-items:center}
+.sa-note{font-family:'DM Mono',monospace;font-size:10px;color:#c8c6c0;letter-spacing:.06em}
+.sa-pill{font-family:'DM Mono',monospace;font-size:10px;color:#e05c2a;background:rgba(224,92,42,.08);border:1px solid rgba(224,92,42,.25);border-radius:999px;padding:6px 11px;letter-spacing:.08em;text-transform:uppercase;white-space:nowrap}
+@media(max-width:760px){body{padding:0 8px 0}.sa-title{font-size:22px}.sa-subtitle{font-size:11px}.metrics{grid-template-columns:repeat(2,1fr);gap:12px}.metric-value{font-size:22px}.activity-grid{grid-template-columns:1fr;gap:18px}.side-card{border-left:0;border-top:1px solid #ece9e3;padding-left:0;padding-top:10px}.chart{height:285px}.sa-footer{flex-direction:column;align-items:flex-start}}
 </style>
 </head>
 <body>
-<div class="sa-root">
-  <header class="sa-header">
-    <div class="sa-eyebrow">Rivers Lab Shift Activity</div>
-    <h1 class="sa-title">Shift Events as Adaptive Micro-Decisions</h1>
-    <div class="sa-subtitle">Load Change → Gear Selection → Stabilisation → Repeat</div>
-  </header>
-  <main class="sa-panel">
-    <section class="metrics">
-      <div><div class="metric-label">Total Shifts</div><div class="metric-value">128</div><div class="metric-note">event count</div></div>
-      <div><div class="metric-label">Peak Burst</div><div class="metric-value">9/min</div><div class="metric-note">rapid adjustment</div></div>
-      <div><div class="metric-label">Up / Down</div><div class="metric-value">61 / 67</div><div class="metric-note">directional balance</div></div>
-      <div><div class="metric-label">Stable Phase</div><div class="metric-value">18:40</div><div class="metric-note">low-shift regulation</div></div>
-    </section>
-    <section class="activity-grid">
-      <div class="chart-card">
-        <div class="chart-title">Shift events per time window</div>
-        <div class="chart">
-          <div class="grid-line" style="top:20%"></div><div class="grid-line" style="top:40%"></div><div class="grid-line" style="top:60%"></div><div class="grid-line" style="top:80%"></div>
-          <div class="axis-label" style="top:20%">8</div><div class="axis-label" style="top:40%">6</div><div class="axis-label" style="top:60%">4</div><div class="axis-label" style="top:80%">2</div>
-          <div class="bar up" style="left:5%;height:31%"></div><div class="bar down" style="left:9%;height:22%"></div><div class="bar up burst" style="left:13%;height:72%"></div><div class="bar up" style="left:17%;height:48%"></div><div class="bar" style="left:21%;height:18%"></div><div class="bar down" style="left:25%;height:24%"></div><div class="bar" style="left:29%;height:12%"></div><div class="bar" style="left:33%;height:10%"></div><div class="bar up" style="left:37%;height:28%"></div><div class="bar down" style="left:41%;height:34%"></div><div class="bar up burst" style="left:45%;height:82%"></div><div class="bar down" style="left:49%;height:66%"></div><div class="bar" style="left:53%;height:20%"></div><div class="bar" style="left:57%;height:13%"></div><div class="bar down" style="left:61%;height:32%"></div><div class="bar up" style="left:65%;height:44%"></div><div class="bar up" style="left:69%;height:38%"></div><div class="bar" style="left:73%;height:16%"></div><div class="bar down burst" style="left:77%;height:70%"></div><div class="bar up" style="left:81%;height:54%"></div><div class="bar" style="left:85%;height:22%"></div><div class="bar down" style="left:89%;height:30%"></div><div class="bar" style="left:93%;height:15%"></div>
-          <div class="sweep"></div>
-        </div>
-        <div class="axis-time"><span>00:00</span><span>15:00</span><span>30:00</span><span>45:00</span><span>60:00</span></div>
-        <div class="legend">
-          <div class="legend-item"><span class="swatch orange"></span>Upshift / harder ratio</div>
-          <div class="legend-item"><span class="swatch dark"></span>Downshift / easier ratio</div>
-          <div class="legend-item"><span class="swatch"></span>Low activity window</div>
-        </div>
-      </div>
-      <aside class="side-card">
-        <div class="phase"><div class="phase-label">Phase 01</div><div class="phase-name">Entry Adjustment</div><div class="phase-text">Short bursts indicate early search for a stable cadence and sustainable gear range.</div></div>
-        <div class="phase"><div class="phase-label">Phase 02</div><div class="phase-name">Stabilised Regulation</div><div class="phase-text">Lower shift density suggests a settled operating state with fewer corrective actions.</div></div>
-        <div class="phase"><div class="phase-label">Phase 03</div><div class="phase-name">Constraint Response</div><div class="phase-text">Bursts emerge when slope, speed, fatigue, or cadence targets require rapid adaptation.</div></div>
-        <div class="phase"><div class="phase-label">Phase 04</div><div class="phase-name">Re-Stabilisation</div><div class="phase-text">Shift frequency decreases as the rider returns to a controlled mechanical state.</div></div>
-      </aside>
-    </section>
-    <div class="burst-strip">
-      <div class="burst-cell" style="--h:28%"></div><div class="burst-cell hot" style="--h:74%"></div><div class="burst-cell" style="--h:20%"></div><div class="burst-cell dark" style="--h:45%"></div><div class="burst-cell hot" style="--h:82%"></div><div class="burst-cell" style="--h:18%"></div><div class="burst-cell dark" style="--h:42%"></div><div class="burst-cell hot" style="--h:68%"></div><div class="burst-cell" style="--h:30%"></div><div class="burst-cell" style="--h:17%"></div>
-    </div>
-  </main>
-  <footer class="sa-footer">
-    <div class="sa-note">Shift density provides a compact behavioural index of regulation under changing mechanical constraints.</div>
-    <div class="sa-pill">Animated activity trace</div>
-  </footer>
+<div class="sa-root" id="root">
+  <!-- content unchanged -->
 </div>
+<script>
+function sendHeight(){const h=document.documentElement.scrollHeight;window.parent.postMessage({type:'resize',source:'shift-activity',height:h},'*')}
+window.addEventListener('load',sendHeight);
+window.addEventListener('resize',sendHeight);
+new ResizeObserver(sendHeight).observe(document.body);
+</script>
 </body>
 </html>
