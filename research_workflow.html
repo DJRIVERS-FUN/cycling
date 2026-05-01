@@ -311,9 +311,9 @@
 
 <div class="wf-root">
   <div class="wf-header">
-    <div class="wf-eyebrow">Research Workflow</div>
+    <div class="wf-eyebrow">Rivers Lab Research Workflow</div>
     <h1 class="wf-title">Human–Machine Performance Regulation</h1>
-    <div class="wf-subtitle">action → data → modelling → feedback → adaptation</div>
+    <div class="wf-subtitle">Action → Data → Modelling → Feedback → Adaptation</div>
   </div>
 
   <div class="wf-track" id="track"></div>
@@ -336,18 +336,18 @@
 const stages = [
   {
     label: "Input",
-    name: "Human Action",
-    detail: "Pedalling, gear shifting, pacing — the raw physical inputs that initiate the data loop. ペダリング、ギア変速、ペーシング――データループを始動させる生の身体的入力。"
+    name: "Human Action (Interaction with Machine)",
+    detail: "Pedalling, gear shifting, pacing — the physical inputs that initiate the data loop."
   },
   {
     label: "Capture",
-    name: "Sensor Capture",
-    detail: "Power meter, cadence sensor, heart rate monitor — continuous physiological measurement at the source."
+    name: "Sensor Data Capture",
+    detail: "Power meter, cadence sensor, heart rate monitor — continuous physiological measurement."
   },
   {
     label: "Storage",
     name: "Data Logging",
-    detail: "Garmin Edge, Strava, Golden Cheetah — structured time-series storage of every ride variable."
+    detail: "Garmin Edge FIT files, Strava API — structured time-series storage of all ride variables."
   },
   {
     label: "Processing",
@@ -362,12 +362,12 @@ const stages = [
   {
     label: "Output",
     name: "Feedback",
-    detail: "Interactive visualisations, dashboards, interval recommendations surfaced back to the athlete."
+    detail: "Interactive visualisations, dashboards, interval recommendations surfaced back to the rider."
   },
   {
     label: "Adaptation",
     name: "Behavioural Adaptation",
-    detail: "Athlete adjusts training load, pacing strategy, and recovery — closing the feedback loop."
+    detail: "Rider adjusts training load, pacing strategy, and recovery — closing the feedback loop."
   }
 ];
 
