@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Research Workflow: Educational Psychology and Learning Systems</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #ffffff;
+    --text: #1f2933;
+    --muted: #6b7280;
+    --line: #d9dee7;
+    --node: #edf1f7;
+    --active: #2f80ed;
+    --active-soft: #eaf3ff;
+  }
+
+  html, body {
+    margin: 0;
+    padding: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: "DM Sans", Arial, sans-serif;
+  }
+
+  .workflow-wrap {
+    width: 100%;
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 4px 18px 22px;
+    box-sizing: border-box;
+  }
+
+  .workflow-title {
+    margin: 0 0 4px;
+    font-size: clamp(20px, 4.8vw, 30px);
+    line-height: 1.12;
+    font-weight: 600;
+    letter-spacing: -0.03em;
+  }
+
+  .workflow-subtitle {
+    margin: 0 0 22px;
+    color: var(--muted);
+    font-size: clamp(13px, 3vw, 15px);
+    line-height: 1.45;
+    font-weight: 400;
+  }
+
+  .flow {
+    position: relative;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .flow::before {
+    content: "";
+    position: absolute;
+    left: 17px;
+    top: 20px;
+    bottom: 20px;
+    width: 2px;
+    background: var(--line);
+  }
+
+  .stage {
+    position: relative;
+    display: grid;
+    grid-template-columns: 36px 1fr;
+    gap: 14px;
+    align-items: start;
+    margin: 0 0 18px;
+  }
+
+  .stage:last-child {
+    margin-bottom: 0;
+  }
+
+  .dot {
+    position: relative;
+    z-index: 1;
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    background: var(--node);
+    border: 1px solid var(--line);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: "DM Mono", monospace;
+    font-size: 12px;
+    color: var(--muted);
+    transition: all 420ms ease;
+  }
+
+  .card {
+    padding: 2px 0 0;
+    transition: all 420ms ease;
+  }
+
+  .stage-title {
+    margin: 0 0 3px;
+    font-size: clamp(15px, 3.6vw, 18px);
+    line-height: 1.25;
+    font-weight: 600;
+    letter-spacing: -0.015em;
+  }
+
+  .stage-text {
+    margin: 0;
+    color: var(--muted);
+    font-size: clamp(12.5px, 3vw, 14px);
+    line-height: 1.45;
+  }
+
+  .stage.active .dot {
+    background: var(--active);
+    border-color: var(--active);
+    color: #ffffff;
+    box-shadow: 0 0 0 7px var(--active-soft);
+  }
+
+  .stage.active .stage-title {
+    color: var(--active);
+  }
+
+  .controls {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 22px;
+  }
+
+  button {
+    appearance: none;
+    border: 1px solid #d7dde7;
+    background: #ffffff;
+    color: var(--text);
+    border-radius: 999px;
+    padding: 8px 15px;
+    font-family: "DM Sans", Arial, sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: border-color 200ms ease, transform 200ms ease;
+  }
+
+  button:hover {
+    border-color: var(--active);
+    transform: translateY(-1px);
+  }
+
+  .caption {
+    color: var(--muted);
+    font-size: 12px;
+    line-height: 1.4;
+  }
+
+  @media (max-width: 520px) {
+    .workflow-wrap {
+      padding: 2px 14px 18px;
+    }
+
+    .stage {
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+  }
+</style>
+</head>
+<body>
+  <main class="workflow-wrap" aria-label="Educational psychology research workflow">
+    <h1 class="workflow-title">Research Workflow: Educational Psychology and Learning Systems</h1>
+    <p class="workflow-subtitle">From academic demands → self-regulation → behavioural evidence → modelling → learning support</p>
+
+    <ol class="flow" id="flow">
+      <li class="stage active">
+        <div class="dot">01</div>
+        <div class="card">
+          <h2 class="stage-title">Academic Demands</h2>
+          <p class="stage-text">Students encounter coursework, assessment deadlines, examinations, and competing study obligations within the same instructional environment.</p>
+        </div>
+      </li>
+
+      <li class="stage">
+        <div class="dot">02</div>
+        <div class="card">
+          <h2 class="stage-title">Self-Regulated Learning</h2>
+          <p class="stage-text">Planning, goal setting, strategy use, effort allocation, and monitoring shape how students manage learning over time.</p>
+        </div>
+      </li>
+
+      <li class="stage">
+        <div class="dot">03</div>
+        <div class="card">
+          <h2 class="stage-title">Metacognition and Executive Function</h2>
+          <p class="stage-text">Cognitive and behavioural regulation processes influence how students track responsibilities, verify progress, and adapt to constraints.</p>
+        </div>
+      </li>
+
+      <li class="stage">
+        <div class="dot">04</div>
+        <div class="card">
+          <h2 class="stage-title">Behavioural Evidence</h2>
+          <p class="stage-text">GPA, assignment timing, course engagement, examination performance, and survey responses provide measurable indicators of learning behaviour.</p>
+        </div>
+      </li>
+
+      <li class="stage">
+        <div class="dot">05</div>
+        <div class="card">
+          <h2 class="stage-title">Quantitative Analysis</h2>
+          <p class="stage-text">Regression, multivariate analysis, and structural modelling are used to identify relationships among cognitive factors, behaviours, and outcomes.</p>
+        </div>
+      </li>
+
+      <li class="stage">
+        <div class="dot">06</div>
+        <div class="card">
+          <h2 class="stage-title">Explanatory Models</h2>
+          <p class="stage-text">Patterns are integrated into models that explain variability in academic outcomes among students working within comparable learning conditions.</p>
+        </div>
+      </li>
+
+      <li class="stage">
+        <div class="dot">07</div>
+        <div class="card">
+          <h2 class="stage-title">Learning Support</h2>
+          <p class="stage-text">Findings inform clearer support systems, feedback practices, and interventions that help students regulate learning more effectively.</p>
+        </div>
+      </li>
+    </ol>
+
+    <div class="controls">
+      <button id="playBtn" type="button">Play flow</button>
+      <span class="caption">Animated sequence loops through the research process.</span>
+    </div>
+  </main>
+
+<script>
+  const stages = Array.from(document.querySelectorAll('.stage'));
+  const button = document.getElementById('playBtn');
+  let index = 0;
+  let timer = null;
+
+  function setActive(i) {
+    stages.forEach((stage, n) => stage.classList.toggle('active', n === i));
+  }
+
+  function play() {
+    clearInterval(timer);
+    index = 0;
+    setActive(index);
+    timer = setInterval(() => {
+      index = (index + 1) % stages.length;
+      setActive(index);
+    }, 1100);
+  }
+
+  button.addEventListener('click', play);
+  play();
+</script>
+</body>
+</html>
