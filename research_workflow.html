@@ -3,368 +3,132 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Research Workflow: Human–Machine Performance Regulation</title>
+<title>Human–Machine Workflow</title>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
 
 <style>
-  * {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
 
-  html,
-  body {
+  html, body {
     width: 100%;
     min-height: 100%;
     background: #ffffff;
-    color: #161616;
+    color: #171717;
     font-family: 'DM Sans', sans-serif;
   }
 
-  body {
-    padding: 0 14px 14px;
-  }
+  body { padding: 0 14px 14px; }
 
-  .workflow {
-    width: 100%;
-    max-width: 1080px;
-    margin: 0 auto;
-    padding-top: 2px;
-  }
+  .wrap { max-width: 1080px; margin: 0 auto; }
 
-  .header {
-    margin-bottom: 22px;
-  }
+  .header { margin-bottom: 22px; }
 
-  .eyebrow,
-  .subtitle,
-  .stage-label,
-  .flow-note,
-  .footer-note {
+  .eyebrow, .subtitle, .num, .label, .footer {
     font-family: 'DM Mono', monospace;
   }
 
   .eyebrow {
-    margin-bottom: 7px;
     color: #e05c2a;
-    font-size: 13px;
-    font-weight: 500;
+    font-size: 12px;
     letter-spacing: .16em;
     text-transform: uppercase;
+    margin-bottom: 8px;
   }
 
   h1 {
-    color: #111111;
-    font-size: 32px;
+    font-size: 30px;
     font-weight: 500;
-    letter-spacing: -0.02em;
-    line-height: 1.15;
+    line-height: 1.12;
   }
 
   .subtitle {
-    margin-top: 7px;
     color: #9a9890;
-    font-size: 15px;
-    letter-spacing: .04em;
-    line-height: 1.45;
+    font-size: 13px;
+    margin-top: 8px;
   }
 
-  .map {
+  .grid {
     display: grid;
-    grid-template-columns: repeat(7, minmax(0, 1fr));
-    gap: 0;
-    align-items: stretch;
-    border-top: 1px solid #ece9e3;
-    border-bottom: 1px solid #ece9e3;
+    grid-template-columns: repeat(7, 1fr);
+    border: 1px solid #ece9e3;
+    border-right: 0;
   }
 
   .stage {
-    position: relative;
-    min-height: 342px;
-    padding: 18px 16px 20px;
+    min-height: 210px;
     border-right: 1px solid #ece9e3;
-    background: #ffffff;
-    transition: background .2s ease;
+    display: grid;
+    grid-template-rows: 48px 34px 1fr;
+    padding: 16px 14px;
   }
 
-  .stage:last-child {
-    border-right: none;
-  }
-
-  .stage:hover {
-    background: #fbfaf7;
-  }
-
-  .stage-number {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 34px;
-    height: 34px;
-    margin-bottom: 18px;
+  .num {
+    width: 30px;
+    height: 30px;
+    display: grid;
+    place-items: center;
     border: 1.5px solid #d8d6d0;
     border-radius: 50%;
     background: #f4f2ed;
-    color: #aaa69e;
-    font-family: 'DM Mono', monospace;
-    font-size: 12px;
-  }
-
-  .stage::after {
-    content: '';
-    position: absolute;
-    top: 34px;
-    right: -8px;
-    width: 15px;
-    height: 1.5px;
-    background: #d8d6d0;
-    z-index: 2;
-  }
-
-  .stage:last-child::after {
-    display: none;
-  }
-
-  .stage-label {
-    margin-bottom: 7px;
-    color: #c4541e;
     font-size: 11px;
-    font-weight: 500;
-    letter-spacing: .12em;
+  }
+
+  .label {
+    color: #c4541e;
+    font-size: 10px;
+    letter-spacing: .13em;
     text-transform: uppercase;
   }
 
-  .stage-title {
-    color: #1a1a1a;
-    font-size: 19px;
+  .title {
+    font-size: 18px;
     font-weight: 500;
-    line-height: 1.25;
   }
 
-  .stage-detail {
-    margin-top: 12px;
-    color: #6e6c66;
-    font-size: 14.5px;
-    line-height: 1.55;
-  }
-
-  .flow-note {
+  .footer {
     display: grid;
-    grid-template-columns: auto 1fr;
+    grid-template-columns: repeat(5, auto);
     gap: 12px;
-    align-items: start;
     margin-top: 18px;
-    padding: 15px 0 0;
-    color: #8f8b84;
-    font-size: 12px;
-    letter-spacing: .04em;
-    line-height: 1.55;
-  }
-
-  .flow-note strong {
-    color: #e05c2a;
-    font-weight: 500;
-    letter-spacing: .12em;
-    text-transform: uppercase;
-  }
-
-  .footer-note {
-    margin-top: 14px;
     padding-top: 14px;
     border-top: 1px solid #ece9e3;
-    color: #c8c6c0;
+    color: #b8b3aa;
     font-size: 11px;
-    letter-spacing: .06em;
   }
 
-  @media (max-width: 920px) {
-    .map {
-      grid-template-columns: 1fr;
-      border-top: none;
-      border-bottom: none;
-    }
-
-    .stage {
-      display: grid;
-      grid-template-columns: 52px 150px 1fr;
-      column-gap: 14px;
-      align-items: start;
-      min-height: auto;
-      padding: 12px 0;
-      border-right: none;
-      border-bottom: 1px solid #ece9e3;
-    }
-
-    .stage-number {
-      margin-bottom: 0;
-      margin-top: 2px;
-    }
-
-    .stage::after {
-      top: auto;
-      right: auto;
-      left: 16px;
-      bottom: -10px;
-      width: 1.5px;
-      height: 20px;
-    }
-
-    .stage-label {
-      margin-bottom: 5px;
-      font-size: 10px;
-    }
-
-    .stage-title {
-      font-size: 17px;
-    }
-
-    .stage-detail {
-      margin-top: 0;
-      font-size: 14px;
-    }
-  }
-
-  @media (max-width: 560px) {
-    body {
-      padding: 0 6px 8px;
-    }
-
-    .header {
-      margin-bottom: 14px;
-    }
-
-    .eyebrow {
-      font-size: 10px;
-    }
-
-    h1 {
-      font-size: 20px;
-    }
-
-    .subtitle {
-      font-size: 11px;
-    }
-
-    .stage {
-      grid-template-columns: 38px 1fr;
-      gap: 8px 12px;
-      padding: 10px 0;
-    }
-
-    .stage-number {
-      width: 31px;
-      height: 31px;
-      font-size: 11px;
-      grid-row: span 2;
-    }
-
-    .stage::after {
-      left: 15px;
-    }
-
-    .stage-title {
-      font-size: 15px;
-    }
-
-    .stage-detail {
-      grid-column: 2;
-      font-size: 12px;
-    }
-
-    .flow-note {
-      grid-template-columns: 1fr;
-      gap: 5px;
-      font-size: 10.5px;
-    }
-
-    .footer-note {
-      font-size: 9px;
-    }
+  .footer span:not(:last-child)::after {
+    content: '→';
+    margin-left: 12px;
   }
 </style>
 </head>
 <body>
-<main class="workflow">
+<main class="wrap">
   <header class="header">
     <div class="eyebrow">Rivers Lab Research Workflow</div>
     <h1>Human–Machine Performance Regulation</h1>
-    <div class="subtitle">Action → Data → Modelling → Feedback → Adaptation → Repeat</div>
+    <div class="subtitle">A consistent system from action to adaptation</div>
   </header>
 
-  <section class="map" aria-label="Human-machine performance regulation research workflow">
-    <article class="stage">
-      <div class="stage-number">1</div>
-      <div>
-        <div class="stage-label">Input</div>
-        <h2 class="stage-title">Human Action</h2>
-      </div>
-      <p class="stage-detail">Pedalling, gear shifting, pacing, and positioning provide the physical inputs that initiate the data loop.</p>
-    </article>
-
-    <article class="stage">
-      <div class="stage-number">2</div>
-      <div>
-        <div class="stage-label">Capture</div>
-        <h2 class="stage-title">Sensor Data Capture</h2>
-      </div>
-      <p class="stage-detail">Power meters, cadence sensors, heart-rate monitors, GPS, and drivetrain systems record continuous physiological and mechanical activity.</p>
-    </article>
-
-    <article class="stage">
-      <div class="stage-number">3</div>
-      <div>
-        <div class="stage-label">Logging</div>
-        <h2 class="stage-title">Data Logging</h2>
-      </div>
-      <p class="stage-detail">Garmin FIT files, Strava records, and shifting data structure the ride as a time-series record of performance and interaction variables.</p>
-    </article>
-
-    <article class="stage">
-      <div class="stage-number">4</div>
-      <div>
-        <div class="stage-label">Processing</div>
-        <h2 class="stage-title">Data Processing</h2>
-      </div>
-      <p class="stage-detail">Python workflows clean, align, resample, and engineer features from sensor-derived ride data.</p>
-    </article>
-
-    <article class="stage">
-      <div class="stage-number">5</div>
-      <div>
-        <div class="stage-label">Analysis</div>
-        <h2 class="stage-title">Modelling</h2>
-      </div>
-      <p class="stage-detail">Regression, clustering, and machine-learning models identify relationships among cadence, power, gear choice, terrain, and effort.</p>
-    </article>
-
-    <article class="stage">
-      <div class="stage-number">6</div>
-      <div>
-        <div class="stage-label">Output</div>
-        <h2 class="stage-title">Feedback</h2>
-      </div>
-      <p class="stage-detail">Interactive visualisations, cadence–power maps, dashboards, and summaries make rider–machine patterns interpretable.</p>
-    </article>
-
-    <article class="stage">
-      <div class="stage-number">7</div>
-      <div>
-        <div class="stage-label">Adaptation</div>
-        <h2 class="stage-title">Behavioural Adaptation</h2>
-      </div>
-      <p class="stage-detail">The rider adjusts pacing, training load, gear-selection strategy, and recovery practices, closing the feedback loop.</p>
-    </article>
+  <section class="grid">
+    <div class="stage"><div class="num">01</div><div class="label">Input</div><div class="title">Human Action</div></div>
+    <div class="stage"><div class="num">02</div><div class="label">Capture</div><div class="title">Sensor Data</div></div>
+    <div class="stage"><div class="num">03</div><div class="label">Logging</div><div class="title">Ride Data</div></div>
+    <div class="stage"><div class="num">04</div><div class="label">Process</div><div class="title">Data Prep</div></div>
+    <div class="stage"><div class="num">05</div><div class="label">Analysis</div><div class="title">Modelling</div></div>
+    <div class="stage"><div class="num">06</div><div class="label">Output</div><div class="title">Feedback</div></div>
+    <div class="stage"><div class="num">07</div><div class="label">Adapt</div><div class="title">Behaviour Change</div></div>
   </section>
 
-  <div class="flow-note">
-    <strong>Feedback loop</strong>
-    <span>Each stage converts physical cycling behaviour into interpretable evidence, then returns that evidence to training, equipment decisions, and human–machine performance regulation.</span>
-  </div>
-
-  <div class="footer-note">Continuous feedback loop — each cycle informs the next</div>
+  <footer class="footer">
+    <span>Act</span>
+    <span>Measure</span>
+    <span>Record</span>
+    <span>Model</span>
+    <span>Adapt</span>
+  </footer>
 </main>
 </body>
 </html>
