@@ -6,101 +6,451 @@
 <title>Research Workflow: Educational Psychology and Learning Support</title>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 
 <style>
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --text: #161616;
+    --muted: #74716b;
+    --soft: #aaa69e;
+    --line: #e7e3dc;
+    --surface: #ffffff;
+    --surface-soft: #faf9f6;
+    --accent: #e05c2a;
+    --accent-dark: #c94f20;
+    --success: #5f9b6b;
+    --success-soft: #edf5ef;
+  }
+
+  *, *::before, *::after {
+    box-sizing: border-box;
+  }
+
   html, body {
-    width: 100%; margin: 0; padding: 0; background: #ffffff; color: #1a1a1a;
-    font-family: 'DM Sans', sans-serif;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    background: var(--surface);
+    color: var(--text);
+    font-family: 'DM Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   }
-  body { padding: 0 10px 10px 10px; }
-  .wf-root { background: transparent; border: none; border-radius: 0; padding: 4px 0 0 0; width: 100%; max-width: 100%; position: relative; overflow: visible; }
-  .wf-header { margin-bottom: 14px; position: relative; }
-  .wf-eyebrow { font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: 0.16em; color: #e05c2a; text-transform: uppercase; margin-bottom: 4px; }
-  .wf-title { font-size: 20px; font-weight: 500; color: #111111; line-height: 1.25; }
-  .wf-subtitle { font-size: 12px; color: #9a9890; margin-top: 3px; font-family: 'DM Mono', monospace; letter-spacing: 0.04em; }
-  .wf-track { display: flex; flex-direction: column; position: relative; }
-  .wf-step { display: flex; align-items: stretch; cursor: pointer; }
-  .wf-spine { display: flex; flex-direction: column; align-items: center; width: 46px; flex-shrink: 0; }
-  .wf-dot {
-    width: 30px; height: 30px; border-radius: 50%; border: 1.5px solid #d8d6d0; background: #f0efeb;
-    display: flex; align-items: center; justify-content: center; font-family: 'DM Mono', monospace; font-size: 11px;
-    color: #b0aea8; flex-shrink: 0; transition: all 0.35s cubic-bezier(.4,0,.2,1); position: relative; z-index: 1; margin-top: 9px;
+
+  body {
+    overflow-x: hidden;
   }
-  .wf-dot.active { background: #e05c2a; border-color: #e05c2a; color: #fff; box-shadow: 0 0 0 6px rgba(224,92,42,0.12); }
-  .wf-dot.done { background: #edf5ef; border-color: #b8d8bf; color: #4a8f5c; font-size: 13px; }
-  .wf-connector { width: 1.5px; flex: 1; margin: 0 auto; min-height: 10px; background: #e4e2dc; transition: background 0.5s; }
-  .wf-connector.lit { background: linear-gradient(to bottom, rgba(224,92,42,0.45), rgba(224,92,42,0.06)); }
-  .wf-card { flex: 1; border: none; border-radius: 0; padding: 8px 0; margin: 5px 0 5px 6px; background: transparent; transition: all 0.35s cubic-bezier(.4,0,.2,1); position: relative; overflow: hidden; }
-  .wf-card.active, .wf-card.done { background: transparent; }
-  .wf-card-label { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: #c0beb8; margin-bottom: 3px; transition: color 0.3s; }
-  .wf-card.active .wf-card-label { color: #c4541e; }
-  .wf-card.done .wf-card-label { color: #4a8f5c; }
-  .wf-card-name { font-size: 14px; font-weight: 500; color: #888680; line-height: 1.3; transition: color 0.35s; }
-  .wf-card.active .wf-card-name { color: #1a1a1a; }
-  .wf-card.done .wf-card-name { color: #4a7a58; }
-  .wf-card-detail { font-size: 12px; color: #a0a09a; line-height: 1.5; max-height: 0; overflow: hidden; transition: max-height 0.4s cubic-bezier(.4,0,.2,1), opacity 0.3s; opacity: 0; margin-top: 0; }
-  .wf-card.active .wf-card-detail { max-height: 120px; opacity: 1; margin-top: 5px; color: #6e6c66; }
-  .wf-controls { display: flex; align-items: center; gap: 10px; margin-top: 18px; position: relative; }
-  button { font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; background: transparent; border: 1px solid #d8d6d0; color: #888680; padding: 7px 14px; border-radius: 7px; cursor: pointer; transition: all 0.2s; }
-  button:hover:not(:disabled) { border-color: #e05c2a; color: #e05c2a; }
-  button.primary { background: #e05c2a; border-color: #e05c2a; color: #fff; padding: 7px 20px; }
-  button.primary:hover:not(:disabled) { background: #c94f20; border-color: #c94f20; }
-  button:disabled { opacity: 0.28; cursor: default; }
-  .wf-progress { flex: 1; height: 2px; background: #e4e2dc; border-radius: 2px; overflow: hidden; }
-  .wf-progress-fill { height: 100%; background: #e05c2a; border-radius: 2px; transition: width 0.4s cubic-bezier(.4,0,.2,1); }
-  .wf-counter { font-family: 'DM Mono', monospace; font-size: 11px; color: #c0beb8; white-space: nowrap; }
-  .wf-auto { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; background: rgba(224,92,42,0.08); color: #e05c2a; border: 1px solid rgba(224,92,42,0.25); padding: 6px 11px; border-radius: 6px; cursor: pointer; transition: all 0.2s; white-space: nowrap; }
-  .wf-auto:hover, .wf-auto.on { background: rgba(224,92,42,0.16); border-color: rgba(224,92,42,0.5); }
-  .wf-footer { margin-top: 16px; padding-top: 12px; border-top: 1px solid #ece9e3; display: flex; justify-content: space-between; align-items: center; }
-  .wf-footer-left { font-family: 'DM Mono', monospace; font-size: 10px; color: #c8c6c0; letter-spacing: 0.06em; }
-  .wf-dots { display: flex; gap: 5px; }
-  .wf-pip { width: 6px; height: 6px; border-radius: 50%; background: #dedad4; transition: all 0.3s; cursor: pointer; }
-  .wf-pip.active { background: #e05c2a; }
-  .wf-pip.done { background: #7ab888; }
-  .wf-pip:hover { transform: scale(1.3); }
-  @media (max-width: 480px) {
-    body { padding: 0 6px 8px 6px; }
-    .wf-title { font-size: 17px; }
-    .wf-controls { flex-wrap: wrap; }
+
+  button {
+    font: inherit;
+  }
+
+  .workflow {
+    width: 100%;
+    max-width: 940px;
+    margin: 0 auto;
+    padding: 0 12px 12px;
+    background: var(--surface);
+  }
+
+  .workflow-header {
+    padding: 0 0 12px;
+  }
+
+  .eyebrow,
+  .subtitle,
+  .step-label,
+  .counter,
+  .auto-button,
+  .nav-button,
+  .footer-note {
+    font-family: 'DM Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+  }
+
+  .eyebrow {
+    margin-bottom: 5px;
+    color: var(--accent);
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.16em;
+    line-height: 1.2;
+    text-transform: uppercase;
+  }
+
+  h1 {
+    margin: 0;
+    color: var(--text);
+    font-size: clamp(18px, 3.2vw, 24px);
+    font-weight: 500;
+    letter-spacing: -0.02em;
+    line-height: 1.18;
+  }
+
+  .subtitle {
+    margin-top: 5px;
+    color: var(--soft);
+    font-size: 11px;
+    letter-spacing: 0.03em;
+    line-height: 1.45;
+  }
+
+  .track {
+    display: grid;
+    gap: 6px;
+  }
+
+  .step {
+    display: grid;
+    grid-template-columns: 38px 1fr;
+    column-gap: 8px;
+    align-items: stretch;
+    min-height: 58px;
+    cursor: pointer;
+  }
+
+  .spine {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 5px;
+  }
+
+  .dot {
+    position: relative;
+    z-index: 2;
+    display: grid;
+    place-items: center;
+    width: 27px;
+    height: 27px;
+    border: 1.5px solid #d8d4cc;
+    border-radius: 999px;
+    background: #f3f1ec;
+    color: #aaa69e;
+    font-family: 'DM Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+    font-size: 10px;
+    transition: all 0.25s ease;
+  }
+
+  .dot.active {
+    border-color: var(--accent);
+    background: var(--accent);
+    color: #ffffff;
+    box-shadow: 0 0 0 5px rgba(224, 92, 42, 0.11);
+  }
+
+  .dot.done {
+    border-color: #b8d8bf;
+    background: var(--success-soft);
+    color: var(--success);
+    font-size: 12px;
+  }
+
+  .connector {
+    width: 1.5px;
+    min-height: 22px;
+    flex: 1;
+    background: var(--line);
+  }
+
+  .connector.lit {
+    background: linear-gradient(to bottom, rgba(224, 92, 42, 0.55), rgba(224, 92, 42, 0.08));
+  }
+
+  .card {
+    min-width: 0;
+    padding: 7px 10px 8px;
+    border-radius: 12px;
+    background: transparent;
+    transition: background 0.25s ease, transform 0.25s ease;
+  }
+
+  .card.active {
+    background: var(--surface-soft);
+  }
+
+  .card.done {
+    background: transparent;
+  }
+
+  .step:hover .card {
+    background: var(--surface-soft);
+  }
+
+  .step-label {
+    margin-bottom: 2px;
+    color: #b8b3aa;
+    font-size: 9px;
+    font-weight: 500;
+    letter-spacing: 0.13em;
+    line-height: 1.25;
+    text-transform: uppercase;
+  }
+
+  .card.active .step-label {
+    color: var(--accent-dark);
+  }
+
+  .card.done .step-label {
+    color: var(--success);
+  }
+
+  .step-title {
+    color: #77736b;
+    font-size: 13.5px;
+    font-weight: 500;
+    letter-spacing: -0.01em;
+    line-height: 1.25;
+  }
+
+  .card.active .step-title {
+    color: var(--text);
+  }
+
+  .card.done .step-title {
+    color: #4f7958;
+  }
+
+  .detail {
+    max-height: 0;
+    margin-top: 0;
+    overflow: hidden;
+    color: var(--muted);
+    font-size: 11.5px;
+    line-height: 1.45;
+    opacity: 0;
+    transition: max-height 0.3s ease, margin-top 0.3s ease, opacity 0.2s ease;
+  }
+
+  .card.active .detail {
+    max-height: 96px;
+    margin-top: 5px;
+    opacity: 1;
+  }
+
+  .controls {
+    display: grid;
+    grid-template-columns: auto auto minmax(70px, 1fr) auto auto;
+    gap: 8px;
+    align-items: center;
+    margin-top: 14px;
+  }
+
+  .nav-button,
+  .auto-button {
+    border: 1px solid #d8d4cc;
+    border-radius: 8px;
+    background: transparent;
+    color: #77736b;
+    cursor: pointer;
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    line-height: 1;
+    padding: 8px 12px;
+    text-transform: uppercase;
+    transition: all 0.2s ease;
+    white-space: nowrap;
+  }
+
+  .nav-button:hover:not(:disabled),
+  .auto-button:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+  }
+
+  .nav-button.primary {
+    border-color: var(--accent);
+    background: var(--accent);
+    color: #ffffff;
+    padding-inline: 16px;
+  }
+
+  .nav-button.primary:hover:not(:disabled) {
+    border-color: var(--accent-dark);
+    background: var(--accent-dark);
+    color: #ffffff;
+  }
+
+  .nav-button:disabled {
+    cursor: default;
+    opacity: 0.3;
+  }
+
+  .auto-button.on {
+    border-color: rgba(224, 92, 42, 0.45);
+    background: rgba(224, 92, 42, 0.11);
+    color: var(--accent);
+  }
+
+  .progress {
+    height: 2px;
+    overflow: hidden;
+    border-radius: 999px;
+    background: var(--line);
+  }
+
+  .progress-fill {
+    width: 0;
+    height: 100%;
+    border-radius: inherit;
+    background: var(--accent);
+    transition: width 0.3s ease;
+  }
+
+  .counter {
+    color: #b8b3aa;
+    font-size: 10px;
+    white-space: nowrap;
+  }
+
+  .footer {
+    display: flex;
+    justify-content: space-between;
+    gap: 14px;
+    align-items: center;
+    margin-top: 12px;
+    padding-top: 10px;
+    border-top: 1px solid #efebe4;
+  }
+
+  .footer-note {
+    color: #bdb8af;
+    font-size: 9.5px;
+    letter-spacing: 0.05em;
+    line-height: 1.35;
+  }
+
+  .pips {
+    display: flex;
+    gap: 5px;
+    flex-shrink: 0;
+  }
+
+  .pip {
+    width: 6px;
+    height: 6px;
+    border-radius: 999px;
+    background: #dedad4;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+
+  .pip.active {
+    width: 16px;
+    background: var(--accent);
+  }
+
+  .pip.done {
+    background: #8abd94;
+  }
+
+  @media (max-width: 560px) {
+    .workflow {
+      padding-inline: 6px;
+    }
+
+    .workflow-header {
+      padding-bottom: 10px;
+    }
+
+    .step {
+      grid-template-columns: 32px 1fr;
+      column-gap: 6px;
+      min-height: 54px;
+    }
+
+    .dot {
+      width: 24px;
+      height: 24px;
+      font-size: 9px;
+    }
+
+    .card {
+      padding: 6px 7px 7px;
+    }
+
+    .step-title {
+      font-size: 13px;
+    }
+
+    .detail {
+      font-size: 11px;
+    }
+
+    .controls {
+      grid-template-columns: auto auto 1fr auto;
+    }
+
+    .counter {
+      display: none;
+    }
+
+    .footer-note {
+      display: none;
+    }
   }
 </style>
 </head>
 <body>
+  <main class="workflow" aria-label="Educational psychology research workflow">
+    <header class="workflow-header">
+      <div class="eyebrow">Rivers Lab Research Workflow</div>
+      <h1>Educational Psychology and Learning Support</h1>
+      <div class="subtitle">Self-Regulation → Evidence → Modelling → Support → Improvement</div>
+    </header>
 
-<div class="wf-root">
-  <div class="wf-header">
-    <div class="wf-eyebrow">Rivers Lab Research Workflow</div>
-    <h1 class="wf-title">Educational Psychology and Learning Support</h1>
-    <div class="wf-subtitle">Self-Regulation → Evidence → Modelling → Support → Improvement</div>
-  </div>
+    <section class="track" id="track" aria-live="polite"></section>
 
-  <div class="wf-track" id="track"></div>
+    <nav class="controls" aria-label="Workflow controls">
+      <button class="nav-button" id="btn-prev" type="button" onclick="prev()">← Back</button>
+      <button class="nav-button primary" id="btn-next" type="button" onclick="next()">Next →</button>
+      <div class="progress" aria-hidden="true"><div class="progress-fill" id="prog"></div></div>
+      <span class="counter" id="counter">1 / 7</span>
+      <button class="auto-button" id="auto-btn" type="button" onclick="toggleAuto()">Auto</button>
+    </nav>
 
-  <div class="wf-controls">
-    <button id="btn-prev" onclick="prev()">← Back</button>
-    <button class="primary" id="btn-next" onclick="next()">Next →</button>
-    <div class="wf-progress"><div class="wf-progress-fill" id="prog"></div></div>
-    <span class="wf-counter" id="counter">1 / 7</span>
-    <button class="wf-auto" id="auto-btn" onclick="toggleAuto()">Auto</button>
-  </div>
-
-  <div class="wf-footer">
-    <span class="wf-footer-left">Learning evidence loop — each cycle informs better support</span>
-    <div class="wf-dots" id="pips"></div>
-  </div>
-</div>
+    <footer class="footer">
+      <span class="footer-note">Learning evidence loop — each cycle informs better support</span>
+      <div class="pips" id="pips" aria-label="Workflow step selector"></div>
+    </footer>
+  </main>
 
 <script>
 const stages = [
-  { label: "Context", name: "Student Learning Activity", detail: "Coursework, assignments, study routines, attendance, and classroom participation create the behavioural basis for analysis." },
-  { label: "Constructs", name: "Self-Regulation and Metacognition", detail: "Learners monitor, plan, evaluate, and adjust their own learning through executive-function and metacognitive behaviours." },
-  { label: "Evidence", name: "Survey and Behavioural Data", detail: "Self-report instruments, LMS activity, assignment timing, learning records, and academic outcomes provide complementary evidence." },
-  { label: "Processing", name: "Data Preparation", detail: "Responses and behavioural records are cleaned, coded, linked, and prepared for quantitative analysis." },
-  { label: "Analysis", name: "Statistical Modelling", detail: "Regression, factor analysis, path analysis, and SEM clarify relationships among learning behaviours, regulation, and GPA." },
-  { label: "Output", name: "Learning Support Insight", detail: "Findings identify practical points for intervention, course design, advising, and student-facing feedback." },
-  { label: "Improvement", name: "Teaching and Support Adaptation", detail: "Evidence is translated into improved learning support, study-skills instruction, and more targeted institutional practice." }
+  {
+    label: 'Context',
+    name: 'Student Learning Activity',
+    detail: 'Coursework, assignments, study routines, attendance, and classroom participation create the behavioural basis for analysis.'
+  },
+  {
+    label: 'Constructs',
+    name: 'Self-Regulation and Metacognition',
+    detail: 'Learners monitor, plan, evaluate, and adjust their own learning through executive-function and metacognitive behaviours.'
+  },
+  {
+    label: 'Evidence',
+    name: 'Survey and Behavioural Data',
+    detail: 'Self-report instruments, LMS activity, assignment timing, learning records, and academic outcomes provide complementary evidence.'
+  },
+  {
+    label: 'Processing',
+    name: 'Data Preparation',
+    detail: 'Responses and behavioural records are cleaned, coded, linked, and prepared for quantitative analysis.'
+  },
+  {
+    label: 'Analysis',
+    name: 'Statistical Modelling',
+    detail: 'Regression, factor analysis, path analysis, and SEM clarify relationships among learning behaviours, regulation, and GPA.'
+  },
+  {
+    label: 'Output',
+    name: 'Learning Support Insight',
+    detail: 'Findings identify practical points for intervention, course design, advising, and student-facing feedback.'
+  },
+  {
+    label: 'Improvement',
+    name: 'Teaching and Support Adaptation',
+    detail: 'Evidence is translated into improved learning support, study-skills instruction, and more targeted institutional practice.'
+  }
 ];
 
 let current = 0;
@@ -109,64 +459,102 @@ let autoTimer = null;
 
 function render() {
   const track = document.getElementById('track');
-  track.innerHTML = '';
-  stages.forEach((s, i) => {
-    const isActive = i === current;
-    const isDone = i < current;
+
+  track.innerHTML = stages.map((stage, index) => {
+    const isActive = index === current;
+    const isDone = index < current;
     const dotClass = isActive ? 'active' : isDone ? 'done' : '';
     const cardClass = isActive ? 'active' : isDone ? 'done' : '';
-    const connClass = isDone ? 'lit' : '';
-    const connector = i < stages.length - 1 ? `<div class="wf-connector ${connClass}"></div>` : '';
-    const dotContent = isDone ? '✓' : i + 1;
-    track.innerHTML += `
-      <div class="wf-step" onclick="jump(${i})">
-        <div class="wf-spine">
-          <div class="wf-dot ${dotClass}">${dotContent}</div>
+    const connectorClass = isDone ? 'lit' : '';
+    const connector = index < stages.length - 1 ? `<div class="connector ${connectorClass}"></div>` : '';
+    const dotContent = isDone ? '✓' : index + 1;
+
+    return `
+      <article class="step" onclick="jump(${index})" aria-label="${stage.label}: ${stage.name}">
+        <div class="spine" aria-hidden="true">
+          <div class="dot ${dotClass}">${dotContent}</div>
           ${connector}
         </div>
-        <div class="wf-card ${cardClass}">
-          <div class="wf-card-label">${s.label}</div>
-          <div class="wf-card-name">${s.name}</div>
-          <div class="wf-card-detail">${s.detail}</div>
+        <div class="card ${cardClass}">
+          <div class="step-label">${stage.label}</div>
+          <div class="step-title">${stage.name}</div>
+          <div class="detail">${stage.detail}</div>
         </div>
-      </div>`;
-  });
-  const pct = (current / (stages.length - 1)) * 100;
-  document.getElementById('prog').style.width = pct + '%';
+      </article>`;
+  }).join('');
+
+  const progress = (current / (stages.length - 1)) * 100;
+  document.getElementById('prog').style.width = `${progress}%`;
   document.getElementById('counter').textContent = `${current + 1} / ${stages.length}`;
-  document.getElementById('btn-prev').disabled = current === 0;
-  const nextBtn = document.getElementById('btn-next');
-  nextBtn.disabled = current === stages.length - 1;
-  nextBtn.textContent = current === stages.length - 1 ? 'Done ✓' : 'Next →';
-  const pipsEl = document.getElementById('pips');
-  pipsEl.innerHTML = '';
-  stages.forEach((_, i) => {
-    const cls = i === current ? 'active' : i < current ? 'done' : '';
-    pipsEl.innerHTML += `<div class="wf-pip ${cls}" onclick="event.stopPropagation(); jump(${i})"></div>`;
-  });
+
+  const prevButton = document.getElementById('btn-prev');
+  const nextButton = document.getElementById('btn-next');
+
+  prevButton.disabled = current === 0;
+  nextButton.disabled = current === stages.length - 1;
+  nextButton.textContent = current === stages.length - 1 ? 'Done ✓' : 'Next →';
+
+  document.getElementById('pips').innerHTML = stages.map((_, index) => {
+    const pipClass = index === current ? 'active' : index < current ? 'done' : '';
+    return `<button class="pip ${pipClass}" type="button" aria-label="Go to step ${index + 1}" onclick="event.stopPropagation(); jump(${index})"></button>`;
+  }).join('');
 }
 
-function next() { if (current < stages.length - 1) { current++; render(); } else { stopAuto(); } }
-function prev() { if (current > 0) { current--; render(); } }
-function jump(i) { current = i; render(); }
-function toggleAuto() { autoPlaying ? stopAuto() : startAuto(); }
+function next() {
+  if (current < stages.length - 1) {
+    current += 1;
+    render();
+  } else {
+    stopAuto();
+  }
+}
+
+function prev() {
+  if (current > 0) {
+    current -= 1;
+    render();
+  }
+}
+
+function jump(index) {
+  current = index;
+  render();
+}
+
+function toggleAuto() {
+  autoPlaying ? stopAuto() : startAuto();
+}
+
 function startAuto() {
   autoPlaying = true;
-  const btn = document.getElementById('auto-btn');
-  btn.classList.add('on');
-  btn.textContent = 'Stop';
-  if (current === stages.length - 1) current = -1;
+
+  const autoButton = document.getElementById('auto-btn');
+  autoButton.classList.add('on');
+  autoButton.textContent = 'Stop';
+
+  if (current === stages.length - 1) {
+    current = -1;
+  }
+
   autoTimer = setInterval(() => {
-    if (current < stages.length - 1) { current++; render(); } else { stopAuto(); }
-  }, 900);
+    if (current < stages.length - 1) {
+      current += 1;
+      render();
+    } else {
+      stopAuto();
+    }
+  }, 1000);
 }
+
 function stopAuto() {
   autoPlaying = false;
   clearInterval(autoTimer);
-  const btn = document.getElementById('auto-btn');
-  btn.classList.remove('on');
-  btn.textContent = 'Auto';
+
+  const autoButton = document.getElementById('auto-btn');
+  autoButton.classList.remove('on');
+  autoButton.textContent = 'Auto';
 }
+
 render();
 </script>
 </body>
