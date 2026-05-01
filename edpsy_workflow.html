@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Research Workflow: Educational Psychology and Learning Support</title>
+<title>Educational Psychology Research Model</title>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -28,224 +28,184 @@
     padding: 0 14px 14px;
   }
 
-  .workflow {
+  .model {
     width: 100%;
-    max-width: 1080px;
+    max-width: 980px;
     margin: 0 auto;
     padding-top: 2px;
   }
 
   .header {
-    margin-bottom: 22px;
     text-align: center;
+    margin-bottom: 24px;
   }
 
   .eyebrow,
   .subtitle,
-  .stage-label,
-  .flow-note,
-  .footer-note {
+  .tag,
+  .row-label,
+  .footer {
     font-family: 'DM Mono', monospace;
   }
 
   .eyebrow {
-    margin-bottom: 7px;
     color: #e05c2a;
-    font-size: 13px;
+    font-size: 12px;
     font-weight: 500;
     letter-spacing: .16em;
     line-height: 1.2;
     text-transform: uppercase;
+    margin-bottom: 8px;
   }
 
   h1 {
     color: #111111;
-    font-size: 32px;
+    font-size: 31px;
     font-weight: 500;
     letter-spacing: -0.02em;
     line-height: 1.15;
   }
 
   .subtitle {
-    margin-top: 7px;
     color: #9a9890;
-    font-size: 15px;
+    font-size: 13px;
     letter-spacing: .04em;
     line-height: 1.45;
+    margin-top: 8px;
   }
 
-  .map {
+  .framework {
     display: grid;
-    grid-template-columns: repeat(7, minmax(0, 1fr));
+    grid-template-rows: auto auto auto;
+    gap: 16px;
+  }
+
+  .row {
+    display: grid;
+    grid-template-columns: 132px 1fr;
+    gap: 16px;
     align-items: stretch;
+  }
+
+  .row-label {
+    display: grid;
+    place-items: center;
+    min-height: 112px;
     border-top: 1px solid #ece9e3;
     border-bottom: 1px solid #ece9e3;
-  }
-
-  .stage {
-    position: relative;
-    min-height: 330px;
-    padding: 18px 14px 20px;
-    border-right: 1px solid #ece9e3;
-    background: #ffffff;
-    text-align: center;
-    transition: background .2s ease;
-  }
-
-  .stage:last-child {
-    border-right: none;
-  }
-
-  .stage:hover {
-    background: #fbfaf7;
-  }
-
-  .stage-number {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 34px;
-    height: 34px;
-    margin: 0 auto 16px;
-    border: 1.5px solid #d8d6d0;
-    border-radius: 50%;
-    background: #f4f2ed;
-    color: #aaa69e;
-    font-family: 'DM Mono', monospace;
-    font-size: 12px;
-    line-height: 1;
-  }
-
-  .stage::after {
-    content: '';
-    position: absolute;
-    top: 34px;
-    right: -8px;
-    width: 15px;
-    height: 1.5px;
-    background: #d8d6d0;
-    z-index: 2;
-  }
-
-  .stage:last-child::after {
-    display: none;
-  }
-
-  .stage-label {
-    min-height: 14px;
-    margin-bottom: 8px;
     color: #c4541e;
     font-size: 11px;
     font-weight: 500;
-    letter-spacing: .12em;
-    line-height: 1.15;
-    text-transform: uppercase;
-  }
-
-  .stage-title {
-    min-height: 50px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: #1a1a1a;
-    font-size: 18px;
-    font-weight: 500;
-    letter-spacing: -0.01em;
-    line-height: 1.24;
-    text-align: center;
-  }
-
-  .stage-detail {
-    max-width: 150px;
-    margin: 12px auto 0;
-    color: #6e6c66;
-    font-size: 13.5px;
-    line-height: 1.48;
-    text-align: center;
-  }
-
-  .flow-note {
-    max-width: 780px;
-    margin: 18px auto 0;
-    padding: 15px 0 0;
-    color: #8f8b84;
-    font-size: 12px;
-    letter-spacing: .04em;
-    line-height: 1.55;
-    text-align: center;
-  }
-
-  .flow-note strong {
-    display: block;
-    margin-bottom: 5px;
-    color: #e05c2a;
-    font-weight: 500;
-    letter-spacing: .12em;
-    text-transform: uppercase;
-  }
-
-  .footer-note {
-    margin-top: 14px;
-    padding-top: 14px;
-    border-top: 1px solid #ece9e3;
-    color: #c8c6c0;
-    font-size: 11px;
-    letter-spacing: .06em;
+    letter-spacing: .14em;
     line-height: 1.35;
     text-align: center;
+    text-transform: uppercase;
   }
 
-  @media (max-width: 920px) {
-    .map {
+  .cards {
+    display: grid;
+    gap: 12px;
+  }
+
+  .cards.two {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .cards.three {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .card {
+    min-height: 112px;
+    padding: 20px 18px;
+    border: 1px solid #ece9e3;
+    background: #ffffff;
+    text-align: center;
+    display: grid;
+    align-content: center;
+    gap: 9px;
+  }
+
+  .tag {
+    color: #b8b3aa;
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: .12em;
+    line-height: 1;
+    text-transform: uppercase;
+  }
+
+  .title {
+    color: #1a1a1a;
+    font-size: 20px;
+    font-weight: 500;
+    letter-spacing: -0.01em;
+    line-height: 1.22;
+  }
+
+  .detail {
+    max-width: 230px;
+    margin: 0 auto;
+    color: #6e6c66;
+    font-size: 13.5px;
+    line-height: 1.45;
+  }
+
+  .arrow-row {
+    display: grid;
+    grid-template-columns: 132px 1fr;
+    gap: 16px;
+    align-items: center;
+    margin: -4px 0;
+  }
+
+  .arrow-space {
+    height: 1px;
+  }
+
+  .arrow {
+    display: grid;
+    place-items: center;
+    color: #d2cec6;
+    font-family: 'DM Mono', monospace;
+    font-size: 16px;
+    letter-spacing: .18em;
+  }
+
+  .footer {
+    margin-top: 18px;
+    padding-top: 14px;
+    border-top: 1px solid #ece9e3;
+    color: #b8b3aa;
+    font-size: 11px;
+    letter-spacing: .06em;
+    line-height: 1.45;
+    text-align: center;
+  }
+
+  @media (max-width: 760px) {
+    .row,
+    .arrow-row {
       grid-template-columns: 1fr;
-      border-top: none;
-      border-bottom: none;
+      gap: 8px;
     }
 
-    .stage {
-      display: grid;
-      grid-template-columns: 52px 170px 1fr;
-      column-gap: 14px;
-      align-items: center;
+    .row-label {
       min-height: auto;
-      padding: 12px 0;
-      border-right: none;
-      border-bottom: 1px solid #ece9e3;
-      text-align: left;
+      padding: 10px 0;
     }
 
-    .stage-number {
-      margin: 0 auto;
+    .cards.two,
+    .cards.three {
+      grid-template-columns: 1fr;
     }
 
-    .stage::after {
-      top: auto;
-      right: auto;
-      left: 16px;
-      bottom: -10px;
-      width: 1.5px;
-      height: 20px;
+    .card {
+      min-height: 96px;
     }
 
-    .stage-label {
-      margin-bottom: 5px;
-      font-size: 10px;
-      text-align: left;
-    }
-
-    .stage-title {
-      min-height: 0;
-      display: block;
-      font-size: 17px;
-      text-align: left;
-    }
-
-    .stage-detail {
-      max-width: none;
-      margin: 0;
-      font-size: 14px;
-      line-height: 1.45;
-      text-align: left;
+    .arrow-space {
+      display: none;
     }
   }
 
@@ -255,7 +215,7 @@
     }
 
     .header {
-      margin-bottom: 14px;
+      margin-bottom: 16px;
     }
 
     .eyebrow {
@@ -270,125 +230,98 @@
       font-size: 11px;
     }
 
-    .stage {
-      grid-template-columns: 38px 1fr;
-      gap: 8px 12px;
-      padding: 10px 0;
+    .framework {
+      gap: 12px;
     }
 
-    .stage-number {
-      width: 31px;
-      height: 31px;
-      font-size: 11px;
-      grid-row: span 2;
+    .title {
+      font-size: 16px;
     }
 
-    .stage::after {
-      left: 15px;
-    }
-
-    .stage-label {
-      font-size: 9px;
-    }
-
-    .stage-title {
-      font-size: 15px;
-    }
-
-    .stage-detail {
-      grid-column: 2;
+    .detail {
       font-size: 12px;
     }
 
-    .flow-note {
-      font-size: 10.5px;
-    }
-
-    .footer-note {
+    .footer {
       font-size: 9px;
     }
   }
 </style>
 </head>
 <body>
-<main class="workflow">
+<main class="model">
   <header class="header">
-    <div class="eyebrow">Rivers Lab Research Workflow</div>
+    <div class="eyebrow">Rivers Lab Research Model</div>
     <h1>Educational Psychology and Learning Support</h1>
-    <div class="subtitle">Self-Regulation → Evidence → Modelling → Support → Improvement</div>
+    <div class="subtitle">Learning behaviour → evidence → modelling → support design</div>
   </header>
 
-  <section class="map" aria-label="Educational psychology research workflow">
-    <article class="stage">
-      <div class="stage-number">1</div>
-      <div>
-        <div class="stage-label">Context</div>
-        <h2 class="stage-title">Student Learning Activity</h2>
+  <section class="framework" aria-label="Educational psychology research model">
+    <div class="row">
+      <div class="row-label">Learning<br>Context</div>
+      <div class="cards two">
+        <article class="card">
+          <div class="tag">Activity</div>
+          <h2 class="title">Student Learning Behaviour</h2>
+          <p class="detail">Coursework, attendance, assignment timing, and study routines.</p>
+        </article>
+        <article class="card">
+          <div class="tag">Constructs</div>
+          <h2 class="title">Self-Regulation</h2>
+          <p class="detail">Planning, monitoring, metacognition, and executive-function behaviour.</p>
+        </article>
       </div>
-      <p class="stage-detail">Coursework, assignments, study routines, attendance, and classroom participation.</p>
-    </article>
+    </div>
 
-    <article class="stage">
-      <div class="stage-number">2</div>
-      <div>
-        <div class="stage-label">Constructs</div>
-        <h2 class="stage-title">Self-Regulation and Metacognition</h2>
-      </div>
-      <p class="stage-detail">Planning, monitoring, evaluation, adjustment, and executive-function behaviour.</p>
-    </article>
+    <div class="arrow-row" aria-hidden="true">
+      <div class="arrow-space"></div>
+      <div class="arrow">↓</div>
+    </div>
 
-    <article class="stage">
-      <div class="stage-number">3</div>
-      <div>
-        <div class="stage-label">Evidence</div>
-        <h2 class="stage-title">Survey and Behavioural Data</h2>
+    <div class="row">
+      <div class="row-label">Evidence<br>System</div>
+      <div class="cards three">
+        <article class="card">
+          <div class="tag">Data</div>
+          <h2 class="title">Learning Records</h2>
+          <p class="detail">Survey responses, LMS activity, and academic outcomes.</p>
+        </article>
+        <article class="card">
+          <div class="tag">Processing</div>
+          <h2 class="title">Data Preparation</h2>
+          <p class="detail">Cleaning, coding, linking, and structuring of records.</p>
+        </article>
+        <article class="card">
+          <div class="tag">Analysis</div>
+          <h2 class="title">Statistical Modelling</h2>
+          <p class="detail">Regression, factor analysis, path analysis, and SEM.</p>
+        </article>
       </div>
-      <p class="stage-detail">Self-report instruments, LMS records, assignment timing, and academic outcomes.</p>
-    </article>
+    </div>
 
-    <article class="stage">
-      <div class="stage-number">4</div>
-      <div>
-        <div class="stage-label">Processing</div>
-        <h2 class="stage-title">Data Preparation</h2>
-      </div>
-      <p class="stage-detail">Cleaning, coding, linking, structuring, and preparation for quantitative analysis.</p>
-    </article>
+    <div class="arrow-row" aria-hidden="true">
+      <div class="arrow-space"></div>
+      <div class="arrow">↓</div>
+    </div>
 
-    <article class="stage">
-      <div class="stage-number">5</div>
-      <div>
-        <div class="stage-label">Analysis</div>
-        <h2 class="stage-title">Statistical Modelling</h2>
+    <div class="row">
+      <div class="row-label">Support<br>Response</div>
+      <div class="cards two">
+        <article class="card">
+          <div class="tag">Insight</div>
+          <h2 class="title">Learning Support Design</h2>
+          <p class="detail">Evidence for feedback, advising, course design, and intervention.</p>
+        </article>
+        <article class="card">
+          <div class="tag">Improvement</div>
+          <h2 class="title">Teaching Adaptation</h2>
+          <p class="detail">Refined instruction, targeted support, and institutional improvement.</p>
+        </article>
       </div>
-      <p class="stage-detail">Regression, factor analysis, path analysis, and structural equation modelling.</p>
-    </article>
-
-    <article class="stage">
-      <div class="stage-number">6</div>
-      <div>
-        <div class="stage-label">Output</div>
-        <h2 class="stage-title">Learning Support Insight</h2>
-      </div>
-      <p class="stage-detail">Practical evidence for intervention, course design, advising, and student feedback.</p>
-    </article>
-
-    <article class="stage">
-      <div class="stage-number">7</div>
-      <div>
-        <div class="stage-label">Improvement</div>
-        <h2 class="stage-title">Teaching and Support Adaptation</h2>
-      </div>
-      <p class="stage-detail">Improved instruction, targeted support, and refined institutional practice.</p>
-    </article>
+    </div>
   </section>
 
-  <div class="flow-note">
-    <strong>Evidence loop</strong>
-    <span>Student learning activity is converted into interpretable evidence, then returned to teaching, advising, and support design.</span>
-  </div>
-
-  <div class="footer-note">Learning evidence loop — each cycle informs better support</div>
+  <footer class="footer">Evidence-informed learning support: observe → measure → model → support → improve</footer>
 </main>
 </body>
 </html>
