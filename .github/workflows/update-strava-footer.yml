@@ -8,6 +8,9 @@ on:
 permissions:
   contents: write
 
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+
 jobs:
   update-strava-footer:
     runs-on: ubuntu-latest
@@ -20,6 +23,18 @@ jobs:
         uses: actions/setup-python@v5
         with:
           python-version: "3.11"
+
+      - name: Check Strava secrets are configured
+        env:
+          STRAVA_CLIENT_ID: ${{ secrets.STRAVA_CLIENT_ID }}
+          STRAVA_CLIENT_SECRET: ${{ secrets.STRAVA_CLIENT_SECRET }}
+          STRAVA_REFRESH_TOKEN: ${{ secrets.STRAVA_REFRESH_TOKEN }}
+        run: |
+          missing=0
+          if [ -z "$STRAVA_CLIENT_ID" ]; then echo "Missing STRAVA_CLIENT_ID"; missing=1; else echo "STRAVA_CLIENT_ID is set"; fi
+          if [ -z "$STRAVA_CLIENT_SECRET" ]; then echo "Missing STRAVA_CLIENT_SECRET"; missing=1; else echo "STRAVA_CLIENT_SECRET is set"; fi
+          if [ -z "$STRAVA_REFRESH_TOKEN" ]; then echo "Missing STRAVA_REFRESH_TOKEN"; missing=1; else echo "STRAVA_REFRESH_TOKEN is set"; fi
+          exit $missing
 
       - name: Generate Strava footer data
         env:
