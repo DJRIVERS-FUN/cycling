@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Strava Footer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  html, body {
+    margin: 0;
+    padding: 0;
+    background: #ffffff;
+    color: #6e6c66;
+    font-family: 'DM Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  }
+
+  .dr-strava-footer {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 8px 0 0 0;
+    background: #ffffff;
+    border: 0;
+  }
+
+  .dr-strava-footer-inner {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 6px 14px;
+    font-size: 13px;
+    line-height: 1.35;
+    text-align: center;
+  }
+
+  .dr-strava-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: #520671;
+  }
+
+  .dr-strava-message {
+    color: #6e6c66;
+  }
+
+  .dr-strava-meta {
+    color: #9a9890;
+    font-size: 12px;
+  }
+
+  .dr-strava-footer a,
+  .dr-strava-footer a:visited {
+    color: #520671;
+    text-decoration: none;
+  }
+
+  .dr-strava-footer a:hover,
+  .dr-strava-footer a:active {
+    color: #520671;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+</style>
+</head>
+<body>
+  <footer class="dr-strava-footer" aria-label="Recent Strava activity footer">
+    <div class="dr-strava-footer-inner">
+      <span class="dr-strava-label">Rivers Lab / Strava</span>
+      <span id="stravaMessage" class="dr-strava-message">Loading recent riding data…</span>
+      <span id="stravaLatest" class="dr-strava-meta"></span>
+      <a href="https://www.strava.com/athletes/3714458" target="_blank" rel="noopener noreferrer">View profile</a>
+    </div>
+  </footer>
+
+<script>
+(function () {
+  const DATA_URL = 'https://djrivers-fun.github.io/cycling/data/strava_footer.json?v=' + Date.now();
+  const messageEl = document.getElementById('stravaMessage');
+  const latestEl = document.getElementById('stravaLatest');
+
+  function formatDate(dateString) {
+    if (!dateString) return '';
+    try {
+      return new Intl.DateTimeFormat('en-GB', {
+        year: 'numeric',
+        month: 'short',
+        day: '2-digit'
+      }).format(new Date(dateString));
+    } catch (_) {
+      return dateString;
+    }
+  }
+
+  fetch(DATA_URL, { cache: 'no-store' })
+    .then(function (response) {
+      if (!response.ok) throw new Error('Footer data unavailable');
+      return response.json();
+    })
+    .then(function (data) {
+      messageEl.textContent = data.message || 'Recent riding data unavailable';
+
+      const latestName = data.latest_ride && data.latest_ride.name ? data.latest_ride.name : '';
+      const latestDate = data.latest_ride && data.latest_ride.date ? formatDate(data.latest_ride.date) : '';
+
+      if (latestName && latestDate) {
+        latestEl.textContent = 'Latest: ' + latestName + ' · ' + latestDate;
+      } else if (latestDate) {
+        latestEl.textContent = 'Latest ride: ' + latestDate;
+      }
+    })
+    .catch(function () {
+      messageEl.textContent = 'Recent Strava data will appear here once the feed is connected.';
+      latestEl.textContent = '';
+    });
+})();
+</script>
+</body>
+</html>
