@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Generate Strava footer data for the Rivers Lab website.
+Generate research-grade Strava footer data for the Rivers Lab website.
 
 Required GitHub Actions secrets:
 - STRAVA_CLIENT_ID
@@ -17,7 +17,7 @@ import json
 import os
 import sys
 from dataclasses import dataclass
-from datetime import datetime, timezone
+from datetime import datetime, timedelta, timezone
 from pathlib import Path
 from typing import Any
 from urllib.error import HTTPError, URLError
@@ -27,16 +27,28 @@ from urllib.request import Request, urlopen
 TOKEN_URL = "https://www.strava.com/oauth/token"
 ACTIVITIES_URL = "https://www.strava.com/api/v3/athlete/activities"
 OUTPUT_PATH = Path("data/strava_footer.json")
+RIDE_TYPES = {"Ride", "VirtualRide", "GravelRide", "MountainBikeRide"}
 
 
 @dataclass
 class RideSummary:
     count: int
-    distance_km: float
-    moving_hours: float
-    elevation_m: float
+    seven_day_count: int
+    seven_day_distance_km: float
+    seven_day_moving_hours: float
+    seven_day_elevation_m: float
+    total_distance_km: float
+    total_moving_hours: float
+    total_elevation_m: float
+    indoor_count: int
+    outdoor_count: int
+    avg_speed_kph: float | None
+    avg_power_w: int | None
+    avg_cadence_rpm: int | None
+    climbing_m_per_km: float | None
     latest_name: str | None
     latest_date: str | None
+    latest_type: str | None
 
 
 def request_json(
@@ -85,7 +97,7 @@ def get_access_token() -> str:
     return str(token_data["access_token"])
 
 
-def fetch_activities(access_token: str, per_page: int = 30) -> list[dict[str, Any]]:
+def fetch_activities(access_token: str, per_page: int = 60) -> list[dict[str, Any]]:
     url = f"{ACTIVITIES_URL}?per_page={per_page}&page=1"
     data = request_json(url, headers={"Authorization": f"Bearer {access_token}"})
     if not isinstance(data, list):
@@ -93,13 +105,71 @@ def fetch_activities(access_token: str, per_page: int = 30) -> list[dict[str, An
     return data
 
 
-def summarize_rides(activities: list[dict[str, Any]]) -> RideSummary:
-    ride_types = {"Ride", "VirtualRide", "GravelRide", "MountainBikeRide"}
-    rides = [a for a in activities if a.get("type") in ride_types]
+def parse_local_date(activity: dict[str, Any]) -> datetime | None:
+    raw = activity.get("start_date_local") or activity.get("start_date")
+    if not raw:
+        return None
+    try:
+        return datetime.fromisoformat(str(raw).replace("Z", "+00:00"))
+    except ValueError:
+        return None
 
-    distance_km = sum(float(a.get("distance") or 0) for a in rides) / 1000
-    moving_hours = sum(float(a.get("moving_time") or 0) for a in rides) / 3600
-    elevation_m = sum(float(a.get("total_elevation_gain") or 0) for a in rides)
+
+def weighted_mean(values: list[tuple[float, float]]) -> float | None:
+    total_weight = sum(weight for _, weight in values if weight > 0)
+    if total_weight <= 0:
+        return None
+    return sum(value * weight for value, weight in values if weight > 0) / total_weight
+
+
+def summarize_rides(activities: list[dict[str, Any]]) -> RideSummary:
+    rides = [a for a in activities if a.get("type") in RIDE_TYPES]
+    now_local = datetime.now(timezone.utc)
+    cutoff = now_local - timedelta(days=7)
+
+    def is_recent(activity: dict[str, Any]) -> bool:
+        dt = parse_local_date(activity)
+        if not dt:
+            return False
+        if dt.tzinfo is None:
+            dt = dt.replace(tzinfo=timezone.utc)
+        return dt >= cutoff
+
+    recent_rides = [a for a in rides if is_recent(a)]
+
+    def totals(subset: list[dict[str, Any]]) -> tuple[float, float, float]:
+        distance_km = sum(float(a.get("distance") or 0) for a in subset) / 1000
+        moving_hours = sum(float(a.get("moving_time") or 0) for a in subset) / 3600
+        elevation_m = sum(float(a.get("total_elevation_gain") or 0) for a in subset)
+        return round(distance_km, 1), round(moving_hours, 1), round(elevation_m, 0)
+
+    total_distance_km, total_moving_hours, total_elevation_m = totals(rides)
+    seven_distance_km, seven_moving_hours, seven_elevation_m = totals(recent_rides)
+
+    indoor_count = sum(1 for a in recent_rides if a.get("type") == "VirtualRide" or a.get("trainer") is True)
+    outdoor_count = max(len(recent_rides) - indoor_count, 0)
+
+    avg_speed_kph = None
+    if seven_moving_hours > 0:
+        avg_speed_kph = round(seven_distance_km / seven_moving_hours, 1)
+
+    power_values: list[tuple[float, float]] = []
+    cadence_values: list[tuple[float, float]] = []
+    for a in recent_rides:
+        moving_time = float(a.get("moving_time") or 0)
+        power = a.get("weighted_average_watts") or a.get("average_watts")
+        cadence = a.get("average_cadence")
+        if power is not None:
+            power_values.append((float(power), moving_time))
+        if cadence is not None:
+            cadence_values.append((float(cadence), moving_time))
+
+    power_mean = weighted_mean(power_values)
+    cadence_mean = weighted_mean(cadence_values)
+
+    climbing_m_per_km = None
+    if seven_distance_km > 0:
+        climbing_m_per_km = round(seven_elevation_m / seven_distance_km, 1)
 
     latest = rides[0] if rides else None
     latest_date = None
@@ -108,37 +178,99 @@ def summarize_rides(activities: list[dict[str, Any]]) -> RideSummary:
 
     return RideSummary(
         count=len(rides),
-        distance_km=round(distance_km, 1),
-        moving_hours=round(moving_hours, 1),
-        elevation_m=round(elevation_m, 0),
+        seven_day_count=len(recent_rides),
+        seven_day_distance_km=seven_distance_km,
+        seven_day_moving_hours=seven_moving_hours,
+        seven_day_elevation_m=seven_elevation_m,
+        total_distance_km=total_distance_km,
+        total_moving_hours=total_moving_hours,
+        total_elevation_m=total_elevation_m,
+        indoor_count=indoor_count,
+        outdoor_count=outdoor_count,
+        avg_speed_kph=avg_speed_kph,
+        avg_power_w=round(power_mean) if power_mean is not None else None,
+        avg_cadence_rpm=round(cadence_mean) if cadence_mean is not None else None,
+        climbing_m_per_km=climbing_m_per_km,
         latest_name=str(latest.get("name")) if latest else None,
         latest_date=latest_date,
+        latest_type=str(latest.get("type")) if latest else None,
     )
+
+
+def classify_load(hours: float) -> str:
+    if hours >= 8:
+        return "High load"
+    if hours >= 4:
+        return "Moderate load"
+    if hours > 0:
+        return "Light load"
+    return "No recent load"
+
+
+def classify_context(indoor_count: int, outdoor_count: int) -> str:
+    if indoor_count and outdoor_count:
+        return "Mixed indoor/outdoor"
+    if indoor_count:
+        return "Indoor-controlled"
+    if outdoor_count:
+        return "Outdoor-field"
+    return "No recent rides"
 
 
 def build_footer_payload(summary: RideSummary) -> dict[str, Any]:
     updated = datetime.now(timezone.utc).replace(microsecond=0).isoformat().replace("+00:00", "Z")
 
-    if summary.count == 0:
-        line = "Recent cycling data unavailable"
+    if summary.seven_day_count == 0:
+        headline = "No rides in the last 7 days"
     else:
-        line = (
-            f"Recent riding: {summary.distance_km:.1f} km · "
-            f"{summary.moving_hours:.1f} h · {int(summary.elevation_m):,} m ascent"
+        headline = (
+            f"7-day riding state: {summary.seven_day_distance_km:.1f} km · "
+            f"{summary.seven_day_moving_hours:.1f} h · {int(summary.seven_day_elevation_m):,} m+"
         )
+
+    metrics = [
+        {"label": "Distance", "value": f"{summary.seven_day_distance_km:.1f} km"},
+        {"label": "Time", "value": f"{summary.seven_day_moving_hours:.1f} h"},
+        {"label": "Ascent", "value": f"{int(summary.seven_day_elevation_m):,} m"},
+        {"label": "Speed", "value": f"{summary.avg_speed_kph:.1f} kph" if summary.avg_speed_kph is not None else "—"},
+        {"label": "Power", "value": f"{summary.avg_power_w} W" if summary.avg_power_w is not None else "—"},
+        {"label": "Cadence", "value": f"{summary.avg_cadence_rpm} rpm" if summary.avg_cadence_rpm is not None else "—"},
+    ]
 
     return {
         "updated_utc": updated,
         "source": "Strava",
-        "scope": "latest 30 activities",
-        "message": line,
-        "ride_count": summary.count,
-        "distance_km": summary.distance_km,
-        "moving_hours": summary.moving_hours,
-        "elevation_m": summary.elevation_m,
+        "athlete_id": 3714458,
+        "scope": "latest 60 activities; 7-day research window",
+        "headline": headline,
+        "state": {
+            "load": classify_load(summary.seven_day_moving_hours),
+            "context": classify_context(summary.indoor_count, summary.outdoor_count),
+            "climbing_density": f"{summary.climbing_m_per_km:.1f} m/km" if summary.climbing_m_per_km is not None else "—",
+        },
+        "metrics": metrics,
+        "seven_day": {
+            "ride_count": summary.seven_day_count,
+            "distance_km": summary.seven_day_distance_km,
+            "moving_hours": summary.seven_day_moving_hours,
+            "elevation_m": summary.seven_day_elevation_m,
+            "indoor_count": summary.indoor_count,
+            "outdoor_count": summary.outdoor_count,
+            "avg_speed_kph": summary.avg_speed_kph,
+            "avg_power_w": summary.avg_power_w,
+            "avg_cadence_rpm": summary.avg_cadence_rpm,
+            "climbing_m_per_km": summary.climbing_m_per_km,
+        },
+        "latest_60": {
+            "ride_count": summary.count,
+            "distance_km": summary.total_distance_km,
+            "moving_hours": summary.total_moving_hours,
+            "elevation_m": summary.total_elevation_m,
+        },
         "latest_ride": {
             "name": summary.latest_name,
             "date": summary.latest_date,
+            "type": summary.latest_type,
         },
     }
 
@@ -153,7 +285,7 @@ def main() -> int:
     OUTPUT_PATH.write_text(json.dumps(payload, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
 
     print(f"Wrote {OUTPUT_PATH}")
-    print(payload["message"])
+    print(payload["headline"])
     return 0
 
 
