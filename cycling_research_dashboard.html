@@ -1,39 +1,266 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<meta charset="UTF-8">
-<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Cycling Research Dashboard</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<script src="https://cdn.plot.ly/plotly-2.35.2.min.js"></script>
 <style>
-body{margin:0;background:#ffffff;font-family:DM Sans, sans-serif;color:#6e6c66}
-#container{max-width:1000px;margin:0 auto}
+  :root {
+    --purple: #520671;
+    --text: #6e6c66;
+    --muted: #9a9890;
+    --line: #e9e5ec;
+    --bg: #ffffff;
+  }
+
+  html, body {
+    margin: 0;
+    padding: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'DM Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  }
+
+  .wrap {
+    box-sizing: border-box;
+    width: 100%;
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 0 0 8px 0;
+  }
+
+  .eyebrow {
+    font-family: 'DM Mono', monospace;
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--purple);
+    margin: 0 0 2px 0;
+  }
+
+  .subtitle {
+    font-size: 14px;
+    line-height: 1.35;
+    color: var(--text);
+    margin: 0 0 10px 0;
+  }
+
+  .cards {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 8px;
+    margin: 0 0 12px 0;
+  }
+
+  .card {
+    border-top: 1px solid var(--line);
+    padding: 8px 0 4px 0;
+    min-height: 46px;
+  }
+
+  .card-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+    margin-bottom: 2px;
+  }
+
+  .card-value {
+    font-size: 20px;
+    font-weight: 500;
+    color: var(--purple);
+    line-height: 1.1;
+  }
+
+  .card-note {
+    font-size: 11px;
+    color: var(--muted);
+    margin-top: 2px;
+  }
+
+  .grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+
+  .panel {
+    border-top: 1px solid var(--line);
+    padding-top: 8px;
+  }
+
+  .panel-title {
+    font-family: 'DM Mono', monospace;
+    color: var(--purple);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    font-size: 12px;
+    margin-bottom: 4px;
+  }
+
+  .plot {
+    width: 100%;
+    height: 260px;
+  }
+
+  .footer-note {
+    margin-top: 8px;
+    font-size: 11px;
+    color: var(--muted);
+    text-align: right;
+  }
+
+  a, a:visited {
+    color: var(--purple);
+    text-decoration: none;
+  }
+
+  a:hover {
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+
+  @media (max-width: 760px) {
+    .cards { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .grid { grid-template-columns: 1fr; }
+    .plot { height: 240px; }
+    .card-value { font-size: 18px; }
+  }
 </style>
 </head>
 <body>
-<div id="container">
-<div id="load"></div>
-<div id="scatter"></div>
-</div>
+  <main class="wrap">
+    <div class="eyebrow">Cycling Behavioural Regulation Dashboard</div>
+    <p class="subtitle">Live Strava-derived summary of training load, context, and power–cadence regulation. Rolling windows are used as lightweight behavioural state indicators.</p>
+
+    <section class="cards" aria-label="Cycling state summary">
+      <div class="card"><div class="card-label">7-day load</div><div id="sevenLoad" class="card-value">—</div><div id="sevenRides" class="card-note">—</div></div>
+      <div class="card"><div class="card-label">30-day volume</div><div id="thirtyVolume" class="card-value">—</div><div id="thirtyRides" class="card-note">—</div></div>
+      <div class="card"><div class="card-label">Mean power</div><div id="meanPower" class="card-value">—</div><div class="card-note">30-day ride mean</div></div>
+      <div class="card"><div class="card-label">Mean cadence</div><div id="meanCadence" class="card-value">—</div><div class="card-note">30-day ride mean</div></div>
+    </section>
+
+    <section class="grid">
+      <div class="panel">
+        <div class="panel-title">A. Weekly load timeline</div>
+        <div id="load" class="plot"></div>
+      </div>
+      <div class="panel">
+        <div class="panel-title">B. Power–cadence regulation space</div>
+        <div id="scatter" class="plot"></div>
+      </div>
+    </section>
+
+    <div id="footerNote" class="footer-note">Loading data…</div>
+  </main>
+
 <script>
-fetch('https://djrivers-fun.github.io/cycling/data/cycling_research_summary.json?v='+Date.now())
-.then(r=>r.json())
-.then(d=>{
+(function () {
+  const DATA_URL = 'https://djrivers-fun.github.io/cycling/data/cycling_research_summary.json?v=' + Date.now();
+  const purple = '#520671';
+  const text = '#6e6c66';
+  const muted = '#9a9890';
+  const line = '#e9e5ec';
 
-// Load timeline
-Plotly.newPlot('load', [{
-  x:d.weekly_series.map(w=>w.week_start),
-  y:d.weekly_series.map(w=>w.moving_h),
-  type:'bar'
-}], {title:'Weekly Training Load (hours)'});
+  const baseLayout = {
+    paper_bgcolor: '#ffffff',
+    plot_bgcolor: '#ffffff',
+    margin: { l: 42, r: 12, t: 8, b: 42 },
+    font: { family: 'DM Sans, Arial, sans-serif', size: 11, color: text },
+    xaxis: {
+      showgrid: false,
+      zeroline: false,
+      linecolor: line,
+      tickfont: { color: muted, size: 10 }
+    },
+    yaxis: {
+      gridcolor: line,
+      zeroline: false,
+      linecolor: line,
+      tickfont: { color: muted, size: 10 }
+    },
+    showlegend: false
+  };
 
-// Power-Cadence
-Plotly.newPlot('scatter', [{
-  x:d.power_cadence.map(p=>p.cadence_rpm),
-  y:d.power_cadence.map(p=>p.power_w),
-  mode:'markers',
-  type:'scatter'
-}], {title:'Power vs Cadence'});
+  function fmt(value, suffix) {
+    if (value === null || value === undefined || Number.isNaN(value)) return '—';
+    return value + suffix;
+  }
 
-});
+  fetch(DATA_URL, { cache: 'no-store' })
+    .then(function (r) {
+      if (!r.ok) throw new Error('Data unavailable');
+      return r.json();
+    })
+    .then(function (d) {
+      const s7 = d.state.seven_day;
+      const s30 = d.state.thirty_day;
+
+      document.getElementById('sevenLoad').textContent = fmt(s7.moving_h, ' h');
+      document.getElementById('sevenRides').textContent = `${s7.distance_km} km · ${s7.ride_count} rides`;
+      document.getElementById('thirtyVolume').textContent = fmt(s30.moving_h, ' h');
+      document.getElementById('thirtyRides').textContent = `${s30.distance_km} km · ${s30.ride_count} rides`;
+      document.getElementById('meanPower').textContent = s30.mean_power_w ? `${s30.mean_power_w} W` : '—';
+      document.getElementById('meanCadence').textContent = s30.mean_cadence_rpm ? `${s30.mean_cadence_rpm} rpm` : '—';
+
+      Plotly.newPlot('load', [{
+        x: d.weekly_series.map(function (w) { return w.week_start; }),
+        y: d.weekly_series.map(function (w) { return w.moving_h; }),
+        type: 'bar',
+        marker: { color: purple, opacity: 0.82 },
+        hovertemplate: 'Week: %{x}<br>Hours: %{y}<extra></extra>'
+      }], {
+        ...baseLayout,
+        yaxis: { ...baseLayout.yaxis, title: { text: 'hours', font: { size: 11, color: muted } } }
+      }, { displayModeBar: false, responsive: true });
+
+      const indoor = d.power_cadence.filter(function (p) { return p.context === 'Indoor'; });
+      const outdoor = d.power_cadence.filter(function (p) { return p.context === 'Outdoor'; });
+
+      Plotly.newPlot('scatter', [
+        {
+          x: outdoor.map(function (p) { return p.cadence_rpm; }),
+          y: outdoor.map(function (p) { return p.power_w; }),
+          text: outdoor.map(function (p) { return p.name; }),
+          mode: 'markers',
+          type: 'scatter',
+          name: 'Outdoor',
+          marker: { size: 8, color: text, opacity: 0.65 },
+          hovertemplate: '%{text}<br>Cadence: %{x} rpm<br>Power: %{y} W<extra></extra>'
+        },
+        {
+          x: indoor.map(function (p) { return p.cadence_rpm; }),
+          y: indoor.map(function (p) { return p.power_w; }),
+          text: indoor.map(function (p) { return p.name; }),
+          mode: 'markers',
+          type: 'scatter',
+          name: 'Indoor',
+          marker: { size: 8, color: purple, opacity: 0.78 },
+          hovertemplate: '%{text}<br>Cadence: %{x} rpm<br>Power: %{y} W<extra></extra>'
+        }
+      ], {
+        ...baseLayout,
+        showlegend: true,
+        legend: { orientation: 'h', x: 0, y: 1.12, font: { size: 10, color: muted } },
+        xaxis: { ...baseLayout.xaxis, title: { text: 'cadence (rpm)', font: { size: 11, color: muted } } },
+        yaxis: { ...baseLayout.yaxis, title: { text: 'power (W)', font: { size: 11, color: muted } } }
+      }, { displayModeBar: false, responsive: true });
+
+      const latest = d.latest_ride || {};
+      document.getElementById('footerNote').innerHTML = `Generated ${d.generated_utc} · Latest: ${latest.name || '—'} · <a href="https://www.strava.com/athletes/3714458" target="_blank" rel="noopener noreferrer">View Strava</a>`;
+    })
+    .catch(function (err) {
+      document.getElementById('footerNote').textContent = 'Dashboard data unavailable. Run the GitHub Actions workflow to generate the research summary JSON.';
+      console.error(err);
+    });
+})();
 </script>
 </body>
 </html>
