@@ -15,29 +15,40 @@
     padding: 0;
   }
 
+  :root {
+    --accent: #520671;
+    --accent-soft: #f6f0f8;
+    --text: #161616;
+    --muted: #6e6c66;
+    --light: #9a9890;
+    --rule: #ece9e3;
+    --rule-soft: #f1eee8;
+    --white: #ffffff;
+  }
+
   html,
   body {
     width: 100%;
     min-height: 100%;
-    background: #ffffff;
-    color: #161616;
+    background: var(--white);
+    color: var(--text);
     font-family: 'DM Sans', sans-serif;
   }
 
   body {
-    padding: 0 14px 14px;
+    padding: 0 10px 10px;
   }
 
   .workflow {
     width: 100%;
     max-width: 1060px;
     margin: 0 auto;
-    padding-top: 2px;
+    padding-top: 0;
   }
 
   .header {
     text-align: center;
-    margin-bottom: 24px;
+    margin-bottom: 18px;
   }
 
   .eyebrow,
@@ -49,25 +60,25 @@
   }
 
   .eyebrow {
-    color: #e05c2a;
+    color: var(--accent);
     font-size: 12px;
     font-weight: 500;
     letter-spacing: .16em;
     line-height: 1.2;
     text-transform: uppercase;
-    margin-bottom: 8px;
+    margin-bottom: 7px;
   }
 
   h1 {
     color: #111111;
-    font-size: 31px;
-    font-weight: 500;
-    letter-spacing: -0.02em;
-    line-height: 1.15;
+    font-size: 30px;
+    font-weight: 600;
+    letter-spacing: -0.025em;
+    line-height: 1.12;
   }
 
   .subtitle {
-    color: #9a9890;
+    color: var(--light);
     font-size: 13px;
     letter-spacing: .04em;
     line-height: 1.45;
@@ -79,20 +90,22 @@
     grid-template-columns: repeat(7, minmax(0, 1fr));
     gap: 0;
     align-items: stretch;
-    border: 1px solid #ece9e3;
-    background: #ffffff;
+    background: var(--white);
+    border-top: 1px solid var(--rule);
+    border-bottom: 1px solid var(--rule);
   }
 
   .step {
     position: relative;
-    min-height: 300px;
-    padding: 20px 14px 22px;
-    border-right: 1px solid #ece9e3;
+    min-height: 286px;
+    padding: 19px 13px 20px;
+    border-right: 1px solid var(--rule);
     display: grid;
     grid-template-rows: 38px 26px 72px 1fr;
     justify-items: center;
     align-items: start;
     text-align: center;
+    background: var(--white);
   }
 
   .step:last-child {
@@ -102,14 +115,14 @@
   .step:not(:last-child)::after {
     content: '→';
     position: absolute;
-    top: 22px;
+    top: 21px;
     right: -10px;
     width: 20px;
     height: 20px;
     display: grid;
     place-items: center;
-    background: #ffffff;
-    color: #d2cec6;
+    background: var(--white);
+    color: #cfc8d4;
     font-family: 'DM Mono', monospace;
     font-size: 13px;
     z-index: 3;
@@ -120,16 +133,17 @@
     height: 32px;
     display: grid;
     place-items: center;
-    border: 1.5px solid #d8d6d0;
+    border: 1.5px solid #d9cfe0;
     border-radius: 50%;
-    background: #f4f2ed;
-    color: #aaa69e;
+    background: var(--accent-soft);
+    color: var(--accent);
     font-size: 11px;
+    font-weight: 500;
     line-height: 1;
   }
 
   .step-label {
-    color: #c4541e;
+    color: var(--accent);
     font-size: 10px;
     font-weight: 500;
     letter-spacing: .13em;
@@ -143,26 +157,26 @@
     place-items: center;
     color: #1a1a1a;
     font-size: 17px;
-    font-weight: 500;
+    font-weight: 600;
     letter-spacing: -0.01em;
     line-height: 1.24;
     text-align: center;
   }
 
   .step-detail {
-    max-width: 140px;
+    max-width: 142px;
     margin: 0 auto;
-    color: #6e6c66;
+    color: var(--muted);
     font-size: 13px;
     line-height: 1.45;
     text-align: center;
   }
 
   .footer {
-    margin-top: 18px;
-    padding-top: 14px;
-    border-top: 1px solid #ece9e3;
-    color: #b8b3aa;
+    margin-top: 14px;
+    padding-top: 12px;
+    border-top: 1px solid var(--rule-soft);
+    color: var(--light);
     font-size: 11px;
     letter-spacing: .06em;
     line-height: 1.45;
@@ -184,12 +198,12 @@
       justify-items: start;
       padding: 12px 14px;
       border-right: none;
-      border-bottom: 1px solid #ece9e3;
+      border-bottom: 1px solid var(--rule);
       text-align: left;
     }
 
     .step:last-child {
-      border-bottom: 1px solid #ece9e3;
+      border-bottom: 1px solid var(--rule);
     }
 
     .step:not(:last-child)::after {
@@ -198,7 +212,7 @@
       right: auto;
       left: 21px;
       bottom: -11px;
-      background: #ffffff;
+      background: var(--white);
     }
 
     .step-title {
@@ -217,11 +231,11 @@
 
   @media (max-width: 560px) {
     body {
-      padding: 0 6px 8px;
+      padding: 0 4px 8px;
     }
 
     .header {
-      margin-bottom: 16px;
+      margin-bottom: 14px;
     }
 
     .eyebrow {
