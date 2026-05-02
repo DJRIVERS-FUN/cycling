@@ -1,0 +1,14 @@
+{
+  "updated_utc": "2026-05-02T23:20:57Z",
+  "source": "Strava",
+  "scope": "latest 30 activities",
+  "message": "Recent riding: 790.9 km · 33.0 h · 7,942 m ascent",
+  "ride_count": 30,
+  "distance_km": 790.9,
+  "moving_hours": 33.0,
+  "elevation_m": 7942.0,
+  "latest_ride": {
+    "name": "04/26/2026 Shirotai",
+    "date": "2026-04-26"
+  }
+}
