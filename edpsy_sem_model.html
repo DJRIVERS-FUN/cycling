@@ -26,60 +26,32 @@ svg{
   width:100%;
   height:auto;
 }
-.latent{
-  fill:var(--accent-soft);
-  stroke:var(--accent);
-  stroke-width:2.6;
-}
-.latent-muted{
-  fill:#fff;
-  stroke:#b8b3aa;
-  stroke-width:2.2;
-}
-.outcome{
-  fill:#fff;
-  stroke:var(--accent);
-  stroke-width:2.8;
-}
-.label{
-  font-size:20px;
-  font-weight:600;
-  fill:var(--text);
-}
-.sub{
-  font-size:13px;
-  fill:var(--muted);
-}
-.type{
-  font-family:'DM Mono',monospace;
-  font-size:10px;
-  fill:#9a9890;
-  letter-spacing:.08em;
-}
-.path-main{
-  stroke:var(--accent);
-  stroke-width:3;
-  fill:none;
-  marker-end:url(#arrow-accent);
-}
-.path-neutral{
-  stroke:#1a1a1a;
-  stroke-width:2.4;
-  fill:none;
-  marker-end:url(#arrow-dark);
-}
-.path-neg{
-  stroke:#9a9890;
-  stroke-width:2;
-  stroke-dasharray:6 6;
-  fill:none;
-  marker-end:url(#arrow-muted);
-}
+
+.latent{ fill:var(--accent-soft); stroke:var(--accent); stroke-width:2.6; }
+.latent-muted{ fill:#fff; stroke:#b8b3aa; stroke-width:2.2; }
+.outcome{ fill:#fff; stroke:var(--accent); stroke-width:2.8; }
+
+.label{ font-size:20px; font-weight:600; fill:var(--text); }
+.sub{ font-size:13px; fill:var(--muted); }
+.type{ font-family:'DM Mono',monospace; font-size:10px; fill:#9a9890; letter-spacing:.08em; }
+
+.path-main{ stroke:var(--accent); stroke-width:3; fill:none; marker-end:url(#arrow-accent); }
+.path-neutral{ stroke:#1a1a1a; stroke-width:2.4; fill:none; marker-end:url(#arrow-dark); }
+.path-neg{ stroke:#9a9890; stroke-width:2; stroke-dasharray:6 6; fill:none; marker-end:url(#arrow-muted); }
+
+/* CLEAN ANIMATION */
+.path-flow{ stroke-dasharray:6 6; animation:flow 5s linear infinite; }
+@keyframes flow{ from{stroke-dashoffset:0;} to{stroke-dashoffset:-30;} }
+
+.pulse{ animation:pulse 4s ease-in-out infinite; }
+@keyframes pulse{ 0%,100%{opacity:1;} 50%{opacity:0.9;} }
+
 </style>
 </head>
 <body>
 <div class="wrap">
 <svg viewBox="0 0 1100 520">
+
 <defs>
 <marker id="arrow-accent" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto">
   <path d="M 0 0 L 10 5 L 0 10 z" fill="#520671"/>
@@ -107,7 +79,7 @@ svg{
 <text class="label" x="180" y="365" text-anchor="middle">Psychological Distress</text>
 <text class="sub" x="180" y="390" text-anchor="middle">depression • anxiety • stress</text>
 
-<ellipse class="latent" cx="560" cy="260" rx="170" ry="78"/>
+<ellipse class="latent pulse" cx="560" cy="260" rx="170" ry="78"/>
 <text class="label" x="560" y="252" text-anchor="middle">Executive Functioning</text>
 <text class="sub" x="560" y="280" text-anchor="middle">monitoring • verification • control</text>
 
@@ -115,10 +87,12 @@ svg{
 <text class="label" x="960" y="252" text-anchor="middle">Academic</text>
 <text class="label" x="960" y="278" text-anchor="middle">Achievement</text>
 
-<!-- arrows -->
-<line class="path-neutral" x1="330" y1="150" x2="390" y2="210" />
+<!-- animated causal paths -->
+<line class="path-neutral path-flow" x1="330" y1="150" x2="390" y2="210" />
+<line class="path-main path-flow" x1="730" y1="260" x2="850" y2="260" />
+
+<!-- static constraint -->
 <line class="path-neg" x1="330" y1="370" x2="390" y2="310" />
-<line class="path-main" x1="730" y1="260" x2="850" y2="260" />
 
 </svg>
 </div>
