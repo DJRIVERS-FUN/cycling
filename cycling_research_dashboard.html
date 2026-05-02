@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+<style>
+body{margin:0;background:#ffffff;font-family:DM Sans, sans-serif;color:#6e6c66}
+#container{max-width:1000px;margin:0 auto}
+</style>
+</head>
+<body>
+<div id="container">
+<div id="load"></div>
+<div id="scatter"></div>
+</div>
+<script>
+fetch('https://djrivers-fun.github.io/cycling/data/cycling_research_summary.json?v='+Date.now())
+.then(r=>r.json())
+.then(d=>{
+
+// Load timeline
+Plotly.newPlot('load', [{
+  x:d.weekly_series.map(w=>w.week_start),
+  y:d.weekly_series.map(w=>w.moving_h),
+  type:'bar'
+}], {title:'Weekly Training Load (hours)'});
+
+// Power-Cadence
+Plotly.newPlot('scatter', [{
+  x:d.power_cadence.map(p=>p.cadence_rpm),
+  y:d.power_cadence.map(p=>p.power_w),
+  mode:'markers',
+  type:'scatter'
+}], {title:'Power vs Cadence'});
+
+});
+</script>
+</body>
+</html>
