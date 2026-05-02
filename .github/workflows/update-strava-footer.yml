@@ -1,4 +1,4 @@
-name: Update Strava Footer
+name: Update Strava Research Outputs
 
 on:
   schedule:
@@ -12,7 +12,7 @@ env:
   FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
 
 jobs:
-  update-strava-footer:
+  update-strava-research-outputs:
     runs-on: ubuntu-latest
 
     steps:
@@ -51,8 +51,15 @@ jobs:
           STRAVA_REFRESH_TOKEN: ${{ secrets.STRAVA_REFRESH_TOKEN }}
         run: python scripts/update_strava_footer.py
 
-      - name: Commit updated footer data
+      - name: Generate cycling research dashboard data and methods figure
+        env:
+          STRAVA_CLIENT_ID: ${{ secrets.STRAVA_CLIENT_ID }}
+          STRAVA_CLIENT_SECRET: ${{ secrets.STRAVA_CLIENT_SECRET }}
+          STRAVA_REFRESH_TOKEN: ${{ secrets.STRAVA_REFRESH_TOKEN }}
+        run: python scripts/generate_cycling_research_outputs.py
+
+      - name: Commit updated Strava research outputs
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
-          commit_message: "Update Strava footer data"
-          file_pattern: data/strava_footer.json
+          commit_message: "Update Strava research outputs"
+          file_pattern: data/strava_footer.json data/cycling_research_summary.json figures/cycling_methods_panel.svg
