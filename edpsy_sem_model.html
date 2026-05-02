@@ -7,41 +7,101 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
-*{box-sizing:border-box;margin:0;padding:0}
-:root{--accent:#520671;--accent-soft:#f6f0f8;--text:#161616;--muted:#6e6c66}
-body{background:#fff;font-family:'DM Sans',sans-serif}
-.wrap{max-width:1180px;margin:0 auto}
-svg{width:100%;height:auto}
-
-.latent{fill:var(--accent-soft);stroke:var(--accent);stroke-width:2.6}
-.latent-muted{fill:#fff;stroke:#b8b3aa;stroke-width:2.2}
-.outcome{fill:#fff;stroke:var(--accent);stroke-width:2.8}
-.label{font-size:20px;font-weight:600;fill:var(--text)}
-.sub{font-size:13px;fill:var(--muted)}
-
-.path-main{fill:none;stroke:var(--accent);stroke-width:3;marker-end:url(#arrow-accent)}
-.path-neutral{fill:none;stroke:#1a1a1a;stroke-width:2.6;marker-end:url(#arrow-dark)}
-.path-neg{fill:none;stroke:#9a9890;stroke-width:2.2;stroke-dasharray:7 8;marker-end:url(#arrow-muted)}
-
+* { box-sizing:border-box; margin:0; padding:0; }
+:root{
+  --accent:#520671;
+  --accent-soft:#f6f0f8;
+  --text:#161616;
+  --muted:#6e6c66;
+}
+body{
+  background:#fff;
+  font-family:'DM Sans',sans-serif;
+}
+.wrap{
+  max-width:1180px;
+  margin:0 auto;
+}
+svg{
+  width:100%;
+  height:auto;
+}
+.latent{
+  fill:var(--accent-soft);
+  stroke:var(--accent);
+  stroke-width:2.6;
+}
+.latent-muted{
+  fill:#fff;
+  stroke:#b8b3aa;
+  stroke-width:2.2;
+}
+.outcome{
+  fill:#fff;
+  stroke:var(--accent);
+  stroke-width:2.8;
+}
+.label{
+  font-size:20px;
+  font-weight:600;
+  fill:var(--text);
+}
+.sub{
+  font-size:13px;
+  fill:var(--muted);
+}
+.beta{
+  font-family:'DM Mono',monospace;
+  font-size:11px;
+  fill:#6e6c66;
+}
+.type{
+  font-family:'DM Mono',monospace;
+  font-size:10px;
+  fill:#9a9890;
+  letter-spacing:.08em;
+}
+.path-main{
+  stroke:var(--accent);
+  stroke-width:3;
+  fill:none;
+  marker-end:url(#arrow-accent);
+}
+.path-neutral{
+  stroke:#1a1a1a;
+  stroke-width:2.4;
+  fill:none;
+  marker-end:url(#arrow-dark);
+}
+.path-neg{
+  stroke:#9a9890;
+  stroke-width:2;
+  stroke-dasharray:6 6;
+  fill:none;
+  marker-end:url(#arrow-muted);
+}
 </style>
 </head>
 <body>
 <div class="wrap">
 <svg viewBox="0 0 1180 520">
-
 <defs>
 <marker id="arrow-accent" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto">
-<path d="M 0 0 L 10 5 L 0 10 z" fill="#520671"/>
+  <path d="M 0 0 L 10 5 L 0 10 z" fill="#520671"/>
 </marker>
-
 <marker id="arrow-dark" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto">
-<path d="M 0 0 L 10 5 L 0 10 z" fill="#1a1a1a"/>
+  <path d="M 0 0 L 10 5 L 0 10 z" fill="#1a1a1a"/>
 </marker>
-
 <marker id="arrow-muted" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto">
-<path d="M 0 0 L 10 5 L 0 10 z" fill="#9a9890"/>
+  <path d="M 0 0 L 10 5 L 0 10 z" fill="#9a9890"/>
 </marker>
 </defs>
+
+<!-- type labels -->
+<text class="type" x="220" y="70" text-anchor="middle">COGNITIVE</text>
+<text class="type" x="220" y="295" text-anchor="middle">AFFECTIVE</text>
+<text class="type" x="620" y="120" text-anchor="middle">BEHAVIOURAL</text>
+<text class="type" x="1040" y="120" text-anchor="middle">OUTCOME</text>
 
 <!-- nodes -->
 <ellipse class="latent" cx="220" cy="150" rx="150" ry="68"/>
@@ -60,12 +120,15 @@ svg{width:100%;height:auto}
 <text class="label" x="1040" y="252" text-anchor="middle">Academic</text>
 <text class="label" x="1040" y="278" text-anchor="middle">Achievement</text>
 
-<!-- STRAIGHT arrows stopping at EF boundary -->
+<!-- arrows -->
 <line class="path-neutral" x1="370" y1="150" x2="450" y2="210" />
-<line class="path-neg" x1="370" y1="370" x2="450" y2="310" />
+<text class="beta" x="410" y="170">β = .18</text>
 
-<!-- EF to outcome -->
+<line class="path-neg" x1="370" y1="370" x2="450" y2="310" />
+<text class="beta" x="410" y="330">β = −.22</text>
+
 <line class="path-main" x1="790" y1="260" x2="930" y2="260" />
+<text class="beta" x="850" y="240">β = .31</text>
 
 </svg>
 </div>
