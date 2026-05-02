@@ -50,11 +50,6 @@ svg{
   font-size:13px;
   fill:var(--muted);
 }
-.beta{
-  font-family:'DM Mono',monospace;
-  font-size:11px;
-  fill:#6e6c66;
-}
 .type{
   font-family:'DM Mono',monospace;
   font-size:10px;
@@ -84,7 +79,7 @@ svg{
 </head>
 <body>
 <div class="wrap">
-<svg viewBox="0 0 1180 520">
+<svg viewBox="0 0 1100 520">
 <defs>
 <marker id="arrow-accent" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto">
   <path d="M 0 0 L 10 5 L 0 10 z" fill="#520671"/>
@@ -98,37 +93,32 @@ svg{
 </defs>
 
 <!-- type labels -->
-<text class="type" x="220" y="70" text-anchor="middle">COGNITIVE</text>
-<text class="type" x="220" y="295" text-anchor="middle">AFFECTIVE</text>
-<text class="type" x="620" y="120" text-anchor="middle">BEHAVIOURAL</text>
-<text class="type" x="1040" y="120" text-anchor="middle">OUTCOME</text>
+<text class="type" x="180" y="70" text-anchor="middle">COGNITIVE</text>
+<text class="type" x="180" y="295" text-anchor="middle">AFFECTIVE</text>
+<text class="type" x="560" y="120" text-anchor="middle">BEHAVIOURAL</text>
+<text class="type" x="960" y="120" text-anchor="middle">OUTCOME</text>
 
 <!-- nodes -->
-<ellipse class="latent" cx="220" cy="150" rx="150" ry="68"/>
-<text class="label" x="220" y="145" text-anchor="middle">Metacognition</text>
-<text class="sub" x="220" y="170" text-anchor="middle">knowledge + regulation</text>
+<ellipse class="latent" cx="180" cy="150" rx="150" ry="68"/>
+<text class="label" x="180" y="145" text-anchor="middle">Metacognition</text>
+<text class="sub" x="180" y="170" text-anchor="middle">knowledge + regulation</text>
 
-<ellipse class="latent-muted" cx="220" cy="370" rx="150" ry="62"/>
-<text class="label" x="220" y="365" text-anchor="middle">Psychological Distress</text>
-<text class="sub" x="220" y="390" text-anchor="middle">depression • anxiety • stress</text>
+<ellipse class="latent-muted" cx="180" cy="370" rx="150" ry="62"/>
+<text class="label" x="180" y="365" text-anchor="middle">Psychological Distress</text>
+<text class="sub" x="180" y="390" text-anchor="middle">depression • anxiety • stress</text>
 
-<ellipse class="latent" cx="620" cy="260" rx="170" ry="78"/>
-<text class="label" x="620" y="252" text-anchor="middle">Executive Functioning</text>
-<text class="sub" x="620" y="280" text-anchor="middle">monitoring • verification • control</text>
+<ellipse class="latent" cx="560" cy="260" rx="170" ry="78"/>
+<text class="label" x="560" y="252" text-anchor="middle">Executive Functioning</text>
+<text class="sub" x="560" y="280" text-anchor="middle">monitoring • verification • control</text>
 
-<rect class="outcome" x="930" y="188" width="220" height="144" rx="8"/>
-<text class="label" x="1040" y="252" text-anchor="middle">Academic</text>
-<text class="label" x="1040" y="278" text-anchor="middle">Achievement</text>
+<rect class="outcome" x="850" y="188" width="220" height="144" rx="8"/>
+<text class="label" x="960" y="252" text-anchor="middle">Academic</text>
+<text class="label" x="960" y="278" text-anchor="middle">Achievement</text>
 
 <!-- arrows -->
-<line class="path-neutral" x1="370" y1="150" x2="450" y2="210" />
-<text class="beta" x="410" y="170">β = .18</text>
-
-<line class="path-neg" x1="370" y1="370" x2="450" y2="310" />
-<text class="beta" x="410" y="330">β = −.22</text>
-
-<line class="path-main" x1="790" y1="260" x2="930" y2="260" />
-<text class="beta" x="850" y="240">β = .31</text>
+<line class="path-neutral" x1="330" y1="150" x2="390" y2="210" />
+<line class="path-neg" x1="330" y1="370" x2="390" y2="310" />
+<line class="path-main" x1="730" y1="260" x2="850" y2="260" />
 
 </svg>
 </div>
