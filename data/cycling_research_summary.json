@@ -1,0 +1,389 @@
+{
+  "generated_utc": "2026-05-02T23:37:56Z",
+  "model": "Cycling behavioural regulation micro-dashboard",
+  "window_days": {
+    "short": 7,
+    "analysis": 30,
+    "trend_weeks": 12
+  },
+  "state": {
+    "load_state": "moderate",
+    "context_balance": {
+      "indoor": 0,
+      "outdoor": 11
+    },
+    "seven_day": {
+      "distance_km": 86.5,
+      "moving_h": 4.1,
+      "elevation_m": 1576.0,
+      "ride_count": 2
+    },
+    "thirty_day": {
+      "distance_km": 387.2,
+      "moving_h": 17.6,
+      "elevation_m": 5154.0,
+      "ride_count": 11,
+      "mean_power_w": 199.1,
+      "mean_cadence_rpm": 78.7,
+      "mean_speed_kph": 22.8
+    }
+  },
+  "weekly_series": [
+    {
+      "week_start": "2026-02-02",
+      "distance_km": 0,
+      "moving_h": 0,
+      "elevation_m": 0,
+      "ride_count": 0,
+      "indoor_count": 0,
+      "outdoor_count": 0
+    },
+    {
+      "week_start": "2026-02-09",
+      "distance_km": 76.6,
+      "moving_h": 2.3,
+      "elevation_m": 177.0,
+      "ride_count": 4,
+      "indoor_count": 4,
+      "outdoor_count": 0
+    },
+    {
+      "week_start": "2026-02-16",
+      "distance_km": 64.8,
+      "moving_h": 1.9,
+      "elevation_m": 190.0,
+      "ride_count": 3,
+      "indoor_count": 3,
+      "outdoor_count": 0
+    },
+    {
+      "week_start": "2026-02-23",
+      "distance_km": 26.9,
+      "moving_h": 1.0,
+      "elevation_m": 130.0,
+      "ride_count": 2,
+      "indoor_count": 1,
+      "outdoor_count": 1
+    },
+    {
+      "week_start": "2026-03-02",
+      "distance_km": 58.1,
+      "moving_h": 2.0,
+      "elevation_m": 302.0,
+      "ride_count": 3,
+      "indoor_count": 2,
+      "outdoor_count": 1
+    },
+    {
+      "week_start": "2026-03-09",
+      "distance_km": 90.4,
+      "moving_h": 3.6,
+      "elevation_m": 673.0,
+      "ride_count": 4,
+      "indoor_count": 1,
+      "outdoor_count": 3
+    },
+    {
+      "week_start": "2026-03-16",
+      "distance_km": 55.0,
+      "moving_h": 2.4,
+      "elevation_m": 585.0,
+      "ride_count": 2,
+      "indoor_count": 0,
+      "outdoor_count": 2
+    },
+    {
+      "week_start": "2026-03-23",
+      "distance_km": 108.6,
+      "moving_h": 4.4,
+      "elevation_m": 908.0,
+      "ride_count": 5,
+      "indoor_count": 0,
+      "outdoor_count": 5
+    },
+    {
+      "week_start": "2026-03-30",
+      "distance_km": 83.6,
+      "moving_h": 3.9,
+      "elevation_m": 1417.0,
+      "ride_count": 3,
+      "indoor_count": 0,
+      "outdoor_count": 3
+    },
+    {
+      "week_start": "2026-04-06",
+      "distance_km": 38.6,
+      "moving_h": 1.6,
+      "elevation_m": 359.0,
+      "ride_count": 2,
+      "indoor_count": 0,
+      "outdoor_count": 2
+    },
+    {
+      "week_start": "2026-04-13",
+      "distance_km": 125.6,
+      "moving_h": 5.9,
+      "elevation_m": 1404.0,
+      "ride_count": 3,
+      "indoor_count": 0,
+      "outdoor_count": 3
+    },
+    {
+      "week_start": "2026-04-20",
+      "distance_km": 139.3,
+      "moving_h": 6.2,
+      "elevation_m": 1974.0,
+      "ride_count": 3,
+      "indoor_count": 0,
+      "outdoor_count": 3
+    }
+  ],
+  "recent_rides": [
+    {
+      "date": "2026-04-03",
+      "datetime": "2026-04-03T14:04:36+00:00",
+      "name": "04/03/2026 Road Ride",
+      "type": "Ride",
+      "is_indoor": false,
+      "distance_km": 17.85,
+      "moving_h": 0.759,
+      "elevation_m": 215.0,
+      "avg_speed_kph": 23.5,
+      "avg_power_w": 193.0,
+      "avg_cadence_rpm": 80.4
+    },
+    {
+      "date": "2026-04-04",
+      "datetime": "2026-04-04T08:12:07+00:00",
+      "name": "04/04/2026 Shirotai",
+      "type": "Ride",
+      "is_indoor": false,
+      "distance_km": 37.35,
+      "moving_h": 1.851,
+      "elevation_m": 786.0,
+      "avg_speed_kph": 20.2,
+      "avg_power_w": 203.0,
+      "avg_cadence_rpm": 76.8
+    },
+    {
+      "date": "2026-04-05",
+      "datetime": "2026-04-05T10:13:47+00:00",
+      "name": "04/05/2026 Morning Ride",
+      "type": "Ride",
+      "is_indoor": false,
+      "distance_km": 28.4,
+      "moving_h": 1.247,
+      "elevation_m": 416.0,
+      "avg_speed_kph": 22.8,
+      "avg_power_w": 208.0,
+      "avg_cadence_rpm": 79.7
+    },
+    {
+      "date": "2026-04-08",
+      "datetime": "2026-04-08T06:43:01+00:00",
+      "name": "04/08/2026 Morning Gravel Ride",
+      "type": "Ride",
+      "is_indoor": false,
+      "distance_km": 20.91,
+      "moving_h": 0.973,
+      "elevation_m": 243.0,
+      "avg_speed_kph": 21.5,
+      "avg_power_w": 201.0,
+      "avg_cadence_rpm": 80.7
+    },
+    {
+      "date": "2026-04-09",
+      "datetime": "2026-04-09T09:57:04+00:00",
+      "name": "04/09/2026 Morning Ride",
+      "type": "Ride",
+      "is_indoor": false,
+      "distance_km": 17.69,
+      "moving_h": 0.671,
+      "elevation_m": 116.0,
+      "avg_speed_kph": 26.4,
+      "avg_power_w": 203.0,
+      "avg_cadence_rpm": 81.2
+    },
+    {
+      "date": "2026-04-15",
+      "datetime": "2026-04-15T14:59:58+00:00",
+      "name": "04/15/2026 Gravel",
+      "type": "Ride",
+      "is_indoor": false,
+      "distance_km": 19.81,
+      "moving_h": 0.757,
+      "elevation_m": 119.0,
+      "avg_speed_kph": 26.2,
+      "avg_power_w": 201.0,
+      "avg_cadence_rpm": 80.3
+    },
+    {
+      "date": "2026-04-18",
+      "datetime": "2026-04-18T10:40:15+00:00",
+      "name": "04/18/2026 Gravel Wind",
+      "type": "Ride",
+      "is_indoor": false,
+      "distance_km": 33.04,
+      "moving_h": 1.353,
+      "elevation_m": 385.0,
+      "avg_speed_kph": 24.4,
+      "avg_power_w": 209.0,
+      "avg_cadence_rpm": 80.7
+    },
+    {
+      "date": "2026-04-19",
+      "datetime": "2026-04-19T07:48:51+00:00",
+      "name": "04/19/2026 Moheji Gravel",
+      "type": "Ride",
+      "is_indoor": false,
+      "distance_km": 72.79,
+      "moving_h": 3.77,
+      "elevation_m": 900.0,
+      "avg_speed_kph": 19.3,
+      "avg_power_w": 166.0,
+      "avg_cadence_rpm": 72.1
+    },
+    {
+      "date": "2026-04-23",
+      "datetime": "2026-04-23T07:08:30+00:00",
+      "name": "04/23/2026 Gravel Ride",
+      "type": "Ride",
+      "is_indoor": false,
+      "distance_km": 52.79,
+      "moving_h": 2.135,
+      "elevation_m": 398.0,
+      "avg_speed_kph": 24.7,
+      "avg_power_w": 195.0,
+      "avg_cadence_rpm": 80.2
+    },
+    {
+      "date": "2026-04-25",
+      "datetime": "2026-04-25T07:16:56+00:00",
+      "name": "04/25/2026 Onuma",
+      "type": "Ride",
+      "is_indoor": false,
+      "distance_km": 61.96,
+      "moving_h": 2.796,
+      "elevation_m": 939.0,
+      "avg_speed_kph": 22.2,
+      "avg_power_w": 200.0,
+      "avg_cadence_rpm": 75.9
+    },
+    {
+      "date": "2026-04-26",
+      "datetime": "2026-04-26T09:15:48+00:00",
+      "name": "04/26/2026 Shirotai",
+      "type": "Ride",
+      "is_indoor": false,
+      "distance_km": 24.59,
+      "moving_h": 1.283,
+      "elevation_m": 637.0,
+      "avg_speed_kph": 19.2,
+      "avg_power_w": 211.0,
+      "avg_cadence_rpm": 78.0
+    }
+  ],
+  "power_cadence": [
+    {
+      "date": "2026-04-03",
+      "name": "04/03/2026 Road Ride",
+      "power_w": 193.0,
+      "cadence_rpm": 80.4,
+      "distance_km": 17.85,
+      "context": "Outdoor"
+    },
+    {
+      "date": "2026-04-04",
+      "name": "04/04/2026 Shirotai",
+      "power_w": 203.0,
+      "cadence_rpm": 76.8,
+      "distance_km": 37.35,
+      "context": "Outdoor"
+    },
+    {
+      "date": "2026-04-05",
+      "name": "04/05/2026 Morning Ride",
+      "power_w": 208.0,
+      "cadence_rpm": 79.7,
+      "distance_km": 28.4,
+      "context": "Outdoor"
+    },
+    {
+      "date": "2026-04-08",
+      "name": "04/08/2026 Morning Gravel Ride",
+      "power_w": 201.0,
+      "cadence_rpm": 80.7,
+      "distance_km": 20.91,
+      "context": "Outdoor"
+    },
+    {
+      "date": "2026-04-09",
+      "name": "04/09/2026 Morning Ride",
+      "power_w": 203.0,
+      "cadence_rpm": 81.2,
+      "distance_km": 17.69,
+      "context": "Outdoor"
+    },
+    {
+      "date": "2026-04-15",
+      "name": "04/15/2026 Gravel",
+      "power_w": 201.0,
+      "cadence_rpm": 80.3,
+      "distance_km": 19.81,
+      "context": "Outdoor"
+    },
+    {
+      "date": "2026-04-18",
+      "name": "04/18/2026 Gravel Wind",
+      "power_w": 209.0,
+      "cadence_rpm": 80.7,
+      "distance_km": 33.04,
+      "context": "Outdoor"
+    },
+    {
+      "date": "2026-04-19",
+      "name": "04/19/2026 Moheji Gravel",
+      "power_w": 166.0,
+      "cadence_rpm": 72.1,
+      "distance_km": 72.79,
+      "context": "Outdoor"
+    },
+    {
+      "date": "2026-04-23",
+      "name": "04/23/2026 Gravel Ride",
+      "power_w": 195.0,
+      "cadence_rpm": 80.2,
+      "distance_km": 52.79,
+      "context": "Outdoor"
+    },
+    {
+      "date": "2026-04-25",
+      "name": "04/25/2026 Onuma",
+      "power_w": 200.0,
+      "cadence_rpm": 75.9,
+      "distance_km": 61.96,
+      "context": "Outdoor"
+    },
+    {
+      "date": "2026-04-26",
+      "name": "04/26/2026 Shirotai",
+      "power_w": 211.0,
+      "cadence_rpm": 78.0,
+      "distance_km": 24.59,
+      "context": "Outdoor"
+    }
+  ],
+  "latest_ride": {
+    "date": "2026-04-26",
+    "datetime": "2026-04-26T09:15:48+00:00",
+    "name": "04/26/2026 Shirotai",
+    "type": "Ride",
+    "is_indoor": false,
+    "distance_km": 24.59,
+    "moving_h": 1.283,
+    "elevation_m": 637.0,
+    "avg_speed_kph": 19.2,
+    "avg_power_w": 211.0,
+    "avg_cadence_rpm": 78.0
+  }
+}
