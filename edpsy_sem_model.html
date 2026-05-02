@@ -4,10 +4,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Educational Psychology SEM Model</title>
-
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
-
 <style>
   * { box-sizing:border-box; margin:0; padding:0; }
   :root {
@@ -19,170 +17,92 @@
     --rule:#ece9e3;
     --white:#ffffff;
   }
-  html, body {
-    width:100%;
-    background:var(--white);
-    font-family:'DM Sans',sans-serif;
-  }
-  .wrapper {
-    width:100%;
-    max-width:1080px;
-    margin:0 auto;
-    padding:0;
-    background:var(--white);
-  }
-  svg {
-    width:100%;
-    height:auto;
-    display:block;
-    background:var(--white);
-  }
+  html, body { width:100%; background:#fff; font-family:'DM Sans',sans-serif; }
+  .wrap { width:100%; max-width:1180px; margin:0 auto; background:#fff; }
+  svg { width:100%; height:auto; display:block; background:#fff; }
 
-  .node {
-    fill:#ffffff;
-    stroke:#1a1a1a;
-    stroke-width:2;
-  }
-  .node-accent {
-    fill:var(--accent-soft);
-    stroke:var(--accent);
-    stroke-width:2.4;
-  }
-  .node-muted {
-    fill:#ffffff;
-    stroke:#b8b3aa;
-    stroke-width:2;
-  }
-  .node-outcome {
-    fill:#ffffff;
-    stroke:var(--accent);
-    stroke-width:2.6;
-  }
+  .latent { fill:var(--accent-soft); stroke:var(--accent); stroke-width:2.6; }
+  .latent-muted { fill:#fff; stroke:#b8b3aa; stroke-width:2.2; }
+  .outcome { fill:#fff; stroke:var(--accent); stroke-width:2.8; }
+  .label { font-size:20px; font-weight:600; fill:var(--text); letter-spacing:-.015em; }
+  .sub { font-size:13px; fill:var(--muted); }
+  .tiny { font-family:'DM Mono',monospace; font-size:11px; fill:var(--light); letter-spacing:.04em; }
 
-  .label {
-    font-size:18px;
-    fill:var(--text);
-    font-weight:600;
-    letter-spacing:-0.01em;
-  }
-  .sub {
-    font-size:12.5px;
-    fill:var(--muted);
-  }
-  .small {
-    font-size:11.5px;
-    fill:var(--light);
-  }
-  .path-label {
-    font-family:'DM Mono',monospace;
-    font-size:11px;
-    fill:var(--accent);
-    font-weight:500;
-    letter-spacing:.03em;
-  }
-  .neg-label {
-    font-family:'DM Mono',monospace;
-    font-size:11px;
-    fill:#8b8780;
-    font-weight:500;
-  }
+  .path-main { fill:none; stroke:var(--accent); stroke-width:3.2; marker-end:url(#arrow-accent); }
+  .path-secondary { fill:none; stroke:var(--accent); stroke-width:2.2; stroke-dasharray:8 9; marker-end:url(#arrow-accent); animation:flow 4.8s linear infinite; opacity:.86; }
+  .path-neg { fill:none; stroke:#9a9890; stroke-width:2.4; stroke-dasharray:7 9; marker-end:url(#arrow-muted); animation:flow 5.2s linear infinite; }
+  .path-neutral { fill:none; stroke:#1a1a1a; stroke-width:2.6; marker-end:url(#arrow-dark); }
 
-  .arrow {
-    fill:none;
-    stroke:#1a1a1a;
-    stroke-width:2.5;
-    marker-end:url(#arrowhead-dark);
-  }
-  .arrow-main {
-    stroke:var(--accent);
-    stroke-width:3.3;
-    marker-end:url(#arrowhead-accent);
-  }
-  .arrow-dashed {
-    stroke:var(--accent);
-    stroke-width:2.1;
-    stroke-dasharray:8 8;
-    marker-end:url(#arrowhead-accent);
-    animation:flow 4s linear infinite;
-  }
-  .arrow-neg {
-    stroke:#9a9890;
-    stroke-width:2.3;
-    stroke-dasharray:7 7;
-    marker-end:url(#arrowhead-muted);
-    animation:flow 4.6s linear infinite;
-  }
+  .lane { stroke:#f1eee8; stroke-width:1; }
+  .pulse { animation:pulse 4s ease-in-out infinite; transform-box:fill-box; transform-origin:center; }
 
-  .pulse {
-    animation:pulse 3.8s ease-in-out infinite;
-    transform-box:fill-box;
-    transform-origin:center;
-  }
-  @keyframes flow { from { stroke-dashoffset:0; } to { stroke-dashoffset:-32; } }
+  @keyframes flow { from { stroke-dashoffset:0; } to { stroke-dashoffset:-34; } }
   @keyframes pulse { 0%,100% { opacity:1; } 50% { opacity:.9; } }
 
-  @media (max-width:720px) {
-    .label { font-size:15px; }
-    .sub { font-size:10.5px; }
-    .small, .path-label, .neg-label { font-size:9.5px; }
+  @media (max-width:760px) {
+    .label { font-size:16px; }
+    .sub { font-size:11px; }
+    .tiny { font-size:9px; }
   }
 </style>
 </head>
 <body>
-<div class="wrapper">
-<svg viewBox="0 0 1080 440" role="img" aria-label="Clean animated SEM theoretical model linking metacognition, psychological distress, executive functioning, and academic achievement">
+<div class="wrap">
+<svg viewBox="0 0 1180 520" role="img" aria-label="SEM theoretical model of educational psychology constructs predicting academic achievement">
 
 <defs>
-  <marker id="arrowhead-dark" markerWidth="10" markerHeight="8" refX="10" refY="4" orient="auto">
-    <polygon points="0 0, 10 4, 0 8" fill="#1a1a1a"/>
+  <marker id="arrow-accent" markerWidth="10" markerHeight="8" refX="10" refY="4" orient="auto">
+    <polygon points="0 0, 10 4, 0 8" fill="#520671" />
   </marker>
-  <marker id="arrowhead-accent" markerWidth="10" markerHeight="8" refX="10" refY="4" orient="auto">
-    <polygon points="0 0, 10 4, 0 8" fill="#520671"/>
+  <marker id="arrow-muted" markerWidth="10" markerHeight="8" refX="10" refY="4" orient="auto">
+    <polygon points="0 0, 10 4, 0 8" fill="#9a9890" />
   </marker>
-  <marker id="arrowhead-muted" markerWidth="10" markerHeight="8" refX="10" refY="4" orient="auto">
-    <polygon points="0 0, 10 4, 0 8" fill="#9a9890"/>
+  <marker id="arrow-dark" markerWidth="10" markerHeight="8" refX="10" refY="4" orient="auto">
+    <polygon points="0 0, 10 4, 0 8" fill="#1a1a1a" />
   </marker>
 </defs>
 
-<!-- left construct: metacognition -->
-<ellipse class="node node-accent pulse" cx="185" cy="150" rx="145" ry="68"/>
-<text class="label" x="185" y="145" text-anchor="middle">Metacognition</text>
-<text class="sub" x="185" y="169" text-anchor="middle">Knowledge + regulation of cognition</text>
+<!-- very light visual lanes to clarify spacing -->
+<line class="lane" x1="70" y1="110" x2="1110" y2="110" />
+<line class="lane" x1="70" y1="260" x2="1110" y2="260" />
+<line class="lane" x1="70" y1="410" x2="1110" y2="410" />
 
-<!-- left construct: distress -->
-<ellipse class="node node-muted" cx="185" cy="315" rx="145" ry="58"/>
-<text class="label" x="185" y="310" text-anchor="middle">Psychological Distress</text>
-<text class="sub" x="185" y="334" text-anchor="middle">Depression • Anxiety • Stress</text>
+<!-- predictor nodes -->
+<ellipse class="latent pulse" cx="210" cy="150" rx="150" ry="68" />
+<text class="label" x="210" y="144" text-anchor="middle">Metacognition</text>
+<text class="sub" x="210" y="170" text-anchor="middle">knowledge + regulation</text>
 
-<!-- central mediator -->
-<ellipse class="node node-accent pulse" cx="545" cy="230" rx="165" ry="78"/>
-<text class="label" x="545" y="222" text-anchor="middle">Executive Functioning</text>
-<text class="sub" x="545" y="248" text-anchor="middle">Monitoring • goal verification • task control</text>
+<ellipse class="latent-muted" cx="210" cy="370" rx="150" ry="62" />
+<text class="label" x="210" y="364" text-anchor="middle">Psychological Distress</text>
+<text class="sub" x="210" y="390" text-anchor="middle">depression • anxiety • stress</text>
+
+<!-- mediator -->
+<ellipse class="latent pulse" cx="610" cy="260" rx="172" ry="78" />
+<text class="label" x="610" y="253" text-anchor="middle">Executive Functioning</text>
+<text class="sub" x="610" y="280" text-anchor="middle">monitoring • verification • task control</text>
 
 <!-- outcome -->
-<rect class="node node-outcome" x="815" y="158" width="220" height="144" rx="8"/>
-<text class="label" x="925" y="222" text-anchor="middle">Academic</text>
-<text class="label" x="925" y="248" text-anchor="middle">Achievement</text>
+<rect class="outcome" x="925" y="188" width="220" height="144" rx="8" />
+<text class="label" x="1035" y="253" text-anchor="middle">Academic</text>
+<text class="label" x="1035" y="279" text-anchor="middle">Achievement</text>
 
-<!-- main arrows -->
-<path class="arrow-main" d="M320 173 C385 185, 405 198, 392 212"/>
-<text class="path-label" x="355" y="166" text-anchor="middle">self-regulatory influence</text>
+<!-- clean causal paths: each path uses a separate lane -->
+<!-- metacognition to EF: central upper diagonal, no label on line -->
+<path class="path-main" d="M340 184 C410 204, 450 226, 450 246" />
 
-<path class="arrow-main" d="M710 230 L815 230"/>
-<text class="path-label" x="762" y="210" text-anchor="middle">primary direct pathway</text>
+<!-- EF to achievement: primary direct path, straight and dominant -->
+<path class="path-main" d="M782 260 L925 260" />
 
-<!-- indirect / weaker direct path, high arc with no overlap -->
-<path class="arrow-dashed" d="M310 125 C485 50, 755 65, 846 158"/>
-<text class="path-label" x="600" y="76" text-anchor="middle">possible weaker direct pathway</text>
+<!-- metacognition to achievement: upper arc, separated from all nodes -->
+<path class="path-secondary" d="M340 124 C520 42, 835 58, 958 188" />
 
-<!-- negative distress path, separated lower arc -->
-<path class="arrow-neg" d="M320 300 C390 284, 418 270, 400 252"/>
-<text class="neg-label" x="355" y="286" text-anchor="middle">negative constraint</text>
+<!-- distress to EF: lower arc, separated from node text -->
+<path class="path-neg" d="M350 350 C425 330, 455 295, 450 274" />
 
-<!-- subtle footer notes -->
-<text class="small" x="185" y="397" text-anchor="middle">MAI: metacognitive awareness</text>
-<text class="small" x="545" y="397" text-anchor="middle">EF behaviours: closest behavioural mechanism</text>
-<text class="small" x="925" y="397" text-anchor="middle">Outcome variable: academic achievement</text>
+<!-- compact path key placed below, not on arrows -->
+<text class="tiny" x="210" y="482" text-anchor="middle">MAI: metacognitive awareness</text>
+<text class="tiny" x="610" y="482" text-anchor="middle">EF = central behavioural mechanism</text>
+<text class="tiny" x="1035" y="482" text-anchor="middle">Outcome: academic achievement</text>
 
 </svg>
 </div>
