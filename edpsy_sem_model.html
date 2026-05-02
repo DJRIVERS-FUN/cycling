@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Educational Psychology SEM Model</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+
+<style>
+  * { box-sizing:border-box; margin:0; padding:0; }
+  body { margin:0; background:#ffffff; font-family:'DM Sans',sans-serif; }
+  .wrapper { width:100%; max-width:1000px; margin:0 auto; padding:0; background:#ffffff; }
+  svg { width:100%; height:auto; display:block; background:#ffffff; }
+
+  .node { fill:#ffffff; stroke:#1a1a1a; stroke-width:2; }
+  .node-accent { stroke:#520671; }
+  .node-soft { fill:#f6f0f8; stroke:#520671; }
+  .node-muted { fill:#ffffff; stroke:#9a9890; }
+
+  .label { font-size:16px; fill:#1a1a1a; font-weight:600; }
+  .sub { font-size:12px; fill:#6e6c66; }
+  .rq { font-family:'DM Mono',monospace; font-size:11px; fill:#520671; font-weight:500; }
+  .minus { font-family:'DM Mono',monospace; font-size:13px; fill:#9a9890; font-weight:500; }
+
+  .arrow { stroke:#1a1a1a; stroke-width:2.4; fill:none; marker-end:url(#arrowhead); }
+  .arrow-flow { stroke-dasharray:7 7; animation:flow 3s linear infinite; }
+  .arrow-main { stroke:#520671; stroke-width:3; }
+  .arrow-muted { stroke:#9a9890; stroke-width:2.2; stroke-dasharray:5 6; marker-end:url(#arrowhead-muted); }
+
+  .pulse { animation:pulse 3.2s ease-in-out infinite; transform-origin:center; }
+
+  @keyframes flow { from { stroke-dashoffset:0; } to { stroke-dashoffset:-28; } }
+  @keyframes pulse { 0%,100% { opacity:1; } 50% { opacity:.82; } }
+
+  @media (max-width:700px) {
+    .label { font-size:14px; }
+    .sub { font-size:10px; }
+    .rq { font-size:9px; }
+  }
+</style>
+</head>
+<body>
+<div class="wrapper">
+<svg viewBox="0 0 900 350" role="img" aria-label="Animated SEM theoretical model linking metacognition, psychological distress, executive functioning, and academic achievement">
+
+<defs>
+  <marker id="arrowhead" markerWidth="9" markerHeight="7" refX="9" refY="3.5" orient="auto">
+    <polygon points="0 0, 9 3.5, 0 7" fill="#1a1a1a"/>
+  </marker>
+  <marker id="arrowhead-muted" markerWidth="9" markerHeight="7" refX="9" refY="3.5" orient="auto">
+    <polygon points="0 0, 9 3.5, 0 7" fill="#9a9890"/>
+  </marker>
+</defs>
+
+<!-- Nodes -->
+<ellipse class="node-soft pulse" cx="190" cy="105" rx="125" ry="58"/>
+<text class="label" x="190" y="102" text-anchor="middle">Metacognition</text>
+<text class="sub" x="190" y="123" text-anchor="middle">Knowledge + Regulation</text>
+
+<ellipse class="node node-muted" cx="190" cy="270" rx="125" ry="48"/>
+<text class="label" x="190" y="268" text-anchor="middle">Psychological Distress</text>
+<text class="sub" x="190" y="288" text-anchor="middle">Depression • Anxiety • Stress</text>
+
+<ellipse class="node node-accent pulse" cx="455" cy="190" rx="145" ry="68"/>
+<text class="label" x="455" y="187" text-anchor="middle">Executive Functioning</text>
+<text class="sub" x="455" y="208" text-anchor="middle">Monitoring • Control • Task Completion</text>
+
+<rect class="node node-accent" x="660" y="135" width="205" height="112" rx="4"/>
+<text class="label" x="762.5" y="187" text-anchor="middle">Academic</text>
+<text class="label" x="762.5" y="209" text-anchor="middle">Achievement</text>
+
+<!-- Causal paths -->
+<path class="arrow arrow-flow" d="M300 122 Q365 140 355 165"/>
+<text class="rq" x="326" y="132">self-regulatory pathway</text>
+
+<path class="arrow arrow-main" d="M600 190 L660 190"/>
+<text class="rq" x="615" y="176">primary direct path</text>
+
+<path class="arrow arrow-flow" d="M302 96 Q525 88 660 165"/>
+<text class="rq" x="505" y="97">indirect / weaker direct path</text>
+
+<path class="arrow arrow-muted" d="M300 260 Q365 235 365 214"/>
+<text class="minus" x="326" y="251">negative constraint</text>
+
+<!-- latent indicator hints -->
+<line x1="92" y1="70" x2="122" y2="88" stroke="#520671" stroke-width="1.5" opacity=".55"/>
+<line x1="92" y1="140" x2="122" y2="122" stroke="#520671" stroke-width="1.5" opacity=".55"/>
+<text class="sub" x="35" y="68">Knowledge</text>
+<text class="sub" x="35" y="143">Regulation</text>
+
+<line x1="322" y1="182" x2="283" y2="164" stroke="#520671" stroke-width="1.5" opacity=".55"/>
+<line x1="315" y1="205" x2="275" y2="230" stroke="#520671" stroke-width="1.5" opacity=".55"/>
+<text class="sub" x="210" y="161">Responsibility monitoring</text>
+<text class="sub" x="213" y="236">Goal verification</text>
+
+</svg>
+</div>
+</body>
+</html>
