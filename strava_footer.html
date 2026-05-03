@@ -16,7 +16,7 @@
     color:#520671;
     letter-spacing:0.0em;
     text-transform:uppercase;
-    margin-bottom:0px;
+    margin-bottom:10px;
   }
   .line2 {
     font-size:14px;
@@ -35,10 +35,10 @@
 <script>
 function normalizeLoad(raw){
   const value = (raw || '').toLowerCase();
-  if(value.includes('high')) return 'HIGH OUTPUT STATE';
-  if(value.includes('moderate')) return 'MODERATE OUTPUT STATE';
-  if(value.includes('light')) return 'LIGHT OUTPUT STATE';
-  if(value.includes('no')) return 'NO OUTPUT STATE';
+  if(value.includes('high')) return 'HIGH DATA OUTPUT STATE';
+  if(value.includes('moderate')) return 'MODERATE DATA OUTPUT STATE';
+  if(value.includes('light')) return 'LIGHT DATA OUTPUT STATE';
+  if(value.includes('no')) return 'NO DATA OUTPUT STATE';
   return 'LIVE BEHAVIOURAL DATA STATE';
 }
 
