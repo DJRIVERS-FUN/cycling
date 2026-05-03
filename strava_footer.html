@@ -9,20 +9,27 @@
 <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet">
 <style>
   body { margin:0; background:rgb(238, 238, 238); font-family:'DM Sans', sans-serif; color:#6e6c66; }
-  .wrap { padding:6px 0; text-align:center; background:rgb(238, 238, 238); overflow:hidden; }
-  .ticker {
-    font-size:16px;
+  .wrap { padding:5px 0 3px 0; text-align:center; background:rgb(238, 238, 238); }
+  .line1 {
+    font-family:'DM Mono', monospace;
+    font-size:12px;
+    color:#520671;
+    letter-spacing:0.05em;
+    text-transform:uppercase;
+    margin-bottom:2px;
+  }
+  .line2 {
+    font-size:13px;
     font-weight:400;
     letter-spacing:0.01em;
     color:#6e6c66;
-    white-space:nowrap;
   }
-  .left { color:#520671; }
 </style>
 </head>
 <body>
 <div class="wrap">
-  <div id="ticker" class="ticker">Loading…</div>
+  <div id="label" class="line1">RIVERS LAB / LIVE BEHAVIOURAL STATE</div>
+  <div id="ticker" class="line2">Loading…</div>
 </div>
 
 <script>
@@ -31,8 +38,8 @@ function normalizeLoad(raw){
   if(value.includes('high')) return 'HIGH LOAD STATE';
   if(value.includes('moderate')) return 'MODERATE LOAD STATE';
   if(value.includes('light')) return 'LIGHT LOAD STATE';
-  if(value.includes('no')) return 'NO LOAD';
-  return 'STATE';
+  if(value.includes('no')) return 'NO LOAD STATE';
+  return 'LIVE BEHAVIOURAL STATE';
 }
 
 fetch('https://djrivers-fun.github.io/cycling/data/strava_footer.json?v=' + Date.now())
@@ -41,19 +48,20 @@ fetch('https://djrivers-fun.github.io/cycling/data/strava_footer.json?v=' + Date
   const loadState = normalizeLoad(d.state && d.state.load);
   const s = d.seven_day || {};
 
-  const left = ['RIVERS LAB', loadState].filter(Boolean).join(' · ');
-  const right = [
+  const parts = [
     s.distance_km !== undefined ? `${s.distance_km} km` : null,
     s.moving_hours !== undefined ? `${s.moving_hours} h` : null,
     s.elevation_m !== undefined ? `${Math.round(s.elevation_m)} m` : null,
     s.avg_power_w ? `${s.avg_power_w} W` : null,
     s.avg_cadence_rpm ? `${s.avg_cadence_rpm} rpm` : null
-  ].filter(Boolean).join(' · ');
+  ].filter(Boolean);
 
-  document.getElementById('ticker').innerHTML = `<span class="left">${left}</span> | ${right}`;
+  document.getElementById('label').textContent = `RIVERS LAB / ${loadState}`;
+  document.getElementById('ticker').textContent = parts.join(' · ');
 })
 .catch(() => {
-  document.getElementById('ticker').textContent = 'RIVERS LAB · DATA PENDING';
+  document.getElementById('label').textContent = 'RIVERS LAB / LIVE BEHAVIOURAL STATE';
+  document.getElementById('ticker').textContent = 'Data pending';
 });
 </script>
 </body>
