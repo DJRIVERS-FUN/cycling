@@ -194,6 +194,11 @@
     return value + suffix;
   }
 
+  function num(value) {
+    const n = Number(value);
+    return Number.isFinite(n) ? n : null;
+  }
+
   fetch(DATA_URL, { cache: 'no-store' })
     .then(function (r) {
       if (!r.ok) throw new Error('Data unavailable');
@@ -212,13 +217,14 @@
 
       Plotly.newPlot('load', [{
         x: d.weekly_series.map(function (w) { return w.week_start; }),
-        y: d.weekly_series.map(function (w) { return w.moving_h; }),
+        y: d.weekly_series.map(function (w) { return num(w.moving_h); }),
         type: 'bar',
         marker: { color: purple, opacity: 0.82 },
         hovertemplate: 'Week: %{x}<br>Hours: %{y}<extra></extra>'
       }], {
         ...baseLayout,
-        yaxis: { ...baseLayout.yaxis, title: { text: 'hours', font: { size: 11, color: muted } } }
+        xaxis: { ...baseLayout.xaxis, type: 'date' },
+        yaxis: { ...baseLayout.yaxis, type: 'linear', title: { text: 'hours', font: { size: 11, color: muted } } }
       }, { displayModeBar: false, responsive: true });
 
       const indoor = d.power_cadence.filter(function (p) { return p.context === 'Indoor'; });
@@ -226,8 +232,8 @@
 
       Plotly.newPlot('scatter', [
         {
-          x: outdoor.map(function (p) { return p.cadence_rpm; }),
-          y: outdoor.map(function (p) { return p.power_w; }),
+          x: outdoor.map(function (p) { return num(p.cadence_rpm); }),
+          y: outdoor.map(function (p) { return num(p.power_w); }),
           text: outdoor.map(function (p) { return p.name; }),
           mode: 'markers',
           type: 'scatter',
@@ -236,8 +242,8 @@
           hovertemplate: '%{text}<br>Cadence: %{x} rpm<br>Power: %{y} W<extra></extra>'
         },
         {
-          x: indoor.map(function (p) { return p.cadence_rpm; }),
-          y: indoor.map(function (p) { return p.power_w; }),
+          x: indoor.map(function (p) { return num(p.cadence_rpm); }),
+          y: indoor.map(function (p) { return num(p.power_w); }),
           text: indoor.map(function (p) { return p.name; }),
           mode: 'markers',
           type: 'scatter',
@@ -249,8 +255,8 @@
         ...baseLayout,
         showlegend: true,
         legend: { orientation: 'h', x: 0, y: 1.12, font: { size: 10, color: muted } },
-        xaxis: { ...baseLayout.xaxis, title: { text: 'cadence (rpm)', font: { size: 11, color: muted } } },
-        yaxis: { ...baseLayout.yaxis, title: { text: 'power (W)', font: { size: 11, color: muted } } }
+        xaxis: { ...baseLayout.xaxis, type: 'linear', title: { text: 'cadence (rpm)', font: { size: 11, color: muted } } },
+        yaxis: { ...baseLayout.yaxis, type: 'linear', title: { text: 'power (W)', font: { size: 11, color: muted } } }
       }, { displayModeBar: false, responsive: true });
 
       const latest = d.latest_ride || {};
