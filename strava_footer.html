@@ -56,7 +56,7 @@ fetch('https://djrivers-fun.github.io/cycling/data/strava_footer.json?v=' + Date
     s.avg_cadence_rpm ? `${s.avg_cadence_rpm} rpm` : null
   ].filter(Boolean);
 
-  document.getElementById('label').textContent = `RIVERS LAB / ${loadState}`;
+  document.getElementById('label').textContent = `RIVERS LAB CYCLING WEEK / ${loadState}`;
   document.getElementById('ticker').textContent = parts.join(' · ');
 })
 .catch(() => {
