@@ -39,17 +39,16 @@ fetch('https://djrivers-fun.github.io/cycling/data/strava_footer.json?v=' + Date
   const loadState = normalizeLoad(d.state && d.state.load);
   const s = d.seven_day || {};
 
-  const parts = [
-    'RIVERS LAB',
-    loadState,
+  const left = ['RIVERS LAB', loadState].filter(Boolean).join(' · ');
+  const right = [
     s.distance_km !== undefined ? `${s.distance_km} km` : null,
     s.moving_hours !== undefined ? `${s.moving_hours} h` : null,
     s.elevation_m !== undefined ? `${Math.round(s.elevation_m)} m` : null,
     s.avg_power_w ? `${s.avg_power_w} W` : null,
     s.avg_cadence_rpm ? `${s.avg_cadence_rpm} rpm` : null
-  ].filter(Boolean);
+  ].filter(Boolean).join(' · ');
 
-  document.getElementById('ticker').textContent = parts.join(' · ');
+  document.getElementById('ticker').textContent = `${left} | ${right}`;
 })
 .catch(() => {
   document.getElementById('ticker').textContent = 'RIVERS LAB · DATA PENDING';
