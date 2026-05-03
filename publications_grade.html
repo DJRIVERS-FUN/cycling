@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Publications | Damian Rivers</title>
+<style>
+html,body{margin:0;padding:0;background:#fff;color:#6e6c66;font-family:Arial,sans-serif;}
+.loading{font-family:monospace;color:#520671;padding:12px 0;font-size:14px;}
+</style>
+</head>
+<body>
+<div class="loading">Loading publications…</div>
+<script>
+fetch('https://raw.githubusercontent.com/DJRIVERS-FUN/fun/main/publications_grade.html?cache=' + Date.now())
+  .then(response => {
+    if (!response.ok) throw new Error('Could not load source publication page');
+    return response.text();
+  })
+  .then(html => {
+    document.open();
+    document.write(html);
+    document.close();
+  })
+  .catch(error => {
+    document.body.innerHTML = '<div style="font-family:Arial,sans-serif;color:#6e6c66;padding:12px 0;line-height:1.4;"><strong style="color:#520671;">Publications page could not load.</strong><br>Please refresh the page. If this persists, use the source file in the fun repository.</div>';
+  });
+</script>
+</body>
+</html>
