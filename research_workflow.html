@@ -4,131 +4,30 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Human–Machine Workflow</title>
-
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
-
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://djrivers-fun.github.io/cycling/embed_standard.css">
 <style>
-  * { box-sizing: border-box; margin: 0; padding: 0; }
-
-  html, body {
-    width: 100%;
-    min-height: 100%;
-    background: #ffffff;
-    color: #171717;
-    font-family: 'DM Sans', sans-serif;
-  }
-
-  body { padding: 0 14px 14px; }
-
-  .wrap { max-width: 1080px; margin: 0 auto; }
-
-  .header { margin-bottom: 22px; }
-
-  .eyebrow, .subtitle, .num, .label, .footer {
-    font-family: 'DM Mono', monospace;
-  }
-
-  .eyebrow {
-    color: #e05c2a;
-    font-size: 12px;
-    letter-spacing: .16em;
-    text-transform: uppercase;
-    margin-bottom: 8px;
-  }
-
-  h1 {
-    font-size: 30px;
-    font-weight: 500;
-    line-height: 1.12;
-  }
-
-  .subtitle {
-    color: #9a9890;
-    font-size: 13px;
-    margin-top: 8px;
-  }
-
-  .grid {
-    display: grid;
-    grid-template-columns: repeat(7, 1fr);
-    border: 1px solid #ece9e3;
-    border-right: 0;
-  }
-
-  .stage {
-    min-height: 210px;
-    border-right: 1px solid #ece9e3;
-    display: grid;
-    grid-template-rows: 48px 34px 1fr;
-    padding: 16px 14px;
-  }
-
-  .num {
-    width: 30px;
-    height: 30px;
-    display: grid;
-    place-items: center;
-    border: 1.5px solid #d8d6d0;
-    border-radius: 50%;
-    background: #f4f2ed;
-    font-size: 11px;
-  }
-
-  .label {
-    color: #c4541e;
-    font-size: 10px;
-    letter-spacing: .13em;
-    text-transform: uppercase;
-  }
-
-  .title {
-    font-size: 18px;
-    font-weight: 500;
-  }
-
-  .footer {
-    display: grid;
-    grid-template-columns: repeat(5, auto);
-    gap: 12px;
-    margin-top: 18px;
-    padding-top: 14px;
-    border-top: 1px solid #ece9e3;
-    color: #b8b3aa;
-    font-size: 11px;
-  }
-
-  .footer span:not(:last-child)::after {
-    content: '→';
-    margin-left: 12px;
-  }
+.process{display:grid;grid-template-columns:repeat(7,1fr);border-top:1px solid var(--rl-line);border-bottom:1px solid var(--rl-line);background:#fff}.stage{min-height:230px;border-right:1px solid var(--rl-line);display:grid;grid-template-rows:42px 28px 1fr;gap:6px;padding:18px 14px}.stage:last-child{border-right:none}.num{font-family:'DM Mono',monospace;width:32px;height:32px;display:grid;place-items:center;border:1.5px solid #d9cfe0;border-radius:50%;background:#f6f0f8;color:var(--rl-accent);font-size:11px}.label{font-family:'DM Mono',monospace;color:var(--rl-accent);font-size:10px;letter-spacing:.13em;text-transform:uppercase}.title{font-size:17px;font-weight:600;line-height:1.25;color:#111}.detail{font-size:13px;line-height:1.45;color:var(--rl-text);margin-top:6px}.footer{font-family:'DM Mono',monospace;margin-top:14px;padding-top:12px;border-top:1px solid #f1eee8;color:var(--rl-muted);font-size:11px;letter-spacing:.06em;line-height:1.45;text-align:center}@media(max-width:900px){.process{grid-template-columns:1fr;border-bottom:none}.stage{min-height:auto;grid-template-columns:48px 120px 1fr;grid-template-rows:auto;gap:12px;align-items:center;border-right:none;border-bottom:1px solid var(--rl-line);padding:12px 14px}.detail{margin:0}.title{font-size:16px}}@media(max-width:560px){.stage{grid-template-columns:38px 1fr;gap:7px 10px;padding:10px 8px}.num{grid-row:span 2;width:30px;height:30px}.label{font-size:9px}.title{font-size:15px}.detail{grid-column:2;font-size:12px}}
 </style>
 </head>
 <body>
-<main class="wrap">
-  <header class="header">
-    <div class="eyebrow">Rivers Lab Research Workflow</div>
-    <h1>Human–Machine Performance Regulation</h1>
-    <div class="subtitle">A consistent system from action to adaptation</div>
+<main class="rl-wrap">
+  <header class="rl-header">
+    <div class="rl-eyebrow">Rivers Lab Research Workflow</div>
+    <h1 class="rl-title">Human–Machine Performance Regulation</h1>
+    <div class="rl-subtitle">A consistent system from action to adaptation</div>
   </header>
-
-  <section class="grid">
-    <div class="stage"><div class="num">01</div><div class="label">Input</div><div class="title">Human Action</div></div>
-    <div class="stage"><div class="num">02</div><div class="label">Capture</div><div class="title">Sensor Data</div></div>
-    <div class="stage"><div class="num">03</div><div class="label">Logging</div><div class="title">Ride Data</div></div>
-    <div class="stage"><div class="num">04</div><div class="label">Process</div><div class="title">Data Prep</div></div>
-    <div class="stage"><div class="num">05</div><div class="label">Analysis</div><div class="title">Modelling</div></div>
-    <div class="stage"><div class="num">06</div><div class="label">Output</div><div class="title">Feedback</div></div>
-    <div class="stage"><div class="num">07</div><div class="label">Adapt</div><div class="title">Behaviour Change</div></div>
+  <section class="process" aria-label="Human–machine performance workflow">
+    <article class="stage"><div class="num">01</div><div class="label">Input</div><div><div class="title">Human Action</div><p class="detail">Pedalling, shifting, pacing and physical effort.</p></div></article>
+    <article class="stage"><div class="num">02</div><div class="label">Capture</div><div><div class="title">Sensor Data</div><p class="detail">Power, cadence, heart rate, GPS and shifting signals.</p></div></article>
+    <article class="stage"><div class="num">03</div><div class="label">Logging</div><div><div class="title">Ride Data</div><p class="detail">Structured activity files and platform records.</p></div></article>
+    <article class="stage"><div class="num">04</div><div class="label">Process</div><div><div class="title">Data Prep</div><p class="detail">Cleaning, alignment, feature extraction and filtering.</p></div></article>
+    <article class="stage"><div class="num">05</div><div class="label">Analysis</div><div><div class="title">Modelling</div><p class="detail">Behavioural patterns across terrain, load and context.</p></div></article>
+    <article class="stage"><div class="num">06</div><div class="label">Output</div><div><div class="title">Feedback</div><p class="detail">Visual summaries, diagnostics and performance insight.</p></div></article>
+    <article class="stage"><div class="num">07</div><div class="label">Adapt</div><div><div class="title">Behaviour Change</div><p class="detail">Regulation, adjustment and system-level adaptation.</p></div></article>
   </section>
-
-  <footer class="footer">
-    <span>Act</span>
-    <span>Measure</span>
-    <span>Record</span>
-    <span>Model</span>
-    <span>Adapt</span>
-  </footer>
+  <footer class="footer">Act → Measure → Record → Model → Adapt</footer>
 </main>
 </body>
 </html>
