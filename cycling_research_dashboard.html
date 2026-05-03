@@ -259,12 +259,7 @@
         yaxis: { ...baseLayout.yaxis, type: 'linear', title: { text: 'power (W)', font: { size: 11, color: muted } } }
       }, { displayModeBar: false, responsive: true });
 
-      const latest = d.latest_ride || {};
-      document.getElementById('footerNote').innerHTML = `Generated ${d.generated_utc} · Latest: ${latest.name || '—'} · <a href="https://www.strava.com/athletes/3714458" target="_blank" rel="noopener noreferrer">View Strava</a>`;
-    })
-    .catch(function (err) {
-      document.getElementById('footerNote').textContent = 'Dashboard data unavailable. Run the GitHub Actions workflow to generate the research summary JSON.';
-      console.error(err);
+    () {});
     });
 })();
 </script>
