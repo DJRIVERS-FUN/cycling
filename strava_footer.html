@@ -16,6 +16,9 @@
     letter-spacing:0.01em;
     color:#6e6c66;
   }
+  .left {
+    color:#520671; /* purple */
+  }
 </style>
 </head>
 <body>
@@ -48,7 +51,7 @@ fetch('https://djrivers-fun.github.io/cycling/data/strava_footer.json?v=' + Date
     s.avg_cadence_rpm ? `${s.avg_cadence_rpm} rpm` : null
   ].filter(Boolean).join(' · ');
 
-  document.getElementById('ticker').textContent = `${left} | ${right}`;
+  document.getElementById('ticker').innerHTML = `<span class="left">${left}</span> | ${right}`;
 })
 .catch(() => {
   document.getElementById('ticker').textContent = 'RIVERS LAB · DATA PENDING';
