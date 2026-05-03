@@ -28,18 +28,18 @@
 </head>
 <body>
 <div class="wrap">
-  <div id="label" class="line1">RIVERS LAB CYCLING WEEK / LIVE BEHAVIOURAL DATA STATE</div>
+  <div id="label" class="line1">RIVERS LAB CYCLING / LIVE DATA STATE</div>
   <div id="ticker" class="line2">Loading…</div>
 </div>
 
 <script>
 function normalizeLoad(raw){
   const value = (raw || '').toLowerCase();
-  if(value.includes('high')) return 'HIGH DATA OUTPUT STATE';
-  if(value.includes('moderate')) return 'MODERATE DATA OUTPUT STATE';
-  if(value.includes('light')) return 'LIGHT DATA OUTPUT STATE';
-  if(value.includes('no')) return 'NO DATA OUTPUT STATE';
-  return 'LIVE BEHAVIOURAL DATA STATE';
+  if(value.includes('high')) return 'HIGH DATA OUTPUT';
+  if(value.includes('moderate')) return 'MODERATE DATA OUTPUT';
+  if(value.includes('light')) return 'LIGHT DATA OUTPUT';
+  if(value.includes('no')) return 'NO DATA OUTPUT';
+  return 'LIVE DATA STATE';
 }
 
 fetch('https://djrivers-fun.github.io/cycling/data/strava_footer.json?v=' + Date.now())
@@ -56,11 +56,11 @@ fetch('https://djrivers-fun.github.io/cycling/data/strava_footer.json?v=' + Date
     s.avg_cadence_rpm ? `${s.avg_cadence_rpm} rpm` : null
   ].filter(Boolean);
 
-  document.getElementById('label').textContent = `RIVERS LAB CYCLING WEEK / ${loadState}`;
+  document.getElementById('label').textContent = `RIVERS LAB CYCLING / ${loadState}`;
   document.getElementById('ticker').textContent = parts.join(' · ');
 })
 .catch(() => {
-  document.getElementById('label').textContent = 'RIVERS LAB CYCLING WEEK / LIVE BEHAVIOURAL DATA STATE';
+  document.getElementById('label').textContent = 'RIVERS LAB CYCLING / LIVE DATA STATE';
   document.getElementById('ticker').textContent = 'Data pending';
 });
 </script>
