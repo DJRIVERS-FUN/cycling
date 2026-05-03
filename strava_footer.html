@@ -28,7 +28,7 @@
 </head>
 <body>
 <div class="wrap">
-  <div id="label" class="line1">RIVERS LAB CYCLING / LIVE DATA STATE</div>
+  <div id="label" class="line1">RIVERS LAB CYCLING | LIVE DATA STATE</div>
   <div id="ticker" class="line2">Loading…</div>
 </div>
 
@@ -56,11 +56,11 @@ fetch('https://djrivers-fun.github.io/cycling/data/strava_footer.json?v=' + Date
     s.avg_cadence_rpm ? `${s.avg_cadence_rpm} rpm` : null
   ].filter(Boolean);
 
-  document.getElementById('label').textContent = `RIVERS LAB CYCLING / ${loadState}`;
+  document.getElementById('label').textContent = `RIVERS LAB CYCLING | ${loadState}`;
   document.getElementById('ticker').textContent = parts.join(' · ');
 })
 .catch(() => {
-  document.getElementById('label').textContent = 'RIVERS LAB CYCLING / LIVE DATA STATE';
+  document.getElementById('label').textContent = 'RIVERS LAB CYCLING | LIVE DATA STATE';
   document.getElementById('ticker').textContent = 'Data pending';
 });
 </script>
