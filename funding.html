@@ -8,12 +8,13 @@
 <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://djrivers-fun.github.io/cycling/embed_standard.css">
 <style>
+html,body{overflow:hidden;}
 .funding-intro{max-width:980px;margin:0 0 14px 0;font-size:15px;line-height:1.4;color:var(--rl-text)}
 .funding-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:12px;margin:0 0 10px 0}.funding-card{border:1px solid #ebe7ed;border-radius:16px;padding:14px 15px;background:#fff}.funding-card:hover{border-color:#d9cfe0;transform:translateY(-1px);transition:all .15s ease}.funding-meta{font-family:'DM Mono',monospace;color:var(--rl-accent);font-size:13px;margin-bottom:6px}.funding-title{font-weight:500;color:#3f3d3a;margin-bottom:6px;line-height:1.35}.funding-subtitle{font-size:13px;color:var(--rl-muted);margin-bottom:8px;line-height:1.35}.funding-source{font-size:13px;color:var(--rl-text);margin-bottom:3px;line-height:1.35}.funding-detail{font-size:13px;line-height:1.35}.section-label{font-family:'DM Mono',monospace;font-size:13px;color:var(--rl-accent);text-transform:uppercase;margin:18px 0 9px 0;letter-spacing:.04em}.summary-strip{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin:0 0 16px 0}.summary-item{background:var(--rl-soft);border-radius:14px;padding:10px 12px}.summary-number{font-family:'DM Mono',monospace;font-size:17px;color:var(--rl-accent);line-height:1;margin-bottom:5px}.summary-label{font-size:12px;line-height:1.25;color:var(--rl-muted)}@media(max-width:700px){.summary-strip{grid-template-columns:1fr}.funding-grid{grid-template-columns:1fr}.funding-card{padding:13px}}
 </style>
 </head>
 <body>
-<main class="rl-wrap">
+<main class="rl-wrap" id="fundingRoot">
   <header class="rl-header">
     <div class="rl-eyebrow">Funding</div>
     <h1 class="rl-title">Research Funding</h1>
@@ -47,5 +48,16 @@
     <article class="funding-card"><div class="funding-meta">2018–2019 · Internal</div><div class="funding-title">Cognitive and Social Antecedents of Academic Success</div><div class="funding-subtitle">Future University Hakodate · Special Research Funding B03</div><div class="funding-detail"><b>Role:</b> Principal Investigator · <b>Award:</b> ¥525,000</div></article>
   </section>
 </main>
+<script>
+function resizeParent(){
+  const root=document.getElementById('fundingRoot');
+  const height=Math.ceil((root ? root.getBoundingClientRect().height : document.documentElement.scrollHeight) + 8);
+  window.parent.postMessage({type:'resize',source:'funding-page',height:height},'*');
+}
+window.addEventListener('load',()=>requestAnimationFrame(resizeParent));
+window.addEventListener('resize',()=>requestAnimationFrame(resizeParent));
+setTimeout(resizeParent,100);
+setTimeout(resizeParent,500);
+</script>
 </body>
 </html>
