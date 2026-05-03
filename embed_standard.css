@@ -1,0 +1,70 @@
+/* Rivers Lab standard iframe style
+   Use for Jimdo/GitHub Pages embeds.
+   White background, no borders, compact top spacing, DM fonts, purple accent. */
+:root {
+  --rl-accent:#520671;
+  --rl-text:#6e6c66;
+  --rl-muted:#9a9890;
+  --rl-soft:#f8f6f9;
+  --rl-line:#ece9e3;
+  --rl-bg:#ffffff;
+}
+* { box-sizing:border-box; }
+html, body {
+  margin:0;
+  padding:0;
+  width:100%;
+  min-height:100%;
+  background:var(--rl-bg);
+  color:var(--rl-text);
+  font-family:'DM Sans', sans-serif;
+  overflow:auto;
+}
+body {
+  padding:0 10px 10px;
+}
+.rl-wrap {
+  width:100%;
+  max-width:1060px;
+  margin:0 auto;
+  padding:0;
+  background:#ffffff;
+}
+.rl-eyebrow,
+.rl-subtitle,
+.rl-mono {
+  font-family:'DM Mono', monospace;
+}
+.rl-eyebrow {
+  color:var(--rl-accent);
+  font-size:12px;
+  font-weight:500;
+  letter-spacing:.16em;
+  line-height:1.2;
+  text-transform:uppercase;
+  margin:0 0 7px 0;
+}
+.rl-title {
+  color:#111111;
+  font-size:30px;
+  font-weight:600;
+  letter-spacing:-0.025em;
+  line-height:1.12;
+  margin:0;
+}
+.rl-subtitle {
+  color:var(--rl-muted);
+  font-size:13px;
+  letter-spacing:.04em;
+  line-height:1.45;
+  margin-top:8px;
+}
+.rl-header {
+  margin:0 0 18px 0;
+}
+@media (max-width:560px) {
+  body { padding:0 4px 8px; }
+  .rl-eyebrow { font-size:10px; }
+  .rl-title { font-size:20px; }
+  .rl-subtitle { font-size:11px; }
+}
