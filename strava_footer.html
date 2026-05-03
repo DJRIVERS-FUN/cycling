@@ -9,7 +9,7 @@
 <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet">
 <style>
   body { margin:0; background:rgb(238, 238, 238); font-family:'DM Sans', sans-serif; color:#6e6c66; }
-  .wrap { padding:6px 0 4px 0; text-align:center; background:rgb(238, 238, 238); }
+  .wrap { padding:5px 0 3px 0; text-align:center; background:rgb(238, 238, 238); }
   .line1 {
     font-family:'DM Mono', monospace;
     font-size:12px;
@@ -19,12 +19,11 @@
     margin-bottom:2px;
   }
   .line2 {
-    font-size:14px;
+    font-size:16px;
     line-height:1.3;
     font-weight:500;
     color:#6e6c66;
   }
-  .context { color:#9a9890; font-weight:400; }
   a { color:#520671; text-decoration:none; }
   a:hover { text-decoration:underline; text-underline-offset:3px; }
 </style>
@@ -49,7 +48,6 @@ fetch('https://djrivers-fun.github.io/cycling/data/strava_footer.json?v=' + Date
 .then(r => r.json())
 .then(d => {
   const loadState = normalizeLoad(d.state && d.state.load);
-  const context = d.state && d.state.context ? d.state.context : 'context pending';
   const s = d.seven_day || {};
   const parts = [
     s.distance_km !== undefined ? `${s.distance_km} km` : null,
@@ -60,10 +58,7 @@ fetch('https://djrivers-fun.github.io/cycling/data/strava_footer.json?v=' + Date
   ].filter(Boolean);
 
   document.getElementById('label').textContent = `RIVERS LAB / ${loadState}`;
-  document.getElementById('ticker').innerHTML =
-    parts.join(' · ') +
-    ` · <span class="context">${context}</span>` +
-    ' · <a href="https://www.strava.com/athletes/3714458" target="_blank" rel="noopener noreferrer">Strava</a>';
+  document.getElementById('ticker').textContent = parts.join(' · ');
 })
 .catch(() => {
   document.getElementById('label').textContent = 'RIVERS LAB / LIVE BEHAVIOURAL STATE';
