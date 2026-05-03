@@ -259,7 +259,12 @@
         yaxis: { ...baseLayout.yaxis, type: 'linear', title: { text: 'power (W)', font: { size: 11, color: muted } } }
       }, { displayModeBar: false, responsive: true });
 
-    () {});
+      const latest = d.latest_ride || {};
+      document.getElementById('footerNote').textContent = `Generated ${d.generated_utc} · Latest: ${latest.name || '—'}`;
+    })
+    .catch(function (err) {
+      document.getElementById('footerNote').textContent = 'Dashboard data unavailable.';
+      console.error(err);
     });
 })();
 </script>
