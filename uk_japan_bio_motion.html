@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>UK Japan Bio Motion</title>
+<style>
+  html, body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    background: #ffffff;
+    overflow: hidden;
+    font-family: "DM Mono", monospace;
+  }
+
+  .wrap {
+    width: 100%;
+    height: 360px;
+    max-width: 520px;
+    margin: 0 auto;
+    position: relative;
+    background: #ffffff;
+  }
+
+  canvas {
+    width: 100%;
+    height: 100%;
+    display: block;
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <canvas id="motion"></canvas>
+</div>
+
+<script>
+const canvas = document.getElementById("motion");
+const ctx = canvas.getContext("2d");
+
+let W, H;
+let t = 0;
+
+const palette = {
+  purple: "#520671",
+  orange: "#e05c2a",
+  grey: "#6e6c66",
+  paleGrey: "#e6e2de",
+  japanRed: "#bc002d",
+  ukBlue: "#1f3f7a",
+  ukRed: "#c8102e",
+  white: "#ffffff"
+};
+
+function resize() {
+  const r = canvas.getBoundingClientRect();
+  W = canvas.width = r.width * devicePixelRatio;
+  H = canvas.height = r.height * devicePixelRatio;
+  ctx.setTransform(devicePixelRatio, 0, 0, devicePixelRatio, 0, 0);
+}
+resize();
+window.addEventListener("resize", resize);
+
+function rgba(hex, alpha) {
+  const h = hex.replace("#", "");
+  const r = parseInt(h.substring(0,2),16);
+  const g = parseInt(h.substring(2,4),16);
+  const b = parseInt(h.substring(4,6),16);
+  return `rgba(${r},${g},${b},${alpha})`;
+}
+
+function drawSoftBackground(w, h) {
+  const cx = w * 0.52;
+  const cy = h * 0.52;
+
+  const grad = ctx.createRadialGradient(cx, cy, 10, cx, cy, Math.max(w, h) * 0.55);
+  grad.addColorStop(0, "rgba(82,6,113,0.035)");
+  grad.addColorStop(0.55, "rgba(224,92,42,0.025)");
+  grad.addColorStop(1, "rgba(255,255,255,0)");
+
+  ctx.fillStyle = grad;
+  ctx.fillRect(0, 0, w, h);
+}
+
+function drawCurvedPath(points, color, alpha, width) {
+  ctx.strokeStyle = rgba(color, alpha);
+  ctx.lineWidth = width;
+  ctx.lineCap = "round";
+  ctx.lineJoin = "round";
+  ctx.beginPath();
+  ctx.moveTo(points[0].x, points[0].y);
+  for (let i = 1; i < points.length - 1; i++) {
+    const midX = (points[i].x + points[i+1].x) / 2;
+    const midY = (points[i].y + points[i+1].y) / 2;
+    ctx.quadraticCurveTo(points[i].x, points[i].y, midX, midY);
+  }
+  ctx.lineTo(points[points.length-1].x, points[points.length-1].y);
+  ctx.stroke();
+}
+
+function interpolatePath(points, p) {
+  const total = points.length - 1;
+  const raw = p * total;
+  const i = Math.min(Math.floor(raw), total - 1);
+  const local = raw - i;
+  const A = points[i];
+  const B = points[i + 1];
+  return {
+    x: A.x + (B.x - A.x) * local,
+    y: A.y + (B.y - A.y) * local
+  };
+}
+
+function drawJapanOrb(x, y, r, phase) {
+  const glow = (Math.sin(phase) + 1) / 2;
+
+  ctx.fillStyle = rgba(palette.japanRed, 0.08 + glow * 0.06);
+  ctx.beginPath();
+  ctx.arc(x, y, r + 16 + glow * 5, 0, Math.PI * 2);
+  ctx.fill();
+
+  ctx.fillStyle = palette.white;
+  ctx.strokeStyle = rgba(palette.japanRed, 0.65);
+  ctx.lineWidth = 1.6;
+  ctx.beginPath();
+  ctx.arc(x, y, r, 0, Math.PI * 2);
+  ctx.fill();
+  ctx.stroke();
+
+  ctx.fillStyle = palette.japanRed;
+  ctx.beginPath();
+  ctx.arc(x, y, r * 0.42, 0, Math.PI * 2);
+  ctx.fill();
+}
+
+function drawUKOrb(x, y, r, phase) {
+  const glow = (Math.sin(phase) + 1) / 2;
+
+  ctx.fillStyle = rgba(palette.ukBlue, 0.08 + glow * 0.06);
+  ctx.beginPath();
+  ctx.arc(x, y, r + 16 + glow * 5, 0, Math.PI * 2);
+  ctx.fill();
+
+  ctx.save();
+  ctx.beginPath();
+  ctx.arc(x, y, r, 0, Math.PI * 2);
+  ctx.clip();
+
+  ctx.fillStyle = palette.ukBlue;
+  ctx.fillRect(x-r, y-r, r*2, r*2);
+
+  ctx.strokeStyle = palette.white;
+  ctx.lineWidth = r * 0.34;
+  ctx.beginPath();
+  ctx.moveTo(x-r, y-r);
+  ctx.lineTo(x+r, y+r);
+  ctx.moveTo(x+r, y-r);
+  ctx.lineTo(x-r, y+r);
+  ctx.stroke();
+
+  ctx.strokeStyle = palette.ukRed;
+  ctx.lineWidth = r * 0.16;
+  ctx.beginPath();
+  ctx.moveTo(x-r, y-r);
+  ctx.lineTo(x+r, y+r);
+  ctx.moveTo(x+r, y-r);
+  ctx.lineTo(x-r, y+r);
+  ctx.stroke();
+
+  ctx.strokeStyle = palette.white;
+  ctx.lineWidth = r * 0.38;
+  ctx.beginPath();
+  ctx.moveTo(x-r, y);
+  ctx.lineTo(x+r, y);
+  ctx.moveTo(x, y-r);
+  ctx.lineTo(x, y+r);
+  ctx.stroke();
+
+  ctx.strokeStyle = palette.ukRed;
+  ctx.lineWidth = r * 0.20;
+  ctx.beginPath();
+  ctx.moveTo(x-r, y);
+  ctx.lineTo(x+r, y);
+  ctx.moveTo(x, y-r);
+  ctx.lineTo(x, y+r);
+  ctx.stroke();
+
+  ctx.restore();
+
+  ctx.strokeStyle = rgba(palette.ukBlue, 0.65);
+  ctx.lineWidth = 1.6;
+  ctx.beginPath();
+  ctx.arc(x, y, r, 0, Math.PI * 2);
+  ctx.stroke();
+}
+
+function drawTinySpark(x, y, color, size, alpha) {
+  ctx.fillStyle = rgba(color, alpha);
+  ctx.beginPath();
+  ctx.arc(x, y, size, 0, Math.PI * 2);
+  ctx.fill();
+}
+
+function draw() {
+  const w = canvas.clientWidth;
+  const h = canvas.clientHeight;
+
+  ctx.clearRect(0, 0, W, H);
+  drawSoftBackground(w, h);
+
+  const path = [
+    {x: w * 0.16, y: h * 0.62},
+    {x: w * 0.30, y: h * 0.28},
+    {x: w * 0.52, y: h * 0.50},
+    {x: w * 0.70, y: h * 0.22},
+    {x: w * 0.86, y: h * 0.56}
+  ];
+
+  const reversePath = [...path].reverse();
+
+  drawCurvedPath(path, palette.purple, 0.22, 1.4);
+  drawCurvedPath(reversePath, palette.orange, 0.18, 1.1);
+
+  const p1 = (Math.sin(t * 0.010) + 1) / 2;
+  const p2 = (Math.sin(t * 0.010 + Math.PI) + 1) / 2;
+
+  const uk = interpolatePath(path, p1);
+  const jp = interpolatePath(path, p2);
+
+  for (let i = 0; i < 18; i++) {
+    const p = (i / 18 + t * 0.002) % 1;
+    const dot = interpolatePath(path, p);
+    const alpha = 0.12 + 0.10 * Math.sin(t * 0.02 + i);
+    drawTinySpark(dot.x, dot.y, i % 2 === 0 ? palette.purple : palette.orange, 1.6, alpha);
+  }
+
+  drawUKOrb(uk.x, uk.y, 25, t * 0.035);
+  drawJapanOrb(jp.x, jp.y, 25, t * 0.035 + Math.PI);
+
+  const midPulse = (Math.sin(t * 0.03) + 1) / 2;
+  ctx.strokeStyle = rgba(palette.grey, 0.18 + midPulse * 0.05);
+  ctx.lineWidth = 1;
+  ctx.beginPath();
+  ctx.arc(w * 0.51, h * 0.48, 42 + midPulse * 4, 0, Math.PI * 2);
+  ctx.stroke();
+
+  t++;
+  requestAnimationFrame(draw);
+}
+
+draw();
+</script>
+</body>
+</html>
