@@ -19,10 +19,8 @@ let W,H,t=0;
 
 const palette = {
   purple:"#520671",
-  grey:"#6e6c66",
-  japan:"#bc002d",
-  ukBlue:"#1f3f7a",
-  ukRed:"#c8102e"
+  orange:"#e05c2a",
+  grey:"#6e6c66"
 };
 
 function resize(){
@@ -94,46 +92,28 @@ function interp(p,pts){
   return {x:A.x+(B.x-A.x)*f,y:A.y+(B.y-A.y)*f};
 }
 
-/* --- UK --- */
-function drawUK(x,y,r){
-  ctx.fillStyle=rgba(palette.ukBlue,0.1);
-  ctx.beginPath();ctx.arc(x,y,r+10,0,6.28);ctx.fill();
+/* --- Bicycle wheel --- */
+function drawWheel(x,y,r,phase,color){
+  ctx.fillStyle=rgba(color,0.08);
+  ctx.beginPath();ctx.arc(x,y,r+10,0,Math.PI*2);ctx.fill();
 
-  ctx.save();
-  ctx.beginPath();ctx.arc(x,y,r,0,6.28);ctx.clip();
+  ctx.strokeStyle=color;
+  ctx.lineWidth=2;
+  ctx.beginPath();ctx.arc(x,y,r,0,Math.PI*2);ctx.stroke();
 
-  ctx.fillStyle=palette.ukBlue;
-  ctx.fillRect(x-r,y-r,r*2,r*2);
+  ctx.fillStyle=color;
+  ctx.beginPath();ctx.arc(x,y,3,0,Math.PI*2);ctx.fill();
 
-  ctx.strokeStyle="#fff";
-  ctx.lineWidth=r*0.35;
-  ctx.beginPath();
-  ctx.moveTo(x-r,y-r);ctx.lineTo(x+r,y+r);
-  ctx.moveTo(x+r,y-r);ctx.lineTo(x-r,y+r);
-  ctx.stroke();
-
-  ctx.strokeStyle=palette.ukRed;
-  ctx.lineWidth=r*0.18;
-  ctx.beginPath();
-  ctx.moveTo(x-r,y-r);ctx.lineTo(x+r,y+r);
-  ctx.moveTo(x+r,y-r);ctx.lineTo(x-r,y+r);
-  ctx.stroke();
-
-  ctx.restore();
-}
-
-/* --- Japan --- */
-function drawJP(x,y,r){
-  ctx.fillStyle=rgba(palette.japan,0.1);
-  ctx.beginPath();ctx.arc(x,y,r+10,0,6.28);ctx.fill();
-
-  ctx.fillStyle="#fff";
-  ctx.strokeStyle=palette.japan;
-  ctx.lineWidth=1.5;
-  ctx.beginPath();ctx.arc(x,y,r,0,6.28);ctx.fill();ctx.stroke();
-
-  ctx.fillStyle=palette.japan;
-  ctx.beginPath();ctx.arc(x,y,r*0.42,0,6.28);ctx.fill();
+  const spokes=8;
+  for(let i=0;i<spokes;i++){
+    const angle=(i/spokes)*Math.PI*2+phase;
+    ctx.strokeStyle=rgba(color,0.35);
+    ctx.lineWidth=1;
+    ctx.beginPath();
+    ctx.moveTo(x,y);
+    ctx.lineTo(x+Math.cos(angle)*r,y+Math.sin(angle)*r);
+    ctx.stroke();
+  }
 }
 
 /* --- MAIN --- */
@@ -157,12 +137,13 @@ function draw(){
   const a=interp(p1,pts);
   const b=interp(p2,pts);
 
-  drawUK(a.x,a.y,22);
-  drawJP(b.x,b.y,22);
+  drawWheel(a.x,a.y,22,t*0.05,palette.purple);
+  drawWheel(b.x,b.y,22,-t*0.05,palette.orange);
 
   t++;
   requestAnimationFrame(draw);
 }
+
 draw();
 </script>
 </body>
