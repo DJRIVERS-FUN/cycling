@@ -3,51 +3,62 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Strava Behavioural State Footer</title>
+<title>Strava Footer</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400&family=DM+Sans:wght@400&display=swap" rel="stylesheet">
 <style>
-  body { margin:0; background:rgb(238, 238, 238); font-family:'DM Sans', sans-serif; color:#6e6c66; }
-  .wrap { padding:0px 0 0px 0; text-align:center; background:rgb(238, 238, 238); }
-  .line1 {
-    font-family:'DM Mono', monospace;
-    font-size:16px;
-    color:#520671;
-    letter-spacing:0.0em;
-    text-transform:uppercase;
-    margin-bottom:5px;
-  }
-  .line2 {
-    font-size:16px;
-    font-weight:400;
-    letter-spacing:0.0em;
-    color:#6e6c66;
-  }
+html, body {
+  margin:0;
+  padding:0;
+  background:#ffffff;
+  font-family:'DM Sans', sans-serif;
+  color:#6e6c66;
+  font-size:14px;
+  line-height:1.3;
+  overflow:hidden;
+}
+.wrap {
+  display:flex;
+  align-items:center;
+  gap:8px;
+  min-height:42px;
+  white-space:nowrap;
+}
+.label {
+  font-family:'DM Mono', monospace;
+  color:#520671;
+  text-transform:uppercase;
+}
+.sep {
+  color:#e6e2de;
+}
+.ticker {
+  overflow:hidden;
+  text-overflow:ellipsis;
+}
 </style>
 </head>
 <body>
 <div class="wrap">
-  <div id="label" class="line1">RIVERS LAB CYCLING WEEK | LIVE DATA STATE</div>
-  <div id="ticker" class="line2">Loading…</div>
+  <div class="label">RIVERS LAB CYCLING WEEK</div>
+  <div class="sep">|</div>
+  <div id="ticker" class="ticker">Loading live data state…</div>
 </div>
-
 <script>
-function normalizeLoad(raw){
+function normalizeLoad(raw) {
   const value = (raw || '').toLowerCase();
-  if(value.includes('high')) return 'HIGH DATA OUTPUT';
-  if(value.includes('moderate')) return 'MODERATE DATA OUTPUT';
-  if(value.includes('light')) return 'LIGHT DATA OUTPUT';
-  if(value.includes('no')) return 'NO DATA OUTPUT';
-  return 'LIVE DATA STATE';
+  if (value.includes('high')) return 'high data output';
+  if (value.includes('moderate')) return 'moderate data output';
+  if (value.includes('light')) return 'light data output';
+  if (value.includes('no')) return 'no data output';
+  return 'live data state';
 }
-
 fetch('https://djrivers-fun.github.io/cycling/data/strava_footer.json?v=' + Date.now())
 .then(r => r.json())
 .then(d => {
   const loadState = normalizeLoad(d.state && d.state.load);
   const s = d.seven_day || {};
-
   const parts = [
     s.distance_km !== undefined ? `${s.distance_km} km` : null,
     s.moving_hours !== undefined ? `${s.moving_hours} h` : null,
@@ -55,13 +66,10 @@ fetch('https://djrivers-fun.github.io/cycling/data/strava_footer.json?v=' + Date
     s.avg_power_w ? `${s.avg_power_w} W` : null,
     s.avg_cadence_rpm ? `${s.avg_cadence_rpm} rpm` : null
   ].filter(Boolean);
-
-  document.getElementById('label').textContent = `RIVERS LAB CYCLING WEEK | ${loadState}`;
-  document.getElementById('ticker').textContent = parts.join(' · ');
+  document.getElementById('ticker').textContent = `${loadState}${parts.length ? ' · ' + parts.join(' · ') : ''}`;
 })
 .catch(() => {
-  document.getElementById('label').textContent = 'RIVERS LAB CYCLING WEEK | LIVE DATA STATE';
-  document.getElementById('ticker').textContent = 'Data pending';
+  document.getElementById('ticker').textContent = 'data pending';
 });
 </script>
 </body>
