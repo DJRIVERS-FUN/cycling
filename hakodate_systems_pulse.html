@@ -18,10 +18,10 @@
   .wrap {
     width: 100%;
     max-width: 1000px;
-    height: 680px;
+    height: 720px;
     margin: 0 auto;
     position: relative;
-    background: radial-gradient(circle at center, #f7f3fa 0%, #ffffff 62%);
+    background: radial-gradient(circle at center, #f7f3fa 0%, #ffffff 64%);
   }
 
   canvas {
@@ -55,7 +55,7 @@
     font-size: 13px;
     line-height: 1.4;
     color: #6e6c66;
-    background: rgba(255,255,255,0.72);
+    background: rgba(255,255,255,0.76);
     padding: 6px 0;
   }
 </style>
@@ -65,10 +65,10 @@
   <canvas id="pulse"></canvas>
 
   <div class="title">Hakodate Systems Pulse</div>
-  <div class="subtitle">Learning · Communication · Human–Machine Systems</div>
+  <div class="subtitle">Research areas structured by Constraint → Behaviour → Adaptation → Outcome</div>
 
   <div class="footer">
-    A visual model of behaviour as a dynamic system shaped by place, technology, information, and adaptation.
+    Across learning, communication, and human–machine systems, behaviour is modelled as adaptation under constraint producing measurable outcomes over time.
   </div>
 </div>
 
@@ -88,15 +88,26 @@ resize();
 window.addEventListener("resize", resize);
 
 const nodes = [
-  { label: "Educational\nPsychology\nand Learning\nSystems", x: 0.50, y: 0.18, r: 95, color: "#520671" },
-  { label: "Language\nand Media\nCommunication\nSystems", x: 0.20, y: 0.55, r: 95, color: "#7c4dff" },
-  { label: "Human–Machine\nSystems", x: 0.80, y: 0.55, r: 95, color: "#26a69a" },
-  { label: "Education\nand Research", x: 0.50, y: 0.60, r: 90, color: "#ab47bc" }
+  // Research area nodes
+  { type: "domain", label: "Educational\nPsychology\nand Learning\nSystems", x: 0.50, y: 0.17, r: 88, color: "#520671" },
+  { type: "domain", label: "Language\nand Media\nCommunication\nSystems", x: 0.18, y: 0.55, r: 88, color: "#7c4dff" },
+  { type: "domain", label: "Human–Machine\nSystems", x: 0.82, y: 0.55, r: 88, color: "#26a69a" },
+
+  // Underpinning process nodes
+  { type: "concept", label: "Constraint", x: 0.29, y: 0.39, r: 54, color: "#6e6c66" },
+  { type: "concept", label: "Behaviour", x: 0.43, y: 0.55, r: 54, color: "#ab47bc" },
+  { type: "concept", label: "Adaptation", x: 0.57, y: 0.55, r: 54, color: "#9575cd" },
+  { type: "concept", label: "Outcome", x: 0.71, y: 0.39, r: 54, color: "#42a5f5" }
 ];
 
-const links = [
-  [0,1], [0,2], [0,3],
-  [1,3], [2,3]
+const flowLinks = [
+  [3,4], [4,5], [5,6]
+];
+
+const domainLinks = [
+  [0,3], [0,4], [0,5], [0,6],
+  [1,3], [1,4], [1,5], [1,6],
+  [2,3], [2,4], [2,5], [2,6]
 ];
 
 let t = 0;
@@ -109,6 +120,49 @@ function drawTextBlock(text, x, y, maxWidth, lineHeight) {
   });
 }
 
+function drawArrowLine(A, B, color, alpha, width, pulseOffset) {
+  const angle = Math.atan2(B.py - A.py, B.px - A.px);
+  const startX = A.px + Math.cos(angle) * (A.r + 6);
+  const startY = A.py + Math.sin(angle) * (A.r + 6);
+  const endX = B.px - Math.cos(angle) * (B.r + 10);
+  const endY = B.py - Math.sin(angle) * (B.r + 10);
+
+  ctx.strokeStyle = color.replace("ALPHA", alpha);
+  ctx.lineWidth = width;
+  ctx.beginPath();
+  ctx.moveTo(startX, startY);
+  ctx.lineTo(endX, endY);
+  ctx.stroke();
+
+  const headLength = 9;
+  ctx.fillStyle = color.replace("ALPHA", alpha + 0.08);
+  ctx.beginPath();
+  ctx.moveTo(endX, endY);
+  ctx.lineTo(endX - headLength * Math.cos(angle - Math.PI / 6), endY - headLength * Math.sin(angle - Math.PI / 6));
+  ctx.lineTo(endX - headLength * Math.cos(angle + Math.PI / 6), endY - headLength * Math.sin(angle + Math.PI / 6));
+  ctx.closePath();
+  ctx.fill();
+
+  const pulse = (Math.sin(t * 0.04 + pulseOffset) + 1) / 2;
+  const px = startX + (endX - startX) * pulse;
+  const py = startY + (endY - startY) * pulse;
+
+  ctx.fillStyle = color.replace("ALPHA", Math.min(alpha + 0.30, 0.82));
+  ctx.beginPath();
+  ctx.arc(px, py, 3.2, 0, Math.PI * 2);
+  ctx.fill();
+}
+
+function drawSoftLine(A, B, alpha, pulseOffset) {
+  const pulse = (Math.sin(t * 0.032 + pulseOffset) + 1) / 2;
+  ctx.strokeStyle = `rgba(82, 6, 113, ${alpha + pulse * 0.06})`;
+  ctx.lineWidth = 0.9;
+  ctx.beginPath();
+  ctx.moveTo(A.px, A.py);
+  ctx.lineTo(B.px, B.py);
+  ctx.stroke();
+}
+
 function draw() {
   ctx.clearRect(0, 0, W, H);
 
@@ -117,72 +171,43 @@ function draw() {
 
   let mapped = nodes.map(n => ({
     ...n,
-    px: n.x * width + Math.sin(t * 0.008 + n.x * 10) * 18,
-    py: n.y * height + Math.cos(t * 0.010 + n.y * 10) * 18
+    px: n.x * width + Math.sin(t * 0.006 + n.x * 10) * (n.type === "domain" ? 13 : 8),
+    py: n.y * height + Math.cos(t * 0.008 + n.y * 10) * (n.type === "domain" ? 13 : 8)
   }));
 
-  for (let i = 0; i < mapped.length; i++) {
-    for (let j = i + 1; j < mapped.length; j++) {
-      let dx = mapped[j].px - mapped[i].px;
-      let dy = mapped[j].py - mapped[i].py;
-      let dist = Math.sqrt(dx * dx + dy * dy) || 1;
-      let minDist = mapped[i].r + mapped[j].r + 30;
-
-      if (dist < minDist) {
-        let angle = Math.atan2(dy, dx);
-        let move = (minDist - dist) / 2;
-        mapped[i].px -= Math.cos(angle) * move;
-        mapped[i].py -= Math.sin(angle) * move;
-        mapped[j].px += Math.cos(angle) * move;
-        mapped[j].py += Math.sin(angle) * move;
-      }
-    }
-  }
-
-  ctx.lineWidth = 1.2;
-
-  links.forEach(([a,b], i) => {
-    const A = mapped[a];
-    const B = mapped[b];
-    const pulse = (Math.sin(t * 0.035 + i) + 1) / 2;
-
-    ctx.strokeStyle = `rgba(82, 6, 113, ${0.12 + pulse * 0.22})`;
-    ctx.beginPath();
-    ctx.moveTo(A.px, A.py);
-    ctx.lineTo(B.px, B.py);
-    ctx.stroke();
-
-    const px = A.px + (B.px - A.px) * pulse;
-    const py = A.py + (B.py - A.py) * pulse;
-
-    ctx.fillStyle = "rgba(82, 6, 113, 0.6)";
-    ctx.beginPath();
-    ctx.arc(px, py, 3.5, 0, Math.PI * 2);
-    ctx.fill();
+  // Draw contextual domain-to-concept structure first.
+  domainLinks.forEach(([a,b], i) => {
+    drawSoftLine(mapped[a], mapped[b], 0.055, i);
   });
 
-  mapped.forEach((n, i) => {
-    const glow = (Math.sin(t * 0.030 + i) + 1) / 2;
+  // Draw the conceptual process as the dominant directional pathway.
+  flowLinks.forEach(([a,b], i) => {
+    drawArrowLine(mapped[a], mapped[b], "rgba(82, 6, 113, ALPHA)", 0.38, 2.2, i * 1.7);
+  });
 
-    ctx.fillStyle = `rgba(82, 6, 113, ${0.04 + glow * 0.05})`;
+  // Nodes
+  mapped.forEach((n, i) => {
+    const glow = (Math.sin(t * 0.026 + i) + 1) / 2;
+    const glowAlpha = n.type === "domain" ? 0.040 + glow * 0.042 : 0.030 + glow * 0.035;
+
+    ctx.fillStyle = `rgba(82, 6, 113, ${glowAlpha})`;
     ctx.beginPath();
-    ctx.arc(n.px, n.py, n.r + 18 + glow * 8, 0, Math.PI * 2);
+    ctx.arc(n.px, n.py, n.r + (n.type === "domain" ? 17 : 12) + glow * 7, 0, Math.PI * 2);
     ctx.fill();
 
     ctx.fillStyle = n.color;
     ctx.strokeStyle = "#ffffff";
-    ctx.lineWidth = 2.5;
-
+    ctx.lineWidth = n.type === "domain" ? 2.5 : 2.1;
     ctx.beginPath();
     ctx.arc(n.px, n.py, n.r, 0, Math.PI * 2);
     ctx.fill();
     ctx.stroke();
 
     ctx.fillStyle = "#ffffff";
-    ctx.font = "14px DM Mono, monospace";
+    ctx.font = n.type === "domain" ? "13px DM Mono, monospace" : "14px DM Mono, monospace";
     ctx.textAlign = "center";
     ctx.textBaseline = "middle";
-    drawTextBlock(n.label, n.px, n.py, n.r * 1.6, 18);
+    drawTextBlock(n.label, n.px, n.py, n.r * 1.58, n.type === "domain" ? 17 : 18);
   });
 
   t++;
