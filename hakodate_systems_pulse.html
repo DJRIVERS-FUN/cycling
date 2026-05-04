@@ -20,7 +20,9 @@
     height: 780px;
     margin: 0 auto;
     position: relative;
-    background: #ffffff;
+    background:
+      radial-gradient(circle at 50% 48%, rgba(82, 6, 113, 0.05) 0%, rgba(255,255,255,0) 56%),
+      linear-gradient(180deg, #ffffff 0%, #fbfaf8 100%);
   }
 
   canvas {
@@ -41,6 +43,14 @@ const ctx = canvas.getContext("2d");
 
 let W, H;
 
+const palette = {
+  purple: "#520671",
+  deepPurple: "#3a2a4d",
+  orange: "#e05c2a",
+  grey: "#6e6c66",
+  white: "#ffffff"
+};
+
 function resize() {
   const rect = canvas.getBoundingClientRect();
   W = canvas.width = rect.width * devicePixelRatio;
@@ -51,134 +61,132 @@ resize();
 window.addEventListener("resize", resize);
 
 const nodes = [
-  // Research themes
-  { group:"theme", label:"Educational\nPsychology\nand Learning\nSystems", x:0.25, y:0.32, r:86, fill:"#eadff3", stroke:"#520671", text:"#3b2348" },
-  { group:"theme", label:"Language\nand Media\nCommunication\nSystems", x:0.50, y:0.24, r:86, fill:"#f8e7d8", stroke:"#b64a24", text:"#553225" },
-  { group:"theme", label:"Human–Machine\nSystems", x:0.75, y:0.32, r:86, fill:"#dcefeb", stroke:"#3f6f67", text:"#294a45" },
+  // Research theme nodes: white circles, integrated around the model
+  { type:"domain", label:"Educational\nPsychology\nand Learning\nSystems", x:0.50, y:0.17, r:90, fill:"#ffffff", stroke:"#520671", text:"#520671", halo:"#520671" },
+  { type:"domain", label:"Language\nand Media\nCommunication\nSystems", x:0.18, y:0.55, r:90, fill:"#ffffff", stroke:"#e05c2a", text:"#6e3a27", halo:"#e05c2a" },
+  { type:"domain", label:"Human–Machine\nSystems", x:0.82, y:0.55, r:90, fill:"#ffffff", stroke:"#3f6f67", text:"#315852", halo:"#3f6f67" },
 
-  // Workflow model
-  { group:"workflow", label:"Constraint", x:0.20, y:0.70, r:56, fill:"#eeeeec", stroke:"#6e6c66", text:"#4f4d49" },
-  { group:"workflow", label:"Behaviour", x:0.40, y:0.70, r:56, fill:"#fde6d8", stroke:"#e05c2a", text:"#7a351f" },
-  { group:"workflow", label:"Adaptation", x:0.60, y:0.70, r:56, fill:"#f6e5ef", stroke:"#9b5b84", text:"#604159" },
-  { group:"workflow", label:"Outcome", x:0.80, y:0.70, r:56, fill:"#e8e0f0", stroke:"#520671", text:"#3b2348" }
+  // Process nodes: four distinct soft colours
+  { type:"concept", label:"Constraint", x:0.29, y:0.39, r:56, fill:"#eeeeec", stroke:"#6e6c66", text:"#4f4d49", halo:"#6e6c66" },
+  { type:"concept", label:"Behaviour", x:0.43, y:0.56, r:56, fill:"#fde6d8", stroke:"#e05c2a", text:"#7a351f", halo:"#e05c2a" },
+  { type:"concept", label:"Adaptation", x:0.57, y:0.56, r:56, fill:"#e3f0ed", stroke:"#3f6f67", text:"#315852", halo:"#3f6f67" },
+  { type:"concept", label:"Outcome", x:0.71, y:0.39, r:56, fill:"#e8e0f0", stroke:"#520671", text:"#3b2348", halo:"#520671" }
 ];
 
-const themeLinks = [[0,1],[1,2],[0,2]];
-const workflowLinks = [[3,4],[4,5],[5,6]];
+const flowLinks = [[3,4], [4,5], [5,6]];
+const domainLinks = [
+  [0,3], [0,4], [0,5], [0,6],
+  [1,3], [1,4], [1,5], [1,6],
+  [2,3], [2,4], [2,5], [2,6]
+];
 
 let t = 0;
 
-function drawTextBlock(text,x,y,maxWidth,lineHeight){
-  const lines=text.split("\n");
-  const startY=y-((lines.length-1)*lineHeight)/2;
-  lines.forEach((line,i)=>ctx.fillText(line,x,startY+i*lineHeight,maxWidth));
+function rgba(hex, alpha) {
+  const h = hex.replace("#", "");
+  const r = parseInt(h.substring(0, 2), 16);
+  const g = parseInt(h.substring(2, 4), 16);
+  const b = parseInt(h.substring(4, 6), 16);
+  return `rgba(${r}, ${g}, ${b}, ${alpha})`;
 }
 
-function drawBackground(width,height){
-  // Two large Venn-like conceptual fields: Themes and Workflow.
-  ctx.save();
-  ctx.globalAlpha = 1;
-
-  ctx.fillStyle = "rgba(82, 6, 113, 0.045)";
-  ctx.strokeStyle = "rgba(82, 6, 113, 0.12)";
-  ctx.lineWidth = 1.2;
-  ctx.beginPath();
-  ctx.ellipse(width*0.50, height*0.35, width*0.38, height*0.25, 0, 0, Math.PI*2);
-  ctx.fill();
-  ctx.stroke();
-
-  ctx.fillStyle = "rgba(224, 92, 42, 0.050)";
-  ctx.strokeStyle = "rgba(224, 92, 42, 0.14)";
-  ctx.lineWidth = 1.2;
-  ctx.beginPath();
-  ctx.ellipse(width*0.50, height*0.62, width*0.42, height*0.24, 0, 0, Math.PI*2);
-  ctx.fill();
-  ctx.stroke();
-
-  ctx.restore();
+function drawTextBlock(text, x, y, maxWidth, lineHeight) {
+  const lines = text.split("\n");
+  const startY = y - ((lines.length - 1) * lineHeight) / 2;
+  lines.forEach((line, index) => ctx.fillText(line, x, startY + index * lineHeight, maxWidth));
 }
 
-function drawDarkThemeLine(A,B){
-  const pulse=(Math.sin(t*0.025)+1)/2;
-  ctx.strokeStyle=`rgba(58,42,77,${0.35 + pulse*0.08})`;
-  ctx.lineWidth=1.8;
-  ctx.beginPath();
-  ctx.moveTo(A.px,A.py);
-  ctx.lineTo(B.px,B.py);
-  ctx.stroke();
-}
+function drawArrowLine(A, B, colorHex, alpha, width, pulseOffset) {
+  const angle = Math.atan2(B.py - A.py, B.px - A.px);
+  const startX = A.px + Math.cos(angle) * (A.r + 6);
+  const startY = A.py + Math.sin(angle) * (A.r + 6);
+  const endX = B.px - Math.cos(angle) * (B.r + 10);
+  const endY = B.py - Math.sin(angle) * (B.r + 10);
 
-function drawArrow(A,B,color,width,pulseOffset){
-  const angle=Math.atan2(B.py-A.py,B.px-A.px);
-  const startX=A.px+Math.cos(angle)*(A.r+6);
-  const startY=A.py+Math.sin(angle)*(A.r+6);
-  const endX=B.px-Math.cos(angle)*(B.r+10);
-  const endY=B.py-Math.sin(angle)*(B.r+10);
-
-  ctx.strokeStyle=color;
-  ctx.lineWidth=width;
+  ctx.strokeStyle = rgba(colorHex, alpha);
+  ctx.lineWidth = width;
   ctx.beginPath();
-  ctx.moveTo(startX,startY);
-  ctx.lineTo(endX,endY);
+  ctx.moveTo(startX, startY);
+  ctx.lineTo(endX, endY);
   ctx.stroke();
 
-  const head=9;
-  ctx.fillStyle=color;
+  const headLength = 9;
+  ctx.fillStyle = rgba(colorHex, alpha + 0.10);
   ctx.beginPath();
-  ctx.moveTo(endX,endY);
-  ctx.lineTo(endX-head*Math.cos(angle-Math.PI/6),endY-head*Math.sin(angle-Math.PI/6));
-  ctx.lineTo(endX-head*Math.cos(angle+Math.PI/6),endY-head*Math.sin(angle+Math.PI/6));
+  ctx.moveTo(endX, endY);
+  ctx.lineTo(endX - headLength * Math.cos(angle - Math.PI / 6), endY - headLength * Math.sin(angle - Math.PI / 6));
+  ctx.lineTo(endX - headLength * Math.cos(angle + Math.PI / 6), endY - headLength * Math.sin(angle + Math.PI / 6));
   ctx.closePath();
   ctx.fill();
 
-  const pulse=(Math.sin(t*0.04+pulseOffset)+1)/2;
-  const px=startX+(endX-startX)*pulse;
-  const py=startY+(endY-startY)*pulse;
+  const pulse = (Math.sin(t * 0.04 + pulseOffset) + 1) / 2;
+  const px = startX + (endX - startX) * pulse;
+  const py = startY + (endY - startY) * pulse;
+
+  ctx.fillStyle = rgba(colorHex, Math.min(alpha + 0.35, 0.88));
   ctx.beginPath();
-  ctx.arc(px,py,3.1,0,Math.PI*2);
+  ctx.arc(px, py, 3.2, 0, Math.PI * 2);
   ctx.fill();
 }
 
-function draw(){
-  ctx.clearRect(0,0,W,H);
+function drawSoftLine(A, B, alpha, pulseOffset) {
+  const pulse = (Math.sin(t * 0.032 + pulseOffset) + 1) / 2;
+  ctx.strokeStyle = rgba(palette.deepPurple, alpha + pulse * 0.035);
+  ctx.lineWidth = 0.8;
+  ctx.beginPath();
+  ctx.moveTo(A.px, A.py);
+  ctx.lineTo(B.px, B.py);
+  ctx.stroke();
+}
 
-  const width=canvas.clientWidth;
-  const height=canvas.clientHeight;
+function draw() {
+  ctx.clearRect(0, 0, W, H);
 
-  drawBackground(width,height);
+  const width = canvas.clientWidth;
+  const height = canvas.clientHeight;
 
-  const mapped=nodes.map(n=>({
+  let mapped = nodes.map(n => ({
     ...n,
-    px:n.x*width+Math.sin(t*0.005+n.x*10)*(n.group==="theme" ? 7 : 5),
-    py:n.y*height+Math.cos(t*0.007+n.y*10)*(n.group==="theme" ? 7 : 5)
+    px: n.x * width + Math.sin(t * 0.006 + n.x * 10) * (n.type === "domain" ? 11 : 7),
+    py: n.y * height + Math.cos(t * 0.008 + n.y * 10) * (n.type === "domain" ? 11 : 7)
   }));
 
-  // Only three structural lines between research themes.
-  themeLinks.forEach(([a,b])=>drawDarkThemeLine(mapped[a],mapped[b]));
+  // Integrated, subtle domain-to-process network.
+  domainLinks.forEach(([a,b], i) => drawSoftLine(mapped[a], mapped[b], 0.055, i));
 
-  // Only the central workflow has directional movement.
-  workflowLinks.forEach(([a,b],i)=>drawArrow(mapped[a],mapped[b],"rgba(224,92,42,0.78)",2.3,i*1.6));
+  // Process model remains the dominant directional pathway.
+  flowLinks.forEach(([a,b], i) => drawArrowLine(mapped[a], mapped[b], palette.orange, 0.52, 2.4, i * 1.7));
 
-  mapped.forEach((n,i)=>{
-    const glow=(Math.sin(t*0.024+i)+1)/2;
-    ctx.fillStyle=n.group==="theme" ? `rgba(82,6,113,${0.025+glow*0.025})` : `rgba(224,92,42,${0.020+glow*0.025})`;
+  mapped.forEach((n, i) => {
+    const glow = (Math.sin(t * 0.026 + i) + 1) / 2;
+    const haloAlpha = n.type === "domain" ? 0.040 + glow * 0.038 : 0.034 + glow * 0.040;
+
+    ctx.fillStyle = rgba(n.halo, haloAlpha);
     ctx.beginPath();
-    ctx.arc(n.px,n.py,n.r+12+glow*5,0,Math.PI*2);
+    ctx.arc(n.px, n.py, n.r + (n.type === "domain" ? 17 : 12) + glow * 7, 0, Math.PI * 2);
     ctx.fill();
 
-    ctx.fillStyle=n.fill;
-    ctx.strokeStyle=n.stroke;
-    ctx.lineWidth=n.group==="theme" ? 2.0 : 1.8;
+    ctx.fillStyle = n.fill;
+    ctx.strokeStyle = n.stroke;
+    ctx.lineWidth = n.type === "domain" ? 2.2 : 2.0;
     ctx.beginPath();
-    ctx.arc(n.px,n.py,n.r,0,Math.PI*2);
+    ctx.arc(n.px, n.py, n.r, 0, Math.PI * 2);
     ctx.fill();
     ctx.stroke();
 
-    ctx.fillStyle=n.text;
-    ctx.font=n.group==="theme" ? "13px DM Mono, monospace" : "14px DM Mono, monospace";
-    ctx.textAlign="center";
-    ctx.textBaseline="middle";
-    drawTextBlock(n.label,n.px,n.py,n.r*1.55,n.group==="theme" ? 17 : 18);
+    if (n.type === "domain") {
+      ctx.strokeStyle = rgba(n.stroke, 0.45);
+      ctx.lineWidth = 1.0;
+      ctx.beginPath();
+      ctx.arc(n.px, n.py, n.r - 5, 0, Math.PI * 2);
+      ctx.stroke();
+    }
+
+    ctx.fillStyle = n.text;
+    ctx.font = n.type === "domain" ? "13px DM Mono, monospace" : "14px DM Mono, monospace";
+    ctx.textAlign = "center";
+    ctx.textBaseline = "middle";
+    drawTextBlock(n.label, n.px, n.py, n.r * 1.58, n.type === "domain" ? 17 : 18);
   });
 
   t++;
