@@ -13,50 +13,69 @@
 <body>
 <div class="wrap"><canvas id="motion"></canvas></div>
 <script>
-const canvas=document.getElementById("motion");
-const ctx=canvas.getContext("2d");
+const canvas = document.getElementById("motion");
+const ctx = canvas.getContext("2d");
 let W,H,t=0;
 
-const palette={purple:"#520671",orange:"#e05c2a",grey:"#6e6c66",japanRed:"#bc002d",ukBlue:"#1f3f7a"};
+const palette = {
+  purple:"#520671",
+  grey:"#6e6c66",
+  japan:"#bc002d",
+  ukBlue:"#1f3f7a",
+  ukRed:"#c8102e"
+};
 
-function resize(){const r=canvas.getBoundingClientRect();W=canvas.width=r.width*devicePixelRatio;H=canvas.height=r.height*devicePixelRatio;ctx.setTransform(devicePixelRatio,0,0,devicePixelRatio,0,0);}resize();window.addEventListener("resize",resize);
+function resize(){
+  const r = canvas.getBoundingClientRect();
+  W = canvas.width = r.width * devicePixelRatio;
+  H = canvas.height = r.height * devicePixelRatio;
+  ctx.setTransform(devicePixelRatio,0,0,devicePixelRatio,0,0);
+}
+resize();
+window.addEventListener("resize", resize);
 
-function rgba(h,a){const x=h.replace("#","");return `rgba(${parseInt(x.substr(0,2),16)},${parseInt(x.substr(2,2),16)},${parseInt(x.substr(4,2),16)},${a})`;}
+function rgba(h,a){
+  const x=h.replace("#","");
+  return `rgba(${parseInt(x.substr(0,2),16)},${parseInt(x.substr(2,2),16)},${parseInt(x.substr(4,2),16)},${a})`;
+}
 
-// persistent network
-const netNodes=[];
-for(let i=0;i<22;i++){
-  netNodes.push({x:Math.random(),y:Math.random()});
+/* --- Curved research network --- */
+const nodes=[];
+for(let i=0;i<18;i++){
+  nodes.push({x:Math.random(),y:Math.random(),phase:Math.random()*6.28});
 }
 
 function drawNetwork(w,h){
-  netNodes.forEach((a,i)=>{
-    netNodes.forEach((b,j)=>{
+  nodes.forEach((a,i)=>{
+    nodes.forEach((b,j)=>{
       if(i<j){
         const dx=(a.x-b.x)*w;
         const dy=(a.y-b.y)*h;
         const d=Math.sqrt(dx*dx+dy*dy);
         if(d<140){
-          ctx.strokeStyle=rgba(palette.grey,0.06);
-          ctx.lineWidth=0.6;
+          const mx=(a.x+b.x)/2 + Math.sin(t*0.01+a.phase)*0.02;
+          const my=(a.y+b.y)/2 + Math.cos(t*0.01+b.phase)*0.02;
+          ctx.strokeStyle = rgba(palette.grey,0.06);
+          ctx.lineWidth = 0.6;
           ctx.beginPath();
           ctx.moveTo(a.x*w,a.y*h);
-          ctx.lineTo(b.x*w,b.y*h);
+          ctx.quadraticCurveTo(mx*w,my*h,b.x*w,b.y*h);
           ctx.stroke();
         }
       }
     });
   });
 
-  netNodes.forEach(n=>{
-    ctx.fillStyle=rgba(palette.grey,0.14);
+  nodes.forEach(n=>{
+    ctx.fillStyle = rgba(palette.grey,0.12);
     ctx.beginPath();
-    ctx.arc(n.x*w,n.y*h,1.5,0,Math.PI*2);
+    ctx.arc(n.x*w,n.y*h,1.4,0,Math.PI*2);
     ctx.fill();
   });
 }
 
-function pathPoints(w,h){
+/* --- Path --- */
+function path(w,h){
   return [
     {x:w*0.15,y:h*0.6},
     {x:w*0.3,y:h*0.25},
@@ -66,39 +85,67 @@ function pathPoints(w,h){
   ];
 }
 
-function interp(points,p){
-  const total=points.length-1;
-  const raw=p*total;
-  const i=Math.min(Math.floor(raw),total-1);
-  const local=raw-i;
-  const A=points[i],B=points[i+1];
-  return {x:A.x+(B.x-A.x)*local,y:A.y+(B.y-A.y)*local};
+function interp(p,pts){
+  const n=pts.length-1;
+  const raw=p*n;
+  const i=Math.floor(raw);
+  const f=raw-i;
+  const A=pts[i],B=pts[i+1];
+  return {x:A.x+(B.x-A.x)*f,y:A.y+(B.y-A.y)*f};
 }
 
-function drawOrb(x,y,r,color){
-  ctx.fillStyle=rgba(color,0.12);
-  ctx.beginPath();ctx.arc(x,y,r+10,0,Math.PI*2);ctx.fill();
+/* --- UK --- */
+function drawUK(x,y,r){
+  ctx.fillStyle=rgba(palette.ukBlue,0.1);
+  ctx.beginPath();ctx.arc(x,y,r+10,0,6.28);ctx.fill();
+
+  ctx.save();
+  ctx.beginPath();ctx.arc(x,y,r,0,6.28);ctx.clip();
+
+  ctx.fillStyle=palette.ukBlue;
+  ctx.fillRect(x-r,y-r,r*2,r*2);
+
+  ctx.strokeStyle="#fff";
+  ctx.lineWidth=r*0.35;
+  ctx.beginPath();
+  ctx.moveTo(x-r,y-r);ctx.lineTo(x+r,y+r);
+  ctx.moveTo(x+r,y-r);ctx.lineTo(x-r,y+r);
+  ctx.stroke();
+
+  ctx.strokeStyle=palette.ukRed;
+  ctx.lineWidth=r*0.18;
+  ctx.beginPath();
+  ctx.moveTo(x-r,y-r);ctx.lineTo(x+r,y+r);
+  ctx.moveTo(x+r,y-r);ctx.lineTo(x-r,y+r);
+  ctx.stroke();
+
+  ctx.restore();
+}
+
+/* --- Japan --- */
+function drawJP(x,y,r){
+  ctx.fillStyle=rgba(palette.japan,0.1);
+  ctx.beginPath();ctx.arc(x,y,r+10,0,6.28);ctx.fill();
 
   ctx.fillStyle="#fff";
-  ctx.strokeStyle=color;
+  ctx.strokeStyle=palette.japan;
   ctx.lineWidth=1.5;
-  ctx.beginPath();ctx.arc(x,y,r,0,Math.PI*2);ctx.fill();ctx.stroke();
+  ctx.beginPath();ctx.arc(x,y,r,0,6.28);ctx.fill();ctx.stroke();
 
-  ctx.fillStyle=color;
-  ctx.beginPath();ctx.arc(x,y,r*0.4,0,Math.PI*2);ctx.fill();
+  ctx.fillStyle=palette.japan;
+  ctx.beginPath();ctx.arc(x,y,r*0.42,0,6.28);ctx.fill();
 }
 
+/* --- MAIN --- */
 function draw(){
-  const w=canvas.clientWidth;
-  const h=canvas.clientHeight;
+  const w=canvas.clientWidth,h=canvas.clientHeight;
   ctx.clearRect(0,0,W,H);
 
   drawNetwork(w,h);
 
-  const pts=pathPoints(w,h);
+  const pts=path(w,h);
 
   ctx.strokeStyle=rgba(palette.purple,0.2);
-  ctx.lineWidth=1.2;
   ctx.beginPath();
   ctx.moveTo(pts[0].x,pts[0].y);
   pts.forEach(p=>ctx.lineTo(p.x,p.y));
@@ -107,16 +154,15 @@ function draw(){
   const p1=(Math.sin(t*0.01)+1)/2;
   const p2=(Math.sin(t*0.01+Math.PI)+1)/2;
 
-  const uk=interp(pts,p1);
-  const jp=interp(pts,p2);
+  const a=interp(p1,pts);
+  const b=interp(p2,pts);
 
-  drawOrb(uk.x,uk.y,22,palette.ukBlue);
-  drawOrb(jp.x,jp.y,22,palette.japanRed);
+  drawUK(a.x,a.y,22);
+  drawJP(b.x,b.y,22);
 
   t++;
   requestAnimationFrame(draw);
 }
-
 draw();
 </script>
 </body>
