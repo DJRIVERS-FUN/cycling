@@ -1,5 +1,5 @@
 {
-  "generated_utc": "2026-05-03T19:05:28Z",
+  "generated_utc": "2026-05-04T03:34:44Z",
   "model": "Cycling behavioural regulation micro-dashboard",
   "window_days": {
     "short": 7,
@@ -10,32 +10,32 @@
     "load_state": "light",
     "context_balance": {
       "indoor": 0,
-      "outdoor": 12
+      "outdoor": 11
     },
     "seven_day": {
-      "distance_km": 42.7,
-      "moving_h": 2.1,
-      "elevation_m": 926.0,
-      "ride_count": 2
+      "distance_km": 18.1,
+      "moving_h": 0.8,
+      "elevation_m": 289.0,
+      "ride_count": 1
     },
     "thirty_day": {
-      "distance_km": 405.3,
-      "moving_h": 18.4,
-      "elevation_m": 5443.0,
-      "ride_count": 12,
-      "mean_power_w": 199.7,
-      "mean_cadence_rpm": 78.5,
-      "mean_speed_kph": 22.7
+      "distance_km": 387.4,
+      "moving_h": 17.7,
+      "elevation_m": 5228.0,
+      "ride_count": 11,
+      "mean_power_w": 200.3,
+      "mean_cadence_rpm": 78.3,
+      "mean_speed_kph": 22.6
     }
   },
   "weekly_series": [
     {
       "week_start": "2026-02-09",
-      "distance_km": 76.6,
-      "moving_h": 2.3,
-      "elevation_m": 177.0,
-      "ride_count": 4,
-      "indoor_count": 4,
+      "distance_km": 51.7,
+      "moving_h": 1.6,
+      "elevation_m": 138.0,
+      "ride_count": 2,
+      "indoor_count": 2,
       "outdoor_count": 0
     },
     {
@@ -139,19 +139,6 @@
     }
   ],
   "recent_rides": [
-    {
-      "date": "2026-04-03",
-      "datetime": "2026-04-03T14:04:36+00:00",
-      "name": "04/03/2026 Road Ride",
-      "type": "Ride",
-      "is_indoor": false,
-      "distance_km": 17.85,
-      "moving_h": 0.759,
-      "elevation_m": 215.0,
-      "avg_speed_kph": 23.5,
-      "avg_power_w": 193.0,
-      "avg_cadence_rpm": 80.4
-    },
     {
       "date": "2026-04-04",
       "datetime": "2026-04-04T08:12:07+00:00",
@@ -297,14 +284,6 @@
     }
   ],
   "power_cadence": [
-    {
-      "date": "2026-04-03",
-      "name": "04/03/2026 Road Ride",
-      "power_w": 193.0,
-      "cadence_rpm": 80.4,
-      "distance_km": 17.85,
-      "context": "Outdoor"
-    },
     {
       "date": "2026-04-04",
       "name": "04/04/2026 Shirotai",
