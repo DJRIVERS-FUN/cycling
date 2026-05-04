@@ -37,7 +37,6 @@
     color: #520671;
     font-size: 20px;
     font-weight: 700;
-    letter-spacing: 0;
   }
 
   .subtitle {
@@ -66,7 +65,7 @@
   <canvas id="pulse"></canvas>
 
   <div class="title">Hakodate Systems Pulse</div>
-  <div class="subtitle">Learning · Communication · Cycling · Data · Human–Machine Systems</div>
+  <div class="subtitle">Learning · Communication · Human–Machine Systems</div>
 
   <div class="footer">
     A visual model of behaviour as a dynamic system shaped by place, technology, information, and adaptation.
@@ -89,18 +88,15 @@ resize();
 window.addEventListener("resize", resize);
 
 const nodes = [
-  { label: "Educational\nPsychology\nand Learning\nSystems", x: 0.50, y: 0.20, r: 92, color: "#520671" },
-  { label: "Language\nand Media\nCommunication\nSystems", x: 0.18, y: 0.50, r: 92, color: "#7c4dff" },
-  { label: "Human–Machine\nSystems", x: 0.82, y: 0.50, r: 92, color: "#26a69a" },
-  { label: "Cycling\nBehaviour", x: 0.30, y: 0.84, r: 70, color: "#42a5f5" },
-  { label: "Data\nTraces", x: 0.70, y: 0.84, r: 70, color: "#9575cd" },
-  { label: "Education\nand Research", x: 0.50, y: 0.56, r: 86, color: "#ab47bc" }
+  { label: "Educational\nPsychology\nand Learning\nSystems", x: 0.50, y: 0.18, r: 95, color: "#520671" },
+  { label: "Language\nand Media\nCommunication\nSystems", x: 0.20, y: 0.55, r: 95, color: "#7c4dff" },
+  { label: "Human–Machine\nSystems", x: 0.80, y: 0.55, r: 95, color: "#26a69a" },
+  { label: "Education\nand Research", x: 0.50, y: 0.60, r: 90, color: "#ab47bc" }
 ];
 
 const links = [
-  [0,1], [0,2], [0,5],
-  [1,5], [2,5], [5,3],
-  [5,4], [3,4], [1,3], [2,4]
+  [0,1], [0,2], [0,3],
+  [1,3], [2,3]
 ];
 
 let t = 0;
@@ -125,13 +121,12 @@ function draw() {
     py: n.y * height + Math.cos(t * 0.010 + n.y * 10) * 18
   }));
 
-  // Gentle repulsion to keep large nodes readable.
   for (let i = 0; i < mapped.length; i++) {
     for (let j = i + 1; j < mapped.length; j++) {
       let dx = mapped[j].px - mapped[i].px;
       let dy = mapped[j].py - mapped[i].py;
       let dist = Math.sqrt(dx * dx + dy * dy) || 1;
-      let minDist = mapped[i].r + mapped[j].r + 26;
+      let minDist = mapped[i].r + mapped[j].r + 30;
 
       if (dist < minDist) {
         let angle = Math.atan2(dy, dx);
@@ -151,7 +146,7 @@ function draw() {
     const B = mapped[b];
     const pulse = (Math.sin(t * 0.035 + i) + 1) / 2;
 
-    ctx.strokeStyle = `rgba(82, 6, 113, ${0.10 + pulse * 0.22})`;
+    ctx.strokeStyle = `rgba(82, 6, 113, ${0.12 + pulse * 0.22})`;
     ctx.beginPath();
     ctx.moveTo(A.px, A.py);
     ctx.lineTo(B.px, B.py);
@@ -160,33 +155,34 @@ function draw() {
     const px = A.px + (B.px - A.px) * pulse;
     const py = A.py + (B.py - A.py) * pulse;
 
-    ctx.fillStyle = "rgba(82, 6, 113, 0.62)";
+    ctx.fillStyle = "rgba(82, 6, 113, 0.6)";
     ctx.beginPath();
-    ctx.arc(px, py, 3.4, 0, Math.PI * 2);
+    ctx.arc(px, py, 3.5, 0, Math.PI * 2);
     ctx.fill();
   });
 
   mapped.forEach((n, i) => {
     const glow = (Math.sin(t * 0.030 + i) + 1) / 2;
 
-    ctx.fillStyle = `rgba(82, 6, 113, ${0.035 + glow * 0.045})`;
+    ctx.fillStyle = `rgba(82, 6, 113, ${0.04 + glow * 0.05})`;
     ctx.beginPath();
-    ctx.arc(n.px, n.py, n.r + 16 + glow * 8, 0, Math.PI * 2);
+    ctx.arc(n.px, n.py, n.r + 18 + glow * 8, 0, Math.PI * 2);
     ctx.fill();
 
     ctx.fillStyle = n.color;
     ctx.strokeStyle = "#ffffff";
-    ctx.lineWidth = 2.4;
+    ctx.lineWidth = 2.5;
+
     ctx.beginPath();
     ctx.arc(n.px, n.py, n.r, 0, Math.PI * 2);
     ctx.fill();
     ctx.stroke();
 
     ctx.fillStyle = "#ffffff";
-    ctx.font = "13px DM Mono, monospace";
+    ctx.font = "14px DM Mono, monospace";
     ctx.textAlign = "center";
     ctx.textBaseline = "middle";
-    drawTextBlock(n.label, n.px, n.py, n.r * 1.65, 17);
+    drawTextBlock(n.label, n.px, n.py, n.r * 1.6, 18);
   });
 
   t++;
