@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -23,11 +22,11 @@ const nodes=[
 {type:"domain",label:"Language\nand Media\nCommunication\nSystems",x:0.18,y:0.55,r:90,fill:"#ffffff",stroke:"#e05c2a",text:"#6e3a27",halo:"#e05c2a"},
 {type:"domain",label:"Human–Machine\nSystems",x:0.82,y:0.55,r:90,fill:"#ffffff",stroke:"#3f6f67",text:"#315852",halo:"#3f6f67"},
 
-/* nudged up slightly */
-{type:"concept",label:"Constraint",x:0.29,y:0.37,r:56,fill:"#eeeeec",stroke:"#6e6c66",text:"#4f4d49",halo:"#6e6c66"},
+/* Constraint and Outcome moved up between research themes */
+{type:"concept",label:"Constraint",x:0.29,y:0.32,r:56,fill:"#eeeeec",stroke:"#6e6c66",text:"#4f4d49",halo:"#6e6c66"},
 {type:"concept",label:"Behaviour",x:0.43,y:0.54,r:56,fill:"#fde6d8",stroke:"#e05c2a",text:"#7a351f",halo:"#e05c2a"},
 {type:"concept",label:"Adaptation",x:0.57,y:0.54,r:56,fill:"#e3f0ed",stroke:"#3f6f67",text:"#315852",halo:"#3f6f67"},
-{type:"concept",label:"Outcome",x:0.71,y:0.37,r:56,fill:"#e8e0f0",stroke:"#520671",text:"#3b2348",halo:"#520671"}
+{type:"concept",label:"Outcome",x:0.71,y:0.32,r:56,fill:"#e8e0f0",stroke:"#520671",text:"#3b2348",halo:"#520671"}
 ];
 
 const flowLinks=[[3,4],[4,5],[5,6]];
@@ -60,7 +59,7 @@ ctx.fillStyle=rgba(n.halo,n.type==="domain"?0.035+g*0.03:0.03+g*0.03);
 ctx.beginPath();ctx.arc(n.px,n.py,n.r+(n.type==="domain"?16:12)+g*6,0,Math.PI*2);ctx.fill();
 ctx.fillStyle=n.fill;ctx.strokeStyle=n.stroke;ctx.lineWidth=n.type==="domain"?2:1.8;
 ctx.beginPath();ctx.arc(n.px,n.py,n.r,0,Math.PI*2);ctx.fill();ctx.stroke();
-ctx.fillStyle=n.text;ctx.font=n.type==="domain"?"13px DM Mono":"14px DM Mono";ctx.textAlign="center";ctx.textBaseline="middle";
+ctx.fillStyle=n.text;ctx.font=n.type==="domain"?"13px DM Mono, monospace":"14px DM Mono, monospace";ctx.textAlign="center";ctx.textBaseline="middle";
 drawTextBlock(n.label,n.px,n.py,n.r*1.5,n.type==="domain"?17:18);
 });
 
