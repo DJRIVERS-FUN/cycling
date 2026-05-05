@@ -1,0 +1,283 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Homepage Systems Feature</title>
+<style>
+html, body {
+  margin:0;
+  padding:0;
+  background:#ffffff;
+  font-family:Arial, sans-serif;
+  color:#6e6c66;
+}
+.rivers-home-feature {
+  max-width:1000px;
+  margin:0 auto;
+  padding:0;
+  box-sizing:border-box;
+}
+.rivers-topline {
+  display:flex;
+  justify-content:space-between;
+  gap:12px;
+  align-items:flex-start;
+  margin-bottom:14px;
+}
+.rivers-kicker {
+  font-family:"DM Mono", monospace;
+  font-size:13px;
+  color:#520671;
+}
+.rivers-status {
+  font-family:"DM Mono", monospace;
+  font-size:12px;
+  color:#9a9890;
+  text-align:right;
+}
+.rivers-title {
+  font-family:"DM Mono", monospace;
+  font-size:24px;
+  line-height:1.15;
+  color:#520671;
+  margin-bottom:10px;
+}
+.rivers-statement {
+  font-size:16px;
+  line-height:1.35;
+  max-width:880px;
+  margin-bottom:16px;
+}
+.rivers-strip {
+  display:grid;
+  grid-template-columns:repeat(3, 1fr);
+  gap:8px;
+  margin-bottom:16px;
+}
+.rivers-strip-card {
+  border:1px solid #e6e2de;
+  border-radius:8px;
+  background:#ffffff;
+  padding:11px 12px;
+  font-size:13px;
+  line-height:1.35;
+}
+.rivers-strip-card span {
+  display:block;
+  font-family:"DM Mono", monospace;
+  color:#520671;
+  font-size:11px;
+  margin-bottom:4px;
+}
+.rivers-main {
+  display:grid;
+  grid-template-columns:1.1fr 0.9fr;
+  gap:10px;
+  margin-bottom:16px;
+}
+.rivers-model {
+  display:grid;
+  grid-template-columns:1fr;
+  gap:8px;
+}
+.rivers-step {
+  border:1px solid #e6e2de;
+  border-radius:8px;
+  padding:11px 12px;
+  transition:all 0.2s ease;
+  cursor:pointer;
+}
+.rivers-step:hover,
+.rivers-step.active {
+  border-color:#520671;
+  background:#f7f3fa;
+  transform:translateY(-1px);
+}
+.rivers-step-title {
+  font-family:"DM Mono", monospace;
+  color:#520671;
+  font-size:14px;
+  margin-bottom:4px;
+}
+.rivers-step-text {
+  font-size:13px;
+  line-height:1.3;
+}
+.rivers-detail {
+  border:1px solid #e6e2de;
+  border-radius:8px;
+  padding:14px;
+  background:#faf8fb;
+  min-height:260px;
+}
+.rivers-detail-title {
+  font-family:"DM Mono", monospace;
+  color:#520671;
+  font-size:15px;
+  margin-bottom:8px;
+}
+.rivers-detail-body {
+  font-size:14px;
+  line-height:1.4;
+}
+.rivers-domain-row {
+  display:grid;
+  grid-template-columns:repeat(3, 1fr);
+  gap:8px;
+  margin-top:14px;
+}
+.rivers-domain-row a {
+  display:block;
+  border:1px solid #e6e2de;
+  border-radius:8px;
+  padding:12px;
+  color:#6e6c66;
+  text-decoration:none;
+  font-size:13px;
+  line-height:1.35;
+  transition:all 0.2s ease;
+}
+.rivers-domain-row a:hover {
+  border-color:#520671;
+  background:#f7f3fa;
+  transform:translateY(-2px);
+}
+.rivers-domain-row span {
+  display:block;
+  font-family:"DM Mono", monospace;
+  color:#520671;
+  font-size:12px;
+  margin-bottom:5px;
+}
+@media (max-width:760px) {
+  .rivers-topline,
+  .rivers-main {
+    display:block;
+  }
+  .rivers-status {
+    text-align:left;
+    margin-top:4px;
+  }
+  .rivers-strip,
+  .rivers-domain-row {
+    grid-template-columns:1fr;
+  }
+  .rivers-title {
+    font-size:21px;
+  }
+  .rivers-detail {
+    margin-top:8px;
+    min-height:auto;
+  }
+}
+</style>
+</head>
+<body>
+<div class="rivers-home-feature">
+  <div class="rivers-topline">
+    <div class="rivers-kicker">Damian Rivers · Future University Hakodate</div>
+    <div class="rivers-status" id="statusText">Systems interface active</div>
+  </div>
+  <div class="rivers-title">Data-driven research on behavioural regulation</div>
+  <div class="rivers-statement">
+    This site functions as an active interface to research on how people regulate behaviour under cognitive, informational, and mechanical constraints.
+  </div>
+  <div class="rivers-strip">
+    <div class="rivers-strip-card">
+      <span>Framework</span>
+      Constraint → Behaviour → Adaptation → Outcome
+    </div>
+    <div class="rivers-strip-card">
+      <span>Domains</span>
+      Learning · Language/media · Human–machine systems
+    </div>
+    <div class="rivers-strip-card" id="rideCard">
+      <span>Live data</span>
+      Loading cycling data stream…
+    </div>
+  </div>
+  <div class="rivers-main">
+    <div class="rivers-model">
+      <div class="rivers-step active" data-title="Constraint" data-body="Constraints define the structure of possible action. In learning systems, they include tasks, assessment conditions, time pressure, and prior knowledge. In media systems, they include information environments and credibility cues. In cycling systems, they include terrain, resistance, drivetrain configuration, and environmental conditions.">
+        <div class="rivers-step-title">01 · Constraint</div>
+        <div class="rivers-step-text">What structures action?</div>
+      </div>
+      <div class="rivers-step" data-title="Behaviour" data-body="Behaviour is the observable response produced within those constraints. This may include studying, monitoring comprehension, evaluating information, responding to media, selecting gears, regulating cadence, or distributing effort over time.">
+        <div class="rivers-step-title">02 · Behaviour</div>
+        <div class="rivers-step-text">What does the person do?</div>
+      </div>
+      <div class="rivers-step" data-title="Adaptation" data-body="Adaptation describes how behaviour changes as the system changes. Learners adjust strategies, readers update interpretations, and cyclists alter cadence, pacing, and gear selection in response to feedback and changing task demands.">
+        <div class="rivers-step-title">03 · Adaptation</div>
+        <div class="rivers-step-text">How does behaviour change?</div>
+      </div>
+      <div class="rivers-step" data-title="Outcome" data-body="Outcomes are the measurable traces produced by regulated behaviour. These include academic achievement, belief formation, participation patterns, performance efficiency, fatigue management, and variability across conditions.">
+        <div class="rivers-step-title">04 · Outcome</div>
+        <div class="rivers-step-text">What becomes visible?</div>
+      </div>
+    </div>
+    <div class="rivers-detail">
+      <div class="rivers-detail-title" id="detailTitle">Constraint</div>
+      <div class="rivers-detail-body" id="detailBody">
+        Constraints define the structure of possible action. In learning systems, they include tasks, assessment conditions, time pressure, and prior knowledge. In media systems, they include information environments and credibility cues. In cycling systems, they include terrain, resistance, drivetrain configuration, and environmental conditions.
+      </div>
+      <div class="rivers-domain-row">
+        <a href="https://www.damianrivers.com/lab/learning-system/" target="_parent">
+          <span>Learning</span>
+          Self-regulated learning and metacognition.
+        </a>
+        <a href="https://www.damianrivers.com/lab/language-system/" target="_parent">
+          <span>Language</span>
+          Media interpretation and information response.
+        </a>
+        <a href="https://www.damianrivers.com/lab/machine-system/" target="_parent">
+          <span>Machine</span>
+          Cycling telemetry and human–machine regulation.
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+(function () {
+  var steps = document.querySelectorAll(".rivers-step");
+  var title = document.getElementById("detailTitle");
+  var body = document.getElementById("detailBody");
+  steps.forEach(function (step) {
+    step.addEventListener("click", function () {
+      steps.forEach(function (s) { s.classList.remove("active"); });
+      step.classList.add("active");
+      title.textContent = step.getAttribute("data-title");
+      body.textContent = step.getAttribute("data-body");
+      sendHeight();
+    });
+  });
+  fetch("https://djrivers-fun.github.io/cycling/data/research_summary.json")
+    .then(function (response) { return response.json(); })
+    .then(function (data) {
+      var latest = data.latest_ride || {};
+      var rideName = latest.name || "Latest ride data available";
+      document.getElementById("rideCard").innerHTML = "<span>Live data</span>" + rideName;
+      document.getElementById("statusText").textContent = "Updated from GitHub Pages data stream";
+      sendHeight();
+    })
+    .catch(function () {
+      document.getElementById("rideCard").innerHTML = "<span>Live data</span> Cycling systems data stream available";
+      document.getElementById("statusText").textContent = "Static mode";
+      sendHeight();
+    });
+  function sendHeight() {
+    var height = document.documentElement.scrollHeight;
+    parent.postMessage({
+      type: "resize",
+      source: "rivers-homepage-feature",
+      height: height
+    }, "*");
+  }
+  window.addEventListener("load", sendHeight);
+  window.addEventListener("resize", sendHeight);
+  setTimeout(sendHeight, 300);
+})();
+</script>
+</body>
+</html>
