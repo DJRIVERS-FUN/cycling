@@ -115,6 +115,13 @@
     height: 246px;
   }
 
+  .sensor-note {
+    margin-top: 6px;
+    font-size: 10px;
+    line-height: 1.3;
+    color: var(--muted);
+  }
+
   .footer-note {
     margin-top: 6px;
     font-size: 10.5px;
@@ -162,6 +169,7 @@
       <div class="panel">
         <div class="panel-title">B. Power–cadence regulation space</div>
         <div id="scatter" class="plot"></div>
+        <div id="sensorNote" class="sensor-note"></div>
       </div>
     </section>
 
@@ -267,6 +275,11 @@
       }, { displayModeBar: false, responsive: true });
 
       const latest = d.latest_ride || {};
+
+      if (latest.avg_power_w === null || latest.avg_cadence_rpm === null) {
+        document.getElementById('sensorNote').textContent = `Latest ride (${latest.name || 'recent ride'}) included in load summary but excluded from the power–cadence plot because sensor data were unavailable.`;
+      }
+
       document.getElementById('footerNote').textContent = `Generated ${d.generated_utc} · Latest: ${latest.name || '—'}`;
     })
     .catch(function (err) {
