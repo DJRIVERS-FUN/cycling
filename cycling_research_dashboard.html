@@ -30,70 +30,74 @@
     width: 100%;
     max-width: 1000px;
     margin: 0 auto;
-    padding: 0 0 8px 0;
+    padding: 2px 0 6px 0;
   }
 
   .eyebrow {
     font-family: 'DM Mono', monospace;
-    font-size: 13px;
+    font-size: 12px;
     font-weight: 500;
-    letter-spacing: 0.04em;
+    letter-spacing: 0.035em;
     text-transform: uppercase;
     color: var(--purple);
-    margin: 0 0 2px 0;
+    margin: 0 0 3px 0;
+    line-height: 1.25;
   }
 
   .subtitle {
-    font-size: 14px;
-    line-height: 1.35;
+    font-size: 13px;
+    line-height: 1.32;
     color: var(--text);
-    margin: 0 0 10px 0;
+    margin: 0 0 13px 0;
+    max-width: 760px;
   }
 
   .cards {
     display: grid;
     grid-template-columns: repeat(4, minmax(0, 1fr));
-    gap: 8px;
-    margin: 0 0 12px 0;
+    gap: 14px;
+    margin: 0 0 16px 0;
   }
 
   .card {
     border-top: 1px solid var(--line);
-    padding: 8px 0 4px 0;
-    min-height: 46px;
+    padding: 9px 0 3px 0;
+    min-height: 48px;
   }
 
   .card-label {
     font-family: 'DM Mono', monospace;
-    font-size: 11px;
+    font-size: 10.5px;
     color: var(--muted);
     text-transform: uppercase;
-    letter-spacing: 0.03em;
-    margin-bottom: 2px;
+    letter-spacing: 0.035em;
+    margin-bottom: 3px;
+    line-height: 1.2;
   }
 
   .card-value {
-    font-size: 20px;
+    font-size: 21px;
     font-weight: 500;
     color: var(--purple);
-    line-height: 1.1;
+    line-height: 1.05;
   }
 
   .card-note {
-    font-size: 11px;
+    font-size: 10.5px;
     color: var(--muted);
-    margin-top: 2px;
+    margin-top: 3px;
+    line-height: 1.25;
   }
 
   .grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 12px;
+    gap: 18px;
   }
 
   .panel {
     border-top: 1px solid var(--line);
-    padding-top: 8px;
+    padding-top: 9px;
   }
 
   .panel-title {
@@ -101,20 +105,22 @@
     color: var(--purple);
     text-transform: uppercase;
     letter-spacing: 0.04em;
-    font-size: 12px;
-    margin-bottom: 4px;
+    font-size: 11.5px;
+    margin-bottom: 6px;
+    line-height: 1.2;
   }
 
   .plot {
     width: 100%;
-    height: 260px;
+    height: 246px;
   }
 
   .footer-note {
-    margin-top: 8px;
-    font-size: 11px;
+    margin-top: 6px;
+    font-size: 10.5px;
     color: var(--muted);
     text-align: right;
+    line-height: 1.25;
   }
 
   a, a:visited {
@@ -128,10 +134,11 @@
   }
 
   @media (max-width: 760px) {
-    .cards { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-    .grid { grid-template-columns: 1fr; }
-    .plot { height: 240px; }
-    .card-value { font-size: 18px; }
+    .cards { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+    .grid { grid-template-columns: 1fr; gap: 14px; }
+    .plot { height: 230px; }
+    .card-value { font-size: 19px; }
+    .subtitle { font-size: 12.5px; }
   }
 </style>
 </head>
@@ -172,8 +179,8 @@
   const baseLayout = {
     paper_bgcolor: '#ffffff',
     plot_bgcolor: '#ffffff',
-    margin: { l: 42, r: 12, t: 8, b: 42 },
-    font: { family: 'DM Sans, Arial, sans-serif', size: 11, color: text },
+    margin: { l: 40, r: 10, t: 6, b: 38 },
+    font: { family: 'DM Sans, Arial, sans-serif', size: 10.5, color: text },
     xaxis: {
       showgrid: false,
       zeroline: false,
@@ -224,7 +231,7 @@
       }], {
         ...baseLayout,
         xaxis: { ...baseLayout.xaxis, type: 'date' },
-        yaxis: { ...baseLayout.yaxis, type: 'linear', title: { text: 'hours', font: { size: 11, color: muted } } }
+        yaxis: { ...baseLayout.yaxis, type: 'linear', title: { text: 'hours', font: { size: 10.5, color: muted } } }
       }, { displayModeBar: false, responsive: true });
 
       const indoor = d.power_cadence.filter(function (p) { return p.context === 'Indoor'; });
@@ -254,9 +261,9 @@
       ], {
         ...baseLayout,
         showlegend: true,
-        legend: { orientation: 'h', x: 0, y: 1.12, font: { size: 10, color: muted } },
-        xaxis: { ...baseLayout.xaxis, type: 'linear', title: { text: 'cadence (rpm)', font: { size: 11, color: muted } } },
-        yaxis: { ...baseLayout.yaxis, type: 'linear', title: { text: 'power (W)', font: { size: 11, color: muted } } }
+        legend: { orientation: 'h', x: 0, y: 1.13, font: { size: 10, color: muted } },
+        xaxis: { ...baseLayout.xaxis, type: 'linear', title: { text: 'cadence (rpm)', font: { size: 10.5, color: muted } } },
+        yaxis: { ...baseLayout.yaxis, type: 'linear', title: { text: 'power (W)', font: { size: 10.5, color: muted } } }
       }, { displayModeBar: false, responsive: true });
 
       const latest = d.latest_ride || {};
