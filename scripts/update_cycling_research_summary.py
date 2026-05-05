@@ -1,12 +1,14 @@
 #!/usr/bin/env python3
-"""Generate data/cycling_research_summary.json from the Strava API.
+"""Generate Strava-backed data files for the cycling dashboard and footer.
 
 Required environment variables:
   STRAVA_CLIENT_ID
   STRAVA_CLIENT_SECRET
   STRAVA_REFRESH_TOKEN
 
-The output schema is intentionally matched to cycling_research_dashboard.html.
+Outputs:
+  data/cycling_research_summary.json
+  data/strava_footer.json
 """
 
 from __future__ import annotations
@@ -23,7 +25,8 @@ from urllib.parse import urlencode
 from urllib.request import Request, urlopen
 
 ROOT = Path(__file__).resolve().parents[1]
-OUTFILE = ROOT / "data" / "cycling_research_summary.json"
+DASHBOARD_OUTFILE = ROOT / "data" / "cycling_research_summary.json"
+FOOTER_OUTFILE = ROOT / "data" / "strava_footer.json"
 TOKEN_URL = "https://www.strava.com/oauth/token"
 ACTIVITIES_URL = "https://www.strava.com/api/v3/athlete/activities"
 
@@ -145,19 +148,21 @@ def week_start(date_value: datetime) -> str:
     return (d - timedelta(days=d.weekday())).isoformat()
 
 
+def average(values: list[float | None], digits: int = 1) -> float | None:
+    clean = [v for v in values if v is not None]
+    return round(sum(clean) / len(clean), digits) if clean else None
+
+
 def sum_window(rides: list[Ride], since: datetime) -> dict[str, Any]:
     items = [r for r in rides if parse_start(r.datetime) >= since]
-    power_values = [r.avg_power_w for r in items if r.avg_power_w is not None]
-    cadence_values = [r.avg_cadence_rpm for r in items if r.avg_cadence_rpm is not None]
-    speed_values = [r.avg_speed_kph for r in items if r.avg_speed_kph is not None]
     return {
         "distance_km": round(sum(r.distance_km for r in items), 1),
         "moving_h": round(sum(r.moving_h for r in items), 1),
         "elevation_m": round(sum(r.elevation_m for r in items), 1),
         "ride_count": len(items),
-        "mean_power_w": round(sum(power_values) / len(power_values), 1) if power_values else None,
-        "mean_cadence_rpm": round(sum(cadence_values) / len(cadence_values), 1) if cadence_values else None,
-        "mean_speed_kph": round(sum(speed_values) / len(speed_values), 1) if speed_values else None,
+        "mean_power_w": average([r.avg_power_w for r in items]),
+        "mean_cadence_rpm": average([r.avg_cadence_rpm for r in items]),
+        "mean_speed_kph": average([r.avg_speed_kph for r in items]),
     }
 
 
@@ -204,13 +209,15 @@ def asdict_ride(ride: Ride) -> dict[str, Any]:
     }
 
 
-def main() -> int:
-    token = get_access_token()
-    raw = fetch_activities(token)
-    rides = [r for a in raw if (r := normalize_ride(a)) is not None]
-    rides.sort(key=lambda r: r.datetime)
+def load_state(hours: float) -> str:
+    if hours < 4:
+        return "light"
+    if hours < 8:
+        return "moderate"
+    return "high"
 
-    now = datetime.now(timezone.utc)
+
+def build_dashboard_payload(rides: list[Ride], now: datetime) -> dict[str, Any]:
     s7 = sum_window(rides, now - timedelta(days=7))
     s30 = sum_window(rides, now - timedelta(days=30))
     recent = rides[-30:]
@@ -229,12 +236,12 @@ def main() -> int:
         if r.avg_power_w is not None and r.avg_cadence_rpm is not None
     ]
 
-    payload = {
+    return {
         "generated_utc": now.strftime("%Y-%m-%dT%H:%M:%SZ"),
         "model": "Cycling behavioural regulation micro-dashboard",
         "window_days": {"short": 7, "analysis": 30, "trend_weeks": 12},
         "state": {
-            "load_state": "light" if s7["moving_h"] < 4 else "moderate" if s7["moving_h"] < 8 else "high",
+            "load_state": load_state(s7["moving_h"]),
             "context_balance": {
                 "indoor": sum(1 for r in rides if r.is_indoor),
                 "outdoor": sum(1 for r in rides if not r.is_indoor),
@@ -248,9 +255,78 @@ def main() -> int:
         "latest_ride": asdict_ride(latest) if latest else {},
     }
 
-    OUTFILE.parent.mkdir(parents=True, exist_ok=True)
-    OUTFILE.write_text(json.dumps(payload, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
-    print(f"Wrote {OUTFILE.relative_to(ROOT)} with {len(rides)} rides")
+
+def build_footer_payload(rides: list[Ride], now: datetime) -> dict[str, Any]:
+    s7 = sum_window(rides, now - timedelta(days=7))
+    latest_60 = rides[-60:]
+    latest = rides[-1] if rides else None
+    load_label = f"{load_state(s7['moving_h']).title()} load"
+    distance = s7["distance_km"]
+    moving = s7["moving_h"]
+    elevation = s7["elevation_m"]
+    climbing = round(elevation / distance, 1) if distance else 0
+
+    avg_power = round(s7["mean_power_w"]) if s7["mean_power_w"] is not None else None
+    avg_cadence = round(s7["mean_cadence_rpm"]) if s7["mean_cadence_rpm"] is not None else None
+    avg_speed = s7["mean_speed_kph"]
+
+    return {
+        "updated_utc": now.strftime("%Y-%m-%dT%H:%M:%SZ"),
+        "source": "Strava",
+        "athlete_id": 3714458,
+        "scope": "latest 60 activities; 7-day research window",
+        "headline": f"7-day riding state: {distance} km · {moving} h · {round(elevation)} m+",
+        "state": {
+            "load": load_label,
+            "context": "Indoor-trainer" if s7.get("ride_count", 0) and all(r.is_indoor for r in rides if parse_start(r.datetime) >= now - timedelta(days=7)) else "Outdoor-field",
+            "climbing_density": f"{climbing} m/km",
+        },
+        "metrics": [
+            {"label": "Distance", "value": f"{distance} km"},
+            {"label": "Time", "value": f"{moving} h"},
+            {"label": "Ascent", "value": f"{round(elevation)} m"},
+            {"label": "Speed", "value": f"{avg_speed} kph" if avg_speed is not None else "—"},
+            {"label": "Power", "value": f"{avg_power} W" if avg_power is not None else "—"},
+            {"label": "Cadence", "value": f"{avg_cadence} rpm" if avg_cadence is not None else "—"},
+        ],
+        "seven_day": {
+            "ride_count": s7["ride_count"],
+            "distance_km": distance,
+            "moving_hours": moving,
+            "elevation_m": elevation,
+            "indoor_count": sum(1 for r in rides if r.is_indoor and parse_start(r.datetime) >= now - timedelta(days=7)),
+            "outdoor_count": sum(1 for r in rides if (not r.is_indoor) and parse_start(r.datetime) >= now - timedelta(days=7)),
+            "avg_speed_kph": avg_speed,
+            "avg_power_w": avg_power,
+            "avg_cadence_rpm": avg_cadence,
+            "climbing_m_per_km": climbing,
+        },
+        "latest_60": {
+            "ride_count": len(latest_60),
+            "distance_km": round(sum(r.distance_km for r in latest_60), 1),
+            "moving_hours": round(sum(r.moving_h for r in latest_60), 1),
+            "elevation_m": round(sum(r.elevation_m for r in latest_60), 1),
+        },
+        "latest_ride": {"name": latest.name, "date": latest.date, "type": latest.type} if latest else {},
+    }
+
+
+def write_json(path: Path, payload: dict[str, Any]) -> None:
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_text(json.dumps(payload, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
+
+
+def main() -> int:
+    token = get_access_token()
+    raw = fetch_activities(token)
+    rides = [r for a in raw if (r := normalize_ride(a)) is not None]
+    rides.sort(key=lambda r: r.datetime)
+
+    now = datetime.now(timezone.utc)
+    write_json(DASHBOARD_OUTFILE, build_dashboard_payload(rides, now))
+    write_json(FOOTER_OUTFILE, build_footer_payload(rides, now))
+
+    print(f"Wrote {DASHBOARD_OUTFILE.relative_to(ROOT)} and {FOOTER_OUTFILE.relative_to(ROOT)} with {len(rides)} rides")
     return 0
 
 
