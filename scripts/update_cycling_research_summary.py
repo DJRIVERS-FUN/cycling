@@ -1,0 +1,262 @@
+#!/usr/bin/env python3
+"""Generate data/cycling_research_summary.json from the Strava API.
+
+Required environment variables:
+  STRAVA_CLIENT_ID
+  STRAVA_CLIENT_SECRET
+  STRAVA_REFRESH_TOKEN
+
+The output schema is intentionally matched to cycling_research_dashboard.html.
+"""
+
+from __future__ import annotations
+
+import json
+import os
+import sys
+from collections import defaultdict
+from dataclasses import dataclass
+from datetime import datetime, timedelta, timezone
+from pathlib import Path
+from typing import Any
+from urllib.parse import urlencode
+from urllib.request import Request, urlopen
+
+ROOT = Path(__file__).resolve().parents[1]
+OUTFILE = ROOT / "data" / "cycling_research_summary.json"
+TOKEN_URL = "https://www.strava.com/oauth/token"
+ACTIVITIES_URL = "https://www.strava.com/api/v3/athlete/activities"
+
+
+@dataclass
+class Ride:
+    date: str
+    datetime: str
+    name: str
+    type: str
+    is_indoor: bool
+    distance_km: float
+    moving_h: float
+    elevation_m: float
+    avg_speed_kph: float | None
+    avg_power_w: float | None
+    avg_cadence_rpm: float | None
+
+
+def require_env(name: str) -> str:
+    value = os.environ.get(name)
+    if not value:
+        raise RuntimeError(f"Missing required environment variable: {name}")
+    return value
+
+
+def post_form(url: str, data: dict[str, str]) -> dict[str, Any]:
+    encoded = urlencode(data).encode("utf-8")
+    request = Request(url, data=encoded, method="POST")
+    with urlopen(request, timeout=30) as response:
+        return json.loads(response.read().decode("utf-8"))
+
+
+def get_json(url: str, token: str) -> list[dict[str, Any]]:
+    request = Request(url, headers={"Authorization": f"Bearer {token}"})
+    with urlopen(request, timeout=30) as response:
+        return json.loads(response.read().decode("utf-8"))
+
+
+def get_access_token() -> str:
+    token_data = post_form(
+        TOKEN_URL,
+        {
+            "client_id": require_env("STRAVA_CLIENT_ID"),
+            "client_secret": require_env("STRAVA_CLIENT_SECRET"),
+            "refresh_token": require_env("STRAVA_REFRESH_TOKEN"),
+            "grant_type": "refresh_token",
+        },
+    )
+    access_token = token_data.get("access_token")
+    if not access_token:
+        raise RuntimeError("Strava token refresh did not return an access_token")
+    return str(access_token)
+
+
+def fetch_activities(token: str, days: int = 100) -> list[dict[str, Any]]:
+    after = int((datetime.now(timezone.utc) - timedelta(days=days)).timestamp())
+    all_items: list[dict[str, Any]] = []
+    page = 1
+    while True:
+        params = urlencode({"after": after, "per_page": 200, "page": page})
+        batch = get_json(f"{ACTIVITIES_URL}?{params}", token)
+        if not batch:
+            break
+        all_items.extend(batch)
+        if len(batch) < 200:
+            break
+        page += 1
+    return all_items
+
+
+def num(value: Any) -> float | None:
+    if value is None:
+        return None
+    try:
+        n = float(value)
+    except (TypeError, ValueError):
+        return None
+    return n if n == n else None
+
+
+def round_or_none(value: Any, digits: int = 1) -> float | None:
+    n = num(value)
+    return round(n, digits) if n is not None else None
+
+
+def parse_start(value: str) -> datetime:
+    return datetime.fromisoformat(value.replace("Z", "+00:00"))
+
+
+def normalize_ride(activity: dict[str, Any]) -> Ride | None:
+    sport_type = activity.get("sport_type") or activity.get("type") or "Ride"
+    if sport_type not in {"Ride", "VirtualRide", "GravelRide", "MountainBikeRide", "EBikeRide"}:
+        return None
+
+    start = parse_start(activity["start_date"])
+    distance_km = round((num(activity.get("distance")) or 0) / 1000, 2)
+    moving_h = round((num(activity.get("moving_time")) or 0) / 3600, 3)
+    speed = num(activity.get("average_speed"))
+    is_indoor = bool(activity.get("trainer")) or sport_type == "VirtualRide"
+
+    return Ride(
+        date=start.date().isoformat(),
+        datetime=start.isoformat(),
+        name=str(activity.get("name") or "Untitled ride"),
+        type=str(sport_type),
+        is_indoor=is_indoor,
+        distance_km=distance_km,
+        moving_h=moving_h,
+        elevation_m=round_or_none(activity.get("total_elevation_gain"), 1) or 0,
+        avg_speed_kph=round(speed * 3.6, 1) if speed is not None else None,
+        avg_power_w=round_or_none(activity.get("average_watts"), 1),
+        avg_cadence_rpm=round_or_none(activity.get("average_cadence"), 1),
+    )
+
+
+def week_start(date_value: datetime) -> str:
+    d = date_value.date()
+    return (d - timedelta(days=d.weekday())).isoformat()
+
+
+def sum_window(rides: list[Ride], since: datetime) -> dict[str, Any]:
+    items = [r for r in rides if parse_start(r.datetime) >= since]
+    power_values = [r.avg_power_w for r in items if r.avg_power_w is not None]
+    cadence_values = [r.avg_cadence_rpm for r in items if r.avg_cadence_rpm is not None]
+    speed_values = [r.avg_speed_kph for r in items if r.avg_speed_kph is not None]
+    return {
+        "distance_km": round(sum(r.distance_km for r in items), 1),
+        "moving_h": round(sum(r.moving_h for r in items), 1),
+        "elevation_m": round(sum(r.elevation_m for r in items), 1),
+        "ride_count": len(items),
+        "mean_power_w": round(sum(power_values) / len(power_values), 1) if power_values else None,
+        "mean_cadence_rpm": round(sum(cadence_values) / len(cadence_values), 1) if cadence_values else None,
+        "mean_speed_kph": round(sum(speed_values) / len(speed_values), 1) if speed_values else None,
+    }
+
+
+def build_weekly_series(rides: list[Ride], trend_weeks: int = 12) -> list[dict[str, Any]]:
+    now = datetime.now(timezone.utc)
+    first_week = now.date() - timedelta(days=now.weekday(), weeks=trend_weeks - 1)
+    buckets: dict[str, list[Ride]] = defaultdict(list)
+    for ride in rides:
+        start = parse_start(ride.datetime)
+        if start.date() >= first_week:
+            buckets[week_start(start)].append(ride)
+
+    out = []
+    for i in range(trend_weeks):
+        ws = (first_week + timedelta(weeks=i)).isoformat()
+        items = buckets.get(ws, [])
+        out.append(
+            {
+                "week_start": ws,
+                "distance_km": round(sum(r.distance_km for r in items), 1),
+                "moving_h": round(sum(r.moving_h for r in items), 1),
+                "elevation_m": round(sum(r.elevation_m for r in items), 1),
+                "ride_count": len(items),
+                "indoor_count": sum(1 for r in items if r.is_indoor),
+                "outdoor_count": sum(1 for r in items if not r.is_indoor),
+            }
+        )
+    return out
+
+
+def asdict_ride(ride: Ride) -> dict[str, Any]:
+    return {
+        "date": ride.date,
+        "datetime": ride.datetime,
+        "name": ride.name,
+        "type": ride.type,
+        "is_indoor": ride.is_indoor,
+        "distance_km": ride.distance_km,
+        "moving_h": ride.moving_h,
+        "elevation_m": ride.elevation_m,
+        "avg_speed_kph": ride.avg_speed_kph,
+        "avg_power_w": ride.avg_power_w,
+        "avg_cadence_rpm": ride.avg_cadence_rpm,
+    }
+
+
+def main() -> int:
+    token = get_access_token()
+    raw = fetch_activities(token)
+    rides = [r for a in raw if (r := normalize_ride(a)) is not None]
+    rides.sort(key=lambda r: r.datetime)
+
+    now = datetime.now(timezone.utc)
+    s7 = sum_window(rides, now - timedelta(days=7))
+    s30 = sum_window(rides, now - timedelta(days=30))
+    recent = rides[-30:]
+    latest = rides[-1] if rides else None
+
+    power_cadence = [
+        {
+            "date": r.date,
+            "name": r.name,
+            "power_w": r.avg_power_w,
+            "cadence_rpm": r.avg_cadence_rpm,
+            "distance_km": r.distance_km,
+            "context": "Indoor" if r.is_indoor else "Outdoor",
+        }
+        for r in recent
+        if r.avg_power_w is not None and r.avg_cadence_rpm is not None
+    ]
+
+    payload = {
+        "generated_utc": now.strftime("%Y-%m-%dT%H:%M:%SZ"),
+        "model": "Cycling behavioural regulation micro-dashboard",
+        "window_days": {"short": 7, "analysis": 30, "trend_weeks": 12},
+        "state": {
+            "load_state": "light" if s7["moving_h"] < 4 else "moderate" if s7["moving_h"] < 8 else "high",
+            "context_balance": {
+                "indoor": sum(1 for r in rides if r.is_indoor),
+                "outdoor": sum(1 for r in rides if not r.is_indoor),
+            },
+            "seven_day": s7,
+            "thirty_day": s30,
+        },
+        "weekly_series": build_weekly_series(rides),
+        "recent_rides": [asdict_ride(r) for r in recent],
+        "power_cadence": power_cadence,
+        "latest_ride": asdict_ride(latest) if latest else {},
+    }
+
+    OUTFILE.parent.mkdir(parents=True, exist_ok=True)
+    OUTFILE.write_text(json.dumps(payload, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
+    print(f"Wrote {OUTFILE.relative_to(ROOT)} with {len(rides)} rides")
+    return 0
+
+
+if __name__ == "__main__":
+    try:
+        raise SystemExit(main())
+    except Exception as exc:
+        print(f"ERROR: {exc}", file=sys.stderr)
+        raise SystemExit(1)
