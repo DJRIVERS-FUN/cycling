@@ -96,6 +96,10 @@
     padding-top: 8px;
   }
 
+  .panel-wide {
+    margin-top: 12px;
+  }
+
   .panel-title {
     font-family: 'DM Mono', monospace;
     color: var(--purple);
@@ -108,6 +112,10 @@
   .plot {
     width: 100%;
     height: 260px;
+  }
+
+  .plot-small {
+    height: 150px;
   }
 
   .footer-note {
@@ -131,6 +139,7 @@
     .cards { grid-template-columns: repeat(2, minmax(0, 1fr)); }
     .grid { grid-template-columns: 1fr; }
     .plot { height: 240px; }
+    .plot-small { height: 180px; }
     .card-value { font-size: 18px; }
   }
 </style>
@@ -156,6 +165,11 @@
         <div class="panel-title">B. Power–cadence regulation space</div>
         <div id="scatter" class="plot"></div>
       </div>
+    </section>
+
+    <section class="panel panel-wide">
+      <div class="panel-title">C. Training tag distribution</div>
+      <div id="tags" class="plot plot-small"></div>
     </section>
 
     <div id="footerNote" class="footer-note">Loading data…</div>
@@ -234,7 +248,7 @@
         {
           x: outdoor.map(function (p) { return num(p.cadence_rpm); }),
           y: outdoor.map(function (p) { return num(p.power_w); }),
-          text: outdoor.map(function (p) { return p.name; }),
+          text: outdoor.map(function (p) { return `${p.name}<br>${p.training_tag || 'untagged'}`; }),
           mode: 'markers',
           type: 'scatter',
           name: 'Outdoor',
@@ -244,7 +258,7 @@
         {
           x: indoor.map(function (p) { return num(p.cadence_rpm); }),
           y: indoor.map(function (p) { return num(p.power_w); }),
-          text: indoor.map(function (p) { return p.name; }),
+          text: indoor.map(function (p) { return `${p.name}<br>${p.training_tag || 'untagged'}`; }),
           mode: 'markers',
           type: 'scatter',
           name: 'Indoor',
@@ -259,8 +273,24 @@
         yaxis: { ...baseLayout.yaxis, type: 'linear', title: { text: 'power (W)', font: { size: 11, color: muted } } }
       }, { displayModeBar: false, responsive: true });
 
+      const tagCounts = d.state.recent_training_tags || {};
+      const tagEntries = Object.entries(tagCounts).sort(function (a, b) { return b[1] - a[1]; });
+      Plotly.newPlot('tags', [{
+        x: tagEntries.map(function (t) { return t[1]; }),
+        y: tagEntries.map(function (t) { return t[0]; }),
+        type: 'bar',
+        orientation: 'h',
+        marker: { color: purple, opacity: 0.78 },
+        hovertemplate: '%{y}<br>Rides: %{x}<extra></extra>'
+      }], {
+        ...baseLayout,
+        margin: { l: 120, r: 12, t: 4, b: 24 },
+        xaxis: { ...baseLayout.xaxis, type: 'linear', dtick: 1, title: { text: 'rides', font: { size: 11, color: muted } } },
+        yaxis: { ...baseLayout.yaxis, autorange: 'reversed', gridcolor: '#ffffff' }
+      }, { displayModeBar: false, responsive: true });
+
       const latest = d.latest_ride || {};
-      document.getElementById('footerNote').textContent = `Generated ${d.generated_utc} · Latest: ${latest.name || '—'}`;
+      document.getElementById('footerNote').textContent = `Generated ${d.generated_utc} · Latest: ${latest.name || '—'} · Tag: ${latest.training_tag || '—'}`;
     })
     .catch(function (err) {
       document.getElementById('footerNote').textContent = 'Dashboard data unavailable.';
