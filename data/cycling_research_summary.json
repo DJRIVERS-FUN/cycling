@@ -1,5 +1,5 @@
 {
-  "generated_utc": "2026-05-04T19:45:50Z",
+  "generated_utc": "2026-05-05T03:21:43Z",
   "model": "Cycling behavioural regulation micro-dashboard",
   "window_days": {
     "short": 7,
@@ -13,18 +13,18 @@
       "outdoor": 11
     },
     "seven_day": {
-      "distance_km": 18.1,
-      "moving_h": 0.8,
-      "elevation_m": 289.0,
-      "ride_count": 1
+      "distance_km": 43.0,
+      "moving_h": 2.1,
+      "elevation_m": 912.0,
+      "ride_count": 2
     },
     "thirty_day": {
-      "distance_km": 387.4,
-      "moving_h": 17.7,
-      "elevation_m": 5228.0,
+      "distance_km": 374.9,
+      "moving_h": 17.1,
+      "elevation_m": 5065.0,
       "ride_count": 11,
-      "mean_power_w": 200.3,
-      "mean_cadence_rpm": 78.3,
+      "mean_power_w": 196.7,
+      "mean_cadence_rpm": 78.5,
       "mean_speed_kph": 22.6
     }
   },
@@ -139,19 +139,6 @@
     }
   ],
   "recent_rides": [
-    {
-      "date": "2026-04-04",
-      "datetime": "2026-04-04T08:12:07+00:00",
-      "name": "04/04/2026 Shirotai",
-      "type": "Ride",
-      "is_indoor": false,
-      "distance_km": 37.35,
-      "moving_h": 1.851,
-      "elevation_m": 786.0,
-      "avg_speed_kph": 20.2,
-      "avg_power_w": 203.0,
-      "avg_cadence_rpm": 76.8
-    },
     {
       "date": "2026-04-05",
       "datetime": "2026-04-05T10:13:47+00:00",
@@ -281,17 +268,22 @@
       "avg_speed_kph": 22.0,
       "avg_power_w": 206.0,
       "avg_cadence_rpm": 75.8
+    },
+    {
+      "date": "2026-05-05",
+      "datetime": "2026-05-05T08:07:24+00:00",
+      "name": "05/05/2026 Shirotai",
+      "type": "Ride",
+      "is_indoor": false,
+      "distance_km": 24.88,
+      "moving_h": 1.255,
+      "elevation_m": 623.0,
+      "avg_speed_kph": 19.8,
+      "avg_power_w": 163.8,
+      "avg_cadence_rpm": null
     }
   ],
   "power_cadence": [
-    {
-      "date": "2026-04-04",
-      "name": "04/04/2026 Shirotai",
-      "power_w": 203.0,
-      "cadence_rpm": 76.8,
-      "distance_km": 37.35,
-      "context": "Outdoor"
-    },
     {
       "date": "2026-04-05",
       "name": "04/05/2026 Morning Ride",
@@ -374,16 +366,16 @@
     }
   ],
   "latest_ride": {
-    "date": "2026-05-03",
-    "datetime": "2026-05-03T09:58:21+00:00",
-    "name": "05/03/2026 Morning Ride",
+    "date": "2026-05-05",
+    "datetime": "2026-05-05T08:07:24+00:00",
+    "name": "05/05/2026 Shirotai",
     "type": "Ride",
     "is_indoor": false,
-    "distance_km": 18.09,
-    "moving_h": 0.822,
-    "elevation_m": 289.0,
-    "avg_speed_kph": 22.0,
-    "avg_power_w": 206.0,
-    "avg_cadence_rpm": 75.8
+    "distance_km": 24.88,
+    "moving_h": 1.255,
+    "elevation_m": 623.0,
+    "avg_speed_kph": 19.8,
+    "avg_power_w": 163.8,
+    "avg_cadence_rpm": null
   }
 }
