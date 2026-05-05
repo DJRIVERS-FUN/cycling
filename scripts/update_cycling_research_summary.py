@@ -16,7 +16,7 @@ from __future__ import annotations
 import json
 import os
 import sys
-from collections import defaultdict
+from collections import Counter, defaultdict
 from dataclasses import dataclass
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
@@ -29,6 +29,7 @@ DASHBOARD_OUTFILE = ROOT / "data" / "cycling_research_summary.json"
 FOOTER_OUTFILE = ROOT / "data" / "strava_footer.json"
 TOKEN_URL = "https://www.strava.com/oauth/token"
 ACTIVITIES_URL = "https://www.strava.com/api/v3/athlete/activities"
+FTP_WATTS = float(os.environ.get("CYCLING_FTP_WATTS", "220"))
 
 
 @dataclass
@@ -153,6 +154,54 @@ def average(values: list[float | None], digits: int = 1) -> float | None:
     return round(sum(clean) / len(clean), digits) if clean else None
 
 
+def power_zone(avg_power_w: float | None) -> str | None:
+    if avg_power_w is None or FTP_WATTS <= 0:
+        return None
+    ratio = avg_power_w / FTP_WATTS
+    if ratio < 0.55:
+        return "Z1"
+    if ratio < 0.76:
+        return "Z2"
+    if ratio < 0.90:
+        return "Z3"
+    if ratio < 1.05:
+        return "Z4"
+    return "Z5+"
+
+
+def classify_ride(ride: Ride) -> dict[str, Any]:
+    """Conservative rule-based ride classification.
+
+    This is not a substitute for interval-level file analysis. It uses ride name,
+    duration, distance, climbing density and average power relative to FTP.
+    """
+    name = ride.name.lower()
+    zone = power_zone(ride.avg_power_w)
+    climbing_density = round(ride.elevation_m / ride.distance_km, 1) if ride.distance_km else 0
+
+    signals: list[str] = []
+    if zone:
+        signals.append(f"avg power {zone}")
+    if climbing_density >= 15:
+        signals.append("high climbing density")
+    if ride.is_indoor:
+        signals.append("indoor/trainer context")
+    else:
+        signals.append("outdoor/field context")
+
+    if any(k in name for k in ["interval", "vo2", "threshold", "ftp", "race", "ramp"]):
+        return {"training_tag": "interval", "training_zone": zone, "training_notes": signals + ["keyword signal"]}
+    if ride.moving_h >= 2.5 or ride.distance_km >= 60:
+        return {"training_tag": "long ride", "training_zone": zone, "training_notes": signals + ["duration/distance signal"]}
+    if zone == "Z2" and ride.moving_h >= 0.75:
+        return {"training_tag": "Z2", "training_zone": zone, "training_notes": signals + ["endurance-zone signal"]}
+    if zone in {"Z3", "Z4", "Z5+"} and ride.moving_h < 1.5:
+        return {"training_tag": "tempo / hard", "training_zone": zone, "training_notes": signals + ["higher average-power signal"]}
+    if ride.moving_h < 0.75 and (zone in {None, "Z1", "Z2"}):
+        return {"training_tag": "short easy", "training_zone": zone, "training_notes": signals + ["short-duration signal"]}
+    return {"training_tag": "general endurance", "training_zone": zone, "training_notes": signals}
+
+
 def sum_window(rides: list[Ride], since: datetime) -> dict[str, Any]:
     items = [r for r in rides if parse_start(r.datetime) >= since]
     return {
@@ -179,6 +228,7 @@ def build_weekly_series(rides: list[Ride], trend_weeks: int = 12) -> list[dict[s
     for i in range(trend_weeks):
         ws = (first_week + timedelta(weeks=i)).isoformat()
         items = buckets.get(ws, [])
+        tag_counts = Counter(classify_ride(r)["training_tag"] for r in items)
         out.append(
             {
                 "week_start": ws,
@@ -188,6 +238,7 @@ def build_weekly_series(rides: list[Ride], trend_weeks: int = 12) -> list[dict[s
                 "ride_count": len(items),
                 "indoor_count": sum(1 for r in items if r.is_indoor),
                 "outdoor_count": sum(1 for r in items if not r.is_indoor),
+                "training_tags": dict(tag_counts),
             }
         )
     return out
@@ -206,6 +257,7 @@ def asdict_ride(ride: Ride) -> dict[str, Any]:
         "avg_speed_kph": ride.avg_speed_kph,
         "avg_power_w": ride.avg_power_w,
         "avg_cadence_rpm": ride.avg_cadence_rpm,
+        **classify_ride(ride),
     }
 
 
@@ -222,6 +274,7 @@ def build_dashboard_payload(rides: list[Ride], now: datetime) -> dict[str, Any]:
     s30 = sum_window(rides, now - timedelta(days=30))
     recent = rides[-30:]
     latest = rides[-1] if rides else None
+    tag_counts = Counter(classify_ride(r)["training_tag"] for r in recent)
 
     power_cadence = [
         {
@@ -231,6 +284,7 @@ def build_dashboard_payload(rides: list[Ride], now: datetime) -> dict[str, Any]:
             "cadence_rpm": r.avg_cadence_rpm,
             "distance_km": r.distance_km,
             "context": "Indoor" if r.is_indoor else "Outdoor",
+            **classify_ride(r),
         }
         for r in recent
         if r.avg_power_w is not None and r.avg_cadence_rpm is not None
@@ -240,6 +294,11 @@ def build_dashboard_payload(rides: list[Ride], now: datetime) -> dict[str, Any]:
         "generated_utc": now.strftime("%Y-%m-%dT%H:%M:%SZ"),
         "model": "Cycling behavioural regulation micro-dashboard",
         "window_days": {"short": 7, "analysis": 30, "trend_weeks": 12},
+        "classification_model": {
+            "method": "rule-based ride-level tagging",
+            "ftp_watts": FTP_WATTS,
+            "tags": ["Z2", "interval", "long ride", "tempo / hard", "short easy", "general endurance"],
+        },
         "state": {
             "load_state": load_state(s7["moving_h"]),
             "context_balance": {
@@ -248,6 +307,7 @@ def build_dashboard_payload(rides: list[Ride], now: datetime) -> dict[str, Any]:
             },
             "seven_day": s7,
             "thirty_day": s30,
+            "recent_training_tags": dict(tag_counts),
         },
         "weekly_series": build_weekly_series(rides),
         "recent_rides": [asdict_ride(r) for r in recent],
@@ -260,6 +320,7 @@ def build_footer_payload(rides: list[Ride], now: datetime) -> dict[str, Any]:
     s7 = sum_window(rides, now - timedelta(days=7))
     latest_60 = rides[-60:]
     latest = rides[-1] if rides else None
+    latest_tag = classify_ride(latest)["training_tag"] if latest else "—"
     load_label = f"{load_state(s7['moving_h']).title()} load"
     distance = s7["distance_km"]
     moving = s7["moving_h"]
@@ -280,6 +341,7 @@ def build_footer_payload(rides: list[Ride], now: datetime) -> dict[str, Any]:
             "load": load_label,
             "context": "Indoor-trainer" if s7.get("ride_count", 0) and all(r.is_indoor for r in rides if parse_start(r.datetime) >= now - timedelta(days=7)) else "Outdoor-field",
             "climbing_density": f"{climbing} m/km",
+            "latest_training_tag": latest_tag,
         },
         "metrics": [
             {"label": "Distance", "value": f"{distance} km"},
@@ -307,7 +369,7 @@ def build_footer_payload(rides: list[Ride], now: datetime) -> dict[str, Any]:
             "moving_hours": round(sum(r.moving_h for r in latest_60), 1),
             "elevation_m": round(sum(r.elevation_m for r in latest_60), 1),
         },
-        "latest_ride": {"name": latest.name, "date": latest.date, "type": latest.type} if latest else {},
+        "latest_ride": {"name": latest.name, "date": latest.date, "type": latest.type, "training_tag": latest_tag} if latest else {},
     }
 
 
