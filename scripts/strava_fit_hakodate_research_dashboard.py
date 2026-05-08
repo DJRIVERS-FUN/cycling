@@ -289,9 +289,6 @@ h1 {{ font-family:'DM Mono','SFMono-Regular',Consolas,monospace; font-size:24px;
 <body>
 <div class="wrap">
   <div class="kicker">Rivers Lab · Human–Machine Cycling Systems</div>
-  <h1>Hakodate Cycling Telemetry Dashboard</h1>
-  <div class="sub">Constraint → Behaviour → Adaptation → Outcome</div>
-
   <div class="grid">
     <div class="card"><p>This dashboard treats repeated cycling telemetry as spatial evidence of behavioural regulation. Route density, cadence-weighted density, power-weighted density, repeated corridors, and micro-region cells are extracted from local Strava FIT files filtered to the Hakodate area.</p></div>
     <div class="card stats">
