@@ -3,10 +3,10 @@
 
 Layers included:
 - temporal route density by year
-- cadence-weighted spatial density
-- power-weighted spatial density
-- grid-based behavioural corridor extraction
-- Hakodate micro-region density modelling
+- cadence density
+- power density
+- grid-based predictive modelling
+- Hakodate micro-region modelling
 
 The script intentionally uses simple grid/cell aggregation rather than heavy GIS
 or machine-learning dependencies so it can run locally with fitparse + folium.
@@ -26,7 +26,7 @@ from fitparse import FitFile
 from folium.plugins import Fullscreen, HeatMap, MeasureControl
 
 SEMICIRCLES_TO_DEGREES = 180 / 2**31
-HAKODATE_BOUNDS = (41.65, 42.25, 140.45, 141.25)  # min_lat, max_lat, min_lon, max_lon
+HAKODATE_BOUNDS = (41.65, 42.25, 140.45, 141.25)
 PURPLE = "#520671"
 MUTED = "#6e6c66"
 SOFT = "#f7f3fa"
@@ -137,7 +137,7 @@ def aggregate_cells(records: list[dict], cell: float) -> dict[tuple[float, float
 
 
 def add_micro_region_layer(m: folium.Map, cells: dict, cell: float, top_n: int) -> None:
-    layer = folium.FeatureGroup(name="Hakodate concentrated actions", show=False)
+    layer = folium.FeatureGroup(name="Hakodate micro-region", show=False)
     ranked = sorted(cells.items(), key=lambda item: item[1]["count"], reverse=True)[:top_n]
     max_count = max((item[1]["count"] for item in ranked), default=1)
 
@@ -148,16 +148,16 @@ def add_micro_region_layer(m: folium.Map, cells: dict, cell: float, top_n: int) 
         persistence = len(info["years"])
         radius = 4 + 18 * (info["count"] / max_count)
         if cadence is not None:
-            popup = f"<b>Concentrated action region</b><br>Records: {info['count']:,}<br>Years active: {persistence}<br>Mean cadence: {cadence:.1f} rpm<br>"
+            popup = f"<b>Hakodate micro-region</b><br>Records: {info['count']:,}<br>Years active: {persistence}<br>Mean cadence: {cadence:.1f} rpm<br>"
         else:
-            popup = f"<b>Concentrated action region</b><br>Records: {info['count']:,}<br>Years active: {persistence}<br>Mean cadence: —<br>"
+            popup = f"<b>Hakodate micro-region</b><br>Records: {info['count']:,}<br>Years active: {persistence}<br>Mean cadence: —<br>"
         popup += f"Mean power: {power:.1f} W" if power is not None else "Mean power: —"
         folium.CircleMarker(center, radius=radius, color=PURPLE, fill=True, fill_opacity=0.20, weight=1, popup=popup).add_to(layer)
     layer.add_to(m)
 
 
 def add_behavioural_corridor_layer(m: folium.Map, cells: dict, cell: float, top_n: int) -> None:
-    layer = folium.FeatureGroup(name="Predictive behavioural routes", show=False)
+    layer = folium.FeatureGroup(name="Predictive model", show=False)
     ranked = sorted(cells.items(), key=lambda item: (item[1]["count"] * max(1, len(item[1]["years"]))), reverse=True)[:top_n]
 
     for rank, (key, info) in enumerate(ranked, start=1):
@@ -165,20 +165,11 @@ def add_behavioural_corridor_layer(m: folium.Map, cells: dict, cell: float, top_
         cadence = mean(info["cadence"]) if info["cadence"] else None
         power = mean(info["power"]) if info["power"] else None
         if cadence is not None:
-            popup = f"<b>Predictive behavioural route #{rank}</b><br>Density records: {info['count']:,}<br>Persistence across years: {len(info['years'])}<br>Mean cadence: {cadence:.1f} rpm<br>"
+            popup = f"<b>Predictive model #{rank}</b><br>Density records: {info['count']:,}<br>Persistence across years: {len(info['years'])}<br>Mean cadence: {cadence:.1f} rpm<br>"
         else:
-            popup = f"<b>Predictive behavioural route #{rank}</b><br>Density records: {info['count']:,}<br>Persistence across years: {len(info['years'])}<br>Mean cadence: —<br>"
+            popup = f"<b>Predictive model #{rank}</b><br>Density records: {info['count']:,}<br>Persistence across years: {len(info['years'])}<br>Mean cadence: —<br>"
         popup += f"Mean power: {power:.1f} W" if power is not None else "Mean power: —"
-        folium.CircleMarker(
-            center,
-            radius=7,
-            color=PURPLE,
-            fill=True,
-            fill_opacity=0.75,
-            weight=1,
-            tooltip=f"Route {rank}: {info['count']:,} records",
-            popup=popup,
-        ).add_to(layer)
+        folium.CircleMarker(center, radius=7, color=PURPLE, fill=True, fill_opacity=0.75, weight=1, tooltip=f"Model {rank}: {info['count']:,} records", popup=popup).add_to(layer)
     layer.add_to(m)
 
 
@@ -200,12 +191,12 @@ def build_map(records: list[dict], cell: float, max_points: int, top_cells: int)
     cadence_points = [[r["lat"], r["lon"], norm(r["cadence"], 55, 105)] for r in records if r.get("cadence") is not None]
     if cadence_points:
         cadence_points = cadence_points[::step][:max_points]
-        HeatMap(cadence_points, name="Cadence-weighted density", radius=9, blur=13, min_opacity=0.20, show=False).add_to(m)
+        HeatMap(cadence_points, name="Cadence density", radius=9, blur=13, min_opacity=0.20, show=False).add_to(m)
 
     power_points = [[r["lat"], r["lon"], norm(r["power"], 80, 360)] for r in records if r.get("power") is not None]
     if power_points:
         power_points = power_points[::step][:max_points]
-        HeatMap(power_points, name="Power-weighted density", radius=9, blur=13, min_opacity=0.20, show=False).add_to(m)
+        HeatMap(power_points, name="Power density", radius=9, blur=13, min_opacity=0.20, show=False).add_to(m)
 
     by_year: dict[int, list[list[float]]] = defaultdict(list)
     for r in records:
@@ -213,7 +204,7 @@ def build_map(records: list[dict], cell: float, max_points: int, top_cells: int)
             by_year[r["year"]].append([r["lat"], r["lon"]])
     for year in sorted(by_year):
         year_points = by_year[year][::max(1, len(by_year[year]) // 25000)]
-        HeatMap(year_points, name=f"Rivers Lab actions: {year}", radius=8, blur=12, min_opacity=0.18, show=False).add_to(m)
+        HeatMap(year_points, name=f"Rivers Lab: {year}", radius=8, blur=12, min_opacity=0.18, show=False).add_to(m)
 
     cells = aggregate_cells(records, cell)
     add_behavioural_corridor_layer(m, cells, cell, top_cells)
@@ -268,24 +259,24 @@ html,body {{ margin:0; background:#fff; color:var(--ink); font-family:Arial,Helv
 <body>
 <div class="wrap">
   <div class="grid">
-    <div class="card"><p>This dashboard treats repeated cycling telemetry as spatial evidence of behavioural regulation. Route density, cadence-weighted density, power-weighted density, predictive behavioural routes, and concentrated action regions are extracted from local Strava FIT files filtered to the Hakodate area.</p></div>
+    <div class="card"><p>This dashboard treats repeated cycling telemetry as spatial evidence of behavioural regulation. Route density, cadence density, power density, predictive models, and Hakodate micro-regions are extracted from local Strava FIT files filtered to the Hakodate area.</p></div>
     <div class="card stats">
       <div class="stat"><div class="num">{stats['activities']:,}</div><div class="lab">activities</div></div>
       <div class="stat"><div class="num">{stats['mapped_points']:,}</div><div class="lab">mapped points</div></div>
-      <div class="stat"><div class="num">{stats['years']:,}</div><div class="lab">Rivers Lab action layers</div></div>
-      <div class="stat"><div class="num">{stats['cells']:,}</div><div class="lab">action cells</div></div>
-      <div class="stat"><div class="num">{stats['corridors']:,}</div><div class="lab">predictive routes</div></div>
+      <div class="stat"><div class="num">{stats['years']:,}</div><div class="lab">Rivers Lab layers</div></div>
+      <div class="stat"><div class="num">{stats['cells']:,}</div><div class="lab">micro-region cells</div></div>
+      <div class="stat"><div class="num">{stats['corridors']:,}</div><div class="lab">predictive models</div></div>
       <div class="stat"><div class="num">1/{every}</div><div class="lab">sampling rate</div></div>
     </div>
   </div>
 
   <div class="notation">
-    <div class="step"><b>Rivers Lab actions</b><span>Year-specific density layers show accumulation over time.</span></div>
-    <div class="step"><b>Cadence overlay</b><span>Weighted spatial density from cadence records.</span></div>
-    <div class="step"><b>Power overlay</b><span>Weighted spatial density from power records.</span></div>
+    <div class="step"><b>Rivers Lab</b><span>Year-specific density layers show accumulation over time.</span></div>
+    <div class="step"><b>Cadence density</b><span>Weighted spatial density from cadence records.</span></div>
+    <div class="step"><b>Power density</b><span>Weighted spatial density from power records.</span></div>
     <div class="step"><b>Terrain response</b><span>Local effort/cadence signatures across constrained corridors.</span></div>
-    <div class="step"><b>Predictive routes</b><span>Grid-cell recurrence identifies repeated riding structures.</span></div>
-    <div class="step"><b>Concentrated actions</b><span>Hakodate cells summarize local density and persistence.</span></div>
+    <div class="step"><b>Predictive model</b><span>Grid-cell recurrence identifies repeated riding structures.</span></div>
+    <div class="step"><b>Hakodate micro-region</b><span>Hakodate cells summarize local density and persistence.</span></div>
   </div>
 
   <div class="map"><iframe srcdoc='{escape_srcdoc(map_html)}'></iframe></div>
