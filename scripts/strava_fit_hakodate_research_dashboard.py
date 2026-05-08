@@ -1,15 +1,8 @@
 #!/usr/bin/env python3
-"""Create a branded Hakodate cycling telemetry research dashboard from FIT files.
+"""Create a map-only Hakodate cycling telemetry dashboard from FIT files.
 
-Layers included:
-- temporal route density by year
-- cadence density
-- power density
-- grid-based predictive modelling
-- Hakodate micro-region modelling
-
-The script intentionally uses simple grid/cell aggregation rather than heavy GIS
-or machine-learning dependencies so it can run locally with fitparse + folium.
+This file intentionally generates only the interactive map. Explanatory cards
+belong in the lightweight wrapper page, not inside the map frame.
 """
 
 from __future__ import annotations
@@ -17,7 +10,7 @@ from __future__ import annotations
 import argparse
 import math
 from collections import defaultdict
-from datetime import datetime, timezone
+from datetime import datetime
 from pathlib import Path
 from statistics import mean
 
@@ -28,9 +21,6 @@ from folium.plugins import Fullscreen, HeatMap, MeasureControl
 SEMICIRCLES_TO_DEGREES = 180 / 2**31
 HAKODATE_BOUNDS = (41.65, 42.25, 140.45, 141.25)
 PURPLE = "#520671"
-MUTED = "#6e6c66"
-SOFT = "#f7f3fa"
-LINE = "#e6e2de"
 
 
 def in_bounds(lat: float, lon: float, bounds: tuple[float, float, float, float]) -> bool:
@@ -79,19 +69,15 @@ def read_fit_records(path: Path, every: int, bounds: tuple[float, float, float, 
 
         ts = values.get("timestamp")
         year = ts.year if isinstance(ts, datetime) else 0
-        altitude = values.get("enhanced_altitude", values.get("altitude"))
 
-        records.append(
-            {
-                "lat": lat,
-                "lon": lon,
-                "year": year,
-                "cadence": values.get("cadence"),
-                "power": values.get("power"),
-                "altitude": altitude,
-                "activity": path.stem,
-            }
-        )
+        records.append({
+            "lat": lat,
+            "lon": lon,
+            "year": year,
+            "cadence": values.get("cadence"),
+            "power": values.get("power"),
+            "activity": path.stem,
+        })
 
     return records
 
@@ -147,16 +133,14 @@ def add_micro_region_layer(m: folium.Map, cells: dict, cell: float, top_n: int) 
         power = mean(info["power"]) if info["power"] else None
         persistence = len(info["years"])
         radius = 4 + 18 * (info["count"] / max_count)
-        if cadence is not None:
-            popup = f"<b>Hakodate micro-region</b><br>Records: {info['count']:,}<br>Years active: {persistence}<br>Mean cadence: {cadence:.1f} rpm<br>"
-        else:
-            popup = f"<b>Hakodate micro-region</b><br>Records: {info['count']:,}<br>Years active: {persistence}<br>Mean cadence: —<br>"
+        popup = f"<b>Hakodate micro-region</b><br>Records: {info['count']:,}<br>Years active: {persistence}<br>"
+        popup += f"Mean cadence: {cadence:.1f} rpm<br>" if cadence is not None else "Mean cadence: —<br>"
         popup += f"Mean power: {power:.1f} W" if power is not None else "Mean power: —"
         folium.CircleMarker(center, radius=radius, color=PURPLE, fill=True, fill_opacity=0.20, weight=1, popup=popup).add_to(layer)
     layer.add_to(m)
 
 
-def add_behavioural_corridor_layer(m: folium.Map, cells: dict, cell: float, top_n: int) -> None:
+def add_predictive_model_layer(m: folium.Map, cells: dict, cell: float, top_n: int) -> None:
     layer = folium.FeatureGroup(name="Predictive model", show=False)
     ranked = sorted(cells.items(), key=lambda item: (item[1]["count"] * max(1, len(item[1]["years"]))), reverse=True)[:top_n]
 
@@ -164,16 +148,14 @@ def add_behavioural_corridor_layer(m: folium.Map, cells: dict, cell: float, top_
         center = cell_center(key, cell)
         cadence = mean(info["cadence"]) if info["cadence"] else None
         power = mean(info["power"]) if info["power"] else None
-        if cadence is not None:
-            popup = f"<b>Predictive model #{rank}</b><br>Density records: {info['count']:,}<br>Persistence across years: {len(info['years'])}<br>Mean cadence: {cadence:.1f} rpm<br>"
-        else:
-            popup = f"<b>Predictive model #{rank}</b><br>Density records: {info['count']:,}<br>Persistence across years: {len(info['years'])}<br>Mean cadence: —<br>"
+        popup = f"<b>Predictive model #{rank}</b><br>Density records: {info['count']:,}<br>Persistence across years: {len(info['years'])}<br>"
+        popup += f"Mean cadence: {cadence:.1f} rpm<br>" if cadence is not None else "Mean cadence: —<br>"
         popup += f"Mean power: {power:.1f} W" if power is not None else "Mean power: —"
         folium.CircleMarker(center, radius=7, color=PURPLE, fill=True, fill_opacity=0.75, weight=1, tooltip=f"Model {rank}: {info['count']:,} records", popup=popup).add_to(layer)
     layer.add_to(m)
 
 
-def build_map(records: list[dict], cell: float, max_points: int, top_cells: int) -> tuple[str, dict]:
+def build_map(records: list[dict], cell: float, max_points: int, top_cells: int) -> folium.Map:
     if not records:
         raise RuntimeError("No Hakodate records found.")
 
@@ -207,89 +189,17 @@ def build_map(records: list[dict], cell: float, max_points: int, top_cells: int)
         HeatMap(year_points, name=f"Rivers Lab: {year}", radius=8, blur=12, min_opacity=0.18, show=False).add_to(m)
 
     cells = aggregate_cells(records, cell)
-    add_behavioural_corridor_layer(m, cells, cell, top_cells)
+    add_predictive_model_layer(m, cells, cell, top_cells)
     add_micro_region_layer(m, cells, cell, top_cells * 2)
 
     folium.LayerControl(collapsed=False, position="topright").add_to(m)
-
-    stats = {
-        "records": len(records),
-        "mapped_points": len(points),
-        "years": len(by_year),
-        "cells": len(cells),
-        "corridors": min(top_cells, len(cells)),
-        "activities": len({r["activity"] for r in records}),
-    }
-    return m.get_root().render(), stats
-
-
-def escape_srcdoc(html: str) -> str:
-    return html.replace("&", "&amp;").replace("'", "&#39;").replace("<", "&lt;").replace(">", "&gt;")
-
-
-def branded_page(map_html: str, stats: dict, every: int, cell: float) -> str:
-    generated = datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M UTC")
-    return f"""<!doctype html>
-<html lang="en">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Hakodate Cycling Telemetry Dashboard | Rivers Lab</title>
-<style>
-:root {{ --purple:#520671; --muted:#6e6c66; --soft:#f7f3fa; --line:#e6e2de; --ink:#262323; }}
-html,body {{ margin:0; background:#fff; color:var(--ink); font-family:Arial,Helvetica,sans-serif; }}
-.wrap {{ max-width:1180px; margin:0 auto; padding:18px 14px 20px; }}
-.grid {{ display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-bottom:12px; }}
-.card {{ border:1px solid var(--line); border-radius:8px; padding:12px 14px; background:#fff; }}
-.card p {{ margin:0; color:var(--muted); font-size:14px; line-height:1.45; }}
-.stats {{ display:grid; grid-template-columns:repeat(3,1fr); gap:8px; }}
-.stat {{ border-left:3px solid var(--purple); padding:3px 0 3px 9px; }}
-.num {{ font-family:'DM Mono','SFMono-Regular',Consolas,monospace; color:var(--purple); font-size:18px; font-weight:700; }}
-.lab {{ font-size:11px; color:var(--muted); }}
-.notation {{ display:grid; grid-template-columns:repeat(6,1fr); gap:8px; margin-bottom:12px; }}
-.step {{ border:1px solid var(--line); border-radius:7px; padding:9px 10px; background:var(--soft); }}
-.step b {{ display:block; font-family:'DM Mono','SFMono-Regular',Consolas,monospace; font-size:12px; color:var(--purple); margin-bottom:4px; }}
-.step span {{ font-size:12.5px; color:var(--muted); line-height:1.28; }}
-.map {{ border:1px solid var(--line); border-radius:10px; overflow:hidden; box-shadow:0 10px 30px rgba(82,6,113,.06); }}
-.map iframe {{ width:100%; height:760px; border:0; display:block; }}
-.foot {{ font-size:11px; color:#9a9890; margin-top:8px; line-height:1.35; }}
-@media(max-width:900px) {{ .grid,.notation,.stats {{ grid-template-columns:1fr; }} .map iframe {{ height:660px; }} }}
-</style>
-</head>
-<body>
-<div class="wrap">
-  <div class="grid">
-    <div class="card"><p>This dashboard treats repeated cycling telemetry as spatial evidence of behavioural regulation. Route density, cadence density, power density, predictive models, and Hakodate micro-regions are extracted from local Strava FIT files filtered to the Hakodate area.</p></div>
-    <div class="card stats">
-      <div class="stat"><div class="num">{stats['activities']:,}</div><div class="lab">activities</div></div>
-      <div class="stat"><div class="num">{stats['mapped_points']:,}</div><div class="lab">mapped points</div></div>
-      <div class="stat"><div class="num">{stats['years']:,}</div><div class="lab">Rivers Lab layers</div></div>
-      <div class="stat"><div class="num">{stats['cells']:,}</div><div class="lab">micro-region cells</div></div>
-      <div class="stat"><div class="num">{stats['corridors']:,}</div><div class="lab">predictive models</div></div>
-      <div class="stat"><div class="num">1/{every}</div><div class="lab">sampling rate</div></div>
-    </div>
-  </div>
-
-  <div class="notation">
-    <div class="step"><b>Rivers Lab</b><span>Year-specific density layers show accumulation over time.</span></div>
-    <div class="step"><b>Cadence density</b><span>Weighted spatial density from cadence records.</span></div>
-    <div class="step"><b>Power density</b><span>Weighted spatial density from power records.</span></div>
-    <div class="step"><b>Terrain response</b><span>Local effort/cadence signatures across constrained corridors.</span></div>
-    <div class="step"><b>Predictive model</b><span>Grid-cell recurrence identifies repeated riding structures.</span></div>
-    <div class="step"><b>Hakodate micro-region</b><span>Hakodate cells summarize local density and persistence.</span></div>
-  </div>
-
-  <div class="map"><iframe srcdoc='{escape_srcdoc(map_html)}'></iframe></div>
-  <div class="foot">Generated {generated}. Source: local FIT telemetry filtered to Hakodate. Cell size: {cell} degrees. Layers are thinned for browser delivery.</div>
-</div>
-</body>
-</html>"""
+    return m
 
 
 def main() -> None:
-    parser = argparse.ArgumentParser(description="Create a Hakodate cycling telemetry research dashboard from FIT files.")
+    parser = argparse.ArgumentParser(description="Create a map-only Hakodate cycling telemetry dashboard from FIT files.")
     parser.add_argument("fit_dir", type=Path)
-    parser.add_argument("--out", type=Path, default=Path("docs/hakodate_cycling_telemetry_dashboard.html"))
+    parser.add_argument("--out", type=Path, default=Path("docs/hakodate_cycling_telemetry_map.html"))
     parser.add_argument("--every", type=int, default=15)
     parser.add_argument("--limit", type=int, default=None)
     parser.add_argument("--max-points", type=int, default=90000)
@@ -299,9 +209,9 @@ def main() -> None:
 
     args.out.parent.mkdir(parents=True, exist_ok=True)
     records = load_records(args.fit_dir, every=max(1, args.every), limit=args.limit)
-    map_html, stats = build_map(records, cell=args.cell, max_points=args.max_points, top_cells=args.top_cells)
-    args.out.write_text(branded_page(map_html, stats, every=max(1, args.every), cell=args.cell), encoding="utf-8")
-    print(f"Saved dashboard: {args.out.resolve()}")
+    m = build_map(records, cell=args.cell, max_points=args.max_points, top_cells=args.top_cells)
+    m.save(args.out)
+    print(f"Saved map-only dashboard: {args.out.resolve()}")
 
 
 if __name__ == "__main__":
