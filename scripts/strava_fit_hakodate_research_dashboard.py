@@ -141,47 +141,35 @@ def aggregate_cells(records: list[dict], cell: float) -> dict[tuple[float, float
 
 
 def add_micro_region_layer(m: folium.Map, cells: dict, cell: float, top_n: int) -> None:
-    layer = folium.FeatureGroup(name="Hakodate micro-region density", show=False)
+    layer = folium.FeatureGroup(name="Hakodate concentrated actions", show=False)
     ranked = sorted(cells.items(), key=lambda item: item[1]["count"], reverse=True)[:top_n]
     max_count = max((item[1]["count"] for item in ranked), default=1)
 
     for key, info in ranked:
         center = cell_center(key, cell)
         cadence = mean(info["cadence"]) if info["cadence"] else None
-        power = mean(info["power"]) if info["power"] else None
+        power = mean(info["power"] ) if info["power"] else None
         persistence = len(info["years"])
         radius = 4 + 18 * (info["count"] / max_count)
         popup = (
-            f"<b>Micro-region</b><br>"
+            f"<b>Concentrated action region</b><br>"
             f"Records: {info['count']:,}<br>"
             f"Years active: {persistence}<br>"
-            f"Mean cadence: {cadence:.1f} rpm<br>" if cadence is not None else f"<b>Micro-region</b><br>Records: {info['count']:,}<br>Years active: {persistence}<br>Mean cadence: —<br>"
+            f"Mean cadence: {cadence:.1f} rpm<br>" if cadence is not None else f"<b>Concentrated action region</b><br>Records: {info['count']:,}<br>Years active: {persistence}<br>Mean cadence: —<br>"
         )
         popup += f"Mean power: {power:.1f} W" if power is not None else "Mean power: —"
-        folium.CircleMarker(
-            center,
-            radius=radius,
-            color=PURPLE,
-            fill=True,
-            fill_opacity=0.20,
-            weight=1,
-            popup=popup,
-        ).add_to(layer)
+        folium.CircleMarker(center, radius=radius, color=PURPLE, fill=True, fill_opacity=0.20, weight=1, popup=popup).add_to(layer)
     layer.add_to(m)
 
 
 def add_behavioural_corridor_layer(m: folium.Map, cells: dict, cell: float, top_n: int) -> None:
-    layer = folium.FeatureGroup(name="Behavioural corridor candidates", show=True)
-    ranked = sorted(
-        cells.items(),
-        key=lambda item: (item[1]["count"] * max(1, len(item[1]["years"]))),
-        reverse=True,
-    )[:top_n]
+    layer = folium.FeatureGroup(name="Predictive behavioural routes", show=False)
+    ranked = sorted(cells.items(), key=lambda item: (item[1]["count"] * max(1, len(item[1]["years"]))), reverse=True)[:top_n]
 
     for rank, (key, info) in enumerate(ranked, start=1):
         center = cell_center(key, cell)
         cadence = mean(info["cadence"]) if info["cadence"] else None
-        power = mean(info["power"]) if info["power"] else None
+        power = mean(info["power"] ) if info["power"] else None
         folium.CircleMarker(
             center,
             radius=7,
@@ -189,12 +177,12 @@ def add_behavioural_corridor_layer(m: folium.Map, cells: dict, cell: float, top_
             fill=True,
             fill_opacity=0.75,
             weight=1,
-            tooltip=f"Corridor {rank}: {info['count']:,} records",
+            tooltip=f"Route {rank}: {info['count']:,} records",
             popup=(
-                f"<b>Behavioural corridor candidate #{rank}</b><br>"
+                f"<b>Predictive behavioural route #{rank}</b><br>"
                 f"Density records: {info['count']:,}<br>"
                 f"Persistence across years: {len(info['years'])}<br>"
-                f"Mean cadence: {cadence:.1f} rpm<br>" if cadence is not None else f"<b>Behavioural corridor candidate #{rank}</b><br>Density records: {info['count']:,}<br>Persistence across years: {len(info['years'])}<br>Mean cadence: —<br>"
+                f"Mean cadence: {cadence:.1f} rpm<br>" if cadence is not None else f"<b>Predictive behavioural route #{rank}</b><br>Density records: {info['count']:,}<br>Persistence across years: {len(info['years'])}<br>Mean cadence: —<br>"
             ) + (f"Mean power: {power:.1f} W" if power is not None else "Mean power: —"),
         ).add_to(layer)
     layer.add_to(m)
@@ -231,7 +219,7 @@ def build_map(records: list[dict], cell: float, max_points: int, top_cells: int)
             by_year[r["year"]].append([r["lat"], r["lon"]])
     for year in sorted(by_year):
         year_points = by_year[year][::max(1, len(by_year[year]) // 25000)]
-        HeatMap(year_points, name=f"Temporal density: {year}", radius=8, blur=12, min_opacity=0.18, show=False).add_to(m)
+        HeatMap(year_points, name=f"Rivers Lab actions: {year}", radius=8, blur=12, min_opacity=0.18, show=False).add_to(m)
 
     cells = aggregate_cells(records, cell)
     add_behavioural_corridor_layer(m, cells, cell, top_cells)
@@ -257,64 +245,7 @@ def escape_srcdoc(html: str) -> str:
 def branded_page(map_html: str, stats: dict, every: int, cell: float) -> str:
     generated = datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M UTC")
     return f"""<!doctype html>
-<html lang="en">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Hakodate Cycling Telemetry Dashboard | Rivers Lab</title>
-<style>
-:root {{ --purple:#520671; --muted:#6e6c66; --soft:#f7f3fa; --line:#e6e2de; --ink:#262323; }}
-html,body {{ margin:0; background:#fff; color:var(--ink); font-family:Arial,Helvetica,sans-serif; }}
-.wrap {{ max-width:1180px; margin:0 auto; padding:18px 14px 20px; }}
-.kicker {{ font-family:'DM Mono','SFMono-Regular',Consolas,monospace; font-size:12px; letter-spacing:.08em; color:var(--purple); text-transform:uppercase; margin-bottom:6px; }}
-h1 {{ font-family:'DM Mono','SFMono-Regular',Consolas,monospace; font-size:24px; line-height:1.15; color:var(--purple); margin:0 0 6px; }}
-.sub {{ font-family:'DM Mono','SFMono-Regular',Consolas,monospace; font-size:15px; color:#9a9890; margin-bottom:14px; }}
-.grid {{ display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-bottom:12px; }}
-.card {{ border:1px solid var(--line); border-radius:8px; padding:12px 14px; background:#fff; }}
-.card p {{ margin:0; color:var(--muted); font-size:14px; line-height:1.45; }}
-.stats {{ display:grid; grid-template-columns:repeat(3,1fr); gap:8px; }}
-.stat {{ border-left:3px solid var(--purple); padding:3px 0 3px 9px; }}
-.num {{ font-family:'DM Mono','SFMono-Regular',Consolas,monospace; color:var(--purple); font-size:18px; font-weight:700; }}
-.lab {{ font-size:11px; color:var(--muted); }}
-.notation {{ display:grid; grid-template-columns:repeat(6,1fr); gap:8px; margin-bottom:12px; }}
-.step {{ border:1px solid var(--line); border-radius:7px; padding:9px 10px; background:var(--soft); }}
-.step b {{ display:block; font-family:'DM Mono','SFMono-Regular',Consolas,monospace; font-size:12px; color:var(--purple); margin-bottom:4px; }}
-.step span {{ font-size:12.5px; color:var(--muted); line-height:1.28; }}
-.map {{ border:1px solid var(--line); border-radius:10px; overflow:hidden; box-shadow:0 10px 30px rgba(82,6,113,.06); }}
-.map iframe {{ width:100%; height:760px; border:0; display:block; }}
-.foot {{ font-size:11px; color:#9a9890; margin-top:8px; line-height:1.35; }}
-@media(max-width:900px) {{ .grid,.notation,.stats {{ grid-template-columns:1fr; }} .map iframe {{ height:660px; }} }}
-</style>
-</head>
-<body>
-<div class="wrap">
-  <div class="kicker">Rivers Lab · Human–Machine Cycling Systems</div>
-  <div class="grid">
-    <div class="card"><p>This dashboard treats repeated cycling telemetry as spatial evidence of behavioural regulation. Route density, cadence-weighted density, power-weighted density, repeated corridors, and micro-region cells are extracted from local Strava FIT files filtered to the Hakodate area.</p></div>
-    <div class="card stats">
-      <div class="stat"><div class="num">{stats['activities']:,}</div><div class="lab">activities</div></div>
-      <div class="stat"><div class="num">{stats['mapped_points']:,}</div><div class="lab">mapped points</div></div>
-      <div class="stat"><div class="num">{stats['years']:,}</div><div class="lab">temporal layers</div></div>
-      <div class="stat"><div class="num">{stats['cells']:,}</div><div class="lab">micro-region cells</div></div>
-      <div class="stat"><div class="num">{stats['corridors']:,}</div><div class="lab">corridor candidates</div></div>
-      <div class="stat"><div class="num">1/{every}</div><div class="lab">sampling rate</div></div>
-    </div>
-  </div>
-
-  <div class="notation">
-    <div class="step"><b>Temporal animation</b><span>Year-specific density layers show accumulation over time.</span></div>
-    <div class="step"><b>Cadence overlay</b><span>Weighted spatial density from cadence records.</span></div>
-    <div class="step"><b>Power overlay</b><span>Weighted spatial density from power records.</span></div>
-    <div class="step"><b>Terrain response</b><span>Local effort/cadence signatures across constrained corridors.</span></div>
-    <div class="step"><b>Route clustering</b><span>Grid-cell recurrence identifies repeated riding structures.</span></div>
-    <div class="step"><b>Micro-regions</b><span>Hakodate cells summarize local density and persistence.</span></div>
-  </div>
-
-  <div class="map"><iframe srcdoc='{escape_srcdoc(map_html)}'></iframe></div>
-  <div class="foot">Generated {generated}. Source: local FIT telemetry filtered to Hakodate. Cell size: {cell} degrees. Layers are thinned for browser delivery.</div>
-</div>
-</body>
-</html>"""
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Hakodate Cycling Telemetry Dashboard | Rivers Lab</title><style>:root {{--purple:#520671;--muted:#6e6c66;--soft:#f7f3fa;--line:#e6e2de;--ink:#262323;}}html,body{{margin:0;background:#fff;color:var(--ink);font-family:Arial,Helvetica,sans-serif;}}.wrap{{max-width:1180px;margin:0 auto;padding:18px 14px 20px;}}.map{{border:1px solid var(--line);border-radius:10px;overflow:hidden;box-shadow:0 10px 30px rgba(82,6,113,.06);}}.map iframe{{width:100%;height:760px;border:0;display:block;}}.foot{{font-size:11px;color:#9a9890;margin-top:8px;line-height:1.35;}}</style></head><body><div class="wrap"><div class="map"><iframe srcdoc='{escape_srcdoc(map_html)}'></iframe></div><div class="foot">Generated {generated}. Source: local FIT telemetry filtered to Hakodate. Cell size: {cell} degrees. Layers are thinned for browser delivery.</div></div></body></html>"""
 
 
 def main() -> None:
