@@ -21,13 +21,13 @@ const yOffset=0.03; // push whole structure down
 
 const nodes=[
 {type:"domain",label:"Educational\nPsychology\nand Learning\nSystems",x:0.50,y:0.17+yOffset,r:90,fill:"#ffffff",stroke:"#520671",text:"#520671",halo:"#520671"},
-{type:"domain",label:"Language\nand Media\nCommunication\nSystems",x:0.18,y:0.55+yOffset,r:90,fill:"#ffffff",stroke:"#e05c2a",text:"#6e3a27",halo:"#e05c2a"},
-{type:"domain",label:"Human–Machine\nSystems",x:0.82,y:0.55+yOffset,r:90,fill:"#ffffff",stroke:"#3f6f67",text:"#315852",halo:"#3f6f67"},
+{type:"domain",label:"Language\nand Media\nCommunication\nSystems",x:0.18,y:0.55+yOffset,r:90,fill:"#ffffff",stroke:"#520671",text:"#520671",halo:"#520671"},
+{type:"domain",label:"Human–Machine\nSystems",x:0.82,y:0.55+yOffset,r:90,fill:"#ffffff",stroke:"#520671",text:"#520671",halo:"#520671"},
 
-{type:"concept",label:"Constraint",x:0.29,y:0.32+yOffset,r:56,fill:"#eeeeec",stroke:"#6e6c66",text:"#4f4d49",halo:"#6e6c66"},
-{type:"concept",label:"Behaviour",x:0.43,y:0.54+yOffset,r:56,fill:"#fde6d8",stroke:"#e05c2a",text:"#7a351f",halo:"#e05c2a"},
-{type:"concept",label:"Adaptation",x:0.57,y:0.54+yOffset,r:56,fill:"#e3f0ed",stroke:"#3f6f67",text:"#315852",halo:"#3f6f67"},
-{type:"concept",label:"Outcome",x:0.71,y:0.32+yOffset,r:56,fill:"#e8e0f0",stroke:"#520671",text:"#3b2348",halo:"#520671"}
+{type:"concept",label:"Constraint",x:0.29,y:0.32+yOffset,r:56,fill:"#fff4ee",stroke:"#e05c2a",text:"#7a351f",halo:"#e05c2a"},
+{type:"concept",label:"Behaviour",x:0.43,y:0.54+yOffset,r:56,fill:"#fff4ee",stroke:"#e05c2a",text:"#7a351f",halo:"#e05c2a"},
+{type:"concept",label:"Adaptation",x:0.57,y:0.54+yOffset,r:56,fill:"#fff4ee",stroke:"#e05c2a",text:"#7a351f",halo:"#e05c2a"},
+{type:"concept",label:"Outcome",x:0.71,y:0.32+yOffset,r:56,fill:"#fff4ee",stroke:"#e05c2a",text:"#7a351f",halo:"#e05c2a"}
 ];
 
 const flowLinks=[[3,4],[4,5],[5,6]];
@@ -45,7 +45,7 @@ const pulse=(Math.sin(t*0.04+p)+1)/2;const px=sx+(ex-sx)*pulse, py=sy+(ey-sy)*pu
 ctx.fillStyle=rgba(col,a+0.25);ctx.beginPath();ctx.arc(px,py,3,0,Math.PI*2);ctx.fill();}
 
 function drawSoft(A,B,a,p){const pulse=(Math.sin(t*0.03+p)+1)/2;
-ctx.strokeStyle=rgba(palette.deepPurple,a+pulse*0.02);ctx.lineWidth=0.6;ctx.beginPath();ctx.moveTo(A.px,A.py);ctx.lineTo(B.px,B.py);ctx.stroke();}
+ctx.strokeStyle=rgba(palette.purple,a+pulse*0.02);ctx.lineWidth=0.6;ctx.beginPath();ctx.moveTo(A.px,A.py);ctx.lineTo(B.px,B.py);ctx.stroke();}
 
 function draw(){ctx.clearRect(0,0,W,H);
 const w=canvas.clientWidth,h=canvas.clientHeight;
