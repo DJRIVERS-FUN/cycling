@@ -44,14 +44,19 @@ ctx.strokeStyle=rgba(col,a);ctx.lineWidth=w;ctx.beginPath();ctx.moveTo(sx,sy);ct
 const pulse=(Math.sin(t*0.04+p)+1)/2;const px=sx+(ex-sx)*pulse, py=sy+(ey-sy)*pulse;
 ctx.fillStyle=rgba(col,a+0.25);ctx.beginPath();ctx.arc(px,py,3,0,Math.PI*2);ctx.fill();}
 
-function drawSoft(A,B,a,p){const pulse=(Math.sin(t*0.03+p)+1)/2;
-ctx.strokeStyle=rgba(palette.purple,a+pulse*0.02);ctx.lineWidth=0.6;ctx.beginPath();ctx.moveTo(A.px,A.py);ctx.lineTo(B.px,B.py);ctx.stroke();}
+function drawSoft(A,B,a,p){const linkPulse=(Math.sin(t*0.03+p)+1)/2;
+ctx.strokeStyle=rgba(palette.purple,a+linkPulse*0.035);ctx.lineWidth=0.95;ctx.beginPath();ctx.moveTo(A.px,A.py);ctx.lineTo(B.px,B.py);ctx.stroke();
+const travel=(t*0.006+p*0.13)%1;
+const px=A.px+(B.px-A.px)*travel, py=A.py+(B.py-A.py)*travel;
+const glow=(Math.sin(t*0.05+p)+1)/2;
+ctx.fillStyle=rgba(palette.purple,0.11+glow*0.08);ctx.beginPath();ctx.arc(px,py,5.2,0,Math.PI*2);ctx.fill();
+ctx.fillStyle=rgba(palette.orange,0.26+glow*0.16);ctx.beginPath();ctx.arc(px,py,2.2,0,Math.PI*2);ctx.fill();}
 
 function draw(){ctx.clearRect(0,0,W,H);
 const w=canvas.clientWidth,h=canvas.clientHeight;
 let mapped=nodes.map(n=>({...n,px:n.x*w+Math.sin(t*0.006+n.x*10)*(n.type==="domain"?10:6),py:n.y*h+Math.cos(t*0.008+n.y*10)*(n.type==="domain"?10:6)}));
 
-domainLinks.forEach(([a,b],i)=>drawSoft(mapped[a],mapped[b],0.035,i));
+domainLinks.forEach(([a,b],i)=>drawSoft(mapped[a],mapped[b],0.075,i));
 flowLinks.forEach(([a,b],i)=>drawArrow(mapped[a],mapped[b],palette.orange,0.5,2.2,i));
 
 mapped.forEach((n,i)=>{
