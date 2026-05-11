@@ -1,5 +1,5 @@
 {
-  "generated_utc": "2026-05-10T21:50:58Z",
+  "generated_utc": "2026-05-11T03:41:22Z",
   "model": "Cycling behavioural regulation micro-dashboard",
   "window_days": {
     "short": 7,
@@ -51,19 +51,6 @@
     }
   },
   "weekly_series": [
-    {
-      "week_start": "2026-02-16",
-      "distance_km": 64.8,
-      "moving_h": 1.9,
-      "elevation_m": 190.0,
-      "ride_count": 3,
-      "indoor_count": 3,
-      "outdoor_count": 0,
-      "training_tags": {
-        "tempo / hard": 2,
-        "short easy": 1
-      }
-    },
     {
       "week_start": "2026-02-23",
       "distance_km": 26.9,
@@ -204,6 +191,16 @@
         "Z2": 2,
         "long ride": 1
       }
+    },
+    {
+      "week_start": "2026-05-11",
+      "distance_km": 0,
+      "moving_h": 0,
+      "elevation_m": 0,
+      "ride_count": 0,
+      "indoor_count": 0,
+      "outdoor_count": 0,
+      "training_tags": {}
     }
   ],
   "recent_rides": [
