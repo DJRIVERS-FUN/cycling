@@ -1,13 +1,14 @@
 {
-  "updated_utc": "2026-05-12T14:32:54Z",
+  "updated_utc": "2026-05-12T17:13:31Z",
   "source": "Strava",
   "athlete_id": 3714458,
   "scope": "latest 60 activities; 7-day research window",
-  "headline": "7-day riding state: 109.3 km · 5.0 h · 1,433 m+",
+  "headline": "7-day riding state: 109.3 km · 5.0 h · 1433 m+",
   "state": {
     "load": "Moderate load",
     "context": "Outdoor-field",
-    "climbing_density": "13.1 m/km"
+    "climbing_density": "13.1 m/km",
+    "latest_training_tag": "Z2"
   },
   "metrics": [
     {
@@ -20,19 +21,19 @@
     },
     {
       "label": "Ascent",
-      "value": "1,433 m"
+      "value": "1433 m"
     },
     {
       "label": "Speed",
-      "value": "21.9 kph"
+      "value": "22.8 kph"
     },
     {
       "label": "Power",
-      "value": "185 W"
+      "value": "159 W"
     },
     {
       "label": "Cadence",
-      "value": "75 rpm"
+      "value": "76 rpm"
     }
   ],
   "seven_day": {
@@ -42,20 +43,21 @@
     "elevation_m": 1433.0,
     "indoor_count": 0,
     "outdoor_count": 3,
-    "avg_speed_kph": 21.9,
-    "avg_power_w": 185,
-    "avg_cadence_rpm": 75,
+    "avg_speed_kph": 22.8,
+    "avg_power_w": 159,
+    "avg_cadence_rpm": 76,
     "climbing_m_per_km": 13.1
   },
   "latest_60": {
-    "ride_count": 60,
-    "distance_km": 1485.0,
-    "moving_hours": 57.2,
-    "elevation_m": 12134.0
+    "ride_count": 41,
+    "distance_km": 1062.1,
+    "moving_hours": 43.6,
+    "elevation_m": 10557.0
   },
   "latest_ride": {
     "name": "05/12/2026 Morning Gravel Ride",
-    "date": "2026-05-12",
-    "type": "Ride"
+    "date": "2026-05-11",
+    "type": "GravelRide",
+    "training_tag": "Z2"
   }
 }
