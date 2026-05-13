@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Hakodate Segment Landscape</title>
+  <style>
+    :root{--text:#252525;--muted:#666;--line:#e7e1da;--bg:#fff;--soft:#faf8f5}
+    html,body{margin:0;padding:0;background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;line-height:1.55}
+    .wrap{max-width:1000px;margin:0 auto;padding:20px 16px 28px}.intro{max-width:850px;margin:0 auto 18px}
+    h1{font-size:clamp(1.45rem,3vw,2.15rem);line-height:1.15;margin:0 0 10px;font-weight:700;letter-spacing:-.02em}
+    p{margin:0 0 12px;font-size:.98rem}.note{color:var(--muted);font-size:.9rem}
+    .map-frame{border:1px solid var(--line);border-radius:12px;overflow:hidden;background:var(--soft);box-shadow:0 10px 30px rgba(0,0,0,.045)}
+    iframe{width:100%;height:760px;border:0;display:block;background:#fff}
+    @media(max-width:700px){.wrap{padding:14px 10px 20px}iframe{height:620px}}
+  </style>
+</head>
+<body>
+  <main class="wrap">
+    <section class="intro">
+      <h1>Hakodate Segment Landscape</h1>
+      <p>This visualization maps the Strava segment landscape around southern Hokkaido as a digitally mediated performance environment. The aim is to show how local terrain, rider-generated effort zones, platform data, and cycling behaviour combine to form a human&ndash;machine system.</p>
+      <p class="note">Segment locations provide a contextual layer for analysing pacing, gearing, cadence, route choice, and repeated performance efforts in the field.</p>
+    </section>
+    <section class="map-frame" aria-label="Interactive Strava segment map">
+      <iframe src="./hakodate_segments.html" loading="lazy" title="Interactive Strava segment map around Hakodate"></iframe>
+    </section>
+  </main>
+</body>
+</html>
