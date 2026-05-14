@@ -8,22 +8,21 @@
 <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
   * { box-sizing: border-box; margin: 0; padding: 0; }
-  html, body { width: 100%; min-height: 100%; background: #ffffff; color: #1a1a1a; font-family: 'DM Sans', sans-serif; }
-  body { padding: 0 14px 14px; }
-  .cg-root { width: 100%; padding-top: 2px; }
-  .cg-header { margin-bottom: 22px; }
-  .cg-eyebrow { font-family: 'DM Mono', monospace; font-size: 13px; letter-spacing: .16em; color: #e05c2a; text-transform: uppercase; margin-bottom: 7px; }
-  .cg-title { font-size: 32px; font-weight: 500; line-height: 1.15; color: #111; }
-  .cg-subtitle { margin-top: 7px; font-family: 'DM Mono', monospace; font-size: 15px; letter-spacing: .04em; color: #9a9890; }
-  .cg-panel { border-top: 1px solid #ece9e3; border-bottom: 1px solid #ece9e3; padding: 20px 0 18px; }
-  .metrics { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; margin-bottom: 20px; }
+  html, body { width: 100%; min-height: 100%; background: #ffffff; color: #1a1a1a; font-family: 'DM Sans', sans-serif; overflow-x:hidden; }
+  body { padding: 0; }
+  .cg-root { width: 100%; max-width:none; margin:0; padding:0; background:#fff; }
+  .cg-header { display:none; }
+  .cg-panel { border:0; padding:0; }
+  .metrics { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 18px; margin-bottom: 20px; }
+  .metrics > div { border:1px solid #ece9e3; border-radius:10px; padding:13px 15px; background:#fff; position:relative; overflow:hidden; }
+  .metrics > div::before { content:""; position:absolute; left:0; top:0; width:4px; height:100%; background:#e05c2a; opacity:.68; }
   .metric-label { font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: .12em; text-transform: uppercase; color: #c0beb8; margin-bottom: 4px; }
   .metric-value { font-size: 28px; font-weight: 500; color: #111; line-height: 1.1; }
   .metric-note { font-family: 'DM Mono', monospace; font-size: 11px; color: #9a9890; margin-top: 3px; }
-  .cg-grid { display: grid; grid-template-columns: 1.45fr .9fr; gap: 24px; align-items: stretch; }
-  .plot-card { min-height: 388px; }
+  .cg-grid { display: grid; grid-template-columns: 1.65fr .85fr; gap: 24px; align-items: stretch; }
+  .plot-card { min-height: 430px; border:1px solid #ece9e3; border-radius:10px; padding:15px 16px 14px; background:#fff; }
   .plot-title { font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: .12em; text-transform: uppercase; color: #c0beb8; margin-bottom: 10px; }
-  .plot { position: relative; height: 348px; border-left: 1px solid #ece9e3; border-bottom: 1px solid #ece9e3; background: linear-gradient(to bottom, rgba(248,247,244,.75), rgba(255,255,255,0)); overflow: hidden; }
+  .plot { position: relative; height: 390px; border-left: 1px solid #ece9e3; border-bottom: 1px solid #ece9e3; background: linear-gradient(to bottom, rgba(248,247,244,.75), rgba(255,255,255,0)); overflow: hidden; }
   .grid-line-h { position: absolute; left: 0; right: 0; height: 1px; background: #f0eee9; }
   .grid-line-v { position: absolute; top: 0; bottom: 0; width: 1px; background: #f0eee9; }
   .axis-y { position: absolute; left: 8px; transform: translateY(-50%); font-family: 'DM Mono', monospace; font-size: 10px; color: #c8c6c0; }
@@ -37,8 +36,8 @@
   .trace { position: absolute; fill: none; stroke: #e05c2a; stroke-width: 2; stroke-dasharray: 6 7; opacity: .46; }
   .pulse { position: absolute; width: 12px; height: 12px; border-radius: 50%; background: #e05c2a; transform: translate(-50%, -50%); animation: drift 7.5s ease-in-out infinite; box-shadow: 0 0 0 8px rgba(224,92,42,.10); }
   @keyframes drift { 0% { left: 35%; top: 66%; } 25% { left: 44%; top: 54%; } 50% { left: 54%; top: 45%; } 75% { left: 48%; top: 37%; } 100% { left: 35%; top: 66%; } }
-  .side-card { border-left: 1px solid #ece9e3; padding-left: 18px; display: flex; flex-direction: column; justify-content: space-between; }
-  .phase { padding: 10px 0; border-bottom: 1px solid #f0eee9; }
+  .side-card { border:1px solid #ece9e3; border-radius:10px; padding:6px 18px; display: flex; flex-direction: column; justify-content: space-between; background:#fff; }
+  .phase { padding: 12px 0; border-bottom: 1px solid #f0eee9; }
   .phase:last-child { border-bottom: 0; }
   .phase-label { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: .12em; text-transform: uppercase; color: #c0beb8; margin-bottom: 4px; }
   .phase-name { font-size: 18px; font-weight: 500; color: #111; line-height: 1.25; }
@@ -55,30 +54,20 @@
   .swatch.orange { background: #e05c2a; }
   .swatch.green { background: #7ab888; }
   .swatch.dark { background: #4c5359; }
-  .cg-footer { margin-top: 15px; display: flex; justify-content: space-between; gap: 14px; align-items: center; }
-  .cg-note { font-family: 'DM Mono', monospace; font-size: 10px; color: #c8c6c0; letter-spacing: .06em; }
-  .cg-pill { font-family: 'DM Mono', monospace; font-size: 10px; color: #e05c2a; background: rgba(224,92,42,.08); border: 1px solid rgba(224,92,42,.25); border-radius: 999px; padding: 6px 11px; letter-spacing: .08em; text-transform: uppercase; white-space: nowrap; }
+  .cg-footer { display:none; }
   @media (max-width: 760px) {
-    body { padding: 0 8px 10px; }
-    .cg-title { font-size: 22px; }
-    .cg-subtitle { font-size: 11px; }
-    .metrics { grid-template-columns: repeat(2, 1fr); gap: 12px; }
+    .metrics { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
     .metric-value { font-size: 22px; }
     .cg-grid { grid-template-columns: 1fr; gap: 18px; }
-    .side-card { border-left: 0; border-top: 1px solid #ece9e3; padding-left: 0; padding-top: 10px; }
+    .side-card { padding: 6px 14px; }
     .plot { height: 300px; }
+    .plot-card { min-height:auto; }
     .gear-band { grid-template-columns: repeat(6, 1fr); }
-    .cg-footer { flex-direction: column; align-items: flex-start; }
   }
 </style>
 </head>
 <body>
-<div class="cg-root">
-  <header class="cg-header">
-    <div class="cg-eyebrow">Rivers Lab Cadence × Gear</div>
-    <h1 class="cg-title">Cadence Regulation Across Gear States</h1>
-    <div class="cg-subtitle">Cadence → Gear Ratio → Mechanical Constraint → Stability</div>
-  </header>
+<div class="cg-root" id="cgRoot">
   <main class="cg-panel">
     <section class="metrics">
       <div><div class="metric-label">Median Cadence</div><div class="metric-value">86 rpm</div><div class="metric-note">preferred rhythm</div></div>
@@ -116,10 +105,18 @@
       <div class="gear" style="--h:16%"><span>50T</span></div><div class="gear" style="--h:28%"><span>42T</span></div><div class="gear" style="--h:36%"><span>35T</span></div><div class="gear" style="--h:48%"><span>28T</span></div><div class="gear hot" style="--h:78%"><span>24T</span></div><div class="gear hot" style="--h:86%"><span>21T</span></div><div class="gear hot" style="--h:92%"><span>19T</span></div><div class="gear hot" style="--h:80%"><span>17T</span></div><div class="gear" style="--h:52%"><span>15T</span></div><div class="gear" style="--h:35%"><span>13T</span></div><div class="gear" style="--h:24%"><span>12T</span></div><div class="gear" style="--h:18%"><span>11T</span></div>
     </div>
   </main>
-  <footer class="cg-footer">
-    <div class="cg-note">Cadence–gear coupling provides a compact view of how riders stabilise behaviour under varied constraint.</div>
-    <div class="cg-pill">Animated regulation map</div>
-  </footer>
 </div>
+<script>
+function sendHeight(){
+  const root=document.getElementById('cgRoot');
+  if(!root||!window.parent)return;
+  window.parent.postMessage({type:'resize',source:'rivers-cadence-gear',height:Math.ceil(root.getBoundingClientRect().height)+2},'*');
+}
+function queueHeight(){requestAnimationFrame(()=>requestAnimationFrame(sendHeight))}
+window.addEventListener('load',queueHeight);
+window.addEventListener('resize',queueHeight);
+if('ResizeObserver' in window){new ResizeObserver(queueHeight).observe(document.getElementById('cgRoot'))}
+queueHeight();
+</script>
 </body>
 </html>
