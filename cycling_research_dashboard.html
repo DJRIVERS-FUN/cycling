@@ -15,7 +15,10 @@
     --muted: #9a9890;
     --line: #e9e5ec;
     --bg: #ffffff;
+    --soft: #faf8fb;
   }
+
+  * { box-sizing: border-box; }
 
   html, body {
     margin: 0;
@@ -23,24 +26,25 @@
     background: var(--bg);
     color: var(--text);
     font-family: 'DM Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    overflow-x: hidden;
+    width: 100%;
   }
 
   .wrap {
-    box-sizing: border-box;
     width: 100%;
-    max-width: 1000px;
-    margin: 0 auto;
-    padding: 2px 0 6px 0;
+    max-width: none;
+    margin: 0;
+    padding: 0;
   }
 
   .eyebrow {
     font-family: 'DM Mono', monospace;
     font-size: 12px;
     font-weight: 500;
-    letter-spacing: 0.035em;
+    letter-spacing: 0.045em;
     text-transform: uppercase;
     color: var(--purple);
-    margin: 0 0 3px 0;
+    margin: 0 0 8px 0;
     line-height: 1.25;
   }
 
@@ -49,20 +53,35 @@
     line-height: 1.32;
     color: var(--text);
     margin: 0 0 13px 0;
-    max-width: 760px;
+    max-width: 980px;
   }
 
   .cards {
     display: grid;
     grid-template-columns: repeat(4, minmax(0, 1fr));
     gap: 14px;
-    margin: 0 0 16px 0;
+    margin: 0 0 18px 0;
   }
 
   .card {
-    border-top: 1px solid var(--line);
-    padding: 9px 0 3px 0;
-    min-height: 48px;
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    background: #fff;
+    padding: 13px 15px;
+    min-height: 74px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .card::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 4px;
+    height: 100%;
+    background: var(--purple);
+    opacity: .62;
   }
 
   .card-label {
@@ -70,22 +89,22 @@
     font-size: 10.5px;
     color: var(--muted);
     text-transform: uppercase;
-    letter-spacing: 0.035em;
-    margin-bottom: 3px;
+    letter-spacing: 0.045em;
+    margin-bottom: 5px;
     line-height: 1.2;
   }
 
   .card-value {
-    font-size: 21px;
+    font-size: 25px;
     font-weight: 500;
     color: var(--purple);
     line-height: 1.05;
   }
 
   .card-note {
-    font-size: 10.5px;
+    font-size: 11px;
     color: var(--muted);
-    margin-top: 3px;
+    margin-top: 5px;
     line-height: 1.25;
   }
 
@@ -96,27 +115,29 @@
   }
 
   .panel {
-    border-top: 1px solid var(--line);
-    padding-top: 9px;
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    background: #fff;
+    padding: 13px 14px 8px;
   }
 
   .panel-title {
     font-family: 'DM Mono', monospace;
     color: var(--purple);
     text-transform: uppercase;
-    letter-spacing: 0.04em;
+    letter-spacing: 0.045em;
     font-size: 11.5px;
-    margin-bottom: 6px;
+    margin-bottom: 8px;
     line-height: 1.2;
   }
 
   .plot {
     width: 100%;
-    height: 246px;
+    height: 310px;
   }
 
   .footer-note {
-    margin-top: 6px;
+    margin-top: 8px;
     font-size: 10.5px;
     color: var(--muted);
     text-align: right;
@@ -133,19 +154,25 @@
     text-underline-offset: 3px;
   }
 
-  @media (max-width: 760px) {
+  @media (max-width: 900px) {
     .cards { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
     .grid { grid-template-columns: 1fr; gap: 14px; }
-    .plot { height: 230px; }
-    .card-value { font-size: 19px; }
+    .plot { height: 285px; }
+    .card-value { font-size: 22px; }
     .subtitle { font-size: 12.5px; }
+  }
+
+  @media (max-width: 560px) {
+    .cards { grid-template-columns: 1fr; }
+    .plot { height: 250px; }
   }
 </style>
 </head>
 <body>
-  <main class="wrap">
+  <main class="wrap" id="wrap">
     <div class="eyebrow">Rivers Lab Cycling Behavioural Regulation Dashboard</div>
- <section class="cards" aria-label="Cycling state summary">
+
+    <section class="cards" aria-label="Cycling state summary">
       <div class="card"><div class="card-label">7-day load</div><div id="sevenLoad" class="card-value">—</div><div id="sevenRides" class="card-note">—</div></div>
       <div class="card"><div class="card-label">30-day volume</div><div id="thirtyVolume" class="card-value">—</div><div id="thirtyRides" class="card-note">—</div></div>
       <div class="card"><div class="card-label">Mean power</div><div id="meanPower" class="card-value">—</div><div class="card-note">30-day ride mean</div></div>
@@ -174,11 +201,39 @@
   const muted = '#9a9890';
   const line = '#e9e5ec';
 
+  function sendHeight(){
+    var wrap = document.getElementById('wrap');
+    if(!wrap || !window.parent){ return; }
+    var h = Math.ceil(wrap.getBoundingClientRect().height) + 2;
+    window.parent.postMessage({
+      type: 'resize',
+      source: 'rivers-cycling-research-dashboard',
+      height: h
+    }, '*');
+  }
+
+  function queueHeight(){
+    requestAnimationFrame(function(){
+      requestAnimationFrame(sendHeight);
+    });
+  }
+
+  window.addEventListener('load', queueHeight);
+  window.addEventListener('resize', function(){
+    Plotly.Plots.resize('load');
+    Plotly.Plots.resize('scatter');
+    queueHeight();
+  });
+
+  if ('ResizeObserver' in window) {
+    new ResizeObserver(queueHeight).observe(document.getElementById('wrap'));
+  }
+
   const baseLayout = {
     paper_bgcolor: '#ffffff',
     plot_bgcolor: '#ffffff',
-    margin: { l: 40, r: 10, t: 6, b: 38 },
-    font: { family: 'DM Sans, Arial, sans-serif', size: 10.5, color: text },
+    margin: { l: 42, r: 12, t: 8, b: 40 },
+    font: { family: 'DM Sans, Arial, sans-serif', size: 11, color: text },
     xaxis: {
       showgrid: false,
       zeroline: false,
@@ -243,7 +298,7 @@
           mode: 'markers',
           type: 'scatter',
           name: 'Outdoor',
-          marker: { size: 8, color: text, opacity: 0.65 },
+          marker: { size: 9, color: text, opacity: 0.65 },
           hovertemplate: '%{text}<br>Cadence: %{x} rpm<br>Power: %{y} W<extra></extra>'
         },
         {
@@ -253,7 +308,7 @@
           mode: 'markers',
           type: 'scatter',
           name: 'Indoor',
-          marker: { size: 8, color: purple, opacity: 0.78 },
+          marker: { size: 9, color: purple, opacity: 0.78 },
           hovertemplate: '%{text}<br>Cadence: %{x} rpm<br>Power: %{y} W<extra></extra>'
         }
       ], {
@@ -266,11 +321,15 @@
 
       const latest = d.latest_ride || {};
       document.getElementById('footerNote').textContent = `Generated ${d.generated_utc} · Latest: ${latest.name || '—'}`;
+      queueHeight();
     })
     .catch(function (err) {
       document.getElementById('footerNote').textContent = 'Dashboard data unavailable.';
       console.error(err);
+      queueHeight();
     });
+
+  queueHeight();
 })();
 </script>
 </body>
