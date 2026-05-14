@@ -11,7 +11,7 @@ body {
     padding:0;
     width:100%;
     background:#ffffff;
-    overflow-x:hidden;
+    overflow:hidden;
     font-family:Arial,Helvetica,sans-serif;
 }
 
@@ -21,15 +21,18 @@ body {
 
 .dashboard-wrap {
     width:100%;
+    height:920px;
     margin:0;
     padding:0;
     background:#ffffff;
     line-height:0;
+    overflow:hidden;
 }
 
 .dashboard-frame {
     position:relative;
     width:100%;
+    height:920px;
     overflow:hidden;
     border-radius:10px;
     background:#ffffff;
@@ -39,7 +42,7 @@ body {
 
 .dashboard-frame iframe {
     width:100%;
-    min-height:100vh;
+    height:920px;
     border:none;
     display:block;
     overflow:hidden;
@@ -50,8 +53,10 @@ body {
 }
 
 @media (max-width:768px) {
+    .dashboard-wrap,
+    .dashboard-frame,
     .dashboard-frame iframe {
-        min-height:85vh;
+        height:760px;
     }
 }
 </style>
@@ -64,7 +69,7 @@ body {
 
         <iframe
             id="hakodateTelemetryFrame"
-            src="hakodate_cycling_telemetry_map.html?v=2"
+            src="hakodate_cycling_telemetry_map.html?v=3"
             scrolling="no"
             loading="lazy"
             title="Hakodate Cycling Telemetry Dashboard">
@@ -87,7 +92,7 @@ body {
 
         var height = Math.ceil(
             wrap.getBoundingClientRect().height
-        ) + 2;
+        );
 
         window.parent.postMessage({
             type: 'resize',
@@ -109,13 +114,6 @@ body {
 
     window.addEventListener('load', queueHeight);
     window.addEventListener('resize', queueHeight);
-
-    if ('ResizeObserver' in window) {
-
-        new ResizeObserver(queueHeight)
-            .observe(document.getElementById('dashboardWrap'));
-
-    }
 
     queueHeight();
 
