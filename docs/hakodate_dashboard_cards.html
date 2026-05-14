@@ -1,1 +1,126 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Hakodate cycling telemetry map</title><style>html,body{margin:0;padding:0;width:100%;height:100%;overflow:hidden;background:#fff}.map-only{width:100%;height:100vh;margin:0;padding:0;overflow:hidden;background:#fff;line-height:0}.map-only iframe{width:100%;height:100vh;margin:0;padding:0;border:0;display:block;overflow:hidden;background:#fff;vertical-align:top}</style></head><body><div class="map-only"><iframe src="hakodate_cycling_telemetry_map.html?v=1" scrolling="no" loading="lazy"></iframe></div></body></html>
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Hakodate Cycling Telemetry Dashboard</title>
+<style>
+html,
+body {
+    margin:0;
+    padding:0;
+    width:100%;
+    background:#ffffff;
+    overflow-x:hidden;
+    font-family:Arial,Helvetica,sans-serif;
+}
+
+* {
+    box-sizing:border-box;
+}
+
+.dashboard-wrap {
+    width:100%;
+    margin:0;
+    padding:0;
+    background:#ffffff;
+    line-height:0;
+}
+
+.dashboard-frame {
+    position:relative;
+    width:100%;
+    overflow:hidden;
+    border-radius:10px;
+    background:#ffffff;
+    margin:0;
+    padding:0;
+}
+
+.dashboard-frame iframe {
+    width:100%;
+    min-height:100vh;
+    border:none;
+    display:block;
+    overflow:hidden;
+    background:#ffffff;
+    margin:0;
+    padding:0;
+    vertical-align:top;
+}
+
+@media (max-width:768px) {
+    .dashboard-frame iframe {
+        min-height:85vh;
+    }
+}
+</style>
+</head>
+<body>
+
+<div class="dashboard-wrap" id="dashboardWrap">
+
+    <div class="dashboard-frame">
+
+        <iframe
+            id="hakodateTelemetryFrame"
+            src="hakodate_cycling_telemetry_map.html?v=2"
+            scrolling="no"
+            loading="lazy"
+            title="Hakodate Cycling Telemetry Dashboard">
+        </iframe>
+
+    </div>
+
+</div>
+
+<script>
+(function () {
+
+    function sendHeight() {
+
+        var wrap = document.getElementById('dashboardWrap');
+
+        if (!wrap || !window.parent) {
+            return;
+        }
+
+        var height = Math.ceil(
+            wrap.getBoundingClientRect().height
+        ) + 2;
+
+        window.parent.postMessage({
+            type: 'resize',
+            source: 'rivers-hakodate-dashboard',
+            height: height
+        }, '*');
+
+    }
+
+    function queueHeight() {
+
+        requestAnimationFrame(function () {
+
+            requestAnimationFrame(sendHeight);
+
+        });
+
+    }
+
+    window.addEventListener('load', queueHeight);
+    window.addEventListener('resize', queueHeight);
+
+    if ('ResizeObserver' in window) {
+
+        new ResizeObserver(queueHeight)
+            .observe(document.getElementById('dashboardWrap'));
+
+    }
+
+    queueHeight();
+
+})();
+</script>
+
+</body>
+</html>
