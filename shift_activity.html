@@ -8,22 +8,21 @@
 <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
   * { box-sizing: border-box; margin: 0; padding: 0; }
-  html, body { width: 100%; min-height: 100%; background: #ffffff; color: #1a1a1a; font-family: 'DM Sans', sans-serif; }
-  body { padding: 0 14px 14px; }
-  .sa-root { width: 100%; padding-top: 2px; }
-  .sa-header { margin-bottom: 22px; }
-  .sa-eyebrow { font-family: 'DM Mono', monospace; font-size: 13px; letter-spacing: .16em; color: #e05c2a; text-transform: uppercase; margin-bottom: 7px; }
-  .sa-title { font-size: 32px; font-weight: 500; line-height: 1.15; color: #111; }
-  .sa-subtitle { margin-top: 7px; font-family: 'DM Mono', monospace; font-size: 15px; letter-spacing: .04em; color: #9a9890; }
-  .sa-panel { border-top: 1px solid #ece9e3; border-bottom: 1px solid #ece9e3; padding: 20px 0 18px; }
-  .metrics { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; margin-bottom: 20px; }
+  html, body { width: 100%; min-height: 100%; background: #ffffff; color: #1a1a1a; font-family: 'DM Sans', sans-serif; overflow-x:hidden; }
+  body { padding: 0; }
+  .sa-root { width: 100%; max-width:none; margin:0; padding:0; background:#fff; }
+  .sa-header { display:none; }
+  .sa-panel { border:0; padding:0; }
+  .metrics { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 18px; margin-bottom: 20px; }
+  .metrics > div { border:1px solid #ece9e3; border-radius:10px; padding:13px 15px; background:#fff; position:relative; overflow:hidden; }
+  .metrics > div::before { content:""; position:absolute; left:0; top:0; width:4px; height:100%; background:#e05c2a; opacity:.68; }
   .metric-label { font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: .12em; text-transform: uppercase; color: #c0beb8; margin-bottom: 4px; }
   .metric-value { font-size: 28px; font-weight: 500; color: #111; line-height: 1.1; }
   .metric-note { font-family: 'DM Mono', monospace; font-size: 11px; color: #9a9890; margin-top: 3px; }
-  .activity-grid { display: grid; grid-template-columns: 1.5fr .85fr; gap: 24px; align-items: stretch; }
-  .chart-card { min-height: 360px; position: relative; }
+  .activity-grid { display: grid; grid-template-columns: 1.65fr .85fr; gap: 24px; align-items: stretch; }
+  .chart-card { min-height: 410px; position: relative; border:1px solid #ece9e3; border-radius:10px; padding:15px 16px 14px; background:#fff; }
   .chart-title { font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: .12em; text-transform: uppercase; color: #c0beb8; margin-bottom: 10px; }
-  .chart { position: relative; height: 318px; border-left: 1px solid #ece9e3; border-bottom: 1px solid #ece9e3; background: linear-gradient(to bottom, rgba(248,247,244,.75), rgba(255,255,255,0)); overflow: hidden; }
+  .chart { position: relative; height: 360px; border-left: 1px solid #ece9e3; border-bottom: 1px solid #ece9e3; background: linear-gradient(to bottom, rgba(248,247,244,.75), rgba(255,255,255,0)); overflow: hidden; }
   .grid-line { position: absolute; left: 0; right: 0; height: 1px; background: #f0eee9; }
   .axis-label { position: absolute; left: 8px; transform: translateY(-50%); font-family: 'DM Mono', monospace; font-size: 10px; color: #c8c6c0; }
   .bar { position: absolute; bottom: 0; width: 2.8%; border-radius: 8px 8px 0 0; background: #d9d7d1; transition: all .3s ease; opacity: .86; }
@@ -34,8 +33,8 @@
   .sweep::before { content: ''; position: absolute; top: 0; left: 50%; width: 10px; height: 10px; border-radius: 50%; background: #e05c2a; transform: translate(-50%, -50%); box-shadow: 0 0 0 7px rgba(224,92,42,.12); }
   @keyframes sweep { from { left: 0%; } to { left: 100%; } }
   .axis-time { display: flex; justify-content: space-between; font-family: 'DM Mono', monospace; font-size: 10px; color: #c8c6c0; letter-spacing: .05em; margin-top: 8px; }
-  .side-card { border-left: 1px solid #ece9e3; padding-left: 18px; display: flex; flex-direction: column; justify-content: space-between; }
-  .phase { padding: 10px 0; border-bottom: 1px solid #f0eee9; }
+  .side-card { border:1px solid #ece9e3; border-radius:10px; padding:6px 18px; display: flex; flex-direction: column; justify-content: space-between; background:#fff; }
+  .phase { padding: 12px 0; border-bottom: 1px solid #f0eee9; }
   .phase:last-child { border-bottom: 0; }
   .phase-label { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: .12em; text-transform: uppercase; color: #c0beb8; margin-bottom: 4px; }
   .phase-name { font-size: 18px; font-weight: 500; color: #111; line-height: 1.25; }
@@ -50,29 +49,19 @@
   .swatch { width: 18px; height: 8px; border-radius: 999px; background: #d9d7d1; }
   .swatch.orange { background: #e05c2a; }
   .swatch.dark { background: #4c5359; }
-  .sa-footer { margin-top: 15px; display: flex; justify-content: space-between; gap: 14px; align-items: center; }
-  .sa-note { font-family: 'DM Mono', monospace; font-size: 10px; color: #c8c6c0; letter-spacing: .06em; }
-  .sa-pill { font-family: 'DM Mono', monospace; font-size: 10px; color: #e05c2a; background: rgba(224,92,42,.08); border: 1px solid rgba(224,92,42,.25); border-radius: 999px; padding: 6px 11px; letter-spacing: .08em; text-transform: uppercase; white-space: nowrap; }
+  .sa-footer { display:none; }
   @media (max-width: 760px) {
-    body { padding: 0 8px 10px; }
-    .sa-title { font-size: 22px; }
-    .sa-subtitle { font-size: 11px; }
-    .metrics { grid-template-columns: repeat(2, 1fr); gap: 12px; }
+    .metrics { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
     .metric-value { font-size: 22px; }
     .activity-grid { grid-template-columns: 1fr; gap: 18px; }
-    .side-card { border-left: 0; border-top: 1px solid #ece9e3; padding-left: 0; padding-top: 10px; }
+    .side-card { padding: 6px 14px; }
     .chart { height: 285px; }
-    .sa-footer { flex-direction: column; align-items: flex-start; }
+    .chart-card { min-height:auto; }
   }
 </style>
 </head>
 <body>
-<div class="sa-root">
-  <header class="sa-header">
-    <div class="sa-eyebrow">Rivers Lab Shift Activity</div>
-    <h1 class="sa-title">Shift Events as Adaptive Micro-Decisions</h1>
-    <div class="sa-subtitle">Load Change → Gear Selection → Stabilisation → Repeat</div>
-  </header>
+<div class="sa-root" id="saRoot">
   <main class="sa-panel">
     <section class="metrics">
       <div><div class="metric-label">Total Gear Shifts</div><div class="metric-value">128</div><div class="metric-note">event count</div></div>
@@ -107,10 +96,18 @@
       <div class="burst-cell" style="--h:28%"></div><div class="burst-cell hot" style="--h:74%"></div><div class="burst-cell" style="--h:20%"></div><div class="burst-cell dark" style="--h:45%"></div><div class="burst-cell hot" style="--h:82%"></div><div class="burst-cell" style="--h:18%"></div><div class="burst-cell dark" style="--h:42%"></div><div class="burst-cell hot" style="--h:68%"></div><div class="burst-cell" style="--h:30%"></div><div class="burst-cell" style="--h:17%"></div>
     </div>
   </main>
-  <footer class="sa-footer">
-    <div class="sa-note">Gear shift density provides a compact behavioural index of regulation under varied constraints.</div>
-    <div class="sa-pill">Animated activity trace</div>
-  </footer>
 </div>
+<script>
+function sendHeight(){
+  const root=document.getElementById('saRoot');
+  if(!root||!window.parent)return;
+  window.parent.postMessage({type:'resize',source:'rivers-shift-activity',height:Math.ceil(root.getBoundingClientRect().height)+2},'*');
+}
+function queueHeight(){requestAnimationFrame(()=>requestAnimationFrame(sendHeight))}
+window.addEventListener('load',queueHeight);
+window.addEventListener('resize',queueHeight);
+if('ResizeObserver' in window){new ResizeObserver(queueHeight).observe(document.getElementById('saRoot'))}
+queueHeight();
+</script>
 </body>
 </html>
