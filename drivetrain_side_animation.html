@@ -11,11 +11,7 @@
 html,body{width:100%;margin:0;padding:0;background:#fff;color:#1a1a1a;font-family:'DM Sans',sans-serif;height:auto;overflow-x:hidden}
 body{padding:0;background:#fff}
 .dt-root{width:100%;max-width:none;margin:0;padding:0;background:#fff;overflow:visible}
-.dt-header{padding:0 0 12px;margin:0}
-.dt-eyebrow{font-family:'DM Mono',monospace;font-size:13px;letter-spacing:.16em;color:#e05c2a;text-transform:uppercase;margin-bottom:7px}
-.dt-title{font-size:32px;font-weight:500;color:#111;line-height:1.15;letter-spacing:-.01em}
-.dt-subtitle{font-family:'DM Mono',monospace;font-size:15px;color:#9a9890;margin-top:7px;letter-spacing:.04em}
-.dt-stage{width:100%;min-height:360px;margin:0;border:1px solid #ece9e3;border-radius:10px;background:#fff;overflow:hidden}
+.dt-stage{width:100%;min-height:360px;margin:0;border:0;border-radius:8px;background:#fff;overflow:hidden}
 svg{width:100%;height:350px;display:block;overflow:visible}
 .frame{fill:none;stroke:#4c5359;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
 .frame-muted{fill:none;stroke:#d8d6d0;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
@@ -40,16 +36,15 @@ svg{width:100%;height:350px;display:block;overflow:visible}
 .crank-rotor,.cassette-rotor,.pulley-rotor{transform-box:fill-box;transform-origin:center;animation:turn 8s linear infinite}.cassette-rotor{animation-duration:5.8s}.pulley-rotor{animation-duration:4.4s}.fast .crank-rotor{animation-duration:4.8s}.fast .cassette-rotor{animation-duration:3.4s}.fast .pulley-rotor{animation-duration:2.8s}
 @keyframes turn{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
 @media(prefers-reduced-motion:reduce){.crank-rotor,.cassette-rotor,.pulley-rotor{animation:none}.chain.shift{animation:none}.data-pulse,.data-trail{display:none}}
-.info-panel{margin-top:10px;border:1px solid #ece9e3;border-radius:10px;padding:12px 14px;background:#fff}.panel-label{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:#c4541e;margin-bottom:3px}.panel-title{font-size:15px;font-weight:500;color:#111;line-height:1.3}.panel-text{margin-top:5px;font-size:12px;line-height:1.55;color:#6e6c66;max-width:980px}
+.info-panel{margin-top:6px;border:0;border-radius:0;padding:0;background:#fff}.panel-label{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:#c4541e;margin-bottom:3px}.panel-title{font-size:15px;font-weight:500;color:#111;line-height:1.3}.panel-text{margin-top:5px;font-size:12px;line-height:1.55;color:#6e6c66;max-width:980px}
 .dt-controls{display:flex;align-items:center;gap:10px;margin-top:12px}button{font-family:'DM Mono',monospace;font-size:11px;letter-spacing:.08em;text-transform:uppercase;background:transparent;border:1px solid #d8d6d0;color:#888680;padding:7px 14px;border-radius:7px;cursor:pointer;transition:all .2s}button:hover:not(:disabled){border-color:#e05c2a;color:#e05c2a}button.primary{background:#e05c2a;border-color:#e05c2a;color:#fff;padding:7px 20px}button.primary:hover:not(:disabled){background:#c94f20;border-color:#c94f20}button:disabled{opacity:.28;cursor:default}
 .dt-progress{flex:1;height:2px;background:#e4e2dc;border-radius:2px;overflow:hidden}.dt-progress-fill{height:100%;background:#e05c2a;border-radius:2px;transition:width .4s cubic-bezier(.4,0,.2,1)}.dt-counter{font-family:'DM Mono',monospace;font-size:11px;color:#c0beb8;white-space:nowrap}.dt-auto{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;background:rgba(224,92,42,.08);color:#e05c2a;border:1px solid rgba(224,92,42,.25);padding:6px 11px;border-radius:6px;cursor:pointer;white-space:nowrap}.dt-auto.on{background:rgba(224,92,42,.16);border-color:rgba(224,92,42,.5)}
 .dt-footer{margin-top:12px;padding-top:12px;border-top:1px solid #ece9e3;display:flex;justify-content:space-between;align-items:center}.dt-footer-left{font-family:'DM Mono',monospace;font-size:10px;color:#c8c6c0;letter-spacing:.06em}.dt-pips{display:flex;gap:5px}.dt-pip{width:6px;height:6px;border-radius:50%;background:#dedad4;transition:all .3s;cursor:pointer}.dt-pip.active{background:#e05c2a}.dt-pip.done{background:#7ab888}.dt-pip:hover{transform:scale(1.3)}
-@media(max-width:850px){.dt-title{font-size:22px}.dt-subtitle{font-size:11px}.dt-eyebrow{font-size:10px}.dt-stage{min-height:300px}svg{height:290px}.panel-title{font-size:14px}.panel-text{font-size:11.5px}.dt-controls{flex-wrap:wrap}.tiny-label{font-size:7.5px}.gear-seq{font-size:6.5px}.gear-value{font-size:15px}}
+@media(max-width:850px){.dt-stage{min-height:300px}svg{height:290px}.panel-title{font-size:14px}.panel-text{font-size:11.5px}.dt-controls{flex-wrap:wrap}.tiny-label{font-size:7.5px}.gear-seq{font-size:6.5px}.gear-value{font-size:15px}}
 </style>
 </head>
 <body>
 <div class="dt-root" id="root">
-  <div class="dt-header"><div class="dt-eyebrow">Rivers Lab Drivetrain Model</div><h1 class="dt-title">Physical Effort Becomes Ride Data</h1><div class="dt-subtitle">Force → Sensor Capture → ANT+ / Bluetooth → Head Unit → Data Storage</div></div>
   <div class="dt-stage"><svg viewBox="0 0 920 310" role="img" aria-label="Side-view drivetrain with wireless ride metric transfer and animated cassette ratios">
     <path class="frame-muted" d="M180 85 L330 190 L520 78 L690 198 M330 190 L520 78 M520 78 L558 45 M530 45 L585 45 M690 198 L612 78"></path><path class="guide-line" d="M162 238 Q450 292 738 238"></path><path class="feedback-line" d="M704 96 Q488 12 273 96"></path><path id="shift-path" class="shift-line" d="M690 198 C640 145 615 122 570 105"></path><path id="signal-line" class="signal-line" d="M382 160 Q540 16 812 55"></path><path id="metric-path" class="metric-path" d="M812 78 Q706 111 690 150"></path>
     <circle class="data-pulse" r="3.2" fill="#e05c2a"><animateMotion dur="2.7s" repeatCount="indefinite"><mpath href="#signal-line"/></animateMotion></circle><circle class="data-pulse" r="2.8" fill="#2e6f9e"><animateMotion dur="2.7s" begin="1.25s" repeatCount="indefinite"><mpath href="#signal-line"/></animateMotion></circle><circle class="data-trail" r="2.6" fill="#e05c2a"><animateMotion dur="3.2s" begin="0.6s" repeatCount="indefinite"><mpath href="#metric-path"/></animateMotion></circle><circle class="data-trail" r="2.2" fill="#2e6f9e"><animateMotion dur="3.4s" begin="1.4s" repeatCount="indefinite"><mpath href="#metric-path"/></animateMotion></circle>
@@ -72,7 +67,6 @@ function queueHeight(){requestAnimationFrame(()=>requestAnimationFrame(sendHeigh
 window.addEventListener('load',queueHeight);
 window.addEventListener('resize',queueHeight);
 if('ResizeObserver' in window){new ResizeObserver(queueHeight).observe(document.getElementById('root'))}
-
 const cassetteTeeth=[11,12,13,15,17,19,21,24,28,35,42,50];let gearIndex=0;let gearTimer=null;
 const stages=[{label:'Input',title:'Physical Effort',text:'Pedalling force and cadence begin as embodied physical action before becoming measurable system data.',focus:['node0','chainring','crank-rotor']},{label:'Capture',title:'Power Meter Pedals',text:'Force and rotation are captured at the pedal and converted into power, cadence, torque, and left-right effort signals.',focus:['node1','pm-node','power-pedal','chainring','chain']},{label:'Transfer',title:'ANT+ / Bluetooth Transmission',text:'Wireless packets carry ride metrics from the sensor layer to the head unit in near real time.',focus:['node2','signal-line','head-unit','wireless-label']},{label:'Storage',title:'Head Unit and FIT Ride File',text:'The head unit records all ride metrics as time-series data for later upload, analysis, modelling and feedback.',focus:['node3','metric-path','head-unit','cassette','chain','shift-path','metric-label','cassette-profile']}];
 let current=0,autoPlaying=true,autoTimer=null;
