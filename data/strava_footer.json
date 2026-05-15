@@ -1,13 +1,14 @@
 {
-  "updated_utc": "2026-05-15T03:48:10Z",
+  "updated_utc": "2026-05-15T08:51:07Z",
   "source": "Strava",
   "athlete_id": 3714458,
   "scope": "latest 60 activities; 7-day research window",
-  "headline": "7-day riding state: 128.7 km · 6.3 h · 2,376 m+",
+  "headline": "7-day riding state: 128.7 km · 6.3 h · 2376 m+",
   "state": {
     "load": "Moderate load",
     "context": "Outdoor-field",
-    "climbing_density": "18.5 m/km"
+    "climbing_density": "18.5 m/km",
+    "latest_training_tag": "Z2"
   },
   "metrics": [
     {
@@ -20,7 +21,7 @@
     },
     {
       "label": "Ascent",
-      "value": "2,376 m"
+      "value": "2376 m"
     },
     {
       "label": "Speed",
@@ -28,11 +29,11 @@
     },
     {
       "label": "Power",
-      "value": "185 W"
+      "value": "156 W"
     },
     {
       "label": "Cadence",
-      "value": "75 rpm"
+      "value": "76 rpm"
     }
   ],
   "seven_day": {
@@ -43,19 +44,20 @@
     "indoor_count": 0,
     "outdoor_count": 4,
     "avg_speed_kph": 20.4,
-    "avg_power_w": 185,
-    "avg_cadence_rpm": 75,
+    "avg_power_w": 156,
+    "avg_cadence_rpm": 76,
     "climbing_m_per_km": 18.5
   },
   "latest_60": {
-    "ride_count": 60,
-    "distance_km": 1461.6,
-    "moving_hours": 57.4,
-    "elevation_m": 13043.0
+    "ride_count": 43,
+    "distance_km": 1104.5,
+    "moving_hours": 45.9,
+    "elevation_m": 11723.0
   },
   "latest_ride": {
     "name": "05/15/2026 Shirotai",
     "date": "2026-05-15",
-    "type": "Ride"
+    "type": "GravelRide",
+    "training_tag": "Z2"
   }
 }
