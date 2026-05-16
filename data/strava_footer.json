@@ -1,61 +1,63 @@
 {
-  "updated_utc": "2026-05-16T03:31:00Z",
+  "updated_utc": "2026-05-16T08:06:57Z",
   "source": "Strava",
   "athlete_id": 3714458,
   "scope": "latest 60 activities; 7-day research window",
-  "headline": "7-day riding state: 128.7 km · 6.3 h · 2,376 m+",
+  "headline": "7-day riding state: 180.4 km · 8.3 h · 2682 m+",
   "state": {
-    "load": "Moderate load",
+    "load": "High load",
     "context": "Outdoor-field",
-    "climbing_density": "18.5 m/km"
+    "climbing_density": "14.9 m/km",
+    "latest_training_tag": "Z2"
   },
   "metrics": [
     {
       "label": "Distance",
-      "value": "128.7 km"
+      "value": "180.4 km"
     },
     {
       "label": "Time",
-      "value": "6.3 h"
+      "value": "8.3 h"
     },
     {
       "label": "Ascent",
-      "value": "2,376 m"
+      "value": "2682 m"
     },
     {
       "label": "Speed",
-      "value": "20.4 kph"
+      "value": "21.4 kph"
     },
     {
       "label": "Power",
-      "value": "185 W"
+      "value": "157 W"
     },
     {
       "label": "Cadence",
-      "value": "75 rpm"
+      "value": "78 rpm"
     }
   ],
   "seven_day": {
-    "ride_count": 4,
-    "distance_km": 128.7,
-    "moving_hours": 6.3,
-    "elevation_m": 2376.0,
+    "ride_count": 5,
+    "distance_km": 180.4,
+    "moving_hours": 8.3,
+    "elevation_m": 2682.0,
     "indoor_count": 0,
-    "outdoor_count": 4,
-    "avg_speed_kph": 20.4,
-    "avg_power_w": 185,
-    "avg_cadence_rpm": 75,
-    "climbing_m_per_km": 18.5
+    "outdoor_count": 5,
+    "avg_speed_kph": 21.4,
+    "avg_power_w": 157,
+    "avg_cadence_rpm": 78,
+    "climbing_m_per_km": 14.9
   },
   "latest_60": {
-    "ride_count": 60,
-    "distance_km": 1461.6,
-    "moving_hours": 57.4,
-    "elevation_m": 13043.0
+    "ride_count": 44,
+    "distance_km": 1156.2,
+    "moving_hours": 47.9,
+    "elevation_m": 12029.0
   },
   "latest_ride": {
-    "name": "05/15/2026 Shirotai",
-    "date": "2026-05-15",
-    "type": "Ride"
+    "name": "05/16/2026 Moheji Gravel",
+    "date": "2026-05-16",
+    "type": "GravelRide",
+    "training_tag": "Z2"
   }
 }
