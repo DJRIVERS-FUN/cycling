@@ -1,14 +1,13 @@
 {
-  "updated_utc": "2026-05-16T08:06:57Z",
+  "updated_utc": "2026-05-16T08:08:47Z",
   "source": "Strava",
   "athlete_id": 3714458,
   "scope": "latest 60 activities; 7-day research window",
-  "headline": "7-day riding state: 180.4 km · 8.3 h · 2682 m+",
+  "headline": "7-day riding state: 180.4 km · 8.3 h · 2,682 m+",
   "state": {
     "load": "High load",
     "context": "Outdoor-field",
-    "climbing_density": "14.9 m/km",
-    "latest_training_tag": "Z2"
+    "climbing_density": "14.9 m/km"
   },
   "metrics": [
     {
@@ -21,19 +20,19 @@
     },
     {
       "label": "Ascent",
-      "value": "2682 m"
+      "value": "2,682 m"
     },
     {
       "label": "Speed",
-      "value": "21.4 kph"
+      "value": "21.7 kph"
     },
     {
       "label": "Power",
-      "value": "157 W"
+      "value": "182 W"
     },
     {
       "label": "Cadence",
-      "value": "78 rpm"
+      "value": "77 rpm"
     }
   ],
   "seven_day": {
@@ -43,21 +42,20 @@
     "elevation_m": 2682.0,
     "indoor_count": 0,
     "outdoor_count": 5,
-    "avg_speed_kph": 21.4,
-    "avg_power_w": 157,
-    "avg_cadence_rpm": 78,
+    "avg_speed_kph": 21.7,
+    "avg_power_w": 182,
+    "avg_cadence_rpm": 77,
     "climbing_m_per_km": 14.9
   },
   "latest_60": {
-    "ride_count": 44,
-    "distance_km": 1156.2,
-    "moving_hours": 47.9,
-    "elevation_m": 12029.0
+    "ride_count": 60,
+    "distance_km": 1482.9,
+    "moving_hours": 58.5,
+    "elevation_m": 13247.0
   },
   "latest_ride": {
     "name": "05/16/2026 Moheji Gravel",
     "date": "2026-05-16",
-    "type": "GravelRide",
-    "training_tag": "Z2"
+    "type": "Ride"
   }
 }
