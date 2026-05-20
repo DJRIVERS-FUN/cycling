@@ -1,7 +1,7 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1200" height="760" viewBox="0 0 1200 760">
 <rect width="100%" height="100%" fill="#ffffff"/>
 <text x="70.0" y="48.0" font-family="Arial" font-size="24" font-weight="600" fill="#520671">Cycling Behavioural Regulation: Methods-Ready Summary</text>
-<text x="70.0" y="75.0" font-family="Arial" font-size="13" font-weight="400" fill="#6e6c66">Generated from Strava activity data · 2026-05-19T19:56:18Z · rolling windows: 7 days / 30 days / 12 weeks</text>
+<text x="70.0" y="75.0" font-family="Arial" font-size="13" font-weight="400" fill="#6e6c66">Generated from Strava activity data · 2026-05-20T03:55:16Z · rolling windows: 7 days / 30 days / 12 weeks</text>
 <rect x="70" y="110" width="520" height="245" fill="#ffffff" stroke="#e8e5eb" stroke-width="1"/>
 <text x="86.0" y="138.0" font-family="Arial" font-size="15" font-weight="600" fill="#520671">A</text>
 <text x="116.0" y="138.0" font-family="Arial" font-size="15" font-weight="600" fill="#6e6c66">12-week load timeline</text>
@@ -30,36 +30,35 @@
 <text x="110.0" y="345.0" font-family="Arial" font-size="11" font-weight="400" fill="#9a9890">weeks</text>
 <text x="430.0" y="345.0" font-family="Arial" font-size="11" font-weight="400" fill="#9a9890">max 6.3 h/week</text>
 <rect x="705" y="175" width="405" height="145" fill="#ffffff" stroke="#e8e5eb"/>
-<circle cx="802.8" cy="291.0" r="5.5" fill="#6e6c66" opacity="0.75"/>
-<circle cx="961.3" cy="234.9" r="5.5" fill="#6e6c66" opacity="0.75"/>
-<circle cx="877.2" cy="225.3" r="5.5" fill="#6e6c66" opacity="0.75"/>
-<circle cx="918.3" cy="204.0" r="5.5" fill="#6e6c66" opacity="0.75"/>
-<circle cx="875.2" cy="213.7" r="5.5" fill="#6e6c66" opacity="0.75"/>
-<circle cx="945.7" cy="248.5" r="5.5" fill="#6e6c66" opacity="0.75"/>
-<circle cx="830.2" cy="250.4" r="5.5" fill="#6e6c66" opacity="0.75"/>
-<circle cx="887.0" cy="281.3" r="5.5" fill="#6e6c66" opacity="0.75"/>
-<circle cx="922.2" cy="238.8" r="5.5" fill="#6e6c66" opacity="0.75"/>
-<circle cx="910.4" cy="262.0" r="5.5" fill="#6e6c66" opacity="0.75"/>
-<circle cx="1012.2" cy="277.5" r="5.5" fill="#6e6c66" opacity="0.75"/>
-<circle cx="980.9" cy="209.8" r="5.5" fill="#6e6c66" opacity="0.75"/>
+<circle cx="950.5" cy="239.2" r="5.5" fill="#6e6c66" opacity="0.75"/>
+<circle cx="860.3" cy="228.9" r="5.5" fill="#6e6c66" opacity="0.75"/>
+<circle cx="904.4" cy="206.1" r="5.5" fill="#6e6c66" opacity="0.75"/>
+<circle cx="858.2" cy="216.4" r="5.5" fill="#6e6c66" opacity="0.75"/>
+<circle cx="933.7" cy="253.7" r="5.5" fill="#6e6c66" opacity="0.75"/>
+<circle cx="809.9" cy="255.8" r="5.5" fill="#6e6c66" opacity="0.75"/>
+<circle cx="870.8" cy="288.9" r="5.5" fill="#6e6c66" opacity="0.75"/>
+<circle cx="908.5" cy="243.4" r="5.5" fill="#6e6c66" opacity="0.75"/>
+<circle cx="896.0" cy="268.2" r="5.5" fill="#6e6c66" opacity="0.75"/>
+<circle cx="1005.1" cy="284.8" r="5.5" fill="#6e6c66" opacity="0.75"/>
+<circle cx="971.5" cy="212.3" r="5.5" fill="#6e6c66" opacity="0.75"/>
 <text x="705.0" y="345.0" font-family="Arial" font-size="11" font-weight="400" fill="#9a9890">cadence (rpm)</text>
 <text x="1005.0" y="165.0" font-family="Arial" font-size="11" font-weight="400" fill="#9a9890">power (W)</text>
 <circle cx="330" cy="570" r="75" fill="none" stroke="#e8e5eb" stroke-width="26"/>
 <circle cx="330" cy="570" r="75" fill="none" stroke="#520671" stroke-width="26" stroke-dasharray="0.0 471.2" transform="rotate(-90 330 570)"/>
 <text x="140.0" y="535.0" font-family="Arial" font-size="15" font-weight="600" fill="#520671">Indoor: 0</text>
-<text x="140.0" y="568.0" font-family="Arial" font-size="15" font-weight="600" fill="#6e6c66">Outdoor: 13</text>
+<text x="140.0" y="568.0" font-family="Arial" font-size="15" font-weight="600" fill="#6e6c66">Outdoor: 12</text>
 <text x="140.0" y="601.0" font-family="Arial" font-size="12" font-weight="400" fill="#9a9890">30-day observation window</text>
 <rect x="690" y="505" width="200" height="55" fill="#ffffff" stroke="#e8e5eb"/>
 <text x="702.0" y="527.0" font-family="Arial" font-size="11" font-weight="500" fill="#9a9890">7-day load</text>
-<text x="702.0" y="548.0" font-family="Arial" font-size="18" font-weight="600" fill="#520671">6.3 h · 145.6 km</text>
+<text x="702.0" y="548.0" font-family="Arial" font-size="18" font-weight="600" fill="#520671">5.5 h · 126.6 km</text>
 <rect x="920" y="505" width="200" height="55" fill="#ffffff" stroke="#e8e5eb"/>
 <text x="932.0" y="527.0" font-family="Arial" font-size="11" font-weight="500" fill="#9a9890">30-day volume</text>
-<text x="932.0" y="548.0" font-family="Arial" font-size="18" font-weight="600" fill="#520671">22.5 h · 491.0 km</text>
+<text x="932.0" y="548.0" font-family="Arial" font-size="18" font-weight="600" fill="#520671">18.8 h · 418.2 km</text>
 <rect x="690" y="585" width="200" height="55" fill="#ffffff" stroke="#e8e5eb"/>
 <text x="702.0" y="607.0" font-family="Arial" font-size="11" font-weight="500" fill="#9a9890">Mean power</text>
-<text x="702.0" y="628.0" font-family="Arial" font-size="18" font-weight="600" fill="#520671">187.9 W</text>
+<text x="702.0" y="628.0" font-family="Arial" font-size="18" font-weight="600" fill="#520671">189.7 W</text>
 <rect x="920" y="585" width="200" height="55" fill="#ffffff" stroke="#e8e5eb"/>
 <text x="932.0" y="607.0" font-family="Arial" font-size="11" font-weight="500" fill="#9a9890">Mean cadence</text>
-<text x="932.0" y="628.0" font-family="Arial" font-size="18" font-weight="600" fill="#520671">77.6 rpm</text>
+<text x="932.0" y="628.0" font-family="Arial" font-size="18" font-weight="600" fill="#520671">78.1 rpm</text>
 <text x="690.0" y="650.0" font-family="Arial" font-size="12" font-weight="400" fill="#9a9890">Latest: 05/17/2026 Morning Road Ride · 2026-05-17</text>
 </svg>
