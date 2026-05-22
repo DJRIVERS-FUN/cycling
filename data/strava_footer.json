@@ -1,61 +1,63 @@
 {
-  "updated_utc": "2026-05-22T03:59:04Z",
+  "updated_utc": "2026-05-22T09:29:18Z",
   "source": "Strava",
   "athlete_id": 3714458,
   "scope": "latest 60 activities; 7-day research window",
-  "headline": "7-day riding state: 105.4 km · 4.4 h · 1,192 m+",
+  "headline": "7-day riding state: 84.2 km · 3.2 h · 607 m+",
   "state": {
-    "load": "Moderate load",
+    "load": "Light load",
     "context": "Outdoor-field",
-    "climbing_density": "11.3 m/km"
+    "climbing_density": "7.2 m/km",
+    "latest_training_tag": "tempo / hard"
   },
   "metrics": [
     {
       "label": "Distance",
-      "value": "105.4 km"
+      "value": "84.2 km"
     },
     {
       "label": "Time",
-      "value": "4.4 h"
+      "value": "3.2 h"
     },
     {
       "label": "Ascent",
-      "value": "1,192 m"
+      "value": "607 m"
     },
     {
       "label": "Speed",
-      "value": "24.0 kph"
+      "value": "26.3 kph"
     },
     {
       "label": "Power",
-      "value": "185 W"
+      "value": "174 W"
     },
     {
       "label": "Cadence",
-      "value": "81 rpm"
+      "value": "82 rpm"
     }
   ],
   "seven_day": {
-    "ride_count": 3,
-    "distance_km": 105.4,
-    "moving_hours": 4.4,
-    "elevation_m": 1192.0,
+    "ride_count": 2,
+    "distance_km": 84.2,
+    "moving_hours": 3.2,
+    "elevation_m": 607.0,
     "indoor_count": 0,
-    "outdoor_count": 3,
-    "avg_speed_kph": 24.0,
-    "avg_power_w": 185,
-    "avg_cadence_rpm": 81,
-    "climbing_m_per_km": 11.3
+    "outdoor_count": 2,
+    "avg_speed_kph": 26.3,
+    "avg_power_w": 174,
+    "avg_cadence_rpm": 82,
+    "climbing_m_per_km": 7.2
   },
   "latest_60": {
-    "ride_count": 60,
-    "distance_km": 1500.6,
-    "moving_hours": 59.1,
-    "elevation_m": 13522.0
+    "ride_count": 40,
+    "distance_km": 1095.7,
+    "moving_hours": 46.3,
+    "elevation_m": 12099.0
   },
   "latest_ride": {
     "name": "05/17/2026 Morning Road Ride",
     "date": "2026-05-17",
-    "type": "Ride"
+    "type": "Ride",
+    "training_tag": "tempo / hard"
   }
 }
