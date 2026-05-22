@@ -1,5 +1,5 @@
 {
-  "updated_utc": "2026-05-22T14:42:55Z",
+  "updated_utc": "2026-05-22T14:46:33Z",
   "source": "Strava",
   "athlete_id": 3714458,
   "scope": "latest 60 activities; 7-day research window",
@@ -7,8 +7,7 @@
   "state": {
     "load": "Light load",
     "context": "Outdoor-field",
-    "climbing_density": "7.2 m/km",
-    "latest_training_tag": "tempo / hard"
+    "climbing_density": "7.2 m/km"
   },
   "metrics": [
     {
@@ -29,7 +28,7 @@
     },
     {
       "label": "Power",
-      "value": "174 W"
+      "value": "186 W"
     },
     {
       "label": "Cadence",
@@ -44,20 +43,19 @@
     "indoor_count": 0,
     "outdoor_count": 2,
     "avg_speed_kph": 26.3,
-    "avg_power_w": 174,
+    "avg_power_w": 186,
     "avg_cadence_rpm": 82,
     "climbing_m_per_km": 7.2
   },
   "latest_60": {
-    "ride_count": 40,
-    "distance_km": 1095.7,
-    "moving_hours": 46.3,
-    "elevation_m": 12099.0
+    "ride_count": 60,
+    "distance_km": 1500.6,
+    "moving_hours": 59.1,
+    "elevation_m": 13522.0
   },
   "latest_ride": {
     "name": "05/17/2026 Morning Road Ride",
     "date": "2026-05-17",
-    "type": "Ride",
-    "training_tag": "tempo / hard"
+    "type": "Ride"
   }
 }
