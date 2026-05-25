@@ -1,7 +1,7 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1200" height="760" viewBox="0 0 1200 760">
 <rect width="100%" height="100%" fill="#ffffff"/>
 <text x="70.0" y="48.0" font-family="Arial" font-size="24" font-weight="600" fill="#520671">Cycling Behavioural Regulation: Methods-Ready Summary</text>
-<text x="70.0" y="75.0" font-family="Arial" font-size="13" font-weight="400" fill="#6e6c66">Generated from Strava activity data · 2026-05-24T19:22:09Z · rolling windows: 7 days / 30 days / 12 weeks</text>
+<text x="70.0" y="75.0" font-family="Arial" font-size="13" font-weight="400" fill="#6e6c66">Generated from Strava activity data · 2026-05-25T04:09:39Z · rolling windows: 7 days / 30 days / 12 weeks</text>
 <rect x="70" y="110" width="520" height="245" fill="#ffffff" stroke="#e8e5eb" stroke-width="1"/>
 <text x="86.0" y="138.0" font-family="Arial" font-size="15" font-weight="600" fill="#520671">A</text>
 <text x="116.0" y="138.0" font-family="Arial" font-size="15" font-weight="600" fill="#6e6c66">12-week load timeline</text>
@@ -15,7 +15,7 @@
 <text x="666.0" y="458.0" font-family="Arial" font-size="15" font-weight="600" fill="#520671">D</text>
 <text x="696.0" y="458.0" font-family="Arial" font-size="15" font-weight="600" fill="#6e6c66">Current behavioural system state</text>
 <line x1="110" y1="320" x2="550" y2="320" stroke="#e8e5eb"/>
-<rect x="117.0" y="274.0" width="21.3" height="46.0" fill="#520671" opacity="0.82"/>
+<rect x="117.0" y="290.1" width="21.3" height="29.9" fill="#520671" opacity="0.82"/>
 <rect x="153.7" y="237.1" width="21.3" height="82.9" fill="#520671" opacity="0.82"/>
 <rect x="190.3" y="264.8" width="21.3" height="55.2" fill="#520671" opacity="0.82"/>
 <rect x="227.0" y="218.7" width="21.3" height="101.3" fill="#520671" opacity="0.82"/>
@@ -50,7 +50,7 @@
 <text x="140.0" y="601.0" font-family="Arial" font-size="12" font-weight="400" fill="#9a9890">30-day observation window</text>
 <rect x="690" y="505" width="200" height="55" fill="#ffffff" stroke="#e8e5eb"/>
 <text x="702.0" y="527.0" font-family="Arial" font-size="11" font-weight="500" fill="#9a9890">7-day load</text>
-<text x="702.0" y="548.0" font-family="Arial" font-size="18" font-weight="600" fill="#520671">2.7 h · 65.5 km</text>
+<text x="702.0" y="548.0" font-family="Arial" font-size="18" font-weight="600" fill="#520671">1.5 h · 33.0 km</text>
 <rect x="920" y="505" width="200" height="55" fill="#ffffff" stroke="#e8e5eb"/>
 <text x="932.0" y="527.0" font-family="Arial" font-size="11" font-weight="500" fill="#9a9890">30-day volume</text>
 <text x="932.0" y="548.0" font-family="Arial" font-size="18" font-weight="600" fill="#520671">18.1 h · 398.5 km</text>
