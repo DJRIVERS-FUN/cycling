@@ -1,35 +1,35 @@
 {
-  "updated_utc": "2026-05-26T22:21:19Z",
+  "updated_utc": "2026-05-27T03:59:40Z",
   "source": "Strava",
   "athlete_id": 3714458,
   "scope": "latest 60 activities; 7-day research window",
-  "headline": "7-day riding state: 70.0 km · 3.1 h · 1332 m+",
+  "headline": "7-day riding state: 107.7 km · 4.8 h · 1993 m+",
   "state": {
-    "load": "Light load",
+    "load": "Moderate load",
     "context": "Outdoor-field",
-    "climbing_density": "19.0 m/km",
+    "climbing_density": "18.5 m/km",
     "latest_training_tag": "general endurance"
   },
   "metrics": [
     {
       "label": "Distance",
-      "value": "70.0 km"
+      "value": "107.7 km"
     },
     {
       "label": "Time",
-      "value": "3.1 h"
+      "value": "4.8 h"
     },
     {
       "label": "Ascent",
-      "value": "1332 m"
+      "value": "1993 m"
     },
     {
       "label": "Speed",
-      "value": "22.5 kph"
+      "value": "22.4 kph"
     },
     {
       "label": "Power",
-      "value": "186 W"
+      "value": "183 W"
     },
     {
       "label": "Cadence",
@@ -37,27 +37,27 @@
     }
   ],
   "seven_day": {
-    "ride_count": 2,
-    "distance_km": 70.0,
-    "moving_hours": 3.1,
-    "elevation_m": 1332.0,
+    "ride_count": 3,
+    "distance_km": 107.7,
+    "moving_hours": 4.8,
+    "elevation_m": 1993.0,
     "indoor_count": 0,
-    "outdoor_count": 2,
-    "avg_speed_kph": 22.5,
-    "avg_power_w": 186,
+    "outdoor_count": 3,
+    "avg_speed_kph": 22.4,
+    "avg_power_w": 183,
     "avg_cadence_rpm": 78,
-    "climbing_m_per_km": 19.0
+    "climbing_m_per_km": 18.5
   },
   "latest_60": {
-    "ride_count": 41,
-    "distance_km": 1139.8,
-    "moving_hours": 48.6,
-    "elevation_m": 13392.0
+    "ride_count": 42,
+    "distance_km": 1177.4,
+    "moving_hours": 50.3,
+    "elevation_m": 14053.0
   },
   "latest_ride": {
-    "name": "05/25/2026 Shirotai",
-    "date": "2026-05-25",
-    "type": "GravelRide",
+    "name": "05/27/2026 Shirotai",
+    "date": "2026-05-27",
+    "type": "Ride",
     "training_tag": "general endurance"
   }
 }
