@@ -1,5 +1,5 @@
 {
-  "generated_utc": "2026-05-30T22:02:17Z",
+  "generated_utc": "2026-05-31T04:01:28Z",
   "model": "Cycling behavioural regulation micro-dashboard",
   "window_days": {
     "short": 7,
@@ -22,29 +22,29 @@
     "load_state": "moderate",
     "context_balance": {
       "indoor": 5,
-      "outdoor": 36
+      "outdoor": 37
     },
     "seven_day": {
-      "distance_km": 106.7,
-      "moving_h": 4.9,
-      "elevation_m": 1975.0,
-      "ride_count": 3,
-      "mean_power_w": 179.9,
-      "mean_cadence_rpm": 78.5,
-      "mean_speed_kph": 22.0
+      "distance_km": 144.4,
+      "moving_h": 6.5,
+      "elevation_m": 2654.0,
+      "ride_count": 4,
+      "mean_power_w": 180.6,
+      "mean_cadence_rpm": 78.4,
+      "mean_speed_kph": 22.2
     },
     "thirty_day": {
-      "distance_km": 418.6,
-      "moving_h": 18.9,
-      "elevation_m": 6757.0,
-      "ride_count": 13,
-      "mean_power_w": 170.2,
+      "distance_km": 456.2,
+      "moving_h": 20.6,
+      "elevation_m": 7436.0,
+      "ride_count": 14,
+      "mean_power_w": 171.1,
       "mean_cadence_rpm": 78.2,
-      "mean_speed_kph": 22.1
+      "mean_speed_kph": 22.2
     },
     "recent_training_tags": {
-      "general endurance": 7,
       "tempo / hard": 14,
+      "general endurance": 7,
       "long ride": 3,
       "Z2": 6
     }
@@ -193,37 +193,18 @@
     },
     {
       "week_start": "2026-05-25",
-      "distance_km": 106.7,
-      "moving_h": 4.9,
-      "elevation_m": 1975.0,
-      "ride_count": 3,
+      "distance_km": 144.4,
+      "moving_h": 6.5,
+      "elevation_m": 2654.0,
+      "ride_count": 4,
       "indoor_count": 0,
-      "outdoor_count": 3,
+      "outdoor_count": 4,
       "training_tags": {
-        "general endurance": 3
+        "general endurance": 4
       }
     }
   ],
   "recent_rides": [
-    {
-      "date": "2026-03-22",
-      "datetime": "2026-03-22T00:39:08+00:00",
-      "name": "03/22/2026 Hokuto",
-      "type": "Ride",
-      "is_indoor": false,
-      "distance_km": 35.25,
-      "moving_h": 1.475,
-      "elevation_m": 277.0,
-      "avg_speed_kph": 23.9,
-      "avg_power_w": 118.4,
-      "avg_cadence_rpm": null,
-      "training_tag": "general endurance",
-      "training_zone": "Z1",
-      "training_notes": [
-        "avg power Z1",
-        "outdoor/field context"
-      ]
-    },
     {
       "date": "2026-03-23",
       "datetime": "2026-03-23T03:23:39+00:00",
@@ -809,6 +790,26 @@
         "high climbing density",
         "outdoor/field context"
       ]
+    },
+    {
+      "date": "2026-05-31",
+      "datetime": "2026-05-31T00:21:01+00:00",
+      "name": "05/31/2026 Shirotai",
+      "type": "Ride",
+      "is_indoor": false,
+      "distance_km": 37.61,
+      "moving_h": 1.637,
+      "elevation_m": 679.0,
+      "avg_speed_kph": 23.0,
+      "avg_power_w": 182.6,
+      "avg_cadence_rpm": 78.0,
+      "training_tag": "general endurance",
+      "training_zone": "Z3",
+      "training_notes": [
+        "avg power Z3",
+        "high climbing density",
+        "outdoor/field context"
+      ]
     }
   ],
   "power_cadence": [
@@ -1236,20 +1237,35 @@
         "high climbing density",
         "outdoor/field context"
       ]
+    },
+    {
+      "date": "2026-05-31",
+      "name": "05/31/2026 Shirotai",
+      "power_w": 182.6,
+      "cadence_rpm": 78.0,
+      "distance_km": 37.61,
+      "context": "Outdoor",
+      "training_tag": "general endurance",
+      "training_zone": "Z3",
+      "training_notes": [
+        "avg power Z3",
+        "high climbing density",
+        "outdoor/field context"
+      ]
     }
   ],
   "latest_ride": {
-    "date": "2026-05-29",
-    "datetime": "2026-05-29T22:46:17+00:00",
-    "name": "05/30/2026 Gravel Shirotai",
-    "type": "GravelRide",
+    "date": "2026-05-31",
+    "datetime": "2026-05-31T00:21:01+00:00",
+    "name": "05/31/2026 Shirotai",
+    "type": "Ride",
     "is_indoor": false,
-    "distance_km": 32.1,
-    "moving_h": 1.564,
-    "elevation_m": 646.0,
-    "avg_speed_kph": 20.5,
-    "avg_power_w": 178.1,
-    "avg_cadence_rpm": 78.4,
+    "distance_km": 37.61,
+    "moving_h": 1.637,
+    "elevation_m": 679.0,
+    "avg_speed_kph": 23.0,
+    "avg_power_w": 182.6,
+    "avg_cadence_rpm": 78.0,
     "training_tag": "general endurance",
     "training_zone": "Z3",
     "training_notes": [
