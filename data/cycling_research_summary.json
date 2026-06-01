@@ -1,5 +1,5 @@
 {
-  "generated_utc": "2026-05-31T22:01:20Z",
+  "generated_utc": "2026-06-01T04:15:50Z",
   "model": "Cycling behavioural regulation micro-dashboard",
   "window_days": {
     "short": 7,
@@ -25,13 +25,13 @@
       "outdoor": 37
     },
     "seven_day": {
-      "distance_km": 144.4,
-      "moving_h": 6.5,
-      "elevation_m": 2654.0,
-      "ride_count": 4,
-      "mean_power_w": 180.6,
-      "mean_cadence_rpm": 78.4,
-      "mean_speed_kph": 22.2
+      "distance_km": 107.3,
+      "moving_h": 4.9,
+      "elevation_m": 1986.0,
+      "ride_count": 3,
+      "mean_power_w": 179.3,
+      "mean_cadence_rpm": 78.7,
+      "mean_speed_kph": 21.9
     },
     "thirty_day": {
       "distance_km": 456.2,
@@ -50,20 +50,6 @@
     }
   },
   "weekly_series": [
-    {
-      "week_start": "2026-03-09",
-      "distance_km": 90.4,
-      "moving_h": 3.6,
-      "elevation_m": 673.0,
-      "ride_count": 4,
-      "indoor_count": 1,
-      "outdoor_count": 3,
-      "training_tags": {
-        "short easy": 1,
-        "general endurance": 1,
-        "Z2": 2
-      }
-    },
     {
       "week_start": "2026-03-16",
       "distance_km": 55.0,
@@ -202,6 +188,16 @@
       "training_tags": {
         "general endurance": 4
       }
+    },
+    {
+      "week_start": "2026-06-01",
+      "distance_km": 0,
+      "moving_h": 0,
+      "elevation_m": 0,
+      "ride_count": 0,
+      "indoor_count": 0,
+      "outdoor_count": 0,
+      "training_tags": {}
     }
   ],
   "recent_rides": [
