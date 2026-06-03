@@ -1,34 +1,35 @@
 {
-  "updated_utc": "2026-06-03T04:51:30Z",
+  "updated_utc": "2026-06-03T11:02:57Z",
   "source": "Strava",
   "athlete_id": 3714458,
   "scope": "latest 60 activities; 7-day research window",
-  "headline": "7-day riding state: 142.9 km · 6.3 h · 2,287 m+",
+  "headline": "7-day riding state: 105.3 km · 4.6 h · 1626 m+",
   "state": {
     "load": "Moderate load",
     "context": "Outdoor-field",
-    "climbing_density": "16.0 m/km"
+    "climbing_density": "15.4 m/km",
+    "latest_training_tag": "tempo / hard"
   },
   "metrics": [
     {
       "label": "Distance",
-      "value": "142.9 km"
+      "value": "105.3 km"
     },
     {
       "label": "Time",
-      "value": "6.3 h"
+      "value": "4.6 h"
     },
     {
       "label": "Ascent",
-      "value": "2,287 m"
+      "value": "1626 m"
     },
     {
       "label": "Speed",
-      "value": "22.7 kph"
+      "value": "22.9 kph"
     },
     {
       "label": "Power",
-      "value": "201 W"
+      "value": "179 W"
     },
     {
       "label": "Cadence",
@@ -36,26 +37,27 @@
     }
   ],
   "seven_day": {
-    "ride_count": 4,
-    "distance_km": 142.9,
-    "moving_hours": 6.3,
-    "elevation_m": 2287.0,
+    "ride_count": 3,
+    "distance_km": 105.3,
+    "moving_hours": 4.6,
+    "elevation_m": 1626.0,
     "indoor_count": 0,
-    "outdoor_count": 4,
-    "avg_speed_kph": 22.7,
-    "avg_power_w": 201,
+    "outdoor_count": 3,
+    "avg_speed_kph": 22.9,
+    "avg_power_w": 179,
     "avg_cadence_rpm": 79,
-    "climbing_m_per_km": 16.0
+    "climbing_m_per_km": 15.4
   },
   "latest_60": {
-    "ride_count": 60,
-    "distance_km": 1602.8,
-    "moving_hours": 65.0,
-    "elevation_m": 16636.0
+    "ride_count": 42,
+    "distance_km": 1217.9,
+    "moving_hours": 53.0,
+    "elevation_m": 15489.0
   },
   "latest_ride": {
     "name": "06/01/2026 Lunch Gravel Ride",
     "date": "2026-06-01",
-    "type": "Ride"
+    "type": "GravelRide",
+    "training_tag": "tempo / hard"
   }
 }
