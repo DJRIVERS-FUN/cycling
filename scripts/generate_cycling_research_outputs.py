@@ -17,6 +17,7 @@ import math
 import os
 import statistics
 import sys
+import time
 from collections import defaultdict
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
@@ -30,23 +31,49 @@ ACTIVITIES_URL = "https://www.strava.com/api/v3/athlete/activities"
 SUMMARY_PATH = Path("data/cycling_research_summary.json")
 FIGURE_PATH = Path("figures/cycling_methods_panel.svg")
 RIDE_TYPES = {"Ride", "VirtualRide", "GravelRide", "MountainBikeRide"}
+MAX_RETRIES = 3
+INITIAL_BACKOFF = 1  # seconds
 
 
-def request_json(url: str, *, method: str = "GET", headers: dict[str, str] | None = None, data: dict[str, Any] | None = None) -> Any:
+def request_json(
+    url: str,
+    *,
+    method: str = "GET",
+    headers: dict[str, str] | None = None,
+    data: dict[str, Any] | None = None,
+    retries: int = MAX_RETRIES,
+) -> Any:
     body = None
     req_headers = headers or {}
+    req_headers = {**req_headers, "User-Agent": "GitHub-Actions-CyclingBot/1.0"}
+
     if data is not None:
         body = urlencode(data).encode("utf-8")
         req_headers = {**req_headers, "Content-Type": "application/x-www-form-urlencoded"}
-    request = Request(url, data=body, headers=req_headers, method=method)
-    try:
-        with urlopen(request, timeout=30) as response:
-            return json.loads(response.read().decode("utf-8"))
-    except HTTPError as exc:
-        detail = exc.read().decode("utf-8", errors="replace")
-        raise RuntimeError(f"HTTP {exc.code} from {url}: {detail}") from exc
-    except URLError as exc:
-        raise RuntimeError(f"Network error calling {url}: {exc}") from exc
+
+    for attempt in range(retries):
+        try:
+            request = Request(url, data=body, headers=req_headers, method=method)
+            with urlopen(request, timeout=30) as response:
+                return json.loads(response.read().decode("utf-8"))
+        except HTTPError as exc:
+            detail = exc.read().decode("utf-8", errors="replace")
+            # Retry on 403, 429, and 5xx errors
+            if exc.code in (403, 429, 500, 502, 503, 504) and attempt < retries - 1:
+                backoff = INITIAL_BACKOFF * (2 ** attempt)
+                print(f"HTTP {exc.code} from {url}. Retrying in {backoff}s (attempt {attempt + 1}/{retries})...", file=sys.stderr)
+                time.sleep(backoff)
+                continue
+            raise RuntimeError(f"HTTP {exc.code} from {url}: {detail}") from exc
+        except URLError as exc:
+            if attempt < retries - 1:
+                backoff = INITIAL_BACKOFF * (2 ** attempt)
+                print(f"Network error calling {url}. Retrying in {backoff}s (attempt {attempt + 1}/{retries})...", file=sys.stderr)
+                time.sleep(backoff)
+                continue
+            raise RuntimeError(f"Network error calling {url}: {exc}") from exc
+
+    raise RuntimeError(f"Failed to fetch {url} after {retries} attempts")
 
 
 def env(name: str) -> str:
