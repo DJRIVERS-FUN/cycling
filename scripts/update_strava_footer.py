@@ -16,6 +16,7 @@ from __future__ import annotations
 import json
 import os
 import sys
+import time
 from dataclasses import dataclass
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
@@ -28,6 +29,8 @@ TOKEN_URL = "https://www.strava.com/oauth/token"
 ACTIVITIES_URL = "https://www.strava.com/api/v3/athlete/activities"
 OUTPUT_PATH = Path("data/strava_footer.json")
 RIDE_TYPES = {"Ride", "VirtualRide", "GravelRide", "MountainBikeRide"}
+MAX_RETRIES = 3
+INITIAL_BACKOFF = 1  # seconds
 
 
 @dataclass
@@ -57,24 +60,39 @@ def request_json(
     method: str = "GET",
     headers: dict[str, str] | None = None,
     data: dict[str, Any] | None = None,
+    retries: int = MAX_RETRIES,
 ) -> dict[str, Any] | list[dict[str, Any]]:
     body = None
     req_headers = headers or {}
+    req_headers = {**req_headers, "User-Agent": "GitHub-Actions-CyclingBot/1.0"}
 
     if data is not None:
         body = urlencode(data).encode("utf-8")
         req_headers = {**req_headers, "Content-Type": "application/x-www-form-urlencoded"}
 
-    request = Request(url, data=body, headers=req_headers, method=method)
+    for attempt in range(retries):
+        try:
+            request = Request(url, data=body, headers=req_headers, method=method)
+            with urlopen(request, timeout=30) as response:
+                return json.loads(response.read().decode("utf-8"))
+        except HTTPError as exc:
+            detail = exc.read().decode("utf-8", errors="replace")
+            # Retry on 403, 429, and 5xx errors
+            if exc.code in (403, 429, 500, 502, 503, 504) and attempt < retries - 1:
+                backoff = INITIAL_BACKOFF * (2 ** attempt)
+                print(f"HTTP {exc.code} from {url}. Retrying in {backoff}s (attempt {attempt + 1}/{retries})...", file=sys.stderr)
+                time.sleep(backoff)
+                continue
+            raise RuntimeError(f"HTTP {exc.code} from {url}: {detail}") from exc
+        except URLError as exc:
+            if attempt < retries - 1:
+                backoff = INITIAL_BACKOFF * (2 ** attempt)
+                print(f"Network error calling {url}. Retrying in {backoff}s (attempt {attempt + 1}/{retries})...", file=sys.stderr)
+                time.sleep(backoff)
+                continue
+            raise RuntimeError(f"Network error calling {url}: {exc}") from exc
 
-    try:
-        with urlopen(request, timeout=30) as response:
-            return json.loads(response.read().decode("utf-8"))
-    except HTTPError as exc:
-        detail = exc.read().decode("utf-8", errors="replace")
-        raise RuntimeError(f"HTTP {exc.code} from {url}: {detail}") from exc
-    except URLError as exc:
-        raise RuntimeError(f"Network error calling {url}: {exc}") from exc
+    raise RuntimeError(f"Failed to fetch {url} after {retries} attempts")
 
 
 def get_required_env(name: str) -> str:
