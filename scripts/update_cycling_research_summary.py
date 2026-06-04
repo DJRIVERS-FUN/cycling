@@ -23,6 +23,7 @@ from pathlib import Path
 from typing import Any
 from urllib.parse import urlencode
 from urllib.request import Request, urlopen
+from urllib.error import HTTPError
 
 ROOT = Path(__file__).resolve().parents[1]
 DASHBOARD_OUTFILE = ROOT / "data" / "cycling_research_summary.json"
@@ -57,14 +58,30 @@ def require_env(name: str) -> str:
 def post_form(url: str, data: dict[str, str]) -> dict[str, Any]:
     encoded = urlencode(data).encode("utf-8")
     request = Request(url, data=encoded, method="POST")
-    with urlopen(request, timeout=30) as response:
-        return json.loads(response.read().decode("utf-8"))
+    try:
+        with urlopen(request, timeout=30) as response:
+            return json.loads(response.read().decode("utf-8"))
+    except HTTPError as e:
+        error_body = e.read().decode("utf-8")
+        try:
+            error_detail = json.loads(error_body)
+        except json.JSONDecodeError:
+            error_detail = error_body
+        raise RuntimeError(f"HTTP Error {e.code}: {e.reason}\nResponse: {error_detail}") from e
 
 
 def get_json(url: str, token: str) -> list[dict[str, Any]]:
     request = Request(url, headers={"Authorization": f"Bearer {token}"})
-    with urlopen(request, timeout=30) as response:
-        return json.loads(response.read().decode("utf-8"))
+    try:
+        with urlopen(request, timeout=30) as response:
+            return json.loads(response.read().decode("utf-8"))
+    except HTTPError as e:
+        error_body = e.read().decode("utf-8")
+        try:
+            error_detail = json.loads(error_body)
+        except json.JSONDecodeError:
+            error_detail = error_body
+        raise RuntimeError(f"HTTP Error {e.code}: {e.reason}\nResponse: {error_detail}") from e
 
 
 def get_access_token() -> str:
