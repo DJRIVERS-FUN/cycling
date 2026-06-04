@@ -1,63 +1,61 @@
 {
-  "updated_utc": "2026-06-03T23:08:35Z",
+  "updated_utc": "2026-06-04T04:26:08Z",
   "source": "Strava",
   "athlete_id": 3714458,
   "scope": "latest 60 activities; 7-day research window",
-  "headline": "7-day riding state: 105.3 km · 4.6 h · 1626 m+",
+  "headline": "7-day riding state: 139.4 km · 5.9 h · 1,928 m+",
   "state": {
     "load": "Moderate load",
     "context": "Outdoor-field",
-    "climbing_density": "15.4 m/km",
-    "latest_training_tag": "tempo / hard"
+    "climbing_density": "13.8 m/km"
   },
   "metrics": [
     {
       "label": "Distance",
-      "value": "105.3 km"
+      "value": "139.4 km"
     },
     {
       "label": "Time",
-      "value": "4.6 h"
+      "value": "5.9 h"
     },
     {
       "label": "Ascent",
-      "value": "1626 m"
+      "value": "1,928 m"
     },
     {
       "label": "Speed",
-      "value": "22.9 kph"
+      "value": "23.6 kph"
     },
     {
       "label": "Power",
-      "value": "179 W"
+      "value": "203 W"
     },
     {
       "label": "Cadence",
-      "value": "79 rpm"
+      "value": "80 rpm"
     }
   ],
   "seven_day": {
-    "ride_count": 3,
-    "distance_km": 105.3,
-    "moving_hours": 4.6,
-    "elevation_m": 1626.0,
+    "ride_count": 4,
+    "distance_km": 139.4,
+    "moving_hours": 5.9,
+    "elevation_m": 1928.0,
     "indoor_count": 0,
-    "outdoor_count": 3,
-    "avg_speed_kph": 22.9,
-    "avg_power_w": 179,
-    "avg_cadence_rpm": 79,
-    "climbing_m_per_km": 15.4
+    "outdoor_count": 4,
+    "avg_speed_kph": 23.6,
+    "avg_power_w": 203,
+    "avg_cadence_rpm": 80,
+    "climbing_m_per_km": 13.8
   },
   "latest_60": {
-    "ride_count": 42,
-    "distance_km": 1217.9,
-    "moving_hours": 53.0,
-    "elevation_m": 15489.0
+    "ride_count": 60,
+    "distance_km": 1621.0,
+    "moving_hours": 65.8,
+    "elevation_m": 16849.0
   },
   "latest_ride": {
-    "name": "06/01/2026 Lunch Gravel Ride",
-    "date": "2026-06-01",
-    "type": "GravelRide",
-    "training_tag": "tempo / hard"
+    "name": "06/04/2026 Gravel Ride",
+    "date": "2026-06-04",
+    "type": "Ride"
   }
 }
