@@ -16,6 +16,7 @@ from __future__ import annotations
 import json
 import os
 import sys
+import time
 from collections import Counter, defaultdict
 from dataclasses import dataclass
 from datetime import datetime, timedelta, timezone
@@ -55,33 +56,60 @@ def require_env(name: str) -> str:
     return value
 
 
-def post_form(url: str, data: dict[str, str]) -> dict[str, Any]:
+def post_form(url: str, data: dict[str, str], max_retries: int = 3) -> dict[str, Any]:
+    """POST form data with exponential backoff retry logic."""
     encoded = urlencode(data).encode("utf-8")
-    request = Request(url, data=encoded, method="POST")
-    try:
-        with urlopen(request, timeout=30) as response:
-            return json.loads(response.read().decode("utf-8"))
-    except HTTPError as e:
-        error_body = e.read().decode("utf-8")
+    
+    for attempt in range(max_retries):
         try:
-            error_detail = json.loads(error_body)
-        except json.JSONDecodeError:
-            error_detail = error_body
-        raise RuntimeError(f"HTTP Error {e.code}: {e.reason}\nResponse: {error_detail}") from e
+            request = Request(url, data=encoded, method="POST")
+            with urlopen(request, timeout=30) as response:
+                return json.loads(response.read().decode("utf-8"))
+        except HTTPError as e:
+            error_body = e.read().decode("utf-8")
+            try:
+                error_detail = json.loads(error_body)
+            except json.JSONDecodeError:
+                error_detail = error_body
+            
+            # Don't retry on 401/403 auth errors
+            if e.code in (401, 403):
+                raise RuntimeError(f"HTTP Error {e.code}: {e.reason}\nResponse: {error_detail}") from e
+            
+            # Retry on 5xx errors and 429 rate limiting
+            if attempt < max_retries - 1 and e.code >= 500:
+                wait_time = 2 ** attempt
+                print(f"Attempt {attempt + 1} failed with HTTP {e.code}. Retrying in {wait_time}s...", file=sys.stderr)
+                time.sleep(wait_time)
+            else:
+                raise RuntimeError(f"HTTP Error {e.code}: {e.reason}\nResponse: {error_detail}") from e
 
 
-def get_json(url: str, token: str) -> list[dict[str, Any]]:
-    request = Request(url, headers={"Authorization": f"Bearer {token}"})
-    try:
-        with urlopen(request, timeout=30) as response:
-            return json.loads(response.read().decode("utf-8"))
-    except HTTPError as e:
-        error_body = e.read().decode("utf-8")
+def get_json(url: str, token: str, max_retries: int = 3) -> list[dict[str, Any]]:
+    """GET JSON with exponential backoff retry logic."""
+    for attempt in range(max_retries):
         try:
-            error_detail = json.loads(error_body)
-        except json.JSONDecodeError:
-            error_detail = error_body
-        raise RuntimeError(f"HTTP Error {e.code}: {e.reason}\nResponse: {error_detail}") from e
+            request = Request(url, headers={"Authorization": f"Bearer {token}"})
+            with urlopen(request, timeout=30) as response:
+                return json.loads(response.read().decode("utf-8"))
+        except HTTPError as e:
+            error_body = e.read().decode("utf-8")
+            try:
+                error_detail = json.loads(error_body)
+            except json.JSONDecodeError:
+                error_detail = error_body
+            
+            # Don't retry on 401/403 auth errors
+            if e.code in (401, 403):
+                raise RuntimeError(f"HTTP Error {e.code}: {e.reason}\nResponse: {error_detail}") from e
+            
+            # Retry on 5xx errors, 429 rate limiting, and timeout-like issues
+            if attempt < max_retries - 1 and e.code >= 500:
+                wait_time = 2 ** attempt
+                print(f"Attempt {attempt + 1} failed with HTTP {e.code}. Retrying in {wait_time}s...", file=sys.stderr)
+                time.sleep(wait_time)
+            else:
+                raise RuntimeError(f"HTTP Error {e.code}: {e.reason}\nResponse: {error_detail}") from e
 
 
 def get_access_token() -> str:
