@@ -1,5 +1,5 @@
 {
-  "generated_utc": "2026-06-06T22:03:57Z",
+  "generated_utc": "2026-06-07T04:06:22Z",
   "model": "Cycling behavioural regulation micro-dashboard",
   "window_days": {
     "short": 7,
@@ -19,19 +19,19 @@
     ]
   },
   "state": {
-    "load_state": "moderate",
+    "load_state": "light",
     "context_balance": {
       "indoor": 4,
       "outdoor": 39
     },
     "seven_day": {
-      "distance_km": 107.3,
-      "moving_h": 4.4,
-      "elevation_m": 1282.0,
-      "ride_count": 3,
-      "mean_power_w": 184.7,
-      "mean_cadence_rpm": 80.2,
-      "mean_speed_kph": 24.8
+      "distance_km": 69.7,
+      "moving_h": 2.7,
+      "elevation_m": 603.0,
+      "ride_count": 2,
+      "mean_power_w": 185.7,
+      "mean_cadence_rpm": 81.3,
+      "mean_speed_kph": 25.7
     },
     "thirty_day": {
       "distance_km": 460.0,
