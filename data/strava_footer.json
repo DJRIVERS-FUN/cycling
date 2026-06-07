@@ -1,5 +1,5 @@
 {
-  "updated_utc": "2026-06-07T19:24:48Z",
+  "updated_utc": "2026-06-07T19:37:37Z",
   "source": "Strava",
   "athlete_id": 3714458,
   "scope": "latest 60 activities; 7-day research window",
@@ -7,8 +7,7 @@
   "state": {
     "load": "Light load",
     "context": "Outdoor-field",
-    "climbing_density": "8.7 m/km",
-    "latest_training_tag": "tempo / hard"
+    "climbing_density": "8.7 m/km"
   },
   "metrics": [
     {
@@ -25,11 +24,11 @@
     },
     {
       "label": "Speed",
-      "value": "25.7 kph"
+      "value": "25.8 kph"
     },
     {
       "label": "Power",
-      "value": "186 W"
+      "value": "201 W"
     },
     {
       "label": "Cadence",
@@ -43,21 +42,20 @@
     "elevation_m": 603.0,
     "indoor_count": 0,
     "outdoor_count": 2,
-    "avg_speed_kph": 25.7,
-    "avg_power_w": 186,
+    "avg_speed_kph": 25.8,
+    "avg_power_w": 201,
     "avg_cadence_rpm": 81,
     "climbing_m_per_km": 8.7
   },
   "latest_60": {
-    "ride_count": 43,
-    "distance_km": 1252.0,
-    "moving_hours": 54.3,
-    "elevation_m": 15791.0
+    "ride_count": 60,
+    "distance_km": 1621.0,
+    "moving_hours": 65.8,
+    "elevation_m": 16849.0
   },
   "latest_ride": {
     "name": "06/04/2026 Gravel Ride",
     "date": "2026-06-04",
-    "type": "Ride",
-    "training_tag": "tempo / hard"
+    "type": "Ride"
   }
 }
