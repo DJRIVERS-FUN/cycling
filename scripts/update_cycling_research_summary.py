@@ -32,6 +32,7 @@ FOOTER_OUTFILE = ROOT / "data" / "strava_footer.json"
 TOKEN_URL = "https://www.strava.com/oauth/token"
 ACTIVITIES_URL = "https://www.strava.com/api/v3/athlete/activities"
 FTP_WATTS = float(os.environ.get("CYCLING_FTP_WATTS", "220"))
+USER_AGENT = "GitHub-Actions-CyclingDashboard/1.0"
 
 
 @dataclass
@@ -62,7 +63,7 @@ def post_form(url: str, data: dict[str, str], max_retries: int = 3) -> dict[str,
     
     for attempt in range(max_retries):
         try:
-            request = Request(url, data=encoded, method="POST")
+            request = Request(url, data=encoded, method="POST", headers={"User-Agent": USER_AGENT})
             with urlopen(request, timeout=30) as response:
                 return json.loads(response.read().decode("utf-8"))
         except HTTPError as e:
@@ -89,7 +90,7 @@ def get_json(url: str, token: str, max_retries: int = 3) -> list[dict[str, Any]]
     """GET JSON with exponential backoff retry logic."""
     for attempt in range(max_retries):
         try:
-            request = Request(url, headers={"Authorization": f"Bearer {token}"})
+            request = Request(url, headers={"Authorization": f"Bearer {token}", "User-Agent": USER_AGENT})
             with urlopen(request, timeout=30) as response:
                 return json.loads(response.read().decode("utf-8"))
         except HTTPError as e:
