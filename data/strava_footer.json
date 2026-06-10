@@ -1,5 +1,5 @@
 {
-  "updated_utc": "2026-06-09T22:24:48Z",
+  "updated_utc": "2026-06-10T03:54:39Z",
   "source": "Strava",
   "athlete_id": 3714458,
   "scope": "latest 60 activities; 7-day research window",
@@ -49,10 +49,10 @@
     "climbing_m_per_km": 9.1
   },
   "latest_60": {
-    "ride_count": 42,
-    "distance_km": 1245.3,
-    "moving_hours": 54.1,
-    "elevation_m": 15855.0
+    "ride_count": 41,
+    "distance_km": 1228.8,
+    "moving_hours": 53.4,
+    "elevation_m": 15649.0
   },
   "latest_ride": {
     "name": "06/09/2026 Morning Ride",
