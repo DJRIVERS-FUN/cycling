@@ -1,5 +1,5 @@
 {
-  "generated_utc": "2026-06-14T22:12:37Z",
+  "generated_utc": "2026-06-15T04:26:23Z",
   "model": "Cycling behavioural regulation micro-dashboard",
   "window_days": {
     "short": 7,
@@ -22,46 +22,34 @@
     "load_state": "moderate",
     "context_balance": {
       "indoor": 2,
-      "outdoor": 41
+      "outdoor": 42
     },
     "seven_day": {
-      "distance_km": 129.1,
-      "moving_h": 5.5,
-      "elevation_m": 1705.0,
-      "ride_count": 4,
-      "mean_power_w": 183.8,
-      "mean_cadence_rpm": 78.9,
-      "mean_speed_kph": 23.5
+      "distance_km": 157.3,
+      "moving_h": 6.6,
+      "elevation_m": 1937.0,
+      "ride_count": 5,
+      "mean_power_w": 181.2,
+      "mean_cadence_rpm": 79.5,
+      "mean_speed_kph": 23.7
     },
     "thirty_day": {
-      "distance_km": 460.4,
-      "moving_h": 19.4,
-      "elevation_m": 6233.0,
+      "distance_km": 436.9,
+      "moving_h": 18.5,
+      "elevation_m": 6159.0,
       "ride_count": 13,
-      "mean_power_w": 181.9,
+      "mean_power_w": 182.8,
       "mean_cadence_rpm": 79.5,
-      "mean_speed_kph": 23.8
+      "mean_speed_kph": 23.7
     },
     "recent_training_tags": {
-      "general endurance": 9,
-      "tempo / hard": 12,
+      "tempo / hard": 13,
       "long ride": 3,
+      "general endurance": 8,
       "Z2": 6
     }
   },
   "weekly_series": [
-    {
-      "week_start": "2026-03-23",
-      "distance_km": 108.6,
-      "moving_h": 4.4,
-      "elevation_m": 908.0,
-      "ride_count": 5,
-      "indoor_count": 0,
-      "outdoor_count": 5,
-      "training_tags": {
-        "tempo / hard": 5
-      }
-    },
     {
       "week_start": "2026-03-30",
       "distance_km": 83.6,
@@ -200,29 +188,21 @@
         "tempo / hard": 2,
         "general endurance": 2
       }
+    },
+    {
+      "week_start": "2026-06-15",
+      "distance_km": 28.2,
+      "moving_h": 1.2,
+      "elevation_m": 232.0,
+      "ride_count": 1,
+      "indoor_count": 0,
+      "outdoor_count": 1,
+      "training_tags": {
+        "tempo / hard": 1
+      }
     }
   ],
   "recent_rides": [
-    {
-      "date": "2026-04-03",
-      "datetime": "2026-04-03T23:12:07+00:00",
-      "name": "04/04/2026 Shirotai",
-      "type": "Ride",
-      "is_indoor": false,
-      "distance_km": 37.35,
-      "moving_h": 1.851,
-      "elevation_m": 786.0,
-      "avg_speed_kph": 20.2,
-      "avg_power_w": 172.6,
-      "avg_cadence_rpm": 76.8,
-      "training_tag": "general endurance",
-      "training_zone": "Z3",
-      "training_notes": [
-        "avg power Z3",
-        "high climbing density",
-        "outdoor/field context"
-      ]
-    },
     {
       "date": "2026-04-05",
       "datetime": "2026-04-05T01:13:47+00:00",
@@ -808,24 +788,29 @@
         "high climbing density",
         "outdoor/field context"
       ]
-    }
-  ],
-  "power_cadence": [
+    },
     {
-      "date": "2026-04-03",
-      "name": "04/04/2026 Shirotai",
-      "power_w": 172.6,
-      "cadence_rpm": 76.8,
-      "distance_km": 37.35,
-      "context": "Outdoor",
-      "training_tag": "general endurance",
+      "date": "2026-06-15",
+      "datetime": "2026-06-15T02:41:26+00:00",
+      "name": "06/15/2026 Lunch Gravel Ride",
+      "type": "GravelRide",
+      "is_indoor": false,
+      "distance_km": 28.19,
+      "moving_h": 1.151,
+      "elevation_m": 232.0,
+      "avg_speed_kph": 24.5,
+      "avg_power_w": 170.9,
+      "avg_cadence_rpm": 82.0,
+      "training_tag": "tempo / hard",
       "training_zone": "Z3",
       "training_notes": [
         "avg power Z3",
-        "high climbing density",
-        "outdoor/field context"
+        "outdoor/field context",
+        "higher average-power signal"
       ]
-    },
+    }
+  ],
+  "power_cadence": [
     {
       "date": "2026-04-05",
       "name": "04/05/2026 Morning Ride",
@@ -1250,26 +1235,41 @@
         "high climbing density",
         "outdoor/field context"
       ]
+    },
+    {
+      "date": "2026-06-15",
+      "name": "06/15/2026 Lunch Gravel Ride",
+      "power_w": 170.9,
+      "cadence_rpm": 82.0,
+      "distance_km": 28.19,
+      "context": "Outdoor",
+      "training_tag": "tempo / hard",
+      "training_zone": "Z3",
+      "training_notes": [
+        "avg power Z3",
+        "outdoor/field context",
+        "higher average-power signal"
+      ]
     }
   ],
   "latest_ride": {
-    "date": "2026-06-14",
-    "datetime": "2026-06-14T00:08:17+00:00",
-    "name": "06/14/2026 Shirotai",
-    "type": "Ride",
+    "date": "2026-06-15",
+    "datetime": "2026-06-15T02:41:26+00:00",
+    "name": "06/15/2026 Lunch Gravel Ride",
+    "type": "GravelRide",
     "is_indoor": false,
-    "distance_km": 40.84,
-    "moving_h": 1.778,
-    "elevation_m": 672.0,
-    "avg_speed_kph": 23.0,
-    "avg_power_w": 179.2,
-    "avg_cadence_rpm": 78.9,
-    "training_tag": "general endurance",
+    "distance_km": 28.19,
+    "moving_h": 1.151,
+    "elevation_m": 232.0,
+    "avg_speed_kph": 24.5,
+    "avg_power_w": 170.9,
+    "avg_cadence_rpm": 82.0,
+    "training_tag": "tempo / hard",
     "training_zone": "Z3",
     "training_notes": [
       "avg power Z3",
-      "high climbing density",
-      "outdoor/field context"
+      "outdoor/field context",
+      "higher average-power signal"
     ]
   }
 }
