@@ -1,13 +1,14 @@
 {
-  "updated_utc": "2026-06-15T21:08:08Z",
+  "updated_utc": "2026-06-15T23:03:42Z",
   "source": "Strava",
   "athlete_id": 3714458,
   "scope": "latest 60 activities; 7-day research window",
-  "headline": "7-day riding state: 157.3 km · 6.6 h · 1,937 m+",
+  "headline": "7-day riding state: 157.3 km · 6.6 h · 1937 m+",
   "state": {
     "load": "Moderate load",
     "context": "Outdoor-field",
-    "climbing_density": "12.3 m/km"
+    "climbing_density": "12.3 m/km",
+    "latest_training_tag": "tempo / hard"
   },
   "metrics": [
     {
@@ -20,19 +21,19 @@
     },
     {
       "label": "Ascent",
-      "value": "1,937 m"
+      "value": "1937 m"
     },
     {
       "label": "Speed",
-      "value": "23.8 kph"
+      "value": "23.7 kph"
     },
     {
       "label": "Power",
-      "value": "203 W"
+      "value": "181 W"
     },
     {
       "label": "Cadence",
-      "value": "79 rpm"
+      "value": "80 rpm"
     }
   ],
   "seven_day": {
@@ -42,20 +43,21 @@
     "elevation_m": 1937.0,
     "indoor_count": 0,
     "outdoor_count": 5,
-    "avg_speed_kph": 23.8,
-    "avg_power_w": 203,
-    "avg_cadence_rpm": 79,
+    "avg_speed_kph": 23.7,
+    "avg_power_w": 181,
+    "avg_cadence_rpm": 80,
     "climbing_m_per_km": 12.3
   },
   "latest_60": {
-    "ride_count": 60,
-    "distance_km": 1651.2,
-    "moving_hours": 68.3,
-    "elevation_m": 18356.0
+    "ride_count": 43,
+    "distance_km": 1324.4,
+    "moving_hours": 57.9,
+    "elevation_m": 17296.0
   },
   "latest_ride": {
     "name": "06/15/2026 Lunch Gravel Ride",
     "date": "2026-06-15",
-    "type": "Ride"
+    "type": "GravelRide",
+    "training_tag": "tempo / hard"
   }
 }
