@@ -73,13 +73,13 @@ def post_form(url: str, data: dict[str, str], max_retries: int = 3) -> dict[str,
             except json.JSONDecodeError:
                 error_detail = error_body
             
-            # Don't retry on 401/403 auth errors
-            if e.code in (401, 403):
+            # Don't retry on 401 auth errors (credential issues)
+            if e.code == 401:
                 raise RuntimeError(f"HTTP Error {e.code}: {e.reason}\nResponse: {error_detail}") from e
             
-            # Retry on 5xx errors and 429 rate limiting
-            if attempt < max_retries - 1 and e.code >= 500:
-                wait_time = 2 ** attempt
+            # Retry on 403, 5xx errors, and 429 rate limiting
+            if attempt < max_retries - 1 and e.code in (403, 429) or e.code >= 500:
+                wait_time = (2 ** attempt) * 2  # Longer backoff for 403
                 print(f"Attempt {attempt + 1} failed with HTTP {e.code}. Retrying in {wait_time}s...", file=sys.stderr)
                 time.sleep(wait_time)
             else:
@@ -100,13 +100,13 @@ def get_json(url: str, token: str, max_retries: int = 3) -> list[dict[str, Any]]
             except json.JSONDecodeError:
                 error_detail = error_body
             
-            # Don't retry on 401/403 auth errors
-            if e.code in (401, 403):
+            # Don't retry on 401 auth errors (credential issues)
+            if e.code == 401:
                 raise RuntimeError(f"HTTP Error {e.code}: {e.reason}\nResponse: {error_detail}") from e
             
-            # Retry on 5xx errors, 429 rate limiting, and timeout-like issues
-            if attempt < max_retries - 1 and e.code >= 500:
-                wait_time = 2 ** attempt
+            # Retry on 403, 5xx errors, and 429 rate limiting
+            if attempt < max_retries - 1 and e.code in (403, 429) or e.code >= 500:
+                wait_time = (2 ** attempt) * 2  # Longer backoff for 403
                 print(f"Attempt {attempt + 1} failed with HTTP {e.code}. Retrying in {wait_time}s...", file=sys.stderr)
                 time.sleep(wait_time)
             else:
