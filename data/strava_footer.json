@@ -1,34 +1,35 @@
 {
-  "updated_utc": "2026-06-17T20:17:24Z",
+  "updated_utc": "2026-06-17T22:45:35Z",
   "source": "Strava",
   "athlete_id": 3714458,
   "scope": "latest 60 activities; 7-day research window",
-  "headline": "7-day riding state: 188.4 km · 7.7 h · 2,192 m+",
+  "headline": "7-day riding state: 146.4 km · 6.1 h · 2001 m+",
   "state": {
     "load": "Moderate load",
     "context": "Outdoor-field",
-    "climbing_density": "11.6 m/km"
+    "climbing_density": "13.7 m/km",
+    "latest_training_tag": "general endurance"
   },
   "metrics": [
     {
       "label": "Distance",
-      "value": "188.4 km"
+      "value": "146.4 km"
     },
     {
       "label": "Time",
-      "value": "7.7 h"
+      "value": "6.1 h"
     },
     {
       "label": "Ascent",
-      "value": "2,192 m"
+      "value": "2001 m"
     },
     {
       "label": "Speed",
-      "value": "24.5 kph"
+      "value": "23.7 kph"
     },
     {
       "label": "Power",
-      "value": "204 W"
+      "value": "181 W"
     },
     {
       "label": "Cadence",
@@ -36,26 +37,27 @@
     }
   ],
   "seven_day": {
-    "ride_count": 5,
-    "distance_km": 188.4,
-    "moving_hours": 7.7,
-    "elevation_m": 2192.0,
+    "ride_count": 4,
+    "distance_km": 146.4,
+    "moving_hours": 6.1,
+    "elevation_m": 2001.0,
     "indoor_count": 0,
-    "outdoor_count": 5,
-    "avg_speed_kph": 24.5,
-    "avg_power_w": 204,
+    "outdoor_count": 4,
+    "avg_speed_kph": 23.7,
+    "avg_power_w": 181,
     "avg_cadence_rpm": 80,
-    "climbing_m_per_km": 11.6
+    "climbing_m_per_km": 13.7
   },
   "latest_60": {
-    "ride_count": 60,
-    "distance_km": 1686.2,
-    "moving_hours": 69.7,
-    "elevation_m": 18754.0
+    "ride_count": 44,
+    "distance_km": 1375.6,
+    "moving_hours": 59.8,
+    "elevation_m": 17745.0
   },
   "latest_ride": {
     "name": "06/17/2026 Onuma",
-    "date": "2026-06-17",
-    "type": "Ride"
+    "date": "2026-06-16",
+    "type": "GravelRide",
+    "training_tag": "general endurance"
   }
 }
