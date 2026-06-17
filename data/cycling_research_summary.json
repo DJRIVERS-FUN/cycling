@@ -1,5 +1,5 @@
 {
-  "generated_utc": "2026-06-16T22:53:52Z",
+  "generated_utc": "2026-06-17T04:17:11Z",
   "model": "Cycling behavioural regulation micro-dashboard",
   "window_days": {
     "short": 7,
@@ -22,30 +22,30 @@
     "load_state": "moderate",
     "context_balance": {
       "indoor": 1,
-      "outdoor": 42
+      "outdoor": 43
     },
     "seven_day": {
-      "distance_km": 137.2,
-      "moving_h": 5.8,
-      "elevation_m": 1743.0,
-      "ride_count": 4,
-      "mean_power_w": 181.5,
-      "mean_cadence_rpm": 79.3,
-      "mean_speed_kph": 23.8
+      "distance_km": 188.4,
+      "moving_h": 7.7,
+      "elevation_m": 2192.0,
+      "ride_count": 5,
+      "mean_power_w": 182.7,
+      "mean_cadence_rpm": 79.8,
+      "mean_speed_kph": 24.4
     },
     "thirty_day": {
-      "distance_km": 404.4,
-      "moving_h": 17.3,
-      "elevation_m": 5858.0,
-      "ride_count": 12,
-      "mean_power_w": 182.3,
-      "mean_cadence_rpm": 79.3,
-      "mean_speed_kph": 23.4
+      "distance_km": 455.6,
+      "moving_h": 19.2,
+      "elevation_m": 6307.0,
+      "ride_count": 13,
+      "mean_power_w": 182.7,
+      "mean_cadence_rpm": 79.5,
+      "mean_speed_kph": 23.7
     },
     "recent_training_tags": {
-      "tempo / hard": 13,
+      "tempo / hard": 12,
       "long ride": 3,
-      "general endurance": 8,
+      "general endurance": 9,
       "Z2": 6
     }
   },
@@ -191,38 +191,19 @@
     },
     {
       "week_start": "2026-06-15",
-      "distance_km": 28.2,
-      "moving_h": 1.2,
-      "elevation_m": 232.0,
-      "ride_count": 1,
+      "distance_km": 79.4,
+      "moving_h": 3.1,
+      "elevation_m": 681.0,
+      "ride_count": 2,
       "indoor_count": 0,
-      "outdoor_count": 1,
+      "outdoor_count": 2,
       "training_tags": {
-        "tempo / hard": 1
+        "tempo / hard": 1,
+        "general endurance": 1
       }
     }
   ],
   "recent_rides": [
-    {
-      "date": "2026-04-05",
-      "datetime": "2026-04-05T01:13:47+00:00",
-      "name": "04/05/2026 Morning Ride",
-      "type": "Ride",
-      "is_indoor": false,
-      "distance_km": 28.4,
-      "moving_h": 1.247,
-      "elevation_m": 416.0,
-      "avg_speed_kph": 22.8,
-      "avg_power_w": 176.9,
-      "avg_cadence_rpm": 79.7,
-      "training_tag": "tempo / hard",
-      "training_zone": "Z3",
-      "training_notes": [
-        "avg power Z3",
-        "outdoor/field context",
-        "higher average-power signal"
-      ]
-    },
     {
       "date": "2026-04-07",
       "datetime": "2026-04-07T21:43:01+00:00",
@@ -808,24 +789,28 @@
         "outdoor/field context",
         "higher average-power signal"
       ]
-    }
-  ],
-  "power_cadence": [
+    },
     {
-      "date": "2026-04-05",
-      "name": "04/05/2026 Morning Ride",
-      "power_w": 176.9,
-      "cadence_rpm": 79.7,
-      "distance_km": 28.4,
-      "context": "Outdoor",
-      "training_tag": "tempo / hard",
+      "date": "2026-06-16",
+      "datetime": "2026-06-16T23:59:07+00:00",
+      "name": "06/17/2026 Onuma",
+      "type": "GravelRide",
+      "is_indoor": false,
+      "distance_km": 51.23,
+      "moving_h": 1.903,
+      "elevation_m": 449.0,
+      "avg_speed_kph": 26.9,
+      "avg_power_w": 187.7,
+      "avg_cadence_rpm": 81.7,
+      "training_tag": "general endurance",
       "training_zone": "Z3",
       "training_notes": [
         "avg power Z3",
-        "outdoor/field context",
-        "higher average-power signal"
+        "outdoor/field context"
       ]
-    },
+    }
+  ],
+  "power_cadence": [
     {
       "date": "2026-04-07",
       "name": "04/08/2026 Morning Gravel Ride",
@@ -1250,26 +1235,39 @@
         "outdoor/field context",
         "higher average-power signal"
       ]
+    },
+    {
+      "date": "2026-06-16",
+      "name": "06/17/2026 Onuma",
+      "power_w": 187.7,
+      "cadence_rpm": 81.7,
+      "distance_km": 51.23,
+      "context": "Outdoor",
+      "training_tag": "general endurance",
+      "training_zone": "Z3",
+      "training_notes": [
+        "avg power Z3",
+        "outdoor/field context"
+      ]
     }
   ],
   "latest_ride": {
-    "date": "2026-06-15",
-    "datetime": "2026-06-15T02:41:26+00:00",
-    "name": "06/15/2026 Lunch Gravel Ride",
+    "date": "2026-06-16",
+    "datetime": "2026-06-16T23:59:07+00:00",
+    "name": "06/17/2026 Onuma",
     "type": "GravelRide",
     "is_indoor": false,
-    "distance_km": 28.19,
-    "moving_h": 1.151,
-    "elevation_m": 232.0,
-    "avg_speed_kph": 24.5,
-    "avg_power_w": 170.9,
-    "avg_cadence_rpm": 82.0,
-    "training_tag": "tempo / hard",
+    "distance_km": 51.23,
+    "moving_h": 1.903,
+    "elevation_m": 449.0,
+    "avg_speed_kph": 26.9,
+    "avg_power_w": 187.7,
+    "avg_cadence_rpm": 81.7,
+    "training_tag": "general endurance",
     "training_zone": "Z3",
     "training_notes": [
       "avg power Z3",
-      "outdoor/field context",
-      "higher average-power signal"
+      "outdoor/field context"
     ]
   }
 }
