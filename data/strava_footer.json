@@ -1,13 +1,14 @@
 {
-  "updated_utc": "2026-06-19T10:42:57Z",
+  "updated_utc": "2026-06-19T15:22:12Z",
   "source": "Strava",
   "athlete_id": 3714458,
   "scope": "latest 60 activities; 7-day research window",
-  "headline": "7-day riding state: 200.7 km · 8.0 h · 1,918 m+",
+  "headline": "7-day riding state: 200.7 km · 8.0 h · 1918 m+",
   "state": {
     "load": "High load",
     "context": "Outdoor-field",
-    "climbing_density": "9.6 m/km"
+    "climbing_density": "9.6 m/km",
+    "latest_training_tag": "tempo / hard"
   },
   "metrics": [
     {
@@ -20,7 +21,7 @@
     },
     {
       "label": "Ascent",
-      "value": "1,918 m"
+      "value": "1918 m"
     },
     {
       "label": "Speed",
@@ -28,11 +29,11 @@
     },
     {
       "label": "Power",
-      "value": "198 W"
+      "value": "178 W"
     },
     {
       "label": "Cadence",
-      "value": "81 rpm"
+      "value": "80 rpm"
     }
   ],
   "seven_day": {
@@ -43,19 +44,20 @@
     "indoor_count": 0,
     "outdoor_count": 5,
     "avg_speed_kph": 25.1,
-    "avg_power_w": 198,
-    "avg_cadence_rpm": 81,
+    "avg_power_w": 178,
+    "avg_cadence_rpm": 80,
     "climbing_m_per_km": 9.6
   },
   "latest_60": {
-    "ride_count": 60,
-    "distance_km": 1724.8,
-    "moving_hours": 71.5,
-    "elevation_m": 19202.0
+    "ride_count": 45,
+    "distance_km": 1434.8,
+    "moving_hours": 62.3,
+    "elevation_m": 18226.0
   },
   "latest_ride": {
     "name": "06/19/2026 Windy Road",
     "date": "2026-06-19",
-    "type": "Ride"
+    "type": "Ride",
+    "training_tag": "tempo / hard"
   }
 }
