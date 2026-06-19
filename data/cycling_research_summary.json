@@ -1,5 +1,5 @@
 {
-  "generated_utc": "2026-06-18T22:56:28Z",
+  "generated_utc": "2026-06-19T04:27:09Z",
   "model": "Cycling behavioural regulation micro-dashboard",
   "window_days": {
     "short": 7,
@@ -22,25 +22,25 @@
     "load_state": "high",
     "context_balance": {
       "indoor": 1,
-      "outdoor": 44
+      "outdoor": 45
     },
     "seven_day": {
-      "distance_km": 208.9,
-      "moving_h": 8.6,
-      "elevation_m": 2479.0,
+      "distance_km": 200.7,
+      "moving_h": 8.0,
+      "elevation_m": 1918.0,
       "ride_count": 5,
-      "mean_power_w": 178.9,
-      "mean_cadence_rpm": 80.1,
-      "mean_speed_kph": 23.9
+      "mean_power_w": 177.6,
+      "mean_cadence_rpm": 80.3,
+      "mean_speed_kph": 25.1
     },
     "thirty_day": {
-      "distance_km": 518.1,
-      "moving_h": 21.8,
-      "elevation_m": 6785.0,
-      "ride_count": 14,
-      "mean_power_w": 181.9,
-      "mean_cadence_rpm": 79.7,
-      "mean_speed_kph": 23.8
+      "distance_km": 536.1,
+      "moving_h": 22.4,
+      "elevation_m": 6872.0,
+      "ride_count": 15,
+      "mean_power_w": 181.7,
+      "mean_cadence_rpm": 79.5,
+      "mean_speed_kph": 23.9
     },
     "recent_training_tags": {
       "tempo / hard": 11,
@@ -191,40 +191,20 @@
     },
     {
       "week_start": "2026-06-15",
-      "distance_km": 142.0,
-      "moving_h": 5.6,
-      "elevation_m": 1159.0,
-      "ride_count": 3,
+      "distance_km": 159.9,
+      "moving_h": 6.3,
+      "elevation_m": 1246.0,
+      "ride_count": 4,
       "indoor_count": 0,
-      "outdoor_count": 3,
+      "outdoor_count": 4,
       "training_tags": {
-        "tempo / hard": 1,
+        "tempo / hard": 2,
         "general endurance": 1,
         "long ride": 1
       }
     }
   ],
   "recent_rides": [
-    {
-      "date": "2026-04-09",
-      "datetime": "2026-04-09T00:57:04+00:00",
-      "name": "04/09/2026 Morning Ride",
-      "type": "Ride",
-      "is_indoor": false,
-      "distance_km": 17.69,
-      "moving_h": 0.671,
-      "elevation_m": 116.0,
-      "avg_speed_kph": 26.4,
-      "avg_power_w": 184.1,
-      "avg_cadence_rpm": 81.2,
-      "training_tag": "tempo / hard",
-      "training_zone": "Z3",
-      "training_notes": [
-        "avg power Z3",
-        "outdoor/field context",
-        "higher average-power signal"
-      ]
-    },
     {
       "date": "2026-04-15",
       "datetime": "2026-04-15T05:59:58+00:00",
@@ -809,16 +789,19 @@
         "outdoor/field context",
         "duration/distance signal"
       ]
-    }
-  ],
-  "power_cadence": [
+    },
     {
-      "date": "2026-04-09",
-      "name": "04/09/2026 Morning Ride",
-      "power_w": 184.1,
-      "cadence_rpm": 81.2,
-      "distance_km": 17.69,
-      "context": "Outdoor",
+      "date": "2026-06-19",
+      "datetime": "2026-06-19T01:17:39+00:00",
+      "name": "06/19/2026 Windy Road",
+      "type": "Ride",
+      "is_indoor": false,
+      "distance_km": 17.94,
+      "moving_h": 0.688,
+      "elevation_m": 87.0,
+      "avg_speed_kph": 26.1,
+      "avg_power_w": 178.9,
+      "avg_cadence_rpm": 76.6,
       "training_tag": "tempo / hard",
       "training_zone": "Z3",
       "training_notes": [
@@ -826,7 +809,9 @@
         "outdoor/field context",
         "higher average-power signal"
       ]
-    },
+    }
+  ],
+  "power_cadence": [
     {
       "date": "2026-04-15",
       "name": "04/15/2026 Gravel",
@@ -1250,26 +1235,41 @@
         "outdoor/field context",
         "duration/distance signal"
       ]
+    },
+    {
+      "date": "2026-06-19",
+      "name": "06/19/2026 Windy Road",
+      "power_w": 178.9,
+      "cadence_rpm": 76.6,
+      "distance_km": 17.94,
+      "context": "Outdoor",
+      "training_tag": "tempo / hard",
+      "training_zone": "Z3",
+      "training_notes": [
+        "avg power Z3",
+        "outdoor/field context",
+        "higher average-power signal"
+      ]
     }
   ],
   "latest_ride": {
-    "date": "2026-06-17",
-    "datetime": "2026-06-17T22:46:39+00:00",
-    "name": "06/18/2026 Moheji Gravel",
-    "type": "GravelRide",
+    "date": "2026-06-19",
+    "datetime": "2026-06-19T01:17:39+00:00",
+    "name": "06/19/2026 Windy Road",
+    "type": "Ride",
     "is_indoor": false,
-    "distance_km": 62.54,
-    "moving_h": 2.515,
-    "elevation_m": 478.0,
-    "avg_speed_kph": 24.9,
-    "avg_power_w": 171.2,
-    "avg_cadence_rpm": 82.4,
-    "training_tag": "long ride",
+    "distance_km": 17.94,
+    "moving_h": 0.688,
+    "elevation_m": 87.0,
+    "avg_speed_kph": 26.1,
+    "avg_power_w": 178.9,
+    "avg_cadence_rpm": 76.6,
+    "training_tag": "tempo / hard",
     "training_zone": "Z3",
     "training_notes": [
       "avg power Z3",
       "outdoor/field context",
-      "duration/distance signal"
+      "higher average-power signal"
     ]
   }
 }

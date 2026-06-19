@@ -1,35 +1,35 @@
 {
-  "updated_utc": "2026-06-18T22:56:28Z",
+  "updated_utc": "2026-06-19T04:27:09Z",
   "source": "Strava",
   "athlete_id": 3714458,
   "scope": "latest 60 activities; 7-day research window",
-  "headline": "7-day riding state: 208.9 km · 8.6 h · 2479 m+",
+  "headline": "7-day riding state: 200.7 km · 8.0 h · 1918 m+",
   "state": {
     "load": "High load",
     "context": "Outdoor-field",
-    "climbing_density": "11.9 m/km",
-    "latest_training_tag": "long ride"
+    "climbing_density": "9.6 m/km",
+    "latest_training_tag": "tempo / hard"
   },
   "metrics": [
     {
       "label": "Distance",
-      "value": "208.9 km"
+      "value": "200.7 km"
     },
     {
       "label": "Time",
-      "value": "8.6 h"
+      "value": "8.0 h"
     },
     {
       "label": "Ascent",
-      "value": "2479 m"
+      "value": "1918 m"
     },
     {
       "label": "Speed",
-      "value": "23.9 kph"
+      "value": "25.1 kph"
     },
     {
       "label": "Power",
-      "value": "179 W"
+      "value": "178 W"
     },
     {
       "label": "Cadence",
@@ -38,26 +38,26 @@
   ],
   "seven_day": {
     "ride_count": 5,
-    "distance_km": 208.9,
-    "moving_hours": 8.6,
-    "elevation_m": 2479.0,
+    "distance_km": 200.7,
+    "moving_hours": 8.0,
+    "elevation_m": 1918.0,
     "indoor_count": 0,
     "outdoor_count": 5,
-    "avg_speed_kph": 23.9,
-    "avg_power_w": 179,
+    "avg_speed_kph": 25.1,
+    "avg_power_w": 178,
     "avg_cadence_rpm": 80,
-    "climbing_m_per_km": 11.9
+    "climbing_m_per_km": 9.6
   },
   "latest_60": {
-    "ride_count": 45,
-    "distance_km": 1438.1,
-    "moving_hours": 62.3,
-    "elevation_m": 18223.0
+    "ride_count": 46,
+    "distance_km": 1456.1,
+    "moving_hours": 63.0,
+    "elevation_m": 18310.0
   },
   "latest_ride": {
-    "name": "06/18/2026 Moheji Gravel",
-    "date": "2026-06-17",
-    "type": "GravelRide",
-    "training_tag": "long ride"
+    "name": "06/19/2026 Windy Road",
+    "date": "2026-06-19",
+    "type": "Ride",
+    "training_tag": "tempo / hard"
   }
 }
