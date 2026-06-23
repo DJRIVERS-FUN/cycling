@@ -1,5 +1,5 @@
 {
-  "generated_utc": "2026-06-22T20:52:33Z",
+  "generated_utc": "2026-06-23T03:53:04Z",
   "model": "Cycling behavioural regulation micro-dashboard",
   "window_days": {
     "short": 7,
@@ -10,22 +10,22 @@
     "load_state": "moderate",
     "context_balance": {
       "indoor": 0,
-      "outdoor": 16
+      "outdoor": 15
     },
     "seven_day": {
-      "distance_km": 183.4,
-      "moving_h": 7.3,
-      "elevation_m": 1381.0,
-      "ride_count": 5
+      "distance_km": 155.2,
+      "moving_h": 6.1,
+      "elevation_m": 1149.0,
+      "ride_count": 4
     },
     "thirty_day": {
-      "distance_km": 559.6,
-      "moving_h": 23.4,
-      "elevation_m": 7007.0,
-      "ride_count": 16,
-      "mean_power_w": 202.1,
-      "mean_cadence_rpm": 79.5,
-      "mean_speed_kph": 23.9
+      "distance_km": 526.6,
+      "moving_h": 21.9,
+      "elevation_m": 6343.0,
+      "ride_count": 15,
+      "mean_power_w": 201.9,
+      "mean_cadence_rpm": 79.6,
+      "mean_speed_kph": 24.0
     }
   },
   "weekly_series": [
@@ -139,19 +139,6 @@
     }
   ],
   "recent_rides": [
-    {
-      "date": "2026-05-23",
-      "datetime": "2026-05-23T09:07:20+00:00",
-      "name": "05/23/2026 Shirotai",
-      "type": "Ride",
-      "is_indoor": false,
-      "distance_km": 33.01,
-      "moving_h": 1.514,
-      "elevation_m": 664.0,
-      "avg_speed_kph": 21.8,
-      "avg_power_w": 205.0,
-      "avg_cadence_rpm": 78.1
-    },
     {
       "date": "2026-05-25",
       "datetime": "2026-05-25T12:45:16+00:00",
@@ -349,14 +336,6 @@
     }
   ],
   "power_cadence": [
-    {
-      "date": "2026-05-23",
-      "name": "05/23/2026 Shirotai",
-      "power_w": 205.0,
-      "cadence_rpm": 78.1,
-      "distance_km": 33.01,
-      "context": "Outdoor"
-    },
     {
       "date": "2026-05-25",
       "name": "05/25/2026 Shirotai",
