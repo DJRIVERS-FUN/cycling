@@ -1,5 +1,5 @@
 {
-  "generated_utc": "2026-06-25T03:55:26Z",
+  "generated_utc": "2026-06-25T09:28:13Z",
   "model": "Cycling behavioural regulation micro-dashboard",
   "window_days": {
     "short": 7,
@@ -10,22 +10,22 @@
     "load_state": "moderate",
     "context_balance": {
       "indoor": 0,
-      "outdoor": 15
+      "outdoor": 16
     },
     "seven_day": {
-      "distance_km": 139.1,
-      "moving_h": 5.9,
-      "elevation_m": 1377.0,
-      "ride_count": 4
+      "distance_km": 171.3,
+      "moving_h": 7.5,
+      "elevation_m": 2032.0,
+      "ride_count": 5
     },
     "thirty_day": {
-      "distance_km": 524.7,
-      "moving_h": 22.0,
-      "elevation_m": 6352.0,
-      "ride_count": 15,
-      "mean_power_w": 201.1,
+      "distance_km": 556.9,
+      "moving_h": 23.6,
+      "elevation_m": 7007.0,
+      "ride_count": 16,
+      "mean_power_w": 201.0,
       "mean_cadence_rpm": 79.3,
-      "mean_speed_kph": 23.9
+      "mean_speed_kph": 23.7
     }
   },
   "weekly_series": [
@@ -333,6 +333,19 @@
       "avg_speed_kph": 20.6,
       "avg_power_w": 196.0,
       "avg_cadence_rpm": 74.4
+    },
+    {
+      "date": "2026-06-25",
+      "datetime": "2026-06-25T11:33:35+00:00",
+      "name": "06/25/2026 Kijihiki",
+      "type": "Ride",
+      "is_indoor": false,
+      "distance_km": 32.2,
+      "moving_h": 1.558,
+      "elevation_m": 655.0,
+      "avg_speed_kph": 20.7,
+      "avg_power_w": 200.0,
+      "avg_cadence_rpm": 78.3
     }
   ],
   "power_cadence": [
@@ -455,19 +468,27 @@
       "cadence_rpm": 74.4,
       "distance_km": 35.1,
       "context": "Outdoor"
+    },
+    {
+      "date": "2026-06-25",
+      "name": "06/25/2026 Kijihiki",
+      "power_w": 200.0,
+      "cadence_rpm": 78.3,
+      "distance_km": 32.2,
+      "context": "Outdoor"
     }
   ],
   "latest_ride": {
-    "date": "2026-06-24",
-    "datetime": "2026-06-24T11:44:28+00:00",
-    "name": "06/24/2026 Kijihiki",
+    "date": "2026-06-25",
+    "datetime": "2026-06-25T11:33:35+00:00",
+    "name": "06/25/2026 Kijihiki",
     "type": "Ride",
     "is_indoor": false,
-    "distance_km": 35.1,
-    "moving_h": 1.703,
-    "elevation_m": 677.0,
-    "avg_speed_kph": 20.6,
-    "avg_power_w": 196.0,
-    "avg_cadence_rpm": 74.4
+    "distance_km": 32.2,
+    "moving_h": 1.558,
+    "elevation_m": 655.0,
+    "avg_speed_kph": 20.7,
+    "avg_power_w": 200.0,
+    "avg_cadence_rpm": 78.3
   }
 }
