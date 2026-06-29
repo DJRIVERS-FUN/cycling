@@ -1,5 +1,5 @@
 {
-  "generated_utc": "2026-06-29T04:15:56Z",
+  "generated_utc": "2026-06-29T11:06:48Z",
   "model": "Cycling behavioural regulation micro-dashboard",
   "window_days": {
     "short": 7,
@@ -363,7 +363,7 @@
     {
       "date": "2026-06-29",
       "datetime": "2026-06-29T10:26:53+00:00",
-      "name": "Morning Gravel Ride",
+      "name": "06/29/2026 Moheji Gravel",
       "type": "Ride",
       "is_indoor": false,
       "distance_km": 56.7,
@@ -513,7 +513,7 @@
     },
     {
       "date": "2026-06-29",
-      "name": "Morning Gravel Ride",
+      "name": "06/29/2026 Moheji Gravel",
       "power_w": 194.0,
       "cadence_rpm": 81.9,
       "distance_km": 56.7,
@@ -523,7 +523,7 @@
   "latest_ride": {
     "date": "2026-06-29",
     "datetime": "2026-06-29T10:26:53+00:00",
-    "name": "Morning Gravel Ride",
+    "name": "06/29/2026 Moheji Gravel",
     "type": "Ride",
     "is_indoor": false,
     "distance_km": 56.7,
