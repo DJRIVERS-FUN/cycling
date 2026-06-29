@@ -1,5 +1,5 @@
 {
-  "generated_utc": "2026-06-28T19:25:53Z",
+  "generated_utc": "2026-06-29T04:15:56Z",
   "model": "Cycling behavioural regulation micro-dashboard",
   "window_days": {
     "short": 7,
@@ -10,22 +10,22 @@
     "load_state": "moderate",
     "context_balance": {
       "indoor": 0,
-      "outdoor": 17
+      "outdoor": 18
     },
     "seven_day": {
-      "distance_km": 86.8,
-      "moving_h": 4.7,
-      "elevation_m": 1452.0,
-      "ride_count": 4
+      "distance_km": 143.5,
+      "moving_h": 7.0,
+      "elevation_m": 1911.0,
+      "ride_count": 5
     },
     "thirty_day": {
-      "distance_km": 538.7,
-      "moving_h": 23.3,
-      "elevation_m": 6466.0,
-      "ride_count": 17,
-      "mean_power_w": 187.5,
-      "mean_cadence_rpm": 76.3,
-      "mean_speed_kph": 22.6
+      "distance_km": 595.4,
+      "moving_h": 25.6,
+      "elevation_m": 6925.0,
+      "ride_count": 18,
+      "mean_power_w": 187.9,
+      "mean_cadence_rpm": 76.6,
+      "mean_speed_kph": 22.7
     }
   },
   "weekly_series": [
@@ -359,6 +359,19 @@
       "avg_speed_kph": 13.7,
       "avg_power_w": 87.0,
       "avg_cadence_rpm": 55.0
+    },
+    {
+      "date": "2026-06-29",
+      "datetime": "2026-06-29T10:26:53+00:00",
+      "name": "Morning Gravel Ride",
+      "type": "Ride",
+      "is_indoor": false,
+      "distance_km": 56.7,
+      "moving_h": 2.307,
+      "elevation_m": 459.0,
+      "avg_speed_kph": 24.6,
+      "avg_power_w": 194.0,
+      "avg_cadence_rpm": 81.9
     }
   ],
   "power_cadence": [
@@ -497,19 +510,27 @@
       "cadence_rpm": 55.0,
       "distance_km": 7.78,
       "context": "Outdoor"
+    },
+    {
+      "date": "2026-06-29",
+      "name": "Morning Gravel Ride",
+      "power_w": 194.0,
+      "cadence_rpm": 81.9,
+      "distance_km": 56.7,
+      "context": "Outdoor"
     }
   ],
   "latest_ride": {
-    "date": "2026-06-27",
-    "datetime": "2026-06-27T12:47:24+00:00",
-    "name": "Lunch Gravel Ride",
+    "date": "2026-06-29",
+    "datetime": "2026-06-29T10:26:53+00:00",
+    "name": "Morning Gravel Ride",
     "type": "Ride",
     "is_indoor": false,
-    "distance_km": 7.78,
-    "moving_h": 0.569,
-    "elevation_m": 56.0,
-    "avg_speed_kph": 13.7,
-    "avg_power_w": 87.0,
-    "avg_cadence_rpm": 55.0
+    "distance_km": 56.7,
+    "moving_h": 2.307,
+    "elevation_m": 459.0,
+    "avg_speed_kph": 24.6,
+    "avg_power_w": 194.0,
+    "avg_cadence_rpm": 81.9
   }
 }
