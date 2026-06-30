@@ -1,5 +1,5 @@
 {
-  "generated_utc": "2026-06-29T20:02:57Z",
+  "generated_utc": "2026-06-30T03:57:24Z",
   "model": "Cycling behavioural regulation micro-dashboard",
   "window_days": {
     "short": 7,
@@ -10,7 +10,7 @@
     "load_state": "moderate",
     "context_balance": {
       "indoor": 0,
-      "outdoor": 18
+      "outdoor": 17
     },
     "seven_day": {
       "distance_km": 143.5,
@@ -19,13 +19,13 @@
       "ride_count": 5
     },
     "thirty_day": {
-      "distance_km": 595.4,
-      "moving_h": 25.6,
-      "elevation_m": 6925.0,
-      "ride_count": 18,
-      "mean_power_w": 187.9,
-      "mean_cadence_rpm": 76.6,
-      "mean_speed_kph": 22.7
+      "distance_km": 563.3,
+      "moving_h": 24.0,
+      "elevation_m": 6279.0,
+      "ride_count": 17,
+      "mean_power_w": 187.1,
+      "mean_cadence_rpm": 76.5,
+      "mean_speed_kph": 22.8
     }
   },
   "weekly_series": [
@@ -139,19 +139,6 @@
     }
   ],
   "recent_rides": [
-    {
-      "date": "2026-05-30",
-      "datetime": "2026-05-30T07:46:17+00:00",
-      "name": "05/30/2026 Gravel Shirotai",
-      "type": "Ride",
-      "is_indoor": false,
-      "distance_km": 32.1,
-      "moving_h": 1.564,
-      "elevation_m": 646.0,
-      "avg_speed_kph": 20.5,
-      "avg_power_w": 202.0,
-      "avg_cadence_rpm": 78.4
-    },
     {
       "date": "2026-05-31",
       "datetime": "2026-05-31T09:21:01+00:00",
@@ -375,14 +362,6 @@
     }
   ],
   "power_cadence": [
-    {
-      "date": "2026-05-30",
-      "name": "05/30/2026 Gravel Shirotai",
-      "power_w": 202.0,
-      "cadence_rpm": 78.4,
-      "distance_km": 32.1,
-      "context": "Outdoor"
-    },
     {
       "date": "2026-05-31",
       "name": "05/31/2026 Shirotai",
