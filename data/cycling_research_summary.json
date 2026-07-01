@@ -1,5 +1,5 @@
 {
-  "generated_utc": "2026-06-30T20:03:05Z",
+  "generated_utc": "2026-07-01T04:12:23Z",
   "model": "Cycling behavioural regulation micro-dashboard",
   "window_days": {
     "short": 7,
@@ -10,7 +10,7 @@
     "load_state": "moderate",
     "context_balance": {
       "indoor": 0,
-      "outdoor": 17
+      "outdoor": 16
     },
     "seven_day": {
       "distance_km": 143.5,
@@ -19,24 +19,24 @@
       "ride_count": 5
     },
     "thirty_day": {
-      "distance_km": 563.3,
-      "moving_h": 24.0,
-      "elevation_m": 6279.0,
-      "ride_count": 17,
-      "mean_power_w": 187.1,
-      "mean_cadence_rpm": 76.5,
+      "distance_km": 525.7,
+      "moving_h": 22.4,
+      "elevation_m": 5600.0,
+      "ride_count": 16,
+      "mean_power_w": 185.7,
+      "mean_cadence_rpm": 76.4,
       "mean_speed_kph": 22.8
     }
   },
   "weekly_series": [
     {
       "week_start": "2026-04-06",
-      "distance_km": 38.6,
-      "moving_h": 1.6,
-      "elevation_m": 359.0,
-      "ride_count": 2,
+      "distance_km": 17.7,
+      "moving_h": 0.7,
+      "elevation_m": 116.0,
+      "ride_count": 1,
       "indoor_count": 0,
-      "outdoor_count": 2
+      "outdoor_count": 1
     },
     {
       "week_start": "2026-04-13",
@@ -139,19 +139,6 @@
     }
   ],
   "recent_rides": [
-    {
-      "date": "2026-05-31",
-      "datetime": "2026-05-31T09:21:01+00:00",
-      "name": "05/31/2026 Shirotai",
-      "type": "Ride",
-      "is_indoor": false,
-      "distance_km": 37.61,
-      "moving_h": 1.637,
-      "elevation_m": 679.0,
-      "avg_speed_kph": 23.0,
-      "avg_power_w": 209.0,
-      "avg_cadence_rpm": 78.0
-    },
     {
       "date": "2026-06-01",
       "datetime": "2026-06-01T12:41:15+00:00",
@@ -362,14 +349,6 @@
     }
   ],
   "power_cadence": [
-    {
-      "date": "2026-05-31",
-      "name": "05/31/2026 Shirotai",
-      "power_w": 209.0,
-      "cadence_rpm": 78.0,
-      "distance_km": 37.61,
-      "context": "Outdoor"
-    },
     {
       "date": "2026-06-01",
       "name": "06/01/2026 Lunch Gravel Ride",
