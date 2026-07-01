@@ -1,61 +1,61 @@
 {
-  "updated_utc": "2026-07-01T04:12:07Z",
+  "updated_utc": "2026-07-01T09:54:32Z",
   "source": "Strava",
   "athlete_id": 3714458,
   "scope": "latest 60 activities; 7-day research window",
-  "headline": "7-day riding state: 143.5 km · 7.0 h · 1,911 m+",
+  "headline": "7-day riding state: 233.6 km · 10.5 h · 2,602 m+",
   "state": {
-    "load": "Moderate load",
+    "load": "High load",
     "context": "Outdoor-field",
-    "climbing_density": "13.3 m/km"
+    "climbing_density": "11.1 m/km"
   },
   "metrics": [
     {
       "label": "Distance",
-      "value": "143.5 km"
+      "value": "233.6 km"
     },
     {
       "label": "Time",
-      "value": "7.0 h"
+      "value": "10.5 h"
     },
     {
       "label": "Ascent",
-      "value": "1,911 m"
+      "value": "2,602 m"
     },
     {
       "label": "Speed",
-      "value": "20.5 kph"
+      "value": "22.2 kph"
     },
     {
       "label": "Power",
-      "value": "174 W"
+      "value": "180 W"
     },
     {
       "label": "Cadence",
-      "value": "74 rpm"
+      "value": "77 rpm"
     }
   ],
   "seven_day": {
-    "ride_count": 5,
-    "distance_km": 143.5,
-    "moving_hours": 7.0,
-    "elevation_m": 1911.0,
+    "ride_count": 6,
+    "distance_km": 233.6,
+    "moving_hours": 10.5,
+    "elevation_m": 2602.0,
     "indoor_count": 0,
-    "outdoor_count": 5,
-    "avg_speed_kph": 20.5,
-    "avg_power_w": 174,
-    "avg_cadence_rpm": 74,
-    "climbing_m_per_km": 13.3
+    "outdoor_count": 6,
+    "avg_speed_kph": 22.2,
+    "avg_power_w": 180,
+    "avg_cadence_rpm": 77,
+    "climbing_m_per_km": 11.1
   },
   "latest_60": {
     "ride_count": 60,
-    "distance_km": 1772.8,
-    "moving_hours": 75.9,
-    "elevation_m": 20978.0
+    "distance_km": 1836.6,
+    "moving_hours": 78.7,
+    "elevation_m": 21629.0
   },
   "latest_ride": {
-    "name": "06/29/2026 Moheji Gravel",
-    "date": "2026-06-29",
+    "name": "07/01/2026 Komagatake",
+    "date": "2026-07-01",
     "type": "Ride"
   }
 }

@@ -1,5 +1,5 @@
 {
-  "generated_utc": "2026-07-01T04:12:23Z",
+  "generated_utc": "2026-07-01T09:54:49Z",
   "model": "Cycling behavioural regulation micro-dashboard",
   "window_days": {
     "short": 7,
@@ -7,25 +7,25 @@
     "trend_weeks": 12
   },
   "state": {
-    "load_state": "moderate",
+    "load_state": "high",
     "context_balance": {
       "indoor": 0,
-      "outdoor": 16
+      "outdoor": 17
     },
     "seven_day": {
-      "distance_km": 143.5,
-      "moving_h": 7.0,
-      "elevation_m": 1911.0,
-      "ride_count": 5
+      "distance_km": 233.6,
+      "moving_h": 10.5,
+      "elevation_m": 2602.0,
+      "ride_count": 6
     },
     "thirty_day": {
-      "distance_km": 525.7,
-      "moving_h": 22.4,
-      "elevation_m": 5600.0,
-      "ride_count": 16,
-      "mean_power_w": 185.7,
-      "mean_cadence_rpm": 76.4,
-      "mean_speed_kph": 22.8
+      "distance_km": 615.8,
+      "moving_h": 25.9,
+      "elevation_m": 6291.0,
+      "ride_count": 17,
+      "mean_power_w": 186.1,
+      "mean_cadence_rpm": 76.8,
+      "mean_speed_kph": 23.0
     }
   },
   "weekly_series": [
@@ -346,6 +346,19 @@
       "avg_speed_kph": 24.6,
       "avg_power_w": 194.0,
       "avg_cadence_rpm": 81.9
+    },
+    {
+      "date": "2026-07-01",
+      "datetime": "2026-07-01T10:18:53+00:00",
+      "name": "07/01/2026 Komagatake",
+      "type": "Ride",
+      "is_indoor": false,
+      "distance_km": 90.14,
+      "moving_h": 3.519,
+      "elevation_m": 691.0,
+      "avg_speed_kph": 25.6,
+      "avg_power_w": 192.0,
+      "avg_cadence_rpm": 82.2
     }
   ],
   "power_cadence": [
@@ -476,19 +489,27 @@
       "cadence_rpm": 81.9,
       "distance_km": 56.7,
       "context": "Outdoor"
+    },
+    {
+      "date": "2026-07-01",
+      "name": "07/01/2026 Komagatake",
+      "power_w": 192.0,
+      "cadence_rpm": 82.2,
+      "distance_km": 90.14,
+      "context": "Outdoor"
     }
   ],
   "latest_ride": {
-    "date": "2026-06-29",
-    "datetime": "2026-06-29T10:26:53+00:00",
-    "name": "06/29/2026 Moheji Gravel",
+    "date": "2026-07-01",
+    "datetime": "2026-07-01T10:18:53+00:00",
+    "name": "07/01/2026 Komagatake",
     "type": "Ride",
     "is_indoor": false,
-    "distance_km": 56.7,
-    "moving_h": 2.307,
-    "elevation_m": 459.0,
-    "avg_speed_kph": 24.6,
-    "avg_power_w": 194.0,
-    "avg_cadence_rpm": 81.9
+    "distance_km": 90.14,
+    "moving_h": 3.519,
+    "elevation_m": 691.0,
+    "avg_speed_kph": 25.6,
+    "avg_power_w": 192.0,
+    "avg_cadence_rpm": 82.2
   }
 }
