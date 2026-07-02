@@ -1,5 +1,5 @@
 {
-  "generated_utc": "2026-07-01T20:00:50Z",
+  "generated_utc": "2026-07-02T03:53:06Z",
   "model": "Cycling behavioural regulation micro-dashboard",
   "window_days": {
     "short": 7,
@@ -10,33 +10,33 @@
     "load_state": "high",
     "context_balance": {
       "indoor": 0,
-      "outdoor": 17
+      "outdoor": 16
     },
     "seven_day": {
-      "distance_km": 233.6,
-      "moving_h": 10.5,
-      "elevation_m": 2602.0,
-      "ride_count": 6
+      "distance_km": 198.5,
+      "moving_h": 8.8,
+      "elevation_m": 1925.0,
+      "ride_count": 5
     },
     "thirty_day": {
-      "distance_km": 615.8,
-      "moving_h": 25.9,
-      "elevation_m": 6291.0,
-      "ride_count": 17,
-      "mean_power_w": 186.1,
-      "mean_cadence_rpm": 76.8,
-      "mean_speed_kph": 23.0
+      "distance_km": 580.3,
+      "moving_h": 24.5,
+      "elevation_m": 5990.0,
+      "ride_count": 16,
+      "mean_power_w": 185.8,
+      "mean_cadence_rpm": 76.5,
+      "mean_speed_kph": 22.9
     }
   },
   "weekly_series": [
     {
       "week_start": "2026-04-06",
-      "distance_km": 17.7,
-      "moving_h": 0.7,
-      "elevation_m": 116.0,
-      "ride_count": 1,
+      "distance_km": 0,
+      "moving_h": 0,
+      "elevation_m": 0,
+      "ride_count": 0,
       "indoor_count": 0,
-      "outdoor_count": 1
+      "outdoor_count": 0
     },
     {
       "week_start": "2026-04-13",
@@ -139,19 +139,6 @@
     }
   ],
   "recent_rides": [
-    {
-      "date": "2026-06-01",
-      "datetime": "2026-06-01T12:41:15+00:00",
-      "name": "06/01/2026 Lunch Gravel Ride",
-      "type": "Ride",
-      "is_indoor": false,
-      "distance_km": 35.55,
-      "moving_h": 1.413,
-      "elevation_m": 301.0,
-      "avg_speed_kph": 25.2,
-      "avg_power_w": 191.0,
-      "avg_cadence_rpm": 81.6
-    },
     {
       "date": "2026-06-04",
       "datetime": "2026-06-04T10:41:29+00:00",
@@ -362,14 +349,6 @@
     }
   ],
   "power_cadence": [
-    {
-      "date": "2026-06-01",
-      "name": "06/01/2026 Lunch Gravel Ride",
-      "power_w": 191.0,
-      "cadence_rpm": 81.6,
-      "distance_km": 35.55,
-      "context": "Outdoor"
-    },
     {
       "date": "2026-06-04",
       "name": "06/04/2026 Gravel Ride",
