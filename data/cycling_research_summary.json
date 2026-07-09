@@ -1,5 +1,5 @@
 {
-  "generated_utc": "2026-07-08T19:37:26Z",
+  "generated_utc": "2026-07-09T03:36:18Z",
   "model": "Cycling behavioural regulation micro-dashboard",
   "window_days": {
     "short": 7,
@@ -13,10 +13,10 @@
       "outdoor": 16
     },
     "seven_day": {
-      "distance_km": 190.3,
-      "moving_h": 7.5,
-      "elevation_m": 1555.0,
-      "ride_count": 2
+      "distance_km": 100.1,
+      "moving_h": 4.0,
+      "elevation_m": 864.0,
+      "ride_count": 1
     },
     "thirty_day": {
       "distance_km": 646.3,
