@@ -1,5 +1,5 @@
 {
-  "generated_utc": "2026-07-09T19:50:40Z",
+  "generated_utc": "2026-07-10T03:37:49Z",
   "model": "Cycling behavioural regulation micro-dashboard",
   "window_days": {
     "short": 7,
@@ -10,7 +10,7 @@
     "load_state": "moderate",
     "context_balance": {
       "indoor": 0,
-      "outdoor": 16
+      "outdoor": 15
     },
     "seven_day": {
       "distance_km": 100.1,
@@ -19,13 +19,13 @@
       "ride_count": 1
     },
     "thirty_day": {
-      "distance_km": 646.3,
-      "moving_h": 27.2,
-      "elevation_m": 6552.0,
-      "ride_count": 16,
-      "mean_power_w": 184.0,
-      "mean_cadence_rpm": 76.5,
-      "mean_speed_kph": 22.8
+      "distance_km": 626.1,
+      "moving_h": 26.3,
+      "elevation_m": 6358.0,
+      "ride_count": 15,
+      "mean_power_w": 182.7,
+      "mean_cadence_rpm": 76.2,
+      "mean_speed_kph": 22.7
     }
   },
   "weekly_series": [
@@ -139,19 +139,6 @@
     }
   ],
   "recent_rides": [
-    {
-      "date": "2026-06-09",
-      "datetime": "2026-06-09T09:04:33+00:00",
-      "name": "06/09/2026 Morning Ride",
-      "type": "Ride",
-      "is_indoor": false,
-      "distance_km": 20.14,
-      "moving_h": 0.851,
-      "elevation_m": 194.0,
-      "avg_speed_kph": 23.7,
-      "avg_power_w": 203.0,
-      "avg_cadence_rpm": 80.4
-    },
     {
       "date": "2026-06-11",
       "datetime": "2026-06-11T07:28:27+00:00",
@@ -349,14 +336,6 @@
     }
   ],
   "power_cadence": [
-    {
-      "date": "2026-06-09",
-      "name": "06/09/2026 Morning Ride",
-      "power_w": 203.0,
-      "cadence_rpm": 80.4,
-      "distance_km": 20.14,
-      "context": "Outdoor"
-    },
     {
       "date": "2026-06-11",
       "name": "06/11/2026 Morning Gravel Ride",
