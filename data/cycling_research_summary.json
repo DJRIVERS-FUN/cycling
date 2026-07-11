@@ -1,5 +1,5 @@
 {
-  "generated_utc": "2026-07-10T19:37:29Z",
+  "generated_utc": "2026-07-11T02:52:48Z",
   "model": "Cycling behavioural regulation micro-dashboard",
   "window_days": {
     "short": 7,
@@ -10,20 +10,20 @@
     "load_state": "moderate",
     "context_balance": {
       "indoor": 0,
-      "outdoor": 15
+      "outdoor": 16
     },
     "seven_day": {
-      "distance_km": 100.1,
-      "moving_h": 4.0,
-      "elevation_m": 864.0,
-      "ride_count": 1
+      "distance_km": 120.8,
+      "moving_h": 4.9,
+      "elevation_m": 1059.0,
+      "ride_count": 2
     },
     "thirty_day": {
-      "distance_km": 626.1,
-      "moving_h": 26.3,
-      "elevation_m": 6358.0,
-      "ride_count": 15,
-      "mean_power_w": 182.7,
+      "distance_km": 646.8,
+      "moving_h": 27.3,
+      "elevation_m": 6553.0,
+      "ride_count": 16,
+      "mean_power_w": 178.1,
       "mean_cadence_rpm": 76.2,
       "mean_speed_kph": 22.7
     }
@@ -31,12 +31,12 @@
   "weekly_series": [
     {
       "week_start": "2026-04-13",
-      "distance_km": 105.8,
-      "moving_h": 5.1,
-      "elevation_m": 1285.0,
-      "ride_count": 2,
+      "distance_km": 72.8,
+      "moving_h": 3.8,
+      "elevation_m": 900.0,
+      "ride_count": 1,
       "indoor_count": 0,
-      "outdoor_count": 2
+      "outdoor_count": 1
     },
     {
       "week_start": "2026-04-20",
@@ -333,6 +333,19 @@
       "avg_speed_kph": 25.3,
       "avg_power_w": 183.0,
       "avg_cadence_rpm": 81.4
+    },
+    {
+      "date": "2026-07-11",
+      "datetime": "2026-07-11T10:28:47+00:00",
+      "name": "Morning Ride",
+      "type": "Ride",
+      "is_indoor": false,
+      "distance_km": 20.62,
+      "moving_h": 0.954,
+      "elevation_m": 195.0,
+      "avg_speed_kph": 21.6,
+      "avg_power_w": 107.8,
+      "avg_cadence_rpm": null
     }
   ],
   "power_cadence": [
@@ -458,16 +471,16 @@
     }
   ],
   "latest_ride": {
-    "date": "2026-07-04",
-    "datetime": "2026-07-04T07:53:41+00:00",
-    "name": "07/04/2026 Kakkumi Gravel",
+    "date": "2026-07-11",
+    "datetime": "2026-07-11T10:28:47+00:00",
+    "name": "Morning Ride",
     "type": "Ride",
     "is_indoor": false,
-    "distance_km": 100.13,
-    "moving_h": 3.958,
-    "elevation_m": 864.0,
-    "avg_speed_kph": 25.3,
-    "avg_power_w": 183.0,
-    "avg_cadence_rpm": 81.4
+    "distance_km": 20.62,
+    "moving_h": 0.954,
+    "elevation_m": 195.0,
+    "avg_speed_kph": 21.6,
+    "avg_power_w": 107.8,
+    "avg_cadence_rpm": null
   }
 }
