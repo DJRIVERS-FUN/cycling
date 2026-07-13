@@ -1,61 +1,61 @@
 {
-  "updated_utc": "2026-07-12T19:09:31Z",
+  "updated_utc": "2026-07-13T03:20:11Z",
   "source": "Strava",
   "athlete_id": 3714458,
   "scope": "latest 60 activities; 7-day research window",
-  "headline": "7-day riding state: 20.6 km · 1.0 h · 195 m+",
+  "headline": "7-day riding state: 58.6 km · 2.5 h · 442 m+",
   "state": {
     "load": "Light load",
     "context": "Outdoor-field",
-    "climbing_density": "9.5 m/km"
+    "climbing_density": "7.5 m/km"
   },
   "metrics": [
     {
       "label": "Distance",
-      "value": "20.6 km"
+      "value": "58.6 km"
     },
     {
       "label": "Time",
-      "value": "1.0 h"
+      "value": "2.5 h"
     },
     {
       "label": "Ascent",
-      "value": "195 m"
+      "value": "442 m"
     },
     {
       "label": "Speed",
-      "value": "20.6 kph"
+      "value": "23.4 kph"
     },
     {
       "label": "Power",
-      "value": "200 W"
+      "value": "195 W"
     },
     {
       "label": "Cadence",
-      "value": "—"
+      "value": "82 rpm"
     }
   ],
   "seven_day": {
-    "ride_count": 1,
-    "distance_km": 20.6,
-    "moving_hours": 1.0,
-    "elevation_m": 195.0,
+    "ride_count": 2,
+    "distance_km": 58.6,
+    "moving_hours": 2.5,
+    "elevation_m": 442.0,
     "indoor_count": 0,
-    "outdoor_count": 1,
-    "avg_speed_kph": 20.6,
-    "avg_power_w": 200,
-    "avg_cadence_rpm": null,
-    "climbing_m_per_km": 9.5
+    "outdoor_count": 2,
+    "avg_speed_kph": 23.4,
+    "avg_power_w": 195,
+    "avg_cadence_rpm": 82,
+    "climbing_m_per_km": 7.5
   },
   "latest_60": {
     "ride_count": 60,
-    "distance_km": 1918.9,
-    "moving_hours": 82.4,
-    "elevation_m": 22538.0
+    "distance_km": 1941.1,
+    "moving_hours": 83.4,
+    "elevation_m": 22727.0
   },
   "latest_ride": {
-    "name": "07/11/2026 MTB",
-    "date": "2026-07-11",
+    "name": "07/13/2026 Hokuto Gravel",
+    "date": "2026-07-13",
     "type": "Ride"
   }
 }
