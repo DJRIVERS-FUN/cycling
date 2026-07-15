@@ -1,5 +1,5 @@
 {
-  "generated_utc": "2026-07-14T19:23:52Z",
+  "generated_utc": "2026-07-15T02:43:16Z",
   "model": "Cycling behavioural regulation micro-dashboard",
   "window_days": {
     "short": 7,
@@ -7,25 +7,25 @@
     "trend_weeks": 12
   },
   "state": {
-    "load_state": "light",
+    "load_state": "moderate",
     "context_balance": {
       "indoor": 0,
       "outdoor": 15
     },
     "seven_day": {
-      "distance_km": 58.6,
-      "moving_h": 2.5,
-      "elevation_m": 442.0,
-      "ride_count": 2
+      "distance_km": 99.3,
+      "moving_h": 4.1,
+      "elevation_m": 698.0,
+      "ride_count": 3
     },
     "thirty_day": {
-      "distance_km": 616.6,
-      "moving_h": 25.9,
-      "elevation_m": 5961.0,
+      "distance_km": 616.5,
+      "moving_h": 25.8,
+      "elevation_m": 5545.0,
       "ride_count": 15,
-      "mean_power_w": 181.3,
-      "mean_cadence_rpm": 76.3,
-      "mean_speed_kph": 22.7
+      "mean_power_w": 180.4,
+      "mean_cadence_rpm": 76.6,
+      "mean_speed_kph": 22.8
     }
   },
   "weekly_series": [
@@ -139,19 +139,6 @@
     }
   ],
   "recent_rides": [
-    {
-      "date": "2026-06-14",
-      "datetime": "2026-06-14T09:08:17+00:00",
-      "name": "06/14/2026 Shirotai",
-      "type": "Ride",
-      "is_indoor": false,
-      "distance_km": 40.84,
-      "moving_h": 1.778,
-      "elevation_m": 672.0,
-      "avg_speed_kph": 23.0,
-      "avg_power_w": 204.0,
-      "avg_cadence_rpm": 78.9
-    },
     {
       "date": "2026-06-15",
       "datetime": "2026-06-15T11:41:26+00:00",
@@ -333,17 +320,22 @@
       "avg_speed_kph": 24.9,
       "avg_power_w": 191.0,
       "avg_cadence_rpm": 81.5
+    },
+    {
+      "date": "2026-07-15",
+      "datetime": "2026-07-15T09:09:06+00:00",
+      "name": "07/15/2026 Hokuto Gravel",
+      "type": "Ride",
+      "is_indoor": false,
+      "distance_km": 40.73,
+      "moving_h": 1.589,
+      "elevation_m": 256.0,
+      "avg_speed_kph": 25.6,
+      "avg_power_w": 191.0,
+      "avg_cadence_rpm": 82.3
     }
   ],
   "power_cadence": [
-    {
-      "date": "2026-06-14",
-      "name": "06/14/2026 Shirotai",
-      "power_w": 204.0,
-      "cadence_rpm": 78.9,
-      "distance_km": 40.84,
-      "context": "Outdoor"
-    },
     {
       "date": "2026-06-15",
       "name": "06/15/2026 Lunch Gravel Ride",
@@ -447,19 +439,27 @@
       "cadence_rpm": 81.5,
       "distance_km": 38.0,
       "context": "Outdoor"
+    },
+    {
+      "date": "2026-07-15",
+      "name": "07/15/2026 Hokuto Gravel",
+      "power_w": 191.0,
+      "cadence_rpm": 82.3,
+      "distance_km": 40.73,
+      "context": "Outdoor"
     }
   ],
   "latest_ride": {
-    "date": "2026-07-13",
-    "datetime": "2026-07-13T10:21:12+00:00",
-    "name": "07/13/2026 Hokuto Gravel",
+    "date": "2026-07-15",
+    "datetime": "2026-07-15T09:09:06+00:00",
+    "name": "07/15/2026 Hokuto Gravel",
     "type": "Ride",
     "is_indoor": false,
-    "distance_km": 38.0,
-    "moving_h": 1.524,
-    "elevation_m": 247.0,
-    "avg_speed_kph": 24.9,
+    "distance_km": 40.73,
+    "moving_h": 1.589,
+    "elevation_m": 256.0,
+    "avg_speed_kph": 25.6,
     "avg_power_w": 191.0,
-    "avg_cadence_rpm": 81.5
+    "avg_cadence_rpm": 82.3
   }
 }
