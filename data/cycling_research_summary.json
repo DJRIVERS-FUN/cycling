@@ -1,5 +1,5 @@
 {
-  "generated_utc": "2026-07-15T19:16:16Z",
+  "generated_utc": "2026-07-16T02:49:48Z",
   "model": "Cycling behavioural regulation micro-dashboard",
   "window_days": {
     "short": 7,
@@ -10,7 +10,7 @@
     "load_state": "moderate",
     "context_balance": {
       "indoor": 0,
-      "outdoor": 15
+      "outdoor": 14
     },
     "seven_day": {
       "distance_km": 99.3,
@@ -19,24 +19,24 @@
       "ride_count": 3
     },
     "thirty_day": {
-      "distance_km": 616.5,
-      "moving_h": 25.8,
-      "elevation_m": 5545.0,
-      "ride_count": 15,
-      "mean_power_w": 180.4,
-      "mean_cadence_rpm": 76.6,
-      "mean_speed_kph": 22.8
+      "distance_km": 588.3,
+      "moving_h": 24.6,
+      "elevation_m": 5313.0,
+      "ride_count": 14,
+      "mean_power_w": 179.4,
+      "mean_cadence_rpm": 76.2,
+      "mean_speed_kph": 22.7
     }
   },
   "weekly_series": [
     {
       "week_start": "2026-04-20",
-      "distance_km": 139.3,
-      "moving_h": 6.2,
-      "elevation_m": 1974.0,
-      "ride_count": 3,
+      "distance_km": 86.5,
+      "moving_h": 4.1,
+      "elevation_m": 1576.0,
+      "ride_count": 2,
       "indoor_count": 0,
-      "outdoor_count": 3
+      "outdoor_count": 2
     },
     {
       "week_start": "2026-04-27",
@@ -139,19 +139,6 @@
     }
   ],
   "recent_rides": [
-    {
-      "date": "2026-06-15",
-      "datetime": "2026-06-15T11:41:26+00:00",
-      "name": "06/15/2026 Lunch Gravel Ride",
-      "type": "Ride",
-      "is_indoor": false,
-      "distance_km": 28.19,
-      "moving_h": 1.151,
-      "elevation_m": 232.0,
-      "avg_speed_kph": 24.5,
-      "avg_power_w": 194.0,
-      "avg_cadence_rpm": 82.0
-    },
     {
       "date": "2026-06-17",
       "datetime": "2026-06-17T08:59:07+00:00",
@@ -336,14 +323,6 @@
     }
   ],
   "power_cadence": [
-    {
-      "date": "2026-06-15",
-      "name": "06/15/2026 Lunch Gravel Ride",
-      "power_w": 194.0,
-      "cadence_rpm": 82.0,
-      "distance_km": 28.19,
-      "context": "Outdoor"
-    },
     {
       "date": "2026-06-17",
       "name": "06/17/2026 Onuma",
