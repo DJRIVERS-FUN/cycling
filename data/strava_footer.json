@@ -1,34 +1,34 @@
 {
-  "updated_utc": "2026-07-20T09:19:58Z",
+  "updated_utc": "2026-07-20T14:12:03Z",
   "source": "Strava",
   "athlete_id": 3714458,
   "scope": "latest 60 activities; 7-day research window",
-  "headline": "7-day riding state: 134.5 km · 5.8 h · 1,552 m+",
+  "headline": "7-day riding state: 96.5 km · 4.3 h · 1,305 m+",
   "state": {
     "load": "Moderate load",
     "context": "Outdoor-field",
-    "climbing_density": "11.5 m/km"
+    "climbing_density": "13.5 m/km"
   },
   "metrics": [
     {
       "label": "Distance",
-      "value": "134.5 km"
+      "value": "96.5 km"
     },
     {
       "label": "Time",
-      "value": "5.8 h"
+      "value": "4.3 h"
     },
     {
       "label": "Ascent",
-      "value": "1,552 m"
+      "value": "1,305 m"
     },
     {
       "label": "Speed",
-      "value": "23.2 kph"
+      "value": "22.4 kph"
     },
     {
       "label": "Power",
-      "value": "191 W"
+      "value": "190 W"
     },
     {
       "label": "Cadence",
@@ -36,16 +36,16 @@
     }
   ],
   "seven_day": {
-    "ride_count": 3,
-    "distance_km": 134.5,
-    "moving_hours": 5.8,
-    "elevation_m": 1552.0,
+    "ride_count": 2,
+    "distance_km": 96.5,
+    "moving_hours": 4.3,
+    "elevation_m": 1305.0,
     "indoor_count": 0,
-    "outdoor_count": 3,
-    "avg_speed_kph": 23.2,
-    "avg_power_w": 191,
+    "outdoor_count": 2,
+    "avg_speed_kph": 22.4,
+    "avg_power_w": 190,
     "avg_cadence_rpm": 79,
-    "climbing_m_per_km": 11.5
+    "climbing_m_per_km": 13.5
   },
   "latest_60": {
     "ride_count": 60,
