@@ -1,5 +1,5 @@
 {
-  "generated_utc": "2026-07-19T19:10:52Z",
+  "generated_utc": "2026-07-20T03:48:45Z",
   "model": "Cycling behavioural regulation micro-dashboard",
   "window_days": {
     "short": 7,
@@ -10,7 +10,7 @@
     "load_state": "moderate",
     "context_balance": {
       "indoor": 0,
-      "outdoor": 13
+      "outdoor": 12
     },
     "seven_day": {
       "distance_km": 134.5,
@@ -19,13 +19,13 @@
       "ride_count": 3
     },
     "thirty_day": {
-      "distance_km": 530.3,
-      "moving_h": 22.9,
-      "elevation_m": 5435.0,
-      "ride_count": 13,
-      "mean_power_w": 177.4,
-      "mean_cadence_rpm": 75.2,
-      "mean_speed_kph": 22.1
+      "distance_km": 512.3,
+      "moving_h": 22.2,
+      "elevation_m": 5348.0,
+      "ride_count": 12,
+      "mean_power_w": 175.5,
+      "mean_cadence_rpm": 75.1,
+      "mean_speed_kph": 21.7
     }
   },
   "weekly_series": [
@@ -139,19 +139,6 @@
     }
   ],
   "recent_rides": [
-    {
-      "date": "2026-06-19",
-      "datetime": "2026-06-19T10:17:39+00:00",
-      "name": "06/19/2026 Windy Road",
-      "type": "Ride",
-      "is_indoor": false,
-      "distance_km": 17.94,
-      "moving_h": 0.688,
-      "elevation_m": 87.0,
-      "avg_speed_kph": 26.1,
-      "avg_power_w": 200.0,
-      "avg_cadence_rpm": 76.6
-    },
     {
       "date": "2026-06-20",
       "datetime": "2026-06-20T12:32:53+00:00",
@@ -310,14 +297,6 @@
     }
   ],
   "power_cadence": [
-    {
-      "date": "2026-06-19",
-      "name": "06/19/2026 Windy Road",
-      "power_w": 200.0,
-      "cadence_rpm": 76.6,
-      "distance_km": 17.94,
-      "context": "Outdoor"
-    },
     {
       "date": "2026-06-20",
       "name": "06/20/2026 Gravel",
