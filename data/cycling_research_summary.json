@@ -1,5 +1,5 @@
 {
-  "generated_utc": "2026-07-20T19:46:53Z",
+  "generated_utc": "2026-07-21T02:55:08Z",
   "model": "Cycling behavioural regulation micro-dashboard",
   "window_days": {
     "short": 7,
@@ -13,19 +13,19 @@
       "outdoor": 12
     },
     "seven_day": {
-      "distance_km": 134.5,
-      "moving_h": 5.8,
-      "elevation_m": 1552.0,
+      "distance_km": 138.8,
+      "moving_h": 6.0,
+      "elevation_m": 1556.0,
       "ride_count": 3
     },
     "thirty_day": {
-      "distance_km": 512.3,
-      "moving_h": 22.2,
-      "elevation_m": 5348.0,
+      "distance_km": 531.1,
+      "moving_h": 22.9,
+      "elevation_m": 5464.0,
       "ride_count": 12,
-      "mean_power_w": 175.5,
-      "mean_cadence_rpm": 75.1,
-      "mean_speed_kph": 21.7
+      "mean_power_w": 174.8,
+      "mean_cadence_rpm": 75.4,
+      "mean_speed_kph": 21.9
     }
   },
   "weekly_series": [
@@ -139,19 +139,6 @@
     }
   ],
   "recent_rides": [
-    {
-      "date": "2026-06-20",
-      "datetime": "2026-06-20T12:32:53+00:00",
-      "name": "06/20/2026 Gravel",
-      "type": "Ride",
-      "is_indoor": false,
-      "distance_km": 23.53,
-      "moving_h": 1.0,
-      "elevation_m": 135.0,
-      "avg_speed_kph": 23.5,
-      "avg_power_w": 198.0,
-      "avg_cadence_rpm": 78.9
-    },
     {
       "date": "2026-06-24",
       "datetime": "2026-06-24T11:44:28+00:00",
@@ -294,17 +281,22 @@
       "avg_speed_kph": 20.5,
       "avg_power_w": 190.0,
       "avg_cadence_rpm": 76.5
+    },
+    {
+      "date": "2026-07-21",
+      "datetime": "2026-07-21T06:40:47+00:00",
+      "name": "07/21/2026 Hokuto",
+      "type": "Ride",
+      "is_indoor": false,
+      "distance_km": 42.29,
+      "moving_h": 1.656,
+      "elevation_m": 251.0,
+      "avg_speed_kph": 25.5,
+      "avg_power_w": 189.0,
+      "avg_cadence_rpm": 82.7
     }
   ],
   "power_cadence": [
-    {
-      "date": "2026-06-20",
-      "name": "06/20/2026 Gravel",
-      "power_w": 198.0,
-      "cadence_rpm": 78.9,
-      "distance_km": 23.53,
-      "context": "Outdoor"
-    },
     {
       "date": "2026-06-24",
       "name": "06/24/2026 Kijihiki",
@@ -384,19 +376,27 @@
       "cadence_rpm": 76.5,
       "distance_km": 55.73,
       "context": "Outdoor"
+    },
+    {
+      "date": "2026-07-21",
+      "name": "07/21/2026 Hokuto",
+      "power_w": 189.0,
+      "cadence_rpm": 82.7,
+      "distance_km": 42.29,
+      "context": "Outdoor"
     }
   ],
   "latest_ride": {
-    "date": "2026-07-18",
-    "datetime": "2026-07-18T07:53:35+00:00",
-    "name": "07/18/2026 Kijihiki",
+    "date": "2026-07-21",
+    "datetime": "2026-07-21T06:40:47+00:00",
+    "name": "07/21/2026 Hokuto",
     "type": "Ride",
     "is_indoor": false,
-    "distance_km": 55.73,
-    "moving_h": 2.722,
-    "elevation_m": 1049.0,
-    "avg_speed_kph": 20.5,
-    "avg_power_w": 190.0,
-    "avg_cadence_rpm": 76.5
+    "distance_km": 42.29,
+    "moving_h": 1.656,
+    "elevation_m": 251.0,
+    "avg_speed_kph": 25.5,
+    "avg_power_w": 189.0,
+    "avg_cadence_rpm": 82.7
   }
 }
