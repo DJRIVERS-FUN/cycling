@@ -1,5 +1,5 @@
 {
-  "generated_utc": "2026-07-23T19:22:42Z",
+  "generated_utc": "2026-07-24T02:53:39Z",
   "model": "Cycling behavioural regulation micro-dashboard",
   "window_days": {
     "short": 7,
@@ -10,22 +10,22 @@
     "load_state": "moderate",
     "context_balance": {
       "indoor": 0,
-      "outdoor": 12
+      "outdoor": 13
     },
     "seven_day": {
-      "distance_km": 98.0,
-      "moving_h": 4.4,
-      "elevation_m": 1300.0,
-      "ride_count": 2
+      "distance_km": 142.0,
+      "moving_h": 6.1,
+      "elevation_m": 1468.0,
+      "ride_count": 3
     },
     "thirty_day": {
-      "distance_km": 531.1,
-      "moving_h": 22.9,
-      "elevation_m": 5464.0,
-      "ride_count": 12,
-      "mean_power_w": 174.8,
-      "mean_cadence_rpm": 75.4,
-      "mean_speed_kph": 21.9
+      "distance_km": 575.0,
+      "moving_h": 24.6,
+      "elevation_m": 5632.0,
+      "ride_count": 13,
+      "mean_power_w": 175.9,
+      "mean_cadence_rpm": 76.0,
+      "mean_speed_kph": 22.2
     }
   },
   "weekly_series": [
@@ -294,6 +294,19 @@
       "avg_speed_kph": 25.5,
       "avg_power_w": 189.0,
       "avg_cadence_rpm": 82.7
+    },
+    {
+      "date": "2026-07-24",
+      "datetime": "2026-07-24T06:33:36+00:00",
+      "name": "07/24/2026 Hokuto Gravel",
+      "type": "Ride",
+      "is_indoor": false,
+      "distance_km": 43.94,
+      "moving_h": 1.736,
+      "elevation_m": 168.0,
+      "avg_speed_kph": 25.3,
+      "avg_power_w": 190.0,
+      "avg_cadence_rpm": 81.9
     }
   ],
   "power_cadence": [
@@ -384,19 +397,27 @@
       "cadence_rpm": 82.7,
       "distance_km": 42.29,
       "context": "Outdoor"
+    },
+    {
+      "date": "2026-07-24",
+      "name": "07/24/2026 Hokuto Gravel",
+      "power_w": 190.0,
+      "cadence_rpm": 81.9,
+      "distance_km": 43.94,
+      "context": "Outdoor"
     }
   ],
   "latest_ride": {
-    "date": "2026-07-21",
-    "datetime": "2026-07-21T06:40:47+00:00",
-    "name": "07/21/2026 Hokuto",
+    "date": "2026-07-24",
+    "datetime": "2026-07-24T06:33:36+00:00",
+    "name": "07/24/2026 Hokuto Gravel",
     "type": "Ride",
     "is_indoor": false,
-    "distance_km": 42.29,
-    "moving_h": 1.656,
-    "elevation_m": 251.0,
-    "avg_speed_kph": 25.5,
-    "avg_power_w": 189.0,
-    "avg_cadence_rpm": 82.7
+    "distance_km": 43.94,
+    "moving_h": 1.736,
+    "elevation_m": 168.0,
+    "avg_speed_kph": 25.3,
+    "avg_power_w": 190.0,
+    "avg_cadence_rpm": 81.9
   }
 }
