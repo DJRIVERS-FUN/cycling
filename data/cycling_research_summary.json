@@ -1,5 +1,5 @@
 {
-  "generated_utc": "2026-07-24T19:28:28Z",
+  "generated_utc": "2026-07-25T02:53:05Z",
   "model": "Cycling behavioural regulation micro-dashboard",
   "window_days": {
     "short": 7,
@@ -10,7 +10,7 @@
     "load_state": "moderate",
     "context_balance": {
       "indoor": 0,
-      "outdoor": 13
+      "outdoor": 12
     },
     "seven_day": {
       "distance_km": 142.0,
@@ -19,13 +19,13 @@
       "ride_count": 3
     },
     "thirty_day": {
-      "distance_km": 575.0,
-      "moving_h": 24.6,
-      "elevation_m": 5632.0,
-      "ride_count": 13,
-      "mean_power_w": 175.9,
-      "mean_cadence_rpm": 76.0,
-      "mean_speed_kph": 22.2
+      "distance_km": 539.9,
+      "moving_h": 22.9,
+      "elevation_m": 4955.0,
+      "ride_count": 12,
+      "mean_power_w": 174.3,
+      "mean_cadence_rpm": 76.1,
+      "mean_speed_kph": 22.3
     }
   },
   "weekly_series": [
@@ -139,19 +139,6 @@
     }
   ],
   "recent_rides": [
-    {
-      "date": "2026-06-24",
-      "datetime": "2026-06-24T11:44:28+00:00",
-      "name": "06/24/2026 Kijihiki",
-      "type": "Ride",
-      "is_indoor": false,
-      "distance_km": 35.1,
-      "moving_h": 1.703,
-      "elevation_m": 677.0,
-      "avg_speed_kph": 20.6,
-      "avg_power_w": 196.0,
-      "avg_cadence_rpm": 74.4
-    },
     {
       "date": "2026-06-25",
       "datetime": "2026-06-25T11:33:35+00:00",
@@ -310,14 +297,6 @@
     }
   ],
   "power_cadence": [
-    {
-      "date": "2026-06-24",
-      "name": "06/24/2026 Kijihiki",
-      "power_w": 196.0,
-      "cadence_rpm": 74.4,
-      "distance_km": 35.1,
-      "context": "Outdoor"
-    },
     {
       "date": "2026-06-25",
       "name": "06/25/2026 Kijihiki",
