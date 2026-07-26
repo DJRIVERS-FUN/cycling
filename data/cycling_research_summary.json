@@ -1,5 +1,5 @@
 {
-  "generated_utc": "2026-07-25T19:11:58Z",
+  "generated_utc": "2026-07-26T03:18:24Z",
   "model": "Cycling behavioural regulation micro-dashboard",
   "window_days": {
     "short": 7,
@@ -10,34 +10,25 @@
     "load_state": "high",
     "context_balance": {
       "indoor": 0,
-      "outdoor": 13
+      "outdoor": 12
     },
     "seven_day": {
-      "distance_km": 275.8,
-      "moving_h": 11.5,
-      "elevation_m": 2309.0,
-      "ride_count": 4
+      "distance_km": 220.1,
+      "moving_h": 8.8,
+      "elevation_m": 1260.0,
+      "ride_count": 3
     },
     "thirty_day": {
-      "distance_km": 673.8,
-      "moving_h": 28.3,
-      "elevation_m": 5796.0,
-      "ride_count": 13,
-      "mean_power_w": 175.0,
-      "mean_cadence_rpm": 76.6,
-      "mean_speed_kph": 22.5
+      "distance_km": 641.6,
+      "moving_h": 26.7,
+      "elevation_m": 5141.0,
+      "ride_count": 12,
+      "mean_power_w": 172.9,
+      "mean_cadence_rpm": 76.4,
+      "mean_speed_kph": 22.6
     }
   },
   "weekly_series": [
-    {
-      "week_start": "2026-04-27",
-      "distance_km": 18.1,
-      "moving_h": 0.8,
-      "elevation_m": 289.0,
-      "ride_count": 1,
-      "indoor_count": 0,
-      "outdoor_count": 1
-    },
     {
       "week_start": "2026-05-04",
       "distance_km": 115.2,
@@ -136,22 +127,18 @@
       "ride_count": 3,
       "indoor_count": 0,
       "outdoor_count": 3
+    },
+    {
+      "week_start": "2026-07-20",
+      "distance_km": 220.1,
+      "moving_h": 8.8,
+      "elevation_m": 1260.0,
+      "ride_count": 3,
+      "indoor_count": 0,
+      "outdoor_count": 3
     }
   ],
   "recent_rides": [
-    {
-      "date": "2026-06-25",
-      "datetime": "2026-06-25T11:33:35+00:00",
-      "name": "06/25/2026 Kijihiki",
-      "type": "Ride",
-      "is_indoor": false,
-      "distance_km": 32.2,
-      "moving_h": 1.558,
-      "elevation_m": 655.0,
-      "avg_speed_kph": 20.7,
-      "avg_power_w": 200.0,
-      "avg_cadence_rpm": 78.3
-    },
     {
       "date": "2026-06-27",
       "datetime": "2026-06-27T11:50:10+00:00",
@@ -310,14 +297,6 @@
     }
   ],
   "power_cadence": [
-    {
-      "date": "2026-06-25",
-      "name": "06/25/2026 Kijihiki",
-      "power_w": 200.0,
-      "cadence_rpm": 78.3,
-      "distance_km": 32.2,
-      "context": "Outdoor"
-    },
     {
       "date": "2026-06-27",
       "name": "Lunch Gravel Ride",
