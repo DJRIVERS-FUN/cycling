@@ -1,5 +1,5 @@
 {
-  "generated_utc": "2026-07-27T19:38:55Z",
+  "generated_utc": "2026-07-28T02:45:21Z",
   "model": "Cycling behavioural regulation micro-dashboard",
   "window_days": {
     "short": 7,
@@ -10,7 +10,7 @@
     "load_state": "high",
     "context_balance": {
       "indoor": 0,
-      "outdoor": 12
+      "outdoor": 10
     },
     "seven_day": {
       "distance_km": 220.1,
@@ -19,24 +19,24 @@
       "ride_count": 3
     },
     "thirty_day": {
-      "distance_km": 641.6,
-      "moving_h": 26.7,
-      "elevation_m": 5141.0,
-      "ride_count": 12,
-      "mean_power_w": 172.9,
-      "mean_cadence_rpm": 76.4,
-      "mean_speed_kph": 22.6
+      "distance_km": 622.1,
+      "moving_h": 25.3,
+      "elevation_m": 5021.0,
+      "ride_count": 10,
+      "mean_power_w": 190.4,
+      "mean_cadence_rpm": 81.4,
+      "mean_speed_kph": 24.4
     }
   },
   "weekly_series": [
     {
       "week_start": "2026-05-04",
-      "distance_km": 115.2,
-      "moving_h": 5.4,
-      "elevation_m": 1940.0,
-      "ride_count": 3,
+      "distance_km": 90.4,
+      "moving_h": 4.2,
+      "elevation_m": 1317.0,
+      "ride_count": 2,
       "indoor_count": 0,
-      "outdoor_count": 3
+      "outdoor_count": 2
     },
     {
       "week_start": "2026-05-11",
@@ -139,32 +139,6 @@
     }
   ],
   "recent_rides": [
-    {
-      "date": "2026-06-27",
-      "datetime": "2026-06-27T11:50:10+00:00",
-      "name": "Lunch Gravel Ride",
-      "type": "Ride",
-      "is_indoor": false,
-      "distance_km": 11.67,
-      "moving_h": 0.821,
-      "elevation_m": 64.0,
-      "avg_speed_kph": 14.2,
-      "avg_power_w": 84.0,
-      "avg_cadence_rpm": 53.4
-    },
-    {
-      "date": "2026-06-27",
-      "datetime": "2026-06-27T12:47:24+00:00",
-      "name": "Lunch Gravel Ride",
-      "type": "Ride",
-      "is_indoor": false,
-      "distance_km": 7.78,
-      "moving_h": 0.569,
-      "elevation_m": 56.0,
-      "avg_speed_kph": 13.7,
-      "avg_power_w": 87.0,
-      "avg_cadence_rpm": 55.0
-    },
     {
       "date": "2026-06-29",
       "datetime": "2026-06-29T10:26:53+00:00",
@@ -297,22 +271,6 @@
     }
   ],
   "power_cadence": [
-    {
-      "date": "2026-06-27",
-      "name": "Lunch Gravel Ride",
-      "power_w": 84.0,
-      "cadence_rpm": 53.4,
-      "distance_km": 11.67,
-      "context": "Outdoor"
-    },
-    {
-      "date": "2026-06-27",
-      "name": "Lunch Gravel Ride",
-      "power_w": 87.0,
-      "cadence_rpm": 55.0,
-      "distance_km": 7.78,
-      "context": "Outdoor"
-    },
     {
       "date": "2026-06-29",
       "name": "06/29/2026 Moheji Gravel",
