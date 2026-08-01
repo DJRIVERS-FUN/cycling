@@ -1,5 +1,5 @@
 {
-  "generated_utc": "2026-07-31T19:38:30Z",
+  "generated_utc": "2026-08-01T03:16:35Z",
   "model": "Cycling behavioural regulation micro-dashboard",
   "window_days": {
     "short": 7,
@@ -13,19 +13,19 @@
       "outdoor": 9
     },
     "seven_day": {
-      "distance_km": 177.8,
-      "moving_h": 7.1,
-      "elevation_m": 1009.0,
+      "distance_km": 152.4,
+      "moving_h": 6.2,
+      "elevation_m": 945.0,
       "ride_count": 2
     },
     "thirty_day": {
-      "distance_km": 565.4,
-      "moving_h": 23.0,
-      "elevation_m": 4562.0,
+      "distance_km": 493.8,
+      "moving_h": 20.3,
+      "elevation_m": 3975.0,
       "ride_count": 9,
-      "mean_power_w": 190.0,
-      "mean_cadence_rpm": 81.3,
-      "mean_speed_kph": 24.4
+      "mean_power_w": 179.6,
+      "mean_cadence_rpm": 81.2,
+      "mean_speed_kph": 24.0
     }
   },
   "weekly_series": [
@@ -140,19 +140,6 @@
   ],
   "recent_rides": [
     {
-      "date": "2026-07-01",
-      "datetime": "2026-07-01T10:18:53+00:00",
-      "name": "07/01/2026 Komagatake",
-      "type": "Ride",
-      "is_indoor": false,
-      "distance_km": 90.14,
-      "moving_h": 3.519,
-      "elevation_m": 691.0,
-      "avg_speed_kph": 25.6,
-      "avg_power_w": 192.0,
-      "avg_cadence_rpm": 82.2
-    },
-    {
       "date": "2026-07-04",
       "datetime": "2026-07-04T07:53:41+00:00",
       "name": "07/04/2026 Kakkumi Gravel",
@@ -255,17 +242,22 @@
       "avg_speed_kph": 24.9,
       "avg_power_w": 184.0,
       "avg_cadence_rpm": 82.1
+    },
+    {
+      "date": "2026-08-01",
+      "datetime": "2026-08-01T08:48:44+00:00",
+      "name": "08/01/2026 MTB Ride",
+      "type": "Ride",
+      "is_indoor": false,
+      "distance_km": 18.53,
+      "moving_h": 0.821,
+      "elevation_m": 104.0,
+      "avg_speed_kph": 22.6,
+      "avg_power_w": 98.4,
+      "avg_cadence_rpm": null
     }
   ],
   "power_cadence": [
-    {
-      "date": "2026-07-01",
-      "name": "07/01/2026 Komagatake",
-      "power_w": 192.0,
-      "cadence_rpm": 82.2,
-      "distance_km": 90.14,
-      "context": "Outdoor"
-    },
     {
       "date": "2026-07-04",
       "name": "07/04/2026 Kakkumi Gravel",
@@ -324,16 +316,16 @@
     }
   ],
   "latest_ride": {
-    "date": "2026-07-25",
-    "datetime": "2026-07-25T07:42:19+00:00",
-    "name": "07/25/2026 Gravel Ride",
+    "date": "2026-08-01",
+    "datetime": "2026-08-01T08:48:44+00:00",
+    "name": "08/01/2026 MTB Ride",
     "type": "Ride",
     "is_indoor": false,
-    "distance_km": 133.84,
-    "moving_h": 5.381,
-    "elevation_m": 841.0,
-    "avg_speed_kph": 24.9,
-    "avg_power_w": 184.0,
-    "avg_cadence_rpm": 82.1
+    "distance_km": 18.53,
+    "moving_h": 0.821,
+    "elevation_m": 104.0,
+    "avg_speed_kph": 22.6,
+    "avg_power_w": 98.4,
+    "avg_cadence_rpm": null
   }
 }
