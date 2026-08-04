@@ -1,5 +1,5 @@
 {
-  "generated_utc": "2026-08-03T19:41:45Z",
+  "generated_utc": "2026-08-04T02:47:57Z",
   "model": "Cycling behavioural regulation micro-dashboard",
   "window_days": {
     "short": 7,
@@ -10,7 +10,7 @@
     "load_state": "light",
     "context_balance": {
       "indoor": 0,
-      "outdoor": 10
+      "outdoor": 9
     },
     "seven_day": {
       "distance_km": 68.0,
@@ -19,24 +19,24 @@
       "ride_count": 2
     },
     "thirty_day": {
-      "distance_km": 543.3,
-      "moving_h": 22.3,
-      "elevation_m": 4312.0,
-      "ride_count": 10,
-      "mean_power_w": 180.4,
+      "distance_km": 443.1,
+      "moving_h": 18.3,
+      "elevation_m": 3448.0,
+      "ride_count": 9,
+      "mean_power_w": 180.2,
       "mean_cadence_rpm": 81.3,
-      "mean_speed_kph": 24.1
+      "mean_speed_kph": 24.0
     }
   },
   "weekly_series": [
     {
       "week_start": "2026-05-11",
-      "distance_km": 145.6,
-      "moving_h": 6.3,
-      "elevation_m": 1889.0,
-      "ride_count": 5,
+      "distance_km": 126.6,
+      "moving_h": 5.5,
+      "elevation_m": 1773.0,
+      "ride_count": 4,
       "indoor_count": 0,
-      "outdoor_count": 5
+      "outdoor_count": 4
     },
     {
       "week_start": "2026-05-18",
@@ -139,19 +139,6 @@
     }
   ],
   "recent_rides": [
-    {
-      "date": "2026-07-04",
-      "datetime": "2026-07-04T07:53:41+00:00",
-      "name": "07/04/2026 Kakkumi Gravel",
-      "type": "Ride",
-      "is_indoor": false,
-      "distance_km": 100.13,
-      "moving_h": 3.958,
-      "elevation_m": 864.0,
-      "avg_speed_kph": 25.3,
-      "avg_power_w": 183.0,
-      "avg_cadence_rpm": 81.4
-    },
     {
       "date": "2026-07-11",
       "datetime": "2026-07-11T10:28:47+00:00",
@@ -271,14 +258,6 @@
     }
   ],
   "power_cadence": [
-    {
-      "date": "2026-07-04",
-      "name": "07/04/2026 Kakkumi Gravel",
-      "power_w": 183.0,
-      "cadence_rpm": 81.4,
-      "distance_km": 100.13,
-      "context": "Outdoor"
-    },
     {
       "date": "2026-07-13",
       "name": "07/13/2026 Hokuto Gravel",
