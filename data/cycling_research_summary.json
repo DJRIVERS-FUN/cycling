@@ -1,5 +1,5 @@
 {
-  "generated_utc": "2026-08-05T19:39:14Z",
+  "generated_utc": "2026-08-06T02:48:12Z",
   "model": "Cycling behavioural regulation micro-dashboard",
   "window_days": {
     "short": 7,
@@ -7,25 +7,25 @@
     "trend_weeks": 12
   },
   "state": {
-    "load_state": "light",
+    "load_state": "moderate",
     "context_balance": {
       "indoor": 0,
-      "outdoor": 9
+      "outdoor": 10
     },
     "seven_day": {
-      "distance_km": 68.0,
-      "moving_h": 2.8,
-      "elevation_m": 441.0,
-      "ride_count": 2
+      "distance_km": 112.9,
+      "moving_h": 4.6,
+      "elevation_m": 709.0,
+      "ride_count": 3
     },
     "thirty_day": {
-      "distance_km": 443.1,
-      "moving_h": 18.3,
-      "elevation_m": 3448.0,
-      "ride_count": 9,
-      "mean_power_w": 180.2,
-      "mean_cadence_rpm": 81.3,
-      "mean_speed_kph": 24.0
+      "distance_km": 488.0,
+      "moving_h": 20.2,
+      "elevation_m": 3716.0,
+      "ride_count": 10,
+      "mean_power_w": 180.7,
+      "mean_cadence_rpm": 81.2,
+      "mean_speed_kph": 24.1
     }
   },
   "weekly_series": [
@@ -255,6 +255,19 @@
       "avg_speed_kph": 25.2,
       "avg_power_w": 188.0,
       "avg_cadence_rpm": 82.4
+    },
+    {
+      "date": "2026-08-06",
+      "datetime": "2026-08-06T07:38:26+00:00",
+      "name": "08/06/2026 Moheji Gravel",
+      "type": "Ride",
+      "is_indoor": false,
+      "distance_km": 44.86,
+      "moving_h": 1.813,
+      "elevation_m": 268.0,
+      "avg_speed_kph": 24.7,
+      "avg_power_w": 185.0,
+      "avg_cadence_rpm": 80.6
     }
   ],
   "power_cadence": [
@@ -313,19 +326,27 @@
       "cadence_rpm": 82.4,
       "distance_km": 49.46,
       "context": "Outdoor"
+    },
+    {
+      "date": "2026-08-06",
+      "name": "08/06/2026 Moheji Gravel",
+      "power_w": 185.0,
+      "cadence_rpm": 80.6,
+      "distance_km": 44.86,
+      "context": "Outdoor"
     }
   ],
   "latest_ride": {
-    "date": "2026-08-02",
-    "datetime": "2026-08-02T08:14:35+00:00",
-    "name": "08/02/2026 Onuma Gravel",
+    "date": "2026-08-06",
+    "datetime": "2026-08-06T07:38:26+00:00",
+    "name": "08/06/2026 Moheji Gravel",
     "type": "Ride",
     "is_indoor": false,
-    "distance_km": 49.46,
-    "moving_h": 1.959,
-    "elevation_m": 337.0,
-    "avg_speed_kph": 25.2,
-    "avg_power_w": 188.0,
-    "avg_cadence_rpm": 82.4
+    "distance_km": 44.86,
+    "moving_h": 1.813,
+    "elevation_m": 268.0,
+    "avg_speed_kph": 24.7,
+    "avg_power_w": 185.0,
+    "avg_cadence_rpm": 80.6
   }
 }
