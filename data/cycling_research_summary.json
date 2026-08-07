@@ -1,5 +1,5 @@
 {
-  "generated_utc": "2026-08-07T00:04:37Z",
+  "generated_utc": "2026-08-07T07:20:34Z",
   "model": "Cycling behavioural regulation micro-dashboard",
   "window_days": {
     "short": 7,
@@ -10,21 +10,21 @@
     "load_state": "moderate",
     "context_balance": {
       "indoor": 0,
-      "outdoor": 10
+      "outdoor": 11
     },
     "seven_day": {
-      "distance_km": 112.9,
-      "moving_h": 4.6,
-      "elevation_m": 709.0,
-      "ride_count": 3
+      "distance_km": 135.8,
+      "moving_h": 5.5,
+      "elevation_m": 981.0,
+      "ride_count": 4
     },
     "thirty_day": {
-      "distance_km": 488.0,
-      "moving_h": 20.2,
-      "elevation_m": 3716.0,
-      "ride_count": 10,
-      "mean_power_w": 180.7,
-      "mean_cadence_rpm": 81.2,
+      "distance_km": 510.9,
+      "moving_h": 21.1,
+      "elevation_m": 3988.0,
+      "ride_count": 11,
+      "mean_power_w": 181.8,
+      "mean_cadence_rpm": 80.9,
       "mean_speed_kph": 24.1
     }
   },
@@ -268,6 +268,19 @@
       "avg_speed_kph": 24.7,
       "avg_power_w": 185.0,
       "avg_cadence_rpm": 80.6
+    },
+    {
+      "date": "2026-08-07",
+      "datetime": "2026-08-07T10:48:41+00:00",
+      "name": "08/07/2026 HOT Road",
+      "type": "Ride",
+      "is_indoor": false,
+      "distance_km": 22.94,
+      "moving_h": 0.932,
+      "elevation_m": 272.0,
+      "avg_speed_kph": 24.6,
+      "avg_power_w": 193.0,
+      "avg_cadence_rpm": 78.2
     }
   ],
   "power_cadence": [
@@ -334,19 +347,27 @@
       "cadence_rpm": 80.6,
       "distance_km": 44.86,
       "context": "Outdoor"
+    },
+    {
+      "date": "2026-08-07",
+      "name": "08/07/2026 HOT Road",
+      "power_w": 193.0,
+      "cadence_rpm": 78.2,
+      "distance_km": 22.94,
+      "context": "Outdoor"
     }
   ],
   "latest_ride": {
-    "date": "2026-08-06",
-    "datetime": "2026-08-06T07:38:26+00:00",
-    "name": "08/06/2026 Moheji Gravel",
+    "date": "2026-08-07",
+    "datetime": "2026-08-07T10:48:41+00:00",
+    "name": "08/07/2026 HOT Road",
     "type": "Ride",
     "is_indoor": false,
-    "distance_km": 44.86,
-    "moving_h": 1.813,
-    "elevation_m": 268.0,
-    "avg_speed_kph": 24.7,
-    "avg_power_w": 185.0,
-    "avg_cadence_rpm": 80.6
+    "distance_km": 22.94,
+    "moving_h": 0.932,
+    "elevation_m": 272.0,
+    "avg_speed_kph": 24.6,
+    "avg_power_w": 193.0,
+    "avg_cadence_rpm": 78.2
   }
 }
