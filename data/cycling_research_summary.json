@@ -1,5 +1,5 @@
 {
-  "generated_utc": "2026-08-08T18:41:32Z",
+  "generated_utc": "2026-08-09T01:57:02Z",
   "model": "Cycling behavioural regulation micro-dashboard",
   "window_days": {
     "short": 7,
@@ -13,10 +13,10 @@
       "outdoor": 11
     },
     "seven_day": {
-      "distance_km": 135.8,
-      "moving_h": 5.5,
-      "elevation_m": 981.0,
-      "ride_count": 4
+      "distance_km": 117.3,
+      "moving_h": 4.7,
+      "elevation_m": 877.0,
+      "ride_count": 3
     },
     "thirty_day": {
       "distance_km": 510.9,
@@ -29,15 +29,6 @@
     }
   },
   "weekly_series": [
-    {
-      "week_start": "2026-05-11",
-      "distance_km": 32.5,
-      "moving_h": 1.2,
-      "elevation_m": 301.0,
-      "ride_count": 1,
-      "indoor_count": 0,
-      "outdoor_count": 1
-    },
     {
       "week_start": "2026-05-18",
       "distance_km": 33.0,
@@ -133,6 +124,15 @@
       "distance_km": 68.0,
       "moving_h": 2.8,
       "elevation_m": 441.0,
+      "ride_count": 2,
+      "indoor_count": 0,
+      "outdoor_count": 2
+    },
+    {
+      "week_start": "2026-08-03",
+      "distance_km": 67.8,
+      "moving_h": 2.7,
+      "elevation_m": 540.0,
       "ride_count": 2,
       "indoor_count": 0,
       "outdoor_count": 2
