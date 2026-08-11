@@ -1,5 +1,5 @@
 {
-  "generated_utc": "2026-08-10T19:01:06Z",
+  "generated_utc": "2026-08-11T01:56:57Z",
   "model": "Cycling behavioural regulation micro-dashboard",
   "window_days": {
     "short": 7,
@@ -10,7 +10,7 @@
     "load_state": "light",
     "context_balance": {
       "indoor": 0,
-      "outdoor": 12
+      "outdoor": 11
     },
     "seven_day": {
       "distance_km": 91.4,
@@ -19,13 +19,13 @@
       "ride_count": 3
     },
     "thirty_day": {
-      "distance_km": 534.6,
-      "moving_h": 22.3,
-      "elevation_m": 4597.0,
-      "ride_count": 12,
-      "mean_power_w": 184.3,
+      "distance_km": 514.0,
+      "moving_h": 21.3,
+      "elevation_m": 4402.0,
+      "ride_count": 11,
+      "mean_power_w": 182.9,
       "mean_cadence_rpm": 80.6,
-      "mean_speed_kph": 23.8
+      "mean_speed_kph": 24.0
     }
   },
   "weekly_series": [
@@ -139,19 +139,6 @@
     }
   ],
   "recent_rides": [
-    {
-      "date": "2026-07-11",
-      "datetime": "2026-07-11T10:28:47+00:00",
-      "name": "07/11/2026 MTB",
-      "type": "Ride",
-      "is_indoor": false,
-      "distance_km": 20.62,
-      "moving_h": 0.954,
-      "elevation_m": 195.0,
-      "avg_speed_kph": 21.6,
-      "avg_power_w": 200.1,
-      "avg_cadence_rpm": null
-    },
     {
       "date": "2026-07-13",
       "datetime": "2026-07-13T10:21:12+00:00",
