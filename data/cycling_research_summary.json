@@ -1,5 +1,5 @@
 {
-  "generated_utc": "2026-08-14T02:09:41Z",
+  "generated_utc": "2026-08-14T07:36:39Z",
   "model": "Cycling behavioural regulation micro-dashboard",
   "window_days": {
     "short": 7,
@@ -7,25 +7,25 @@
     "trend_weeks": 12
   },
   "state": {
-    "load_state": "light",
+    "load_state": "moderate",
     "context_balance": {
       "indoor": 0,
-      "outdoor": 11
+      "outdoor": 12
     },
     "seven_day": {
-      "distance_km": 64.4,
-      "moving_h": 3.2,
-      "elevation_m": 1281.0,
-      "ride_count": 3
+      "distance_km": 97.2,
+      "moving_h": 5.4,
+      "elevation_m": 2220.0,
+      "ride_count": 4
     },
     "thirty_day": {
-      "distance_km": 493.8,
-      "moving_h": 20.8,
-      "elevation_m": 4555.0,
-      "ride_count": 11,
-      "mean_power_w": 176.4,
+      "distance_km": 526.6,
+      "moving_h": 23.0,
+      "elevation_m": 5494.0,
+      "ride_count": 12,
+      "mean_power_w": 175.9,
       "mean_cadence_rpm": 80.5,
-      "mean_speed_kph": 23.3
+      "mean_speed_kph": 22.6
     }
   },
   "weekly_series": [
@@ -281,6 +281,19 @@
       "avg_speed_kph": 16.8,
       "avg_power_w": 120.5,
       "avg_cadence_rpm": null
+    },
+    {
+      "date": "2026-08-14",
+      "datetime": "2026-08-14T08:55:22+00:00",
+      "name": "08/14/2026 Yokotsu",
+      "type": "Ride",
+      "is_indoor": false,
+      "distance_km": 32.86,
+      "moving_h": 2.184,
+      "elevation_m": 939.0,
+      "avg_speed_kph": 15.0,
+      "avg_power_w": 169.7,
+      "avg_cadence_rpm": null
     }
   ],
   "power_cadence": [
@@ -358,16 +371,16 @@
     }
   ],
   "latest_ride": {
-    "date": "2026-08-11",
-    "datetime": "2026-08-11T10:01:48+00:00",
-    "name": "08/11/2026 MTB",
+    "date": "2026-08-14",
+    "datetime": "2026-08-14T08:55:22+00:00",
+    "name": "08/14/2026 Yokotsu",
     "type": "Ride",
     "is_indoor": false,
-    "distance_km": 17.8,
-    "moving_h": 1.059,
-    "elevation_m": 400.0,
-    "avg_speed_kph": 16.8,
-    "avg_power_w": 120.5,
+    "distance_km": 32.86,
+    "moving_h": 2.184,
+    "elevation_m": 939.0,
+    "avg_speed_kph": 15.0,
+    "avg_power_w": 169.7,
     "avg_cadence_rpm": null
   }
 }
