@@ -1,5 +1,5 @@
 {
-  "generated_utc": "2026-08-14T18:58:15Z",
+  "generated_utc": "2026-08-15T01:22:46Z",
   "model": "Cycling behavioural regulation micro-dashboard",
   "window_days": {
     "short": 7,
@@ -10,33 +10,33 @@
     "load_state": "moderate",
     "context_balance": {
       "indoor": 0,
-      "outdoor": 12
+      "outdoor": 11
     },
     "seven_day": {
-      "distance_km": 97.2,
-      "moving_h": 5.4,
-      "elevation_m": 2220.0,
-      "ride_count": 4
+      "distance_km": 74.3,
+      "moving_h": 4.4,
+      "elevation_m": 1948.0,
+      "ride_count": 3
     },
     "thirty_day": {
-      "distance_km": 526.6,
-      "moving_h": 23.0,
-      "elevation_m": 5494.0,
-      "ride_count": 12,
-      "mean_power_w": 175.9,
-      "mean_cadence_rpm": 80.5,
-      "mean_speed_kph": 22.6
+      "distance_km": 485.9,
+      "moving_h": 21.4,
+      "elevation_m": 5238.0,
+      "ride_count": 11,
+      "mean_power_w": 174.5,
+      "mean_cadence_rpm": 80.3,
+      "mean_speed_kph": 22.3
     }
   },
   "weekly_series": [
     {
       "week_start": "2026-05-18",
-      "distance_km": 33.0,
-      "moving_h": 1.5,
-      "elevation_m": 664.0,
-      "ride_count": 1,
+      "distance_km": 0,
+      "moving_h": 0,
+      "elevation_m": 0,
+      "ride_count": 0,
       "indoor_count": 0,
-      "outdoor_count": 1
+      "outdoor_count": 0
     },
     {
       "week_start": "2026-05-25",
@@ -139,19 +139,6 @@
     }
   ],
   "recent_rides": [
-    {
-      "date": "2026-07-15",
-      "datetime": "2026-07-15T09:09:06+00:00",
-      "name": "07/15/2026 Hokuto Gravel",
-      "type": "Ride",
-      "is_indoor": false,
-      "distance_km": 40.73,
-      "moving_h": 1.589,
-      "elevation_m": 256.0,
-      "avg_speed_kph": 25.6,
-      "avg_power_w": 191.0,
-      "avg_cadence_rpm": 82.3
-    },
     {
       "date": "2026-07-18",
       "datetime": "2026-07-18T07:53:35+00:00",
@@ -297,14 +284,6 @@
     }
   ],
   "power_cadence": [
-    {
-      "date": "2026-07-15",
-      "name": "07/15/2026 Hokuto Gravel",
-      "power_w": 191.0,
-      "cadence_rpm": 82.3,
-      "distance_km": 40.73,
-      "context": "Outdoor"
-    },
     {
       "date": "2026-07-18",
       "name": "07/18/2026 Kijihiki",
