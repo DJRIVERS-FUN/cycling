@@ -1,5 +1,5 @@
 {
-  "generated_utc": "2026-08-16T01:28:56Z",
+  "generated_utc": "2026-08-16T06:43:38Z",
   "model": "Cycling behavioural regulation micro-dashboard",
   "window_days": {
     "short": 7,
@@ -10,22 +10,22 @@
     "load_state": "moderate",
     "context_balance": {
       "indoor": 1,
-      "outdoor": 11
+      "outdoor": 12
     },
     "seven_day": {
-      "distance_km": 91.0,
-      "moving_h": 4.9,
-      "elevation_m": 2085.0,
-      "ride_count": 4
+      "distance_km": 151.8,
+      "moving_h": 7.8,
+      "elevation_m": 3083.0,
+      "ride_count": 5
     },
     "thirty_day": {
-      "distance_km": 502.5,
-      "moving_h": 21.9,
-      "elevation_m": 5375.0,
-      "ride_count": 12,
-      "mean_power_w": 175.9,
-      "mean_cadence_rpm": 80.8,
-      "mean_speed_kph": 23.2
+      "distance_km": 563.4,
+      "moving_h": 24.8,
+      "elevation_m": 6373.0,
+      "ride_count": 13,
+      "mean_power_w": 176.9,
+      "mean_cadence_rpm": 80.4,
+      "mean_speed_kph": 23.0
     }
   },
   "weekly_series": [
@@ -130,12 +130,12 @@
     },
     {
       "week_start": "2026-08-10",
-      "distance_km": 91.0,
-      "moving_h": 4.9,
-      "elevation_m": 2085.0,
-      "ride_count": 4,
+      "distance_km": 151.8,
+      "moving_h": 7.8,
+      "elevation_m": 3083.0,
+      "ride_count": 5,
       "indoor_count": 1,
-      "outdoor_count": 3
+      "outdoor_count": 4
     }
   ],
   "recent_rides": [
@@ -294,6 +294,19 @@
       "avg_speed_kph": 32.7,
       "avg_power_w": 191.0,
       "avg_cadence_rpm": 84.5
+    },
+    {
+      "date": "2026-08-16",
+      "datetime": "2026-08-16T07:45:39+00:00",
+      "name": "08/16/2026 Shirotai",
+      "type": "Ride",
+      "is_indoor": false,
+      "distance_km": 60.83,
+      "moving_h": 2.897,
+      "elevation_m": 998.0,
+      "avg_speed_kph": 21.0,
+      "avg_power_w": 189.0,
+      "avg_cadence_rpm": 76.9
     }
   ],
   "power_cadence": [
@@ -368,19 +381,27 @@
       "cadence_rpm": 84.5,
       "distance_km": 16.65,
       "context": "Indoor"
+    },
+    {
+      "date": "2026-08-16",
+      "name": "08/16/2026 Shirotai",
+      "power_w": 189.0,
+      "cadence_rpm": 76.9,
+      "distance_km": 60.83,
+      "context": "Outdoor"
     }
   ],
   "latest_ride": {
-    "date": "2026-08-15",
-    "datetime": "2026-08-15T19:05:31+00:00",
-    "name": "Zwift - Pacer Group Ride with Miguel",
-    "type": "VirtualRide",
-    "is_indoor": true,
-    "distance_km": 16.65,
-    "moving_h": 0.51,
-    "elevation_m": 137.0,
-    "avg_speed_kph": 32.7,
-    "avg_power_w": 191.0,
-    "avg_cadence_rpm": 84.5
+    "date": "2026-08-16",
+    "datetime": "2026-08-16T07:45:39+00:00",
+    "name": "08/16/2026 Shirotai",
+    "type": "Ride",
+    "is_indoor": false,
+    "distance_km": 60.83,
+    "moving_h": 2.897,
+    "elevation_m": 998.0,
+    "avg_speed_kph": 21.0,
+    "avg_power_w": 189.0,
+    "avg_cadence_rpm": 76.9
   }
 }
