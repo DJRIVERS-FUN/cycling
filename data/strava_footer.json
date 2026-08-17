@@ -1,61 +1,61 @@
 {
-  "updated_utc": "2026-08-17T01:24:43Z",
+  "updated_utc": "2026-08-17T07:00:40Z",
   "source": "Strava",
   "athlete_id": 3714458,
   "scope": "latest 60 activities; 7-day research window",
-  "headline": "7-day riding state: 151.8 km · 7.8 h · 3,083 m+",
+  "headline": "7-day riding state: 174.5 km · 9.0 h · 3,669 m+",
   "state": {
-    "load": "Moderate load",
+    "load": "High load",
     "context": "Mixed indoor/outdoor",
-    "climbing_density": "20.3 m/km"
+    "climbing_density": "21.0 m/km"
   },
   "metrics": [
     {
       "label": "Distance",
-      "value": "151.8 km"
+      "value": "174.5 km"
     },
     {
       "label": "Time",
-      "value": "7.8 h"
+      "value": "9.0 h"
     },
     {
       "label": "Ascent",
-      "value": "3,083 m"
+      "value": "3,669 m"
     },
     {
       "label": "Speed",
-      "value": "19.5 kph"
+      "value": "19.4 kph"
     },
     {
       "label": "Power",
-      "value": "178 W"
+      "value": "181 W"
     },
     {
       "label": "Cadence",
-      "value": "78 rpm"
+      "value": "77 rpm"
     }
   ],
   "seven_day": {
-    "ride_count": 5,
-    "distance_km": 151.8,
-    "moving_hours": 7.8,
-    "elevation_m": 3083.0,
+    "ride_count": 6,
+    "distance_km": 174.5,
+    "moving_hours": 9.0,
+    "elevation_m": 3669.0,
     "indoor_count": 1,
-    "outdoor_count": 4,
-    "avg_speed_kph": 19.5,
-    "avg_power_w": 178,
-    "avg_cadence_rpm": 78,
-    "climbing_m_per_km": 20.3
+    "outdoor_count": 5,
+    "avg_speed_kph": 19.4,
+    "avg_power_w": 181,
+    "avg_cadence_rpm": 77,
+    "climbing_m_per_km": 21.0
   },
   "latest_60": {
     "ride_count": 60,
-    "distance_km": 2243.5,
-    "moving_hours": 97.8,
-    "elevation_m": 27054.0
+    "distance_km": 2244.8,
+    "moving_hours": 98.1,
+    "elevation_m": 27402.0
   },
   "latest_ride": {
-    "name": "08/16/2026 Shirotai",
-    "date": "2026-08-16",
+    "name": "08/17/2026 Shirotai",
+    "date": "2026-08-17",
     "type": "Ride"
   }
 }
