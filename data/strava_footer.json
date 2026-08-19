@@ -1,61 +1,61 @@
 {
-  "updated_utc": "2026-08-19T06:49:13Z",
+  "updated_utc": "2026-08-19T12:52:03Z",
   "source": "Strava",
   "athlete_id": 3714458,
   "scope": "latest 60 activities; 7-day research window",
-  "headline": "7-day riding state: 133.0 km · 6.8 h · 2,660 m+",
+  "headline": "7-day riding state: 173.4 km · 8.4 h · 3,134 m+",
   "state": {
-    "load": "Moderate load",
+    "load": "High load",
     "context": "Mixed indoor/outdoor",
-    "climbing_density": "20.0 m/km"
+    "climbing_density": "18.1 m/km"
   },
   "metrics": [
     {
       "label": "Distance",
-      "value": "133.0 km"
+      "value": "173.4 km"
     },
     {
       "label": "Time",
-      "value": "6.8 h"
+      "value": "8.4 h"
     },
     {
       "label": "Ascent",
-      "value": "2,660 m"
+      "value": "3,134 m"
     },
     {
       "label": "Speed",
-      "value": "19.6 kph"
+      "value": "20.6 kph"
     },
     {
       "label": "Power",
-      "value": "185 W"
+      "value": "178 W"
     },
     {
       "label": "Cadence",
-      "value": "77 rpm"
+      "value": "75 rpm"
     }
   ],
   "seven_day": {
-    "ride_count": 4,
-    "distance_km": 133.0,
-    "moving_hours": 6.8,
-    "elevation_m": 2660.0,
-    "indoor_count": 1,
+    "ride_count": 5,
+    "distance_km": 173.4,
+    "moving_hours": 8.4,
+    "elevation_m": 3134.0,
+    "indoor_count": 2,
     "outdoor_count": 3,
-    "avg_speed_kph": 19.6,
-    "avg_power_w": 185,
-    "avg_cadence_rpm": 77,
-    "climbing_m_per_km": 20.0
+    "avg_speed_kph": 20.6,
+    "avg_power_w": 178,
+    "avg_cadence_rpm": 75,
+    "climbing_m_per_km": 18.1
   },
   "latest_60": {
     "ride_count": 60,
-    "distance_km": 2244.8,
-    "moving_hours": 98.1,
-    "elevation_m": 27402.0
+    "distance_km": 2267.3,
+    "moving_hours": 99.0,
+    "elevation_m": 27661.0
   },
   "latest_ride": {
-    "name": "08/17/2026 Shirotai",
-    "date": "2026-08-17",
-    "type": "Ride"
+    "name": "Zwift - Group Ride: Ascenders Brunch Bunch Ride (D)",
+    "date": "2026-08-19",
+    "type": "VirtualRide"
   }
 }

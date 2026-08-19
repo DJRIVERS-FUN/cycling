@@ -1,5 +1,5 @@
 {
-  "generated_utc": "2026-08-19T06:49:29Z",
+  "generated_utc": "2026-08-19T12:52:20Z",
   "model": "Cycling behavioural regulation micro-dashboard",
   "window_days": {
     "short": 7,
@@ -7,25 +7,25 @@
     "trend_weeks": 12
   },
   "state": {
-    "load_state": "moderate",
+    "load_state": "high",
     "context_balance": {
-      "indoor": 1,
+      "indoor": 2,
       "outdoor": 12
     },
     "seven_day": {
-      "distance_km": 133.0,
-      "moving_h": 6.8,
-      "elevation_m": 2660.0,
-      "ride_count": 4
+      "distance_km": 173.4,
+      "moving_h": 8.4,
+      "elevation_m": 3134.0,
+      "ride_count": 5
     },
     "thirty_day": {
-      "distance_km": 530.3,
-      "moving_h": 23.3,
-      "elevation_m": 5910.0,
-      "ride_count": 13,
-      "mean_power_w": 178.0,
-      "mean_cadence_rpm": 80.2,
-      "mean_speed_kph": 22.9
+      "distance_km": 570.7,
+      "moving_h": 24.9,
+      "elevation_m": 6384.0,
+      "ride_count": 14,
+      "mean_power_w": 175.6,
+      "mean_cadence_rpm": 79.1,
+      "mean_speed_kph": 23.1
     }
   },
   "weekly_series": [
@@ -307,6 +307,19 @@
       "avg_speed_kph": 19.5,
       "avg_power_w": 204.0,
       "avg_cadence_rpm": 75.1
+    },
+    {
+      "date": "2026-08-19",
+      "datetime": "2026-08-19T17:00:00+00:00",
+      "name": "Zwift - Group Ride: Ascenders Brunch Bunch Ride (D)",
+      "type": "VirtualRide",
+      "is_indoor": true,
+      "distance_km": 40.34,
+      "moving_h": 1.621,
+      "elevation_m": 474.0,
+      "avg_speed_kph": 24.9,
+      "avg_power_w": 145.0,
+      "avg_cadence_rpm": 67.6
     }
   ],
   "power_cadence": [
@@ -389,19 +402,27 @@
       "cadence_rpm": 75.1,
       "distance_km": 22.69,
       "context": "Outdoor"
+    },
+    {
+      "date": "2026-08-19",
+      "name": "Zwift - Group Ride: Ascenders Brunch Bunch Ride (D)",
+      "power_w": 145.0,
+      "cadence_rpm": 67.6,
+      "distance_km": 40.34,
+      "context": "Indoor"
     }
   ],
   "latest_ride": {
-    "date": "2026-08-17",
-    "datetime": "2026-08-17T09:17:17+00:00",
-    "name": "08/17/2026 Shirotai",
-    "type": "Ride",
-    "is_indoor": false,
-    "distance_km": 22.69,
-    "moving_h": 1.163,
-    "elevation_m": 586.0,
-    "avg_speed_kph": 19.5,
-    "avg_power_w": 204.0,
-    "avg_cadence_rpm": 75.1
+    "date": "2026-08-19",
+    "datetime": "2026-08-19T17:00:00+00:00",
+    "name": "Zwift - Group Ride: Ascenders Brunch Bunch Ride (D)",
+    "type": "VirtualRide",
+    "is_indoor": true,
+    "distance_km": 40.34,
+    "moving_h": 1.621,
+    "elevation_m": 474.0,
+    "avg_speed_kph": 24.9,
+    "avg_power_w": 145.0,
+    "avg_cadence_rpm": 67.6
   }
 }
