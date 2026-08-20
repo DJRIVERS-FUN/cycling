@@ -1,34 +1,34 @@
 {
-  "updated_utc": "2026-08-20T06:50:43Z",
+  "updated_utc": "2026-08-20T12:54:12Z",
   "source": "Strava",
   "athlete_id": 3714458,
   "scope": "latest 60 activities; 7-day research window",
-  "headline": "7-day riding state: 173.4 km · 8.4 h · 3,134 m+",
+  "headline": "7-day riding state: 202.9 km · 9.5 h · 3,626 m+",
   "state": {
     "load": "High load",
     "context": "Mixed indoor/outdoor",
-    "climbing_density": "18.1 m/km"
+    "climbing_density": "17.9 m/km"
   },
   "metrics": [
     {
       "label": "Distance",
-      "value": "173.4 km"
+      "value": "202.9 km"
     },
     {
       "label": "Time",
-      "value": "8.4 h"
+      "value": "9.5 h"
     },
     {
       "label": "Ascent",
-      "value": "3,134 m"
+      "value": "3,626 m"
     },
     {
       "label": "Speed",
-      "value": "20.6 kph"
+      "value": "21.4 kph"
     },
     {
       "label": "Power",
-      "value": "178 W"
+      "value": "180 W"
     },
     {
       "label": "Cadence",
@@ -36,26 +36,26 @@
     }
   ],
   "seven_day": {
-    "ride_count": 5,
-    "distance_km": 173.4,
-    "moving_hours": 8.4,
-    "elevation_m": 3134.0,
-    "indoor_count": 2,
+    "ride_count": 6,
+    "distance_km": 202.9,
+    "moving_hours": 9.5,
+    "elevation_m": 3626.0,
+    "indoor_count": 3,
     "outdoor_count": 3,
-    "avg_speed_kph": 20.6,
-    "avg_power_w": 178,
+    "avg_speed_kph": 21.4,
+    "avg_power_w": 180,
     "avg_cadence_rpm": 75,
-    "climbing_m_per_km": 18.1
+    "climbing_m_per_km": 17.9
   },
   "latest_60": {
     "ride_count": 60,
-    "distance_km": 2267.3,
-    "moving_hours": 99.0,
-    "elevation_m": 27661.0
+    "distance_km": 2259.5,
+    "moving_hours": 98.2,
+    "elevation_m": 27367.0
   },
   "latest_ride": {
-    "name": "Zwift - Group Ride: Ascenders Brunch Bunch Ride (D)",
-    "date": "2026-08-19",
+    "name": "Zwift - Group Workout: SWX Thursday Threshold by Coach Cindy 🇸🇬🇯🇵🇦🇺 (E)",
+    "date": "2026-08-20",
     "type": "VirtualRide"
   }
 }

@@ -1,5 +1,5 @@
 {
-  "generated_utc": "2026-08-20T06:50:59Z",
+  "generated_utc": "2026-08-20T12:54:29Z",
   "model": "Cycling behavioural regulation micro-dashboard",
   "window_days": {
     "short": 7,
@@ -9,23 +9,23 @@
   "state": {
     "load_state": "high",
     "context_balance": {
-      "indoor": 2,
+      "indoor": 3,
       "outdoor": 12
     },
     "seven_day": {
-      "distance_km": 173.4,
-      "moving_h": 8.4,
-      "elevation_m": 3134.0,
-      "ride_count": 5
+      "distance_km": 202.9,
+      "moving_h": 9.5,
+      "elevation_m": 3626.0,
+      "ride_count": 6
     },
     "thirty_day": {
-      "distance_km": 570.7,
-      "moving_h": 24.9,
-      "elevation_m": 6384.0,
-      "ride_count": 14,
-      "mean_power_w": 175.6,
+      "distance_km": 600.2,
+      "moving_h": 26.0,
+      "elevation_m": 6876.0,
+      "ride_count": 15,
+      "mean_power_w": 176.8,
       "mean_cadence_rpm": 79.1,
-      "mean_speed_kph": 23.1
+      "mean_speed_kph": 23.3
     }
   },
   "weekly_series": [
@@ -320,6 +320,19 @@
       "avg_speed_kph": 24.9,
       "avg_power_w": 145.0,
       "avg_cadence_rpm": 67.6
+    },
+    {
+      "date": "2026-08-20",
+      "datetime": "2026-08-20T18:00:00+00:00",
+      "name": "Zwift - Group Workout: SWX Thursday Threshold by Coach Cindy 🇸🇬🇯🇵🇦🇺 (E)",
+      "type": "VirtualRide",
+      "is_indoor": true,
+      "distance_km": 29.55,
+      "moving_h": 1.083,
+      "elevation_m": 492.0,
+      "avg_speed_kph": 27.3,
+      "avg_power_w": 194.0,
+      "avg_cadence_rpm": 78.8
     }
   ],
   "power_cadence": [
@@ -410,19 +423,27 @@
       "cadence_rpm": 67.6,
       "distance_km": 40.34,
       "context": "Indoor"
+    },
+    {
+      "date": "2026-08-20",
+      "name": "Zwift - Group Workout: SWX Thursday Threshold by Coach Cindy 🇸🇬🇯🇵🇦🇺 (E)",
+      "power_w": 194.0,
+      "cadence_rpm": 78.8,
+      "distance_km": 29.55,
+      "context": "Indoor"
     }
   ],
   "latest_ride": {
-    "date": "2026-08-19",
-    "datetime": "2026-08-19T17:00:00+00:00",
-    "name": "Zwift - Group Ride: Ascenders Brunch Bunch Ride (D)",
+    "date": "2026-08-20",
+    "datetime": "2026-08-20T18:00:00+00:00",
+    "name": "Zwift - Group Workout: SWX Thursday Threshold by Coach Cindy 🇸🇬🇯🇵🇦🇺 (E)",
     "type": "VirtualRide",
     "is_indoor": true,
-    "distance_km": 40.34,
-    "moving_h": 1.621,
-    "elevation_m": 474.0,
-    "avg_speed_kph": 24.9,
-    "avg_power_w": 145.0,
-    "avg_cadence_rpm": 67.6
+    "distance_km": 29.55,
+    "moving_h": 1.083,
+    "elevation_m": 492.0,
+    "avg_speed_kph": 27.3,
+    "avg_power_w": 194.0,
+    "avg_cadence_rpm": 78.8
   }
 }
