@@ -1,5 +1,5 @@
 {
-  "generated_utc": "2026-08-20T18:42:32Z",
+  "generated_utc": "2026-08-21T01:26:56Z",
   "model": "Cycling behavioural regulation micro-dashboard",
   "window_days": {
     "short": 7,
@@ -10,7 +10,7 @@
     "load_state": "high",
     "context_balance": {
       "indoor": 3,
-      "outdoor": 12
+      "outdoor": 11
     },
     "seven_day": {
       "distance_km": 202.9,
@@ -19,13 +19,13 @@
       "ride_count": 6
     },
     "thirty_day": {
-      "distance_km": 600.2,
-      "moving_h": 26.0,
-      "elevation_m": 6876.0,
-      "ride_count": 15,
-      "mean_power_w": 176.8,
-      "mean_cadence_rpm": 79.1,
-      "mean_speed_kph": 23.3
+      "distance_km": 557.9,
+      "moving_h": 24.3,
+      "elevation_m": 6625.0,
+      "ride_count": 14,
+      "mean_power_w": 176.0,
+      "mean_cadence_rpm": 78.7,
+      "mean_speed_kph": 23.2
     }
   },
   "weekly_series": [
@@ -139,19 +139,6 @@
     }
   ],
   "recent_rides": [
-    {
-      "date": "2026-07-21",
-      "datetime": "2026-07-21T06:40:47+00:00",
-      "name": "07/21/2026 Hokuto",
-      "type": "Ride",
-      "is_indoor": false,
-      "distance_km": 42.29,
-      "moving_h": 1.656,
-      "elevation_m": 251.0,
-      "avg_speed_kph": 25.5,
-      "avg_power_w": 189.0,
-      "avg_cadence_rpm": 82.7
-    },
     {
       "date": "2026-07-24",
       "datetime": "2026-07-24T06:33:36+00:00",
@@ -336,14 +323,6 @@
     }
   ],
   "power_cadence": [
-    {
-      "date": "2026-07-21",
-      "name": "07/21/2026 Hokuto",
-      "power_w": 189.0,
-      "cadence_rpm": 82.7,
-      "distance_km": 42.29,
-      "context": "Outdoor"
-    },
     {
       "date": "2026-07-24",
       "name": "07/24/2026 Hokuto Gravel",
