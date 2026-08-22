@@ -1,5 +1,5 @@
 {
-  "generated_utc": "2026-08-22T01:22:07Z",
+  "generated_utc": "2026-08-22T06:43:53Z",
   "model": "Cycling behavioural regulation micro-dashboard",
   "window_days": {
     "short": 7,
@@ -7,23 +7,23 @@
     "trend_weeks": 12
   },
   "state": {
-    "load_state": "moderate",
+    "load_state": "high",
     "context_balance": {
       "indoor": 3,
-      "outdoor": 11
+      "outdoor": 12
     },
     "seven_day": {
-      "distance_km": 170.1,
-      "moving_h": 7.3,
-      "elevation_m": 2687.0,
-      "ride_count": 5
+      "distance_km": 190.7,
+      "moving_h": 8.2,
+      "elevation_m": 2904.0,
+      "ride_count": 6
     },
     "thirty_day": {
-      "distance_km": 557.9,
-      "moving_h": 24.3,
-      "elevation_m": 6625.0,
-      "ride_count": 14,
-      "mean_power_w": 176.0,
+      "distance_km": 578.6,
+      "moving_h": 25.2,
+      "elevation_m": 6842.0,
+      "ride_count": 15,
+      "mean_power_w": 176.5,
       "mean_cadence_rpm": 78.7,
       "mean_speed_kph": 23.2
     }
@@ -320,6 +320,19 @@
       "avg_speed_kph": 27.3,
       "avg_power_w": 194.0,
       "avg_cadence_rpm": 78.8
+    },
+    {
+      "date": "2026-08-22",
+      "datetime": "2026-08-22T09:44:42+00:00",
+      "name": "08/22/2026 Morning Gravel",
+      "type": "Ride",
+      "is_indoor": false,
+      "distance_km": 20.64,
+      "moving_h": 0.883,
+      "elevation_m": 217.0,
+      "avg_speed_kph": 23.4,
+      "avg_power_w": 184.0,
+      "avg_cadence_rpm": 78.5
     }
   ],
   "power_cadence": [
@@ -410,19 +423,27 @@
       "cadence_rpm": 78.8,
       "distance_km": 29.55,
       "context": "Indoor"
+    },
+    {
+      "date": "2026-08-22",
+      "name": "08/22/2026 Morning Gravel",
+      "power_w": 184.0,
+      "cadence_rpm": 78.5,
+      "distance_km": 20.64,
+      "context": "Outdoor"
     }
   ],
   "latest_ride": {
-    "date": "2026-08-20",
-    "datetime": "2026-08-20T18:00:00+00:00",
-    "name": "Zwift - Group Workout: SWX Thursday Threshold by Coach Cindy 🇸🇬🇯🇵🇦🇺 (E)",
-    "type": "VirtualRide",
-    "is_indoor": true,
-    "distance_km": 29.55,
-    "moving_h": 1.083,
-    "elevation_m": 492.0,
-    "avg_speed_kph": 27.3,
-    "avg_power_w": 194.0,
-    "avg_cadence_rpm": 78.8
+    "date": "2026-08-22",
+    "datetime": "2026-08-22T09:44:42+00:00",
+    "name": "08/22/2026 Morning Gravel",
+    "type": "Ride",
+    "is_indoor": false,
+    "distance_km": 20.64,
+    "moving_h": 0.883,
+    "elevation_m": 217.0,
+    "avg_speed_kph": 23.4,
+    "avg_power_w": 184.0,
+    "avg_cadence_rpm": 78.5
   }
 }
