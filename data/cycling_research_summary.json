@@ -1,5 +1,5 @@
 {
-  "generated_utc": "2026-08-31T22:38:24Z",
+  "generated_utc": "2026-09-01T04:14:58Z",
   "model": "Cycling behavioural regulation micro-dashboard",
   "window_days": {
     "short": 7,
@@ -10,7 +10,7 @@
     "load_state": "light",
     "context_balance": {
       "indoor": 3,
-      "outdoor": 12
+      "outdoor": 11
     },
     "seven_day": {
       "distance_km": 25.0,
@@ -19,11 +19,11 @@
       "ride_count": 1
     },
     "thirty_day": {
-      "distance_km": 482.1,
-      "moving_h": 22.0,
-      "elevation_m": 6891.0,
-      "ride_count": 15,
-      "mean_power_w": 176.0,
+      "distance_km": 463.5,
+      "moving_h": 21.1,
+      "elevation_m": 6787.0,
+      "ride_count": 14,
+      "mean_power_w": 181.6,
       "mean_cadence_rpm": 77.7,
       "mean_speed_kph": 22.8
     }
@@ -31,12 +31,12 @@
   "weekly_series": [
     {
       "week_start": "2026-06-08",
-      "distance_km": 129.1,
-      "moving_h": 5.5,
-      "elevation_m": 1705.0,
-      "ride_count": 4,
+      "distance_km": 109.0,
+      "moving_h": 4.6,
+      "elevation_m": 1511.0,
+      "ride_count": 3,
       "indoor_count": 0,
-      "outdoor_count": 4
+      "outdoor_count": 3
     },
     {
       "week_start": "2026-06-15",
@@ -139,19 +139,6 @@
     }
   ],
   "recent_rides": [
-    {
-      "date": "2026-08-01",
-      "datetime": "2026-08-01T08:48:44+00:00",
-      "name": "08/01/2026 MTB Ride",
-      "type": "Ride",
-      "is_indoor": false,
-      "distance_km": 18.53,
-      "moving_h": 0.821,
-      "elevation_m": 104.0,
-      "avg_speed_kph": 22.6,
-      "avg_power_w": 98.4,
-      "avg_cadence_rpm": null
-    },
     {
       "date": "2026-08-02",
       "datetime": "2026-08-02T08:14:35+00:00",
