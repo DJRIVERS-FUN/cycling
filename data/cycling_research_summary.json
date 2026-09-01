@@ -1,5 +1,5 @@
 {
-  "generated_utc": "2026-09-01T04:14:58Z",
+  "generated_utc": "2026-09-01T11:20:11Z",
   "model": "Cycling behavioural regulation micro-dashboard",
   "window_days": {
     "short": 7,
@@ -9,23 +9,23 @@
   "state": {
     "load_state": "light",
     "context_balance": {
-      "indoor": 3,
+      "indoor": 4,
       "outdoor": 11
     },
     "seven_day": {
-      "distance_km": 25.0,
-      "moving_h": 1.1,
-      "elevation_m": 231.0,
-      "ride_count": 1
+      "distance_km": 41.5,
+      "moving_h": 1.6,
+      "elevation_m": 257.0,
+      "ride_count": 2
     },
     "thirty_day": {
-      "distance_km": 463.5,
-      "moving_h": 21.1,
-      "elevation_m": 6787.0,
-      "ride_count": 14,
-      "mean_power_w": 181.6,
-      "mean_cadence_rpm": 77.7,
-      "mean_speed_kph": 22.8
+      "distance_km": 480.1,
+      "moving_h": 21.6,
+      "elevation_m": 6813.0,
+      "ride_count": 15,
+      "mean_power_w": 180.0,
+      "mean_cadence_rpm": 78.2,
+      "mean_speed_kph": 23.4
     }
   },
   "weekly_series": [
@@ -320,6 +320,19 @@
       "avg_speed_kph": 23.5,
       "avg_power_w": 195.0,
       "avg_cadence_rpm": 79.3
+    },
+    {
+      "date": "2026-09-01",
+      "datetime": "2026-09-01T16:38:36+00:00",
+      "name": "Zwift - EZ Z2",
+      "type": "VirtualRide",
+      "is_indoor": true,
+      "distance_km": 16.55,
+      "moving_h": 0.507,
+      "elevation_m": 26.0,
+      "avg_speed_kph": 32.7,
+      "avg_power_w": 158.0,
+      "avg_cadence_rpm": 83.9
     }
   ],
   "power_cadence": [
@@ -418,19 +431,27 @@
       "cadence_rpm": 79.3,
       "distance_km": 24.96,
       "context": "Outdoor"
+    },
+    {
+      "date": "2026-09-01",
+      "name": "Zwift - EZ Z2",
+      "power_w": 158.0,
+      "cadence_rpm": 83.9,
+      "distance_km": 16.55,
+      "context": "Indoor"
     }
   ],
   "latest_ride": {
-    "date": "2026-08-29",
-    "datetime": "2026-08-29T10:31:03+00:00",
-    "name": "08/29/2026 Gravel Ride",
-    "type": "Ride",
-    "is_indoor": false,
-    "distance_km": 24.96,
-    "moving_h": 1.061,
-    "elevation_m": 231.0,
-    "avg_speed_kph": 23.5,
-    "avg_power_w": 195.0,
-    "avg_cadence_rpm": 79.3
+    "date": "2026-09-01",
+    "datetime": "2026-09-01T16:38:36+00:00",
+    "name": "Zwift - EZ Z2",
+    "type": "VirtualRide",
+    "is_indoor": true,
+    "distance_km": 16.55,
+    "moving_h": 0.507,
+    "elevation_m": 26.0,
+    "avg_speed_kph": 32.7,
+    "avg_power_w": 158.0,
+    "avg_cadence_rpm": 83.9
   }
 }

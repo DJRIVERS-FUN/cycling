@@ -1,61 +1,61 @@
 {
-  "updated_utc": "2026-09-01T04:14:41Z",
+  "updated_utc": "2026-09-01T11:19:55Z",
   "source": "Strava",
   "athlete_id": 3714458,
   "scope": "latest 60 activities; 7-day research window",
-  "headline": "7-day riding state: 25.0 km · 1.1 h · 231 m+",
+  "headline": "7-day riding state: 41.5 km · 1.6 h · 257 m+",
   "state": {
     "load": "Light load",
-    "context": "Outdoor-field",
-    "climbing_density": "9.2 m/km"
+    "context": "Mixed indoor/outdoor",
+    "climbing_density": "6.2 m/km"
   },
   "metrics": [
     {
       "label": "Distance",
-      "value": "25.0 km"
+      "value": "41.5 km"
     },
     {
       "label": "Time",
-      "value": "1.1 h"
+      "value": "1.6 h"
     },
     {
       "label": "Ascent",
-      "value": "231 m"
+      "value": "257 m"
     },
     {
       "label": "Speed",
-      "value": "22.7 kph"
+      "value": "25.9 kph"
     },
     {
       "label": "Power",
-      "value": "195 W"
+      "value": "183 W"
     },
     {
       "label": "Cadence",
-      "value": "79 rpm"
+      "value": "81 rpm"
     }
   ],
   "seven_day": {
-    "ride_count": 1,
-    "distance_km": 25.0,
-    "moving_hours": 1.1,
-    "elevation_m": 231.0,
-    "indoor_count": 0,
+    "ride_count": 2,
+    "distance_km": 41.5,
+    "moving_hours": 1.6,
+    "elevation_m": 257.0,
+    "indoor_count": 1,
     "outdoor_count": 1,
-    "avg_speed_kph": 22.7,
-    "avg_power_w": 195,
-    "avg_cadence_rpm": 79,
-    "climbing_m_per_km": 9.2
+    "avg_speed_kph": 25.9,
+    "avg_power_w": 183,
+    "avg_cadence_rpm": 81,
+    "climbing_m_per_km": 6.2
   },
   "latest_60": {
     "ride_count": 60,
-    "distance_km": 2294.4,
-    "moving_hours": 100.0,
-    "elevation_m": 27867.0
+    "distance_km": 2291.1,
+    "moving_hours": 99.8,
+    "elevation_m": 27774.0
   },
   "latest_ride": {
-    "name": "08/29/2026 Gravel Ride",
-    "date": "2026-08-29",
-    "type": "Ride"
+    "name": "Zwift - EZ Z2",
+    "date": "2026-09-01",
+    "type": "VirtualRide"
   }
 }
