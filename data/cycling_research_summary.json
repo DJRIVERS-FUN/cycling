@@ -1,5 +1,5 @@
 {
-  "generated_utc": "2026-09-01T20:45:56Z",
+  "generated_utc": "2026-09-02T03:37:25Z",
   "model": "Cycling behavioural regulation micro-dashboard",
   "window_days": {
     "short": 7,
@@ -10,7 +10,7 @@
     "load_state": "light",
     "context_balance": {
       "indoor": 4,
-      "outdoor": 11
+      "outdoor": 10
     },
     "seven_day": {
       "distance_km": 41.5,
@@ -19,13 +19,13 @@
       "ride_count": 2
     },
     "thirty_day": {
-      "distance_km": 480.1,
-      "moving_h": 21.6,
-      "elevation_m": 6813.0,
-      "ride_count": 15,
-      "mean_power_w": 180.0,
-      "mean_cadence_rpm": 78.2,
-      "mean_speed_kph": 23.4
+      "distance_km": 430.6,
+      "moving_h": 19.7,
+      "elevation_m": 6476.0,
+      "ride_count": 14,
+      "mean_power_w": 179.4,
+      "mean_cadence_rpm": 77.8,
+      "mean_speed_kph": 23.3
     }
   },
   "weekly_series": [
@@ -139,19 +139,6 @@
     }
   ],
   "recent_rides": [
-    {
-      "date": "2026-08-02",
-      "datetime": "2026-08-02T08:14:35+00:00",
-      "name": "08/02/2026 Onuma Gravel",
-      "type": "Ride",
-      "is_indoor": false,
-      "distance_km": 49.46,
-      "moving_h": 1.959,
-      "elevation_m": 337.0,
-      "avg_speed_kph": 25.2,
-      "avg_power_w": 188.0,
-      "avg_cadence_rpm": 82.4
-    },
     {
       "date": "2026-08-06",
       "datetime": "2026-08-06T07:38:26+00:00",
@@ -336,14 +323,6 @@
     }
   ],
   "power_cadence": [
-    {
-      "date": "2026-08-02",
-      "name": "08/02/2026 Onuma Gravel",
-      "power_w": 188.0,
-      "cadence_rpm": 82.4,
-      "distance_km": 49.46,
-      "context": "Outdoor"
-    },
     {
       "date": "2026-08-06",
       "name": "08/06/2026 Moheji Gravel",
