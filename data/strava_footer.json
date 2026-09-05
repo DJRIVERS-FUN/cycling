@@ -1,34 +1,34 @@
 {
-  "updated_utc": "2026-09-04T20:29:10Z",
+  "updated_utc": "2026-09-05T03:37:25Z",
   "source": "Strava",
   "athlete_id": 3714458,
   "scope": "latest 60 activities; 7-day research window",
-  "headline": "7-day riding state: 67.6 km · 2.6 h · 558 m+",
+  "headline": "7-day riding state: 106.8 km · 4.2 h · 747 m+",
   "state": {
-    "load": "Light load",
+    "load": "Moderate load",
     "context": "Mixed indoor/outdoor",
-    "climbing_density": "8.3 m/km"
+    "climbing_density": "7.0 m/km"
   },
   "metrics": [
     {
       "label": "Distance",
-      "value": "67.6 km"
+      "value": "106.8 km"
     },
     {
       "label": "Time",
-      "value": "2.6 h"
+      "value": "4.2 h"
     },
     {
       "label": "Ascent",
-      "value": "558 m"
+      "value": "747 m"
     },
     {
       "label": "Speed",
-      "value": "26.0 kph"
+      "value": "25.4 kph"
     },
     {
       "label": "Power",
-      "value": "165 W"
+      "value": "171 W"
     },
     {
       "label": "Cadence",
@@ -36,26 +36,26 @@
     }
   ],
   "seven_day": {
-    "ride_count": 3,
-    "distance_km": 67.6,
-    "moving_hours": 2.6,
-    "elevation_m": 558.0,
+    "ride_count": 4,
+    "distance_km": 106.8,
+    "moving_hours": 4.2,
+    "elevation_m": 747.0,
     "indoor_count": 2,
-    "outdoor_count": 1,
-    "avg_speed_kph": 26.0,
-    "avg_power_w": 165,
+    "outdoor_count": 2,
+    "avg_speed_kph": 25.4,
+    "avg_power_w": 171,
     "avg_cadence_rpm": 80,
-    "climbing_m_per_km": 8.3
+    "climbing_m_per_km": 7.0
   },
   "latest_60": {
     "ride_count": 60,
-    "distance_km": 2284.2,
-    "moving_hours": 99.5,
-    "elevation_m": 27690.0
+    "distance_km": 2250.6,
+    "moving_hours": 97.3,
+    "elevation_m": 26979.0
   },
   "latest_ride": {
-    "name": "Zwift - Group Ride: Ascenders Brunch Bunch Ride (D)",
-    "date": "2026-09-04",
-    "type": "VirtualRide"
+    "name": "09/05/2026 Hokuto",
+    "date": "2026-09-05",
+    "type": "Ride"
   }
 }
