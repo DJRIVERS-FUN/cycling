@@ -1,5 +1,5 @@
 {
-  "generated_utc": "2026-09-09T20:41:16Z",
+  "generated_utc": "2026-09-10T03:47:25Z",
   "model": "Cycling behavioural regulation micro-dashboard",
   "window_days": {
     "short": 7,
@@ -10,7 +10,7 @@
     "load_state": "moderate",
     "context_balance": {
       "indoor": 6,
-      "outdoor": 10
+      "outdoor": 9
     },
     "seven_day": {
       "distance_km": 120.7,
@@ -19,24 +19,24 @@
       "ride_count": 4
     },
     "thirty_day": {
-      "distance_km": 483.5,
-      "moving_h": 21.5,
-      "elevation_m": 6818.0,
-      "ride_count": 16,
-      "mean_power_w": 173.3,
+      "distance_km": 459.9,
+      "moving_h": 20.3,
+      "elevation_m": 6209.0,
+      "ride_count": 15,
+      "mean_power_w": 170.7,
       "mean_cadence_rpm": 78.4,
-      "mean_speed_kph": 23.9
+      "mean_speed_kph": 24.2
     }
   },
   "weekly_series": [
     {
       "week_start": "2026-06-15",
-      "distance_km": 104.0,
-      "moving_h": 4.2,
-      "elevation_m": 700.0,
-      "ride_count": 3,
+      "distance_km": 41.5,
+      "moving_h": 1.7,
+      "elevation_m": 222.0,
+      "ride_count": 2,
       "indoor_count": 0,
-      "outdoor_count": 3
+      "outdoor_count": 2
     },
     {
       "week_start": "2026-06-22",
@@ -139,19 +139,6 @@
     }
   ],
   "recent_rides": [
-    {
-      "date": "2026-08-10",
-      "datetime": "2026-08-10T14:19:06+00:00",
-      "name": "08/10/2026 Shirotai",
-      "type": "Ride",
-      "is_indoor": false,
-      "distance_km": 23.65,
-      "moving_h": 1.176,
-      "elevation_m": 609.0,
-      "avg_speed_kph": 20.1,
-      "avg_power_w": 212.0,
-      "avg_cadence_rpm": 78.0
-    },
     {
       "date": "2026-08-11",
       "datetime": "2026-08-11T10:01:48+00:00",
@@ -349,14 +336,6 @@
     }
   ],
   "power_cadence": [
-    {
-      "date": "2026-08-10",
-      "name": "08/10/2026 Shirotai",
-      "power_w": 212.0,
-      "cadence_rpm": 78.0,
-      "distance_km": 23.65,
-      "context": "Outdoor"
-    },
     {
       "date": "2026-08-15",
       "name": "Zwift - Pacer Group Ride with Miguel",
