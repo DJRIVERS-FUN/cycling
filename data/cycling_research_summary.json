@@ -1,5 +1,5 @@
 {
-  "generated_utc": "2026-09-13T20:30:25Z",
+  "generated_utc": "2026-09-14T04:03:22Z",
   "model": "Cycling behavioural regulation micro-dashboard",
   "window_days": {
     "short": 7,
@@ -10,22 +10,22 @@
     "load_state": "moderate",
     "context_balance": {
       "indoor": 6,
-      "outdoor": 10
+      "outdoor": 9
     },
     "seven_day": {
-      "distance_km": 162.1,
-      "moving_h": 6.9,
-      "elevation_m": 1699.0,
-      "ride_count": 4
+      "distance_km": 141.8,
+      "moving_h": 6.0,
+      "elevation_m": 1487.0,
+      "ride_count": 3
     },
     "thirty_day": {
-      "distance_km": 548.7,
-      "moving_h": 24.2,
-      "elevation_m": 7116.0,
-      "ride_count": 16,
-      "mean_power_w": 173.5,
+      "distance_km": 515.8,
+      "moving_h": 22.0,
+      "elevation_m": 6177.0,
+      "ride_count": 15,
+      "mean_power_w": 173.8,
       "mean_cadence_rpm": 77.6,
-      "mean_speed_kph": 24.5
+      "mean_speed_kph": 25.1
     }
   },
   "weekly_series": [
@@ -139,19 +139,6 @@
     }
   ],
   "recent_rides": [
-    {
-      "date": "2026-08-14",
-      "datetime": "2026-08-14T08:55:22+00:00",
-      "name": "08/14/2026 Yokotsu",
-      "type": "Ride",
-      "is_indoor": false,
-      "distance_km": 32.86,
-      "moving_h": 2.184,
-      "elevation_m": 939.0,
-      "avg_speed_kph": 15.0,
-      "avg_power_w": 169.7,
-      "avg_cadence_rpm": null
-    },
     {
       "date": "2026-08-15",
       "datetime": "2026-08-15T19:05:31+00:00",
