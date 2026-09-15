@@ -1,5 +1,5 @@
 {
-  "generated_utc": "2026-09-15T04:02:30Z",
+  "generated_utc": "2026-09-15T11:22:07Z",
   "model": "Cycling behavioural regulation micro-dashboard",
   "window_days": {
     "short": 7,
@@ -9,23 +9,23 @@
   "state": {
     "load_state": "moderate",
     "context_balance": {
-      "indoor": 5,
+      "indoor": 6,
       "outdoor": 9
     },
     "seven_day": {
-      "distance_km": 141.8,
-      "moving_h": 6.0,
-      "elevation_m": 1487.0,
-      "ride_count": 3
+      "distance_km": 170.5,
+      "moving_h": 7.0,
+      "elevation_m": 1598.0,
+      "ride_count": 4
     },
     "thirty_day": {
-      "distance_km": 499.2,
-      "moving_h": 21.5,
-      "elevation_m": 6040.0,
-      "ride_count": 14,
-      "mean_power_w": 172.6,
-      "mean_cadence_rpm": 77.2,
-      "mean_speed_kph": 24.6
+      "distance_km": 527.9,
+      "moving_h": 22.5,
+      "elevation_m": 6151.0,
+      "ride_count": 15,
+      "mean_power_w": 173.7,
+      "mean_cadence_rpm": 78.0,
+      "mean_speed_kph": 24.8
     }
   },
   "weekly_series": [
@@ -320,6 +320,19 @@
       "avg_speed_kph": 24.5,
       "avg_power_w": 168.0,
       "avg_cadence_rpm": 77.0
+    },
+    {
+      "date": "2026-09-15",
+      "datetime": "2026-09-15T16:59:59+00:00",
+      "name": "Zwift - Group Ride: Ascenders Banded Brunch Bunch Ride (E)",
+      "type": "VirtualRide",
+      "is_indoor": true,
+      "distance_km": 28.73,
+      "moving_h": 1.009,
+      "elevation_m": 111.0,
+      "avg_speed_kph": 28.5,
+      "avg_power_w": 189.0,
+      "avg_cadence_rpm": 89.3
     }
   ],
   "power_cadence": [
@@ -434,19 +447,27 @@
       "cadence_rpm": 77.0,
       "distance_km": 17.93,
       "context": "Outdoor"
+    },
+    {
+      "date": "2026-09-15",
+      "name": "Zwift - Group Ride: Ascenders Banded Brunch Bunch Ride (E)",
+      "power_w": 189.0,
+      "cadence_rpm": 89.3,
+      "distance_km": 28.73,
+      "context": "Indoor"
     }
   ],
   "latest_ride": {
-    "date": "2026-09-13",
-    "datetime": "2026-09-13T10:17:07+00:00",
-    "name": "09/13/2026 Gravel Recovery",
-    "type": "Ride",
-    "is_indoor": false,
-    "distance_km": 17.93,
-    "moving_h": 0.73,
-    "elevation_m": 93.0,
-    "avg_speed_kph": 24.5,
-    "avg_power_w": 168.0,
-    "avg_cadence_rpm": 77.0
+    "date": "2026-09-15",
+    "datetime": "2026-09-15T16:59:59+00:00",
+    "name": "Zwift - Group Ride: Ascenders Banded Brunch Bunch Ride (E)",
+    "type": "VirtualRide",
+    "is_indoor": true,
+    "distance_km": 28.73,
+    "moving_h": 1.009,
+    "elevation_m": 111.0,
+    "avg_speed_kph": 28.5,
+    "avg_power_w": 189.0,
+    "avg_cadence_rpm": 89.3
   }
 }
