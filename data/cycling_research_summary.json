@@ -1,5 +1,5 @@
 {
-  "generated_utc": "2026-09-14T21:38:42Z",
+  "generated_utc": "2026-09-15T04:02:30Z",
   "model": "Cycling behavioural regulation micro-dashboard",
   "window_days": {
     "short": 7,
@@ -9,7 +9,7 @@
   "state": {
     "load_state": "moderate",
     "context_balance": {
-      "indoor": 6,
+      "indoor": 5,
       "outdoor": 9
     },
     "seven_day": {
@@ -19,13 +19,13 @@
       "ride_count": 3
     },
     "thirty_day": {
-      "distance_km": 515.8,
-      "moving_h": 22.0,
-      "elevation_m": 6177.0,
-      "ride_count": 15,
-      "mean_power_w": 173.8,
-      "mean_cadence_rpm": 77.6,
-      "mean_speed_kph": 25.1
+      "distance_km": 499.2,
+      "moving_h": 21.5,
+      "elevation_m": 6040.0,
+      "ride_count": 14,
+      "mean_power_w": 172.6,
+      "mean_cadence_rpm": 77.2,
+      "mean_speed_kph": 24.6
     }
   },
   "weekly_series": [
@@ -139,19 +139,6 @@
     }
   ],
   "recent_rides": [
-    {
-      "date": "2026-08-15",
-      "datetime": "2026-08-15T19:05:31+00:00",
-      "name": "Zwift - Pacer Group Ride with Miguel",
-      "type": "VirtualRide",
-      "is_indoor": true,
-      "distance_km": 16.65,
-      "moving_h": 0.51,
-      "elevation_m": 137.0,
-      "avg_speed_kph": 32.7,
-      "avg_power_w": 191.0,
-      "avg_cadence_rpm": 84.5
-    },
     {
       "date": "2026-08-16",
       "datetime": "2026-08-16T07:45:39+00:00",
@@ -336,14 +323,6 @@
     }
   ],
   "power_cadence": [
-    {
-      "date": "2026-08-15",
-      "name": "Zwift - Pacer Group Ride with Miguel",
-      "power_w": 191.0,
-      "cadence_rpm": 84.5,
-      "distance_km": 16.65,
-      "context": "Indoor"
-    },
     {
       "date": "2026-08-16",
       "name": "08/16/2026 Shirotai",
