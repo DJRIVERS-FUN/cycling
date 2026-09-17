@@ -1,5 +1,5 @@
 {
-  "generated_utc": "2026-09-16T21:02:53Z",
+  "generated_utc": "2026-09-17T04:06:16Z",
   "model": "Cycling behavioural regulation micro-dashboard",
   "window_days": {
     "short": 7,
@@ -13,30 +13,30 @@
       "outdoor": 8
     },
     "seven_day": {
-      "distance_km": 170.5,
-      "moving_h": 7.0,
-      "elevation_m": 1598.0,
+      "distance_km": 154.1,
+      "moving_h": 6.7,
+      "elevation_m": 1601.0,
       "ride_count": 4
     },
     "thirty_day": {
-      "distance_km": 467.1,
-      "moving_h": 19.6,
-      "elevation_m": 5153.0,
+      "distance_km": 463.2,
+      "moving_h": 19.3,
+      "elevation_m": 4750.0,
       "ride_count": 14,
-      "mean_power_w": 172.6,
-      "mean_cadence_rpm": 78.0,
-      "mean_speed_kph": 25.1
+      "mean_power_w": 171.0,
+      "mean_cadence_rpm": 78.4,
+      "mean_speed_kph": 25.3
     }
   },
   "weekly_series": [
     {
       "week_start": "2026-06-22",
-      "distance_km": 51.7,
-      "moving_h": 2.9,
-      "elevation_m": 775.0,
-      "ride_count": 3,
+      "distance_km": 19.4,
+      "moving_h": 1.4,
+      "elevation_m": 120.0,
+      "ride_count": 2,
       "indoor_count": 0,
-      "outdoor_count": 3
+      "outdoor_count": 2
     },
     {
       "week_start": "2026-06-29",
@@ -139,19 +139,6 @@
     }
   ],
   "recent_rides": [
-    {
-      "date": "2026-08-17",
-      "datetime": "2026-08-17T09:17:17+00:00",
-      "name": "08/17/2026 Shirotai",
-      "type": "Ride",
-      "is_indoor": false,
-      "distance_km": 22.69,
-      "moving_h": 1.163,
-      "elevation_m": 586.0,
-      "avg_speed_kph": 19.5,
-      "avg_power_w": 204.0,
-      "avg_cadence_rpm": 75.1
-    },
     {
       "date": "2026-08-19",
       "datetime": "2026-08-19T17:00:00+00:00",
@@ -320,17 +307,22 @@
       "avg_speed_kph": 28.5,
       "avg_power_w": 189.0,
       "avg_cadence_rpm": 89.3
+    },
+    {
+      "date": "2026-09-17",
+      "datetime": "2026-09-17T09:00:11+00:00",
+      "name": "09/17/2026 Gravel Ride",
+      "type": "Ride",
+      "is_indoor": false,
+      "distance_km": 18.8,
+      "moving_h": 0.85,
+      "elevation_m": 183.0,
+      "avg_speed_kph": 22.1,
+      "avg_power_w": 182.0,
+      "avg_cadence_rpm": 80.8
     }
   ],
   "power_cadence": [
-    {
-      "date": "2026-08-17",
-      "name": "08/17/2026 Shirotai",
-      "power_w": 204.0,
-      "cadence_rpm": 75.1,
-      "distance_km": 22.69,
-      "context": "Outdoor"
-    },
     {
       "date": "2026-08-19",
       "name": "Zwift - Group Ride: Ascenders Brunch Bunch Ride (D)",
@@ -434,19 +426,27 @@
       "cadence_rpm": 89.3,
       "distance_km": 28.73,
       "context": "Indoor"
+    },
+    {
+      "date": "2026-09-17",
+      "name": "09/17/2026 Gravel Ride",
+      "power_w": 182.0,
+      "cadence_rpm": 80.8,
+      "distance_km": 18.8,
+      "context": "Outdoor"
     }
   ],
   "latest_ride": {
-    "date": "2026-09-15",
-    "datetime": "2026-09-15T16:59:59+00:00",
-    "name": "Zwift - Group Ride: Ascenders Banded Brunch Bunch Ride (E)",
-    "type": "VirtualRide",
-    "is_indoor": true,
-    "distance_km": 28.73,
-    "moving_h": 1.009,
-    "elevation_m": 111.0,
-    "avg_speed_kph": 28.5,
-    "avg_power_w": 189.0,
-    "avg_cadence_rpm": 89.3
+    "date": "2026-09-17",
+    "datetime": "2026-09-17T09:00:11+00:00",
+    "name": "09/17/2026 Gravel Ride",
+    "type": "Ride",
+    "is_indoor": false,
+    "distance_km": 18.8,
+    "moving_h": 0.85,
+    "elevation_m": 183.0,
+    "avg_speed_kph": 22.1,
+    "avg_power_w": 182.0,
+    "avg_cadence_rpm": 80.8
   }
 }
