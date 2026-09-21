@@ -1,5 +1,5 @@
 {
-  "generated_utc": "2026-09-20T20:31:27Z",
+  "generated_utc": "2026-09-21T04:02:57Z",
   "model": "Cycling behavioural regulation micro-dashboard",
   "window_days": {
     "short": 7,
@@ -10,33 +10,33 @@
     "load_state": "moderate",
     "context_balance": {
       "indoor": 4,
-      "outdoor": 9
+      "outdoor": 10
     },
     "seven_day": {
-      "distance_km": 100.3,
+      "distance_km": 101.5,
       "moving_h": 4.0,
-      "elevation_m": 516.0,
+      "elevation_m": 639.0,
       "ride_count": 4
     },
     "thirty_day": {
-      "distance_km": 428.2,
-      "moving_h": 17.9,
-      "elevation_m": 3913.0,
-      "ride_count": 13,
-      "mean_power_w": 171.5,
-      "mean_cadence_rpm": 79.4,
-      "mean_speed_kph": 25.2
+      "distance_km": 447.3,
+      "moving_h": 18.7,
+      "elevation_m": 4129.0,
+      "ride_count": 14,
+      "mean_power_w": 173.8,
+      "mean_cadence_rpm": 79.5,
+      "mean_speed_kph": 25.1
     }
   },
   "weekly_series": [
     {
       "week_start": "2026-06-29",
-      "distance_km": 247.0,
-      "moving_h": 9.8,
-      "elevation_m": 2014.0,
-      "ride_count": 3,
+      "distance_km": 190.3,
+      "moving_h": 7.5,
+      "elevation_m": 1555.0,
+      "ride_count": 2,
       "indoor_count": 0,
-      "outdoor_count": 3
+      "outdoor_count": 2
     },
     {
       "week_start": "2026-07-06",
@@ -307,6 +307,19 @@
       "avg_speed_kph": 25.4,
       "avg_power_w": 174.0,
       "avg_cadence_rpm": 79.9
+    },
+    {
+      "date": "2026-09-21",
+      "datetime": "2026-09-21T10:03:31+00:00",
+      "name": "09/21/2026 Morning Gravel Ride",
+      "type": "Ride",
+      "is_indoor": false,
+      "distance_km": 19.1,
+      "moving_h": 0.8,
+      "elevation_m": 216.0,
+      "avg_speed_kph": 23.9,
+      "avg_power_w": 204.0,
+      "avg_cadence_rpm": 81.9
     }
   ],
   "power_cadence": [
@@ -413,19 +426,27 @@
       "cadence_rpm": 79.9,
       "distance_km": 34.86,
       "context": "Outdoor"
+    },
+    {
+      "date": "2026-09-21",
+      "name": "09/21/2026 Morning Gravel Ride",
+      "power_w": 204.0,
+      "cadence_rpm": 81.9,
+      "distance_km": 19.1,
+      "context": "Outdoor"
     }
   ],
   "latest_ride": {
-    "date": "2026-09-19",
-    "datetime": "2026-09-19T10:51:37+00:00",
-    "name": "09/19/2026 Gravel Hokuto",
+    "date": "2026-09-21",
+    "datetime": "2026-09-21T10:03:31+00:00",
+    "name": "09/21/2026 Morning Gravel Ride",
     "type": "Ride",
     "is_indoor": false,
-    "distance_km": 34.86,
-    "moving_h": 1.373,
-    "elevation_m": 129.0,
-    "avg_speed_kph": 25.4,
-    "avg_power_w": 174.0,
-    "avg_cadence_rpm": 79.9
+    "distance_km": 19.1,
+    "moving_h": 0.8,
+    "elevation_m": 216.0,
+    "avg_speed_kph": 23.9,
+    "avg_power_w": 204.0,
+    "avg_cadence_rpm": 81.9
   }
 }
