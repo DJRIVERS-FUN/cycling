@@ -1,5 +1,5 @@
 {
-  "generated_utc": "2026-09-21T21:49:22Z",
+  "generated_utc": "2026-09-22T04:00:06Z",
   "model": "Cycling behavioural regulation micro-dashboard",
   "window_days": {
     "short": 7,
@@ -13,19 +13,19 @@
       "outdoor": 10
     },
     "seven_day": {
-      "distance_km": 101.5,
-      "moving_h": 4.0,
-      "elevation_m": 639.0,
-      "ride_count": 4
+      "distance_km": 124.5,
+      "moving_h": 5.1,
+      "elevation_m": 1124.0,
+      "ride_count": 5
     },
     "thirty_day": {
-      "distance_km": 447.3,
-      "moving_h": 18.7,
-      "elevation_m": 4129.0,
+      "distance_km": 449.6,
+      "moving_h": 18.9,
+      "elevation_m": 4397.0,
       "ride_count": 14,
-      "mean_power_w": 173.8,
-      "mean_cadence_rpm": 79.5,
-      "mean_speed_kph": 25.1
+      "mean_power_w": 174.9,
+      "mean_cadence_rpm": 79.4,
+      "mean_speed_kph": 25.0
     }
   },
   "weekly_series": [
@@ -139,19 +139,6 @@
     }
   ],
   "recent_rides": [
-    {
-      "date": "2026-08-22",
-      "datetime": "2026-08-22T09:44:42+00:00",
-      "name": "08/22/2026 Morning Gravel",
-      "type": "Ride",
-      "is_indoor": false,
-      "distance_km": 20.64,
-      "moving_h": 0.883,
-      "elevation_m": 217.0,
-      "avg_speed_kph": 23.4,
-      "avg_power_w": 184.0,
-      "avg_cadence_rpm": 78.5
-    },
     {
       "date": "2026-08-23",
       "datetime": "2026-08-23T08:02:46+00:00",
@@ -320,17 +307,22 @@
       "avg_speed_kph": 23.9,
       "avg_power_w": 204.0,
       "avg_cadence_rpm": 81.9
+    },
+    {
+      "date": "2026-09-22",
+      "datetime": "2026-09-22T10:33:26+00:00",
+      "name": "09/22/2026 Road Ride",
+      "type": "Ride",
+      "is_indoor": false,
+      "distance_km": 23.03,
+      "moving_h": 1.047,
+      "elevation_m": 485.0,
+      "avg_speed_kph": 22.0,
+      "avg_power_w": 199.0,
+      "avg_cadence_rpm": 76.0
     }
   ],
   "power_cadence": [
-    {
-      "date": "2026-08-22",
-      "name": "08/22/2026 Morning Gravel",
-      "power_w": 184.0,
-      "cadence_rpm": 78.5,
-      "distance_km": 20.64,
-      "context": "Outdoor"
-    },
     {
       "date": "2026-08-23",
       "name": "08/23/2026 Onuma",
@@ -434,19 +426,27 @@
       "cadence_rpm": 81.9,
       "distance_km": 19.1,
       "context": "Outdoor"
+    },
+    {
+      "date": "2026-09-22",
+      "name": "09/22/2026 Road Ride",
+      "power_w": 199.0,
+      "cadence_rpm": 76.0,
+      "distance_km": 23.03,
+      "context": "Outdoor"
     }
   ],
   "latest_ride": {
-    "date": "2026-09-21",
-    "datetime": "2026-09-21T10:03:31+00:00",
-    "name": "09/21/2026 Morning Gravel Ride",
+    "date": "2026-09-22",
+    "datetime": "2026-09-22T10:33:26+00:00",
+    "name": "09/22/2026 Road Ride",
     "type": "Ride",
     "is_indoor": false,
-    "distance_km": 19.1,
-    "moving_h": 0.8,
-    "elevation_m": 216.0,
-    "avg_speed_kph": 23.9,
-    "avg_power_w": 204.0,
-    "avg_cadence_rpm": 81.9
+    "distance_km": 23.03,
+    "moving_h": 1.047,
+    "elevation_m": 485.0,
+    "avg_speed_kph": 22.0,
+    "avg_power_w": 199.0,
+    "avg_cadence_rpm": 76.0
   }
 }
