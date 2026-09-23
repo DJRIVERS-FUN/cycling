@@ -1,5 +1,5 @@
 {
-  "generated_utc": "2026-09-23T03:57:31Z",
+  "generated_utc": "2026-09-23T11:03:38Z",
   "model": "Cycling behavioural regulation micro-dashboard",
   "window_days": {
     "short": 7,
@@ -311,7 +311,7 @@
     {
       "date": "2026-09-23",
       "datetime": "2026-09-23T11:20:55+00:00",
-      "name": "Lunch Gravel Ride",
+      "name": "09/23/2026 Ono Gravel Ride",
       "type": "Ride",
       "is_indoor": false,
       "distance_km": 28.17,
@@ -429,7 +429,7 @@
     },
     {
       "date": "2026-09-23",
-      "name": "Lunch Gravel Ride",
+      "name": "09/23/2026 Ono Gravel Ride",
       "power_w": 190.0,
       "cadence_rpm": 77.7,
       "distance_km": 28.17,
@@ -439,7 +439,7 @@
   "latest_ride": {
     "date": "2026-09-23",
     "datetime": "2026-09-23T11:20:55+00:00",
-    "name": "Lunch Gravel Ride",
+    "name": "09/23/2026 Ono Gravel Ride",
     "type": "Ride",
     "is_indoor": false,
     "distance_km": 28.17,
