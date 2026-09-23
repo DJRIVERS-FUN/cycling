@@ -1,5 +1,5 @@
 {
-  "generated_utc": "2026-09-22T21:01:43Z",
+  "generated_utc": "2026-09-23T03:57:31Z",
   "model": "Cycling behavioural regulation micro-dashboard",
   "window_days": {
     "short": 7,
@@ -13,30 +13,30 @@
       "outdoor": 10
     },
     "seven_day": {
-      "distance_km": 124.5,
-      "moving_h": 5.1,
-      "elevation_m": 1124.0,
+      "distance_km": 124.0,
+      "moving_h": 5.2,
+      "elevation_m": 1302.0,
       "ride_count": 5
     },
     "thirty_day": {
-      "distance_km": 449.6,
-      "moving_h": 18.9,
-      "elevation_m": 4397.0,
+      "distance_km": 421.5,
+      "moving_h": 17.3,
+      "elevation_m": 3859.0,
       "ride_count": 14,
-      "mean_power_w": 174.9,
-      "mean_cadence_rpm": 79.4,
-      "mean_speed_kph": 25.0
+      "mean_power_w": 176.1,
+      "mean_cadence_rpm": 79.7,
+      "mean_speed_kph": 25.2
     }
   },
   "weekly_series": [
     {
       "week_start": "2026-06-29",
-      "distance_km": 190.3,
-      "moving_h": 7.5,
-      "elevation_m": 1555.0,
-      "ride_count": 2,
+      "distance_km": 100.1,
+      "moving_h": 4.0,
+      "elevation_m": 864.0,
+      "ride_count": 1,
       "indoor_count": 0,
-      "outdoor_count": 2
+      "outdoor_count": 1
     },
     {
       "week_start": "2026-07-06",
@@ -139,19 +139,6 @@
     }
   ],
   "recent_rides": [
-    {
-      "date": "2026-08-23",
-      "datetime": "2026-08-23T08:02:46+00:00",
-      "name": "08/23/2026 Onuma",
-      "type": "Ride",
-      "is_indoor": false,
-      "distance_km": 56.29,
-      "moving_h": 2.798,
-      "elevation_m": 827.0,
-      "avg_speed_kph": 20.1,
-      "avg_power_w": 172.0,
-      "avg_cadence_rpm": 72.5
-    },
     {
       "date": "2026-08-29",
       "datetime": "2026-08-29T10:31:03+00:00",
@@ -320,17 +307,22 @@
       "avg_speed_kph": 22.0,
       "avg_power_w": 199.0,
       "avg_cadence_rpm": 76.0
+    },
+    {
+      "date": "2026-09-23",
+      "datetime": "2026-09-23T11:20:55+00:00",
+      "name": "Lunch Gravel Ride",
+      "type": "Ride",
+      "is_indoor": false,
+      "distance_km": 28.17,
+      "moving_h": 1.18,
+      "elevation_m": 289.0,
+      "avg_speed_kph": 23.9,
+      "avg_power_w": 190.0,
+      "avg_cadence_rpm": 77.7
     }
   ],
   "power_cadence": [
-    {
-      "date": "2026-08-23",
-      "name": "08/23/2026 Onuma",
-      "power_w": 172.0,
-      "cadence_rpm": 72.5,
-      "distance_km": 56.29,
-      "context": "Outdoor"
-    },
     {
       "date": "2026-08-29",
       "name": "08/29/2026 Gravel Ride",
@@ -434,19 +426,27 @@
       "cadence_rpm": 76.0,
       "distance_km": 23.03,
       "context": "Outdoor"
+    },
+    {
+      "date": "2026-09-23",
+      "name": "Lunch Gravel Ride",
+      "power_w": 190.0,
+      "cadence_rpm": 77.7,
+      "distance_km": 28.17,
+      "context": "Outdoor"
     }
   ],
   "latest_ride": {
-    "date": "2026-09-22",
-    "datetime": "2026-09-22T10:33:26+00:00",
-    "name": "09/22/2026 Road Ride",
+    "date": "2026-09-23",
+    "datetime": "2026-09-23T11:20:55+00:00",
+    "name": "Lunch Gravel Ride",
     "type": "Ride",
     "is_indoor": false,
-    "distance_km": 23.03,
-    "moving_h": 1.047,
-    "elevation_m": 485.0,
-    "avg_speed_kph": 22.0,
-    "avg_power_w": 199.0,
-    "avg_cadence_rpm": 76.0
+    "distance_km": 28.17,
+    "moving_h": 1.18,
+    "elevation_m": 289.0,
+    "avg_speed_kph": 23.9,
+    "avg_power_w": 190.0,
+    "avg_cadence_rpm": 77.7
   }
 }
