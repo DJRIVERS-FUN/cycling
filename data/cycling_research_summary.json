@@ -1,5 +1,5 @@
 {
-  "generated_utc": "2026-09-26T20:48:23Z",
+  "generated_utc": "2026-09-27T04:26:11Z",
   "model": "Cycling behavioural regulation micro-dashboard",
   "window_days": {
     "short": 7,
@@ -10,34 +10,25 @@
     "load_state": "moderate",
     "context_balance": {
       "indoor": 4,
-      "outdoor": 12
+      "outdoor": 13
     },
     "seven_day": {
-      "distance_km": 148.8,
-      "moving_h": 6.2,
-      "elevation_m": 1487.0,
+      "distance_km": 140.6,
+      "moving_h": 6.0,
+      "elevation_m": 1668.0,
       "ride_count": 6
     },
     "thirty_day": {
-      "distance_km": 465.1,
-      "moving_h": 19.1,
-      "elevation_m": 4227.0,
-      "ride_count": 16,
-      "mean_power_w": 177.0,
+      "distance_km": 491.8,
+      "moving_h": 20.2,
+      "elevation_m": 4537.0,
+      "ride_count": 17,
+      "mean_power_w": 177.5,
       "mean_cadence_rpm": 79.1,
-      "mean_speed_kph": 25.1
+      "mean_speed_kph": 25.0
     }
   },
   "weekly_series": [
-    {
-      "week_start": "2026-06-29",
-      "distance_km": 0,
-      "moving_h": 0,
-      "elevation_m": 0,
-      "ride_count": 0,
-      "indoor_count": 0,
-      "outdoor_count": 0
-    },
     {
       "week_start": "2026-07-06",
       "distance_km": 20.6,
@@ -136,6 +127,15 @@
       "ride_count": 3,
       "indoor_count": 1,
       "outdoor_count": 2
+    },
+    {
+      "week_start": "2026-09-21",
+      "distance_km": 140.6,
+      "moving_h": 6.0,
+      "elevation_m": 1668.0,
+      "ride_count": 6,
+      "indoor_count": 0,
+      "outdoor_count": 6
     }
   ],
   "recent_rides": [
@@ -346,6 +346,19 @@
       "avg_speed_kph": 24.0,
       "avg_power_w": 172.0,
       "avg_cadence_rpm": 74.9
+    },
+    {
+      "date": "2026-09-27",
+      "datetime": "2026-09-27T09:05:05+00:00",
+      "name": "09/27/2026 Gravel Ride",
+      "type": "Ride",
+      "is_indoor": false,
+      "distance_km": 26.65,
+      "moving_h": 1.159,
+      "elevation_m": 310.0,
+      "avg_speed_kph": 23.0,
+      "avg_power_w": 185.0,
+      "avg_cadence_rpm": 79.1
     }
   ],
   "power_cadence": [
@@ -476,19 +489,27 @@
       "cadence_rpm": 74.9,
       "distance_km": 23.81,
       "context": "Outdoor"
+    },
+    {
+      "date": "2026-09-27",
+      "name": "09/27/2026 Gravel Ride",
+      "power_w": 185.0,
+      "cadence_rpm": 79.1,
+      "distance_km": 26.65,
+      "context": "Outdoor"
     }
   ],
   "latest_ride": {
-    "date": "2026-09-26",
-    "datetime": "2026-09-26T12:49:37+00:00",
-    "name": "09/26/2026 Gravel Ride",
+    "date": "2026-09-27",
+    "datetime": "2026-09-27T09:05:05+00:00",
+    "name": "09/27/2026 Gravel Ride",
     "type": "Ride",
     "is_indoor": false,
-    "distance_km": 23.81,
-    "moving_h": 0.992,
-    "elevation_m": 238.0,
-    "avg_speed_kph": 24.0,
-    "avg_power_w": 172.0,
-    "avg_cadence_rpm": 74.9
+    "distance_km": 26.65,
+    "moving_h": 1.159,
+    "elevation_m": 310.0,
+    "avg_speed_kph": 23.0,
+    "avg_power_w": 185.0,
+    "avg_cadence_rpm": 79.1
   }
 }
