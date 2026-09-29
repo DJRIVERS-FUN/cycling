@@ -1,5 +1,5 @@
 {
-  "generated_utc": "2026-09-28T23:03:06Z",
+  "generated_utc": "2026-09-29T04:56:36Z",
   "model": "Cycling behavioural regulation micro-dashboard",
   "window_days": {
     "short": 7,
@@ -10,22 +10,22 @@
     "load_state": "moderate",
     "context_balance": {
       "indoor": 4,
-      "outdoor": 13
+      "outdoor": 12
     },
     "seven_day": {
-      "distance_km": 140.6,
-      "moving_h": 6.0,
-      "elevation_m": 1668.0,
-      "ride_count": 6
+      "distance_km": 121.5,
+      "moving_h": 5.2,
+      "elevation_m": 1452.0,
+      "ride_count": 5
     },
     "thirty_day": {
-      "distance_km": 491.8,
-      "moving_h": 20.2,
-      "elevation_m": 4537.0,
-      "ride_count": 17,
-      "mean_power_w": 177.5,
+      "distance_km": 466.8,
+      "moving_h": 19.2,
+      "elevation_m": 4306.0,
+      "ride_count": 16,
+      "mean_power_w": 176.4,
       "mean_cadence_rpm": 79.1,
-      "mean_speed_kph": 25.0
+      "mean_speed_kph": 25.1
     }
   },
   "weekly_series": [
@@ -139,19 +139,6 @@
     }
   ],
   "recent_rides": [
-    {
-      "date": "2026-08-29",
-      "datetime": "2026-08-29T10:31:03+00:00",
-      "name": "08/29/2026 Gravel Ride",
-      "type": "Ride",
-      "is_indoor": false,
-      "distance_km": 24.96,
-      "moving_h": 1.061,
-      "elevation_m": 231.0,
-      "avg_speed_kph": 23.5,
-      "avg_power_w": 195.0,
-      "avg_cadence_rpm": 79.3
-    },
     {
       "date": "2026-09-01",
       "datetime": "2026-09-01T16:38:36+00:00",
@@ -362,14 +349,6 @@
     }
   ],
   "power_cadence": [
-    {
-      "date": "2026-08-29",
-      "name": "08/29/2026 Gravel Ride",
-      "power_w": 195.0,
-      "cadence_rpm": 79.3,
-      "distance_km": 24.96,
-      "context": "Outdoor"
-    },
     {
       "date": "2026-09-01",
       "name": "Zwift - EZ Z2",
