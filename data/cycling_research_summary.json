@@ -1,5 +1,5 @@
 {
-  "generated_utc": "2026-10-04T21:01:47Z",
+  "generated_utc": "2026-10-05T04:46:22Z",
   "model": "Cycling behavioural regulation micro-dashboard",
   "window_days": {
     "short": 7,
@@ -7,36 +7,36 @@
     "trend_weeks": 12
   },
   "state": {
-    "load_state": "light",
+    "load_state": "none",
     "context_balance": {
-      "indoor": 3,
+      "indoor": 2,
       "outdoor": 12
     },
     "seven_day": {
-      "distance_km": 26.6,
-      "moving_h": 1.2,
-      "elevation_m": 310.0,
-      "ride_count": 1
+      "distance_km": 0,
+      "moving_h": 0,
+      "elevation_m": 0,
+      "ride_count": 0
     },
     "thirty_day": {
-      "distance_km": 450.3,
-      "moving_h": 18.7,
-      "elevation_m": 4280.0,
-      "ride_count": 15,
-      "mean_power_w": 177.6,
+      "distance_km": 424.2,
+      "moving_h": 17.7,
+      "elevation_m": 3979.0,
+      "ride_count": 14,
+      "mean_power_w": 180.6,
       "mean_cadence_rpm": 78.8,
-      "mean_speed_kph": 24.6
+      "mean_speed_kph": 24.5
     }
   },
   "weekly_series": [
     {
       "week_start": "2026-07-13",
-      "distance_km": 134.5,
-      "moving_h": 5.8,
-      "elevation_m": 1552.0,
-      "ride_count": 3,
+      "distance_km": 96.5,
+      "moving_h": 4.3,
+      "elevation_m": 1305.0,
+      "ride_count": 2,
       "indoor_count": 0,
-      "outdoor_count": 3
+      "outdoor_count": 2
     },
     {
       "week_start": "2026-07-20",
@@ -139,19 +139,6 @@
     }
   ],
   "recent_rides": [
-    {
-      "date": "2026-09-04",
-      "datetime": "2026-09-04T16:59:59+00:00",
-      "name": "Zwift - Group Ride: Ascenders Brunch Bunch Ride (D)",
-      "type": "VirtualRide",
-      "is_indoor": true,
-      "distance_km": 26.08,
-      "moving_h": 1.018,
-      "elevation_m": 301.0,
-      "avg_speed_kph": 25.6,
-      "avg_power_w": 136.0,
-      "avg_cadence_rpm": 78.9
-    },
     {
       "date": "2026-09-05",
       "datetime": "2026-09-05T07:49:33+00:00",
@@ -336,14 +323,6 @@
     }
   ],
   "power_cadence": [
-    {
-      "date": "2026-09-04",
-      "name": "Zwift - Group Ride: Ascenders Brunch Bunch Ride (D)",
-      "power_w": 136.0,
-      "cadence_rpm": 78.9,
-      "distance_km": 26.08,
-      "context": "Indoor"
-    },
     {
       "date": "2026-09-05",
       "name": "09/05/2026 Hokuto",
