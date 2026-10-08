@@ -1,61 +1,61 @@
 {
-  "updated_utc": "2026-10-07T22:53:16Z",
+  "updated_utc": "2026-10-08T05:13:05Z",
   "source": "Strava",
   "athlete_id": 3714458,
   "scope": "latest 60 activities; 7-day research window",
-  "headline": "No rides in the last 7 days",
+  "headline": "7-day riding state: 40.0 km · 1.7 h · 244 m+",
   "state": {
-    "load": "No recent load",
-    "context": "No recent rides",
-    "climbing_density": "—"
+    "load": "Light load",
+    "context": "Outdoor-field",
+    "climbing_density": "6.1 m/km"
   },
   "metrics": [
     {
       "label": "Distance",
-      "value": "0.0 km"
+      "value": "40.0 km"
     },
     {
       "label": "Time",
-      "value": "0.0 h"
+      "value": "1.7 h"
     },
     {
       "label": "Ascent",
-      "value": "0 m"
+      "value": "244 m"
     },
     {
       "label": "Speed",
-      "value": "—"
+      "value": "23.5 kph"
     },
     {
       "label": "Power",
-      "value": "—"
+      "value": "177 W"
     },
     {
       "label": "Cadence",
-      "value": "—"
+      "value": "76 rpm"
     }
   ],
   "seven_day": {
-    "ride_count": 0,
-    "distance_km": 0.0,
-    "moving_hours": 0.0,
-    "elevation_m": 0,
+    "ride_count": 1,
+    "distance_km": 40.0,
+    "moving_hours": 1.7,
+    "elevation_m": 244.0,
     "indoor_count": 0,
-    "outdoor_count": 0,
-    "avg_speed_kph": null,
-    "avg_power_w": null,
-    "avg_cadence_rpm": null,
-    "climbing_m_per_km": null
+    "outdoor_count": 1,
+    "avg_speed_kph": 23.5,
+    "avg_power_w": 177,
+    "avg_cadence_rpm": 76,
+    "climbing_m_per_km": 6.1
   },
   "latest_60": {
     "ride_count": 60,
-    "distance_km": 2184.4,
+    "distance_km": 2187.3,
     "moving_hours": 93.1,
-    "elevation_m": 24013.0
+    "elevation_m": 23589.0
   },
   "latest_ride": {
-    "name": "09/27/2026 Gravel Ride",
-    "date": "2026-09-27",
+    "name": "10/08/2026 Gravel Ride",
+    "date": "2026-10-08",
     "type": "Ride"
   }
 }
