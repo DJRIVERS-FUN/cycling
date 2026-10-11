@@ -1,5 +1,5 @@
 {
-  "generated_utc": "2026-10-10T21:20:09Z",
+  "generated_utc": "2026-10-11T04:49:34Z",
   "model": "Cycling behavioural regulation micro-dashboard",
   "window_days": {
     "short": 7,
@@ -7,37 +7,28 @@
     "trend_weeks": 12
   },
   "state": {
-    "load_state": "light",
+    "load_state": "moderate",
     "context_balance": {
       "indoor": 1,
-      "outdoor": 12
+      "outdoor": 13
     },
     "seven_day": {
-      "distance_km": 86.2,
-      "moving_h": 3.8,
-      "elevation_m": 1134.0,
-      "ride_count": 2
+      "distance_km": 115.2,
+      "moving_h": 5.1,
+      "elevation_m": 1564.0,
+      "ride_count": 3
     },
     "thirty_day": {
-      "distance_km": 415.8,
-      "moving_h": 17.9,
-      "elevation_m": 4532.0,
-      "ride_count": 13,
-      "mean_power_w": 184.5,
+      "distance_km": 444.8,
+      "moving_h": 19.2,
+      "elevation_m": 4962.0,
+      "ride_count": 14,
+      "mean_power_w": 184.1,
       "mean_cadence_rpm": 77.9,
-      "mean_speed_kph": 23.7
+      "mean_speed_kph": 23.6
     }
   },
   "weekly_series": [
-    {
-      "week_start": "2026-07-13",
-      "distance_km": 0,
-      "moving_h": 0,
-      "elevation_m": 0,
-      "ride_count": 0,
-      "indoor_count": 0,
-      "outdoor_count": 0
-    },
     {
       "week_start": "2026-07-20",
       "distance_km": 220.1,
@@ -136,6 +127,15 @@
       "ride_count": 0,
       "indoor_count": 0,
       "outdoor_count": 0
+    },
+    {
+      "week_start": "2026-10-05",
+      "distance_km": 115.2,
+      "moving_h": 5.1,
+      "elevation_m": 1564.0,
+      "ride_count": 3,
+      "indoor_count": 0,
+      "outdoor_count": 3
     }
   ],
   "recent_rides": [
@@ -307,6 +307,19 @@
       "avg_speed_kph": 21.3,
       "avg_power_w": 197.0,
       "avg_cadence_rpm": 76.9
+    },
+    {
+      "date": "2026-10-11",
+      "datetime": "2026-10-11T09:18:22+00:00",
+      "name": "10/11/2026 Takuminomori",
+      "type": "Ride",
+      "is_indoor": false,
+      "distance_km": 29.0,
+      "moving_h": 1.324,
+      "elevation_m": 430.0,
+      "avg_speed_kph": 21.9,
+      "avg_power_w": 179.0,
+      "avg_cadence_rpm": 77.9
     }
   ],
   "power_cadence": [
@@ -413,19 +426,27 @@
       "cadence_rpm": 76.9,
       "distance_km": 46.24,
       "context": "Outdoor"
+    },
+    {
+      "date": "2026-10-11",
+      "name": "10/11/2026 Takuminomori",
+      "power_w": 179.0,
+      "cadence_rpm": 77.9,
+      "distance_km": 29.0,
+      "context": "Outdoor"
     }
   ],
   "latest_ride": {
-    "date": "2026-10-10",
-    "datetime": "2026-10-10T08:37:01+00:00",
-    "name": "10/10/2026 Shirotai",
+    "date": "2026-10-11",
+    "datetime": "2026-10-11T09:18:22+00:00",
+    "name": "10/11/2026 Takuminomori",
     "type": "Ride",
     "is_indoor": false,
-    "distance_km": 46.24,
-    "moving_h": 2.168,
-    "elevation_m": 890.0,
-    "avg_speed_kph": 21.3,
-    "avg_power_w": 197.0,
-    "avg_cadence_rpm": 76.9
+    "distance_km": 29.0,
+    "moving_h": 1.324,
+    "elevation_m": 430.0,
+    "avg_speed_kph": 21.9,
+    "avg_power_w": 179.0,
+    "avg_cadence_rpm": 77.9
   }
 }
