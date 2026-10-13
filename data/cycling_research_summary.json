@@ -1,5 +1,5 @@
 {
-  "generated_utc": "2026-10-12T14:49:21Z",
+  "generated_utc": "2026-10-13T00:19:26Z",
   "model": "Cycling behavioural regulation micro-dashboard",
   "window_days": {
     "short": 7,
@@ -10,7 +10,7 @@
     "load_state": "moderate",
     "context_balance": {
       "indoor": 1,
-      "outdoor": 13
+      "outdoor": 12
     },
     "seven_day": {
       "distance_km": 115.2,
@@ -19,24 +19,24 @@
       "ride_count": 3
     },
     "thirty_day": {
-      "distance_km": 444.8,
-      "moving_h": 19.2,
-      "elevation_m": 4962.0,
-      "ride_count": 14,
-      "mean_power_w": 184.1,
-      "mean_cadence_rpm": 77.9,
-      "mean_speed_kph": 23.6
+      "distance_km": 356.1,
+      "moving_h": 15.1,
+      "elevation_m": 3748.0,
+      "ride_count": 13,
+      "mean_power_w": 185.4,
+      "mean_cadence_rpm": 78.6,
+      "mean_speed_kph": 23.8
     }
   },
   "weekly_series": [
     {
       "week_start": "2026-07-20",
-      "distance_km": 220.1,
-      "moving_h": 8.8,
-      "elevation_m": 1260.0,
-      "ride_count": 3,
+      "distance_km": 177.8,
+      "moving_h": 7.1,
+      "elevation_m": 1009.0,
+      "ride_count": 2,
       "indoor_count": 0,
-      "outdoor_count": 3
+      "outdoor_count": 2
     },
     {
       "week_start": "2026-07-27",
@@ -139,19 +139,6 @@
     }
   ],
   "recent_rides": [
-    {
-      "date": "2026-09-12",
-      "datetime": "2026-09-12T07:54:50+00:00",
-      "name": "09/12/2026 Mori",
-      "type": "Ride",
-      "is_indoor": false,
-      "distance_km": 88.68,
-      "moving_h": 4.147,
-      "elevation_m": 1214.0,
-      "avg_speed_kph": 21.4,
-      "avg_power_w": 168.0,
-      "avg_cadence_rpm": 68.3
-    },
     {
       "date": "2026-09-13",
       "datetime": "2026-09-13T10:17:07+00:00",
@@ -323,14 +310,6 @@
     }
   ],
   "power_cadence": [
-    {
-      "date": "2026-09-12",
-      "name": "09/12/2026 Mori",
-      "power_w": 168.0,
-      "cadence_rpm": 68.3,
-      "distance_km": 88.68,
-      "context": "Outdoor"
-    },
     {
       "date": "2026-09-13",
       "name": "09/13/2026 Gravel Recovery",
