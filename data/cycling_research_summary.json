@@ -1,5 +1,5 @@
 {
-  "generated_utc": "2026-10-20T04:04:08Z",
+  "generated_utc": "2026-10-20T11:08:14Z",
   "model": "Cycling behavioural regulation micro-dashboard",
   "window_days": {
     "short": 7,
@@ -10,21 +10,21 @@
     "load_state": "moderate",
     "context_balance": {
       "indoor": 0,
-      "outdoor": 13
+      "outdoor": 14
     },
     "seven_day": {
-      "distance_km": 122.4,
-      "moving_h": 5.2,
-      "elevation_m": 985.0,
-      "ride_count": 4
+      "distance_km": 152.4,
+      "moving_h": 6.5,
+      "elevation_m": 1427.0,
+      "ride_count": 5
     },
     "thirty_day": {
-      "distance_km": 378.2,
-      "moving_h": 16.3,
-      "elevation_m": 4217.0,
-      "ride_count": 13,
-      "mean_power_w": 186.6,
-      "mean_cadence_rpm": 78.1,
+      "distance_km": 408.2,
+      "moving_h": 17.6,
+      "elevation_m": 4659.0,
+      "ride_count": 14,
+      "mean_power_w": 187.4,
+      "mean_cadence_rpm": 77.9,
       "mean_speed_kph": 23.4
     }
   },
@@ -307,6 +307,19 @@
       "avg_speed_kph": 24.5,
       "avg_power_w": 188.0,
       "avg_cadence_rpm": 80.4
+    },
+    {
+      "date": "2026-10-20",
+      "datetime": "2026-10-20T12:04:39+00:00",
+      "name": "10/20/2026 Takuminomori",
+      "type": "Ride",
+      "is_indoor": false,
+      "distance_km": 29.99,
+      "moving_h": 1.301,
+      "elevation_m": 442.0,
+      "avg_speed_kph": 23.1,
+      "avg_power_w": 197.0,
+      "avg_cadence_rpm": 74.4
     }
   ],
   "power_cadence": [
@@ -413,19 +426,27 @@
       "cadence_rpm": 80.4,
       "distance_km": 27.15,
       "context": "Outdoor"
+    },
+    {
+      "date": "2026-10-20",
+      "name": "10/20/2026 Takuminomori",
+      "power_w": 197.0,
+      "cadence_rpm": 74.4,
+      "distance_km": 29.99,
+      "context": "Outdoor"
     }
   ],
   "latest_ride": {
-    "date": "2026-10-18",
-    "datetime": "2026-10-18T09:18:11+00:00",
-    "name": "10/18/2026 Gravel Ride",
+    "date": "2026-10-20",
+    "datetime": "2026-10-20T12:04:39+00:00",
+    "name": "10/20/2026 Takuminomori",
     "type": "Ride",
     "is_indoor": false,
-    "distance_km": 27.15,
-    "moving_h": 1.109,
-    "elevation_m": 227.0,
-    "avg_speed_kph": 24.5,
-    "avg_power_w": 188.0,
-    "avg_cadence_rpm": 80.4
+    "distance_km": 29.99,
+    "moving_h": 1.301,
+    "elevation_m": 442.0,
+    "avg_speed_kph": 23.1,
+    "avg_power_w": 197.0,
+    "avg_cadence_rpm": 74.4
   }
 }
