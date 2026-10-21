@@ -69,7 +69,7 @@ body {
 
         <iframe
             id="hakodateTelemetryFrame"
-            src="hakodate_cycling_telemetry_map.html?v=3"
+            src="hakodate_cycling_telemetry_map.html?v=4"
             scrolling="no"
             loading="lazy"
             title="Hakodate Cycling Telemetry Dashboard">
@@ -110,6 +110,37 @@ body {
 
         });
 
+    }
+
+    // Update CARTO basemap tiles in the same-origin Leaflet map iframe.
+    // Keep the generated telemetry map and all existing interactions intact.
+    function configureCartoTiles() {
+        var frame = document.getElementById('hakodateTelemetryFrame');
+        if (!frame) return;
+        try {
+            var win = frame.contentWindow;
+            if (!win || !win.L || !win.L.TileLayer) return;
+            Object.keys(win).forEach(function(name) {
+                var map = win[name];
+                if (!map || !(map instanceof win.L.Map)) return;
+                map.eachLayer(function(layer) {
+                    if (!(layer instanceof win.L.TileLayer)) return;
+                    var url = layer._url || '';
+                    if (url.indexOf('basemaps.cartocdn.com') === -1) return;
+                    if (/[?&]key=/.test(url)) return;
+                    var separator = url.indexOf('?') === -1 ? '?' : '&';
+                    layer.setUrl(url + separator + 'key=cb1_4qia_1_5eccccbfd768f4111186739b');
+                });
+            });
+        } catch (error) {
+            // Never interfere with loading the underlying map.
+            console.warn('CARTO basemap configuration:', error);
+        }
+    }
+
+    var telemetryFrame = document.getElementById('hakodateTelemetryFrame');
+    if (telemetryFrame) {
+        telemetryFrame.addEventListener('load', configureCartoTiles);
     }
 
     window.addEventListener('load', queueHeight);
