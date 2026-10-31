@@ -1,5 +1,5 @@
 {
-  "updated_utc": "2026-10-31T05:12:50Z",
+  "updated_utc": "2026-10-31T11:53:36Z",
   "source": "Strava",
   "athlete_id": 3714458,
   "scope": "latest 60 activities; 7-day research window",
@@ -7,8 +7,7 @@
   "state": {
     "load": "Light load",
     "context": "Outdoor-field",
-    "climbing_density": "9.7 m/km",
-    "latest_training_tag": "tempo / hard"
+    "climbing_density": "9.7 m/km"
   },
   "metrics": [
     {
@@ -25,11 +24,11 @@
     },
     {
       "label": "Speed",
-      "value": "23.1 kph"
+      "value": "22.7 kph"
     },
     {
       "label": "Power",
-      "value": "172 W"
+      "value": "194 W"
     },
     {
       "label": "Cadence",
@@ -43,21 +42,20 @@
     "elevation_m": 177.0,
     "indoor_count": 0,
     "outdoor_count": 1,
-    "avg_speed_kph": 23.1,
-    "avg_power_w": 172,
+    "avg_speed_kph": 22.7,
+    "avg_power_w": 194,
     "avg_cadence_rpm": 83,
     "climbing_m_per_km": 9.7
   },
   "latest_60": {
-    "ride_count": 44,
-    "distance_km": 1479.4,
-    "moving_hours": 64.0,
-    "elevation_m": 16045.0
+    "ride_count": 60,
+    "distance_km": 2165.8,
+    "moving_hours": 93.0,
+    "elevation_m": 22658.0
   },
   "latest_ride": {
     "name": "10/25/2026 Morning Gravel Ride",
-    "date": "2026-10-24",
-    "type": "Ride",
-    "training_tag": "tempo / hard"
+    "date": "2026-10-25",
+    "type": "Ride"
   }
 }
