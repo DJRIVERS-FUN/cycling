@@ -1,13 +1,14 @@
 {
-  "updated_utc": "2026-11-09T05:21:27Z",
+  "updated_utc": "2026-11-09T05:53:21Z",
   "source": "Strava",
   "athlete_id": 3714458,
   "scope": "latest 60 activities; 7-day research window",
   "headline": "7-day riding state: 15.5 km · 0.6 h · 78 m+",
   "state": {
     "load": "Light load",
-    "context": "Indoor-controlled",
-    "climbing_density": "5.0 m/km"
+    "context": "Indoor-trainer",
+    "climbing_density": "5.0 m/km",
+    "latest_training_tag": "tempo / hard"
   },
   "metrics": [
     {
@@ -24,11 +25,11 @@
     },
     {
       "label": "Speed",
-      "value": "25.8 kph"
+      "value": "24.8 kph"
     },
     {
       "label": "Power",
-      "value": "174 W"
+      "value": "168 W"
     },
     {
       "label": "Cadence",
@@ -39,23 +40,24 @@
     "ride_count": 1,
     "distance_km": 15.5,
     "moving_hours": 0.6,
-    "elevation_m": 78.0,
+    "elevation_m": 78.2,
     "indoor_count": 1,
     "outdoor_count": 0,
-    "avg_speed_kph": 25.8,
-    "avg_power_w": 174,
+    "avg_speed_kph": 24.8,
+    "avg_power_w": 168,
     "avg_cadence_rpm": 81,
     "climbing_m_per_km": 5.0
   },
   "latest_60": {
-    "ride_count": 60,
-    "distance_km": 2087.5,
-    "moving_hours": 90.0,
-    "elevation_m": 22022.0
+    "ride_count": 43,
+    "distance_km": 1318.6,
+    "moving_hours": 57.5,
+    "elevation_m": 15223.2
   },
   "latest_ride": {
     "name": "Zwift - Dolores Dirt in Video",
     "date": "2026-11-04",
-    "type": "VirtualRide"
+    "type": "VirtualRide",
+    "training_tag": "tempo / hard"
   }
 }
