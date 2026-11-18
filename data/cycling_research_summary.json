@@ -1,5 +1,5 @@
 {
-  "generated_utc": "2026-11-18T02:49:25Z",
+  "generated_utc": "2026-11-18T11:27:00Z",
   "model": "Cycling behavioural regulation micro-dashboard",
   "window_days": {
     "short": 7,
@@ -22,7 +22,7 @@
     "load_state": "light",
     "context_balance": {
       "indoor": 8,
-      "outdoor": 32
+      "outdoor": 31
     },
     "seven_day": {
       "distance_km": 0,
