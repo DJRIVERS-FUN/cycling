@@ -1,5 +1,5 @@
 {
-  "updated_utc": "2026-11-28T07:26:59Z",
+  "updated_utc": "2026-11-28T17:27:55Z",
   "source": "Strava",
   "athlete_id": 3714458,
   "scope": "latest 60 activities; 7-day research window",
@@ -49,10 +49,10 @@
     "climbing_m_per_km": 9.8
   },
   "latest_60": {
-    "ride_count": 34,
-    "distance_km": 1003.4,
-    "moving_hours": 42.8,
-    "elevation_m": 10369.2
+    "ride_count": 33,
+    "distance_km": 973.9,
+    "moving_hours": 41.7,
+    "elevation_m": 9877.2
   },
   "latest_ride": {
     "name": "Zwift - Steady State Cruise",
